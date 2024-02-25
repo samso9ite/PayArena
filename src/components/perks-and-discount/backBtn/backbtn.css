@@ -1,0 +1,19 @@
+.backbtn-container {
+    gap: 10px;
+    outline: none;
+    border: none;
+    background: none;
+    align-items: center !important;
+}
+
+.backbtn-container:focus {
+    outline: none;
+    border: none;
+}
+
+.backbtn-current-page-title{
+    font-size: 18px;
+    font-family: S-bold;
+    color: #003E51;
+    margin-top: 6px;
+}

@@ -1,0 +1,14 @@
+.modal-inner-card {
+    width: 400px;
+    height: 416px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.modal-title {
+    color: #1d2939;
+    font-size: 16px;
+    font-family: S-medium;
+    font-weight: medium;
+}

@@ -1,0 +1,19 @@
+.app-form-btn {
+    /* height: 44px; */
+    background-color: #005e7a;
+    color: white;
+    padding: 12px;
+    font-weight: 500;
+    font-family: S-medium;
+    border: none;
+    outline: none;
+}
+
+.app-form-btn:hover,
+.app-form-btn:focus,
+.app-form-btn:active {
+    background-color: #005e7a;
+    color: white;
+    outline: none;
+    border: none;
+}

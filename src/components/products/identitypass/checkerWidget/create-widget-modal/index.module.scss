@@ -1,0 +1,121 @@
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    &Content {
+        width: 500px;
+        background-color: #fff;
+        border-radius: 8px;
+    }
+
+    &Header {
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .title {
+            font-weight: 500;
+            font-size: 16px;
+            padding-bottom: 10px;
+            line-height: 20px;
+            color: #1d2939;
+            margin: 0;
+            border-bottom: 1px solid #e95470;
+        }
+
+        .closeIcon {
+            cursor: pointer;
+        }
+    }
+
+    &Footer {
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &Body {
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .form {
+            width: 100%;
+
+            .field {
+                margin: 24px 0;
+            }
+
+            .label {
+                width: 100%;
+                display: block;
+                text-transform: capitalize;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 20px;
+                margin: 1rem 0;
+            }
+
+            .input {
+                width: 100%;
+                background: #ffffff;
+                border: 1px solid #d9dde3;
+                box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+                border-radius: 8px;
+                padding: 10px 14px;
+                font-size: 14px;
+                outline: none;
+                transition: all 0.3s ease;
+
+                &:focus {
+                    border: 1px solid #003e51;
+                    // border: 1px solid #37b7ab;
+                }
+            }
+
+            .btnWrapper {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+        }
+    }
+
+    .btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 16px;
+        gap: 8px;
+        border-radius: 4px;
+        outline: none;
+        cursor: pointer;
+        min-width: 140px;
+        min-height: 42px;
+
+        &:disabled {
+            border: 1px solid #000;
+            opacity: .2;
+            color: #fff;
+            background: #000;
+            cursor: not-allowed
+        }
+
+        &Secondary {
+            border: 1px solid #007da3;
+            color: #fff;
+            background: #007da3;
+        }
+    }
+}

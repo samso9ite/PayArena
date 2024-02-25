@@ -1,0 +1,16 @@
+.favourite-text {
+    font-family: S-regular;
+    font-size: 16px;
+    color: #003e51;
+    font-weight: 400;
+    gap: 10px;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.favourite-text:focus {
+    border: none;
+    outline: none;
+    background: none;
+}

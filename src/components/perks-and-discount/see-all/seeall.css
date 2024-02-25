@@ -1,0 +1,12 @@
+.see-all-btn {
+    gap: 10px;
+    height: 24px;
+    align-self: flex-end;
+    margin-bottom: 10px;
+    background:none;
+    outline: none;
+    border: none;
+    font-family: S-bold;
+    font-size: 16px;
+    color: #42526B;
+}

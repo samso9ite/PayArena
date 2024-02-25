@@ -1,0 +1,22 @@
+.app-form-search-input {
+    height: 44px;
+    width: 320px;
+    font-size: 14px;
+    font-family: S-regular;
+    border: 1px solid #e7e9eb;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+    border-radius: 8px;
+}
+
+.app-form-search-input:focus {
+    outline: none;
+    border: 1px solid #e7e9eb;
+}
+
+.app-form-input-container {
+    position: absolute;
+    top: 9.5px;
+    right: 30px;
+}

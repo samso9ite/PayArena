@@ -1,0 +1,52 @@
+.perks-discount-search-container {
+    flex-direction: column;
+}
+
+.search-perks-title {
+    font-weight: lighter;
+    font-size: 18px !important;
+    font-family: S-regular;
+    line-height: 28px;
+    color: #003e51;
+}
+.search-perks-sub-title {
+    font-size: 16px;
+    font-family: S-regular;
+    font-weight: 400;
+    color: #2d4875;
+}
+
+.perks-search-search-fav-container {
+    width: 100%;
+    gap: 10px;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+@media all and (min-width: 540px) {
+    .perks-search-search-fav-container {
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+
+    .perks-discount-search-container{
+        justify-content: flex-start;
+
+    }
+}
+
+@media all and (min-width: 768px) {
+    .perks-discount-search-container,
+    .perks-search-search-fav-container {
+        flex-direction: row;
+    }
+
+    .perks-search-search-fav-container {
+        gap: 20px;
+        padding-bottom: 0;
+    }
+
+    .perks-search-search-fav-container {
+        width: auto;
+    }
+}

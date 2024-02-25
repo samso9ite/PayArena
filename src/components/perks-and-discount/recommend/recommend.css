@@ -1,0 +1,40 @@
+.recommend-container {
+    width: 464px;
+    height: 80px;
+    background-color: #ecedef;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recommend-no-result-text {
+    color: #1d2939;
+    font-family: S-medium;
+}
+
+.recommend-btn {
+    background-color: #007da3;
+    width: 185px;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    height: 40px;
+}
+
+.recommend-cancel-btn {
+    background: none;
+    color: #1d2939;
+}
+
+.recommend-btn:focus,
+.recommend-btn:hover {
+    background-color: #007da3;
+    color: white;
+}
+
+.recommend-cancel-btn:focus,
+.recommend-cancel-btn:hover {
+    background: none;
+    color: #1d2939;
+}

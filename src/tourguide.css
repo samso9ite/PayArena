@@ -1,0 +1,4642 @@
+/* tour guide */
+.app-side-guide {
+  z-index: -1;
+}
+.app-main-guide {
+  position: fixed;
+  margin-left: 16.66666667% !important;
+}
+.app-test-guide{
+  overflow-y: scroll !important;
+  position: unset !important;
+}
+.app-guide-no-event {
+  pointer-events: none !important;
+}
+.main-modal-bg-reset {
+  background-color: unset !important;
+}
+.btn-reset .btn-deep-green-outline {
+  min-height: 0px !important;
+  padding: 10px 25px !important;
+}
+.btn-reset .btn-dark-green {
+  min-height: 0px !important;
+  padding: 10px 25px !important;
+}
+.main-modal-alt {
+  z-index: 99999999 !important;
+}
+.get-started-modal {
+  z-index: 99999999 !important;
+}
+.get-started-modal > .main-modal-content {
+  top: 30%;
+  left: 5%;
+}
+.tourguide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative !important;
+  top: -2px !important;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background: #003e51;
+  color: #fff;
+  padding: 10px;
+}
+.tourguide-header p {
+  margin-bottom: 0px !important;
+}
+.btn-dark-green {
+  background-color: #003e51 !important;
+  color: #fff !important;
+}
+.btn-actions {
+  width: 60%;
+  margin: auto;
+}
+.card-body-tourguide {
+  overflow: hidden;
+}
+.main-modal-body-tourguide {
+  padding: 0px 15px 15px;
+}
+.close-tourguide-modal {
+  background: rgba(255, 255, 255, 0.3);
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 35px;
+  right: 20px;
+  cursor: pointer;
+}
+.btn-skip {
+  color: inherit !important;
+  text-decoration: none !important;
+  /* margin-top: 2em; */
+}
+.btn-get-started {
+  margin: 1em 0px;
+}
+.main-modal-tourguide-1 {
+  position: absolute !important;
+  top: 20px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-2 {
+  position: absolute !important;
+  top: 165px !important;
+  right: 220px !important;
+  border: none !important;
+}
+.main-modal-tourguide-3 {
+  position: absolute !important;
+  top: 200px !important;
+  right: 610px !important;
+  border: none !important;
+}
+.main-modal-tourguide-4 {
+  position: absolute !important;
+  top: 100px !important;
+  right: 10px !important;
+  border: none !important;
+}
+.main-modal-tourguide-5 {
+  position: absolute !important;
+  top: 180px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-6 {
+  position: absolute !important;
+  top: 300px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-7 {
+  position: absolute !important;
+  top: 300px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-8 {
+  position: absolute !important;
+  top: 350px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-9 {
+  position: absolute !important;
+  top: 400px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-10 {
+  position: absolute !important;
+  top: 560px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-11 {
+  position: absolute !important;
+  top: 400px !important;
+  left: 440px !important;
+  border: none !important;
+}
+.main-modal-tourguide-12 {
+  position: absolute !important;
+  top: 300px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-13 {
+  position: absolute !important;
+  top: 390px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-14 {
+  position: absolute !important;
+  top: 450px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-15 {
+  position: absolute !important;
+  top: 500px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-17 {
+  position: absolute !important;
+  top: 210px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-18 {
+  position: absolute !important;
+  top: 300px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-19 {
+  position: absolute !important;
+  top: 400px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-20 {
+  position: absolute !important;
+  top: 480px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-22 {
+  position: absolute !important;
+  top: 180px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-23 {
+  position: absolute !important;
+  top: 40px !important;
+  right: 280px !important;
+  border: none !important;
+}
+.main-modal-tourguide-24 {
+  position: absolute !important;
+  top: 400px !important;
+  right: 40px !important;
+  border: none !important;
+}
+.main-modal-tourguide-25 {
+  position: absolute !important;
+  top: 300px !important;
+  right: 70px !important;
+  border: none !important;
+}
+.main-modal-tourguide-26 {
+  position: absolute !important;
+  top: 320px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-27 {
+  position: absolute !important;
+  top: 420px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-28 {
+  position: absolute !important;
+  top: 340px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-29 {
+  position: absolute !important;
+  top: 390px !important;
+  left: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-30 {
+  position: absolute !important;
+  top: 450px !important;
+  left: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-31 {
+  position: absolute !important;
+  top: 300px !important;
+  right: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-32-alt {
+  position: absolute !important;
+  top: 170px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-32 {
+  position: absolute !important;
+  top: 200px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-33 {
+  position: absolute !important;
+  top: 230px !important;
+  left: 180px !important;
+  border: none !important;
+}
+.main-modal-tourguide-34 {
+  position: absolute !important;
+  top: 300px !important;
+  left: 180px !important;
+  border: none !important;
+}
+.main-modal-tourguide-35 {
+  position: absolute !important;
+  top: 450px !important;
+  right: 550px !important;
+  border: none !important;
+}
+.main-modal-tourguide-36-alt {
+  position: absolute !important;
+  top: 200px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-36 {
+  position: absolute !important;
+  top: 200px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-37-alt {
+  position: absolute !important;
+  top: 250px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-37 {
+  position: absolute !important;
+  top: 300px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-38 {
+  position: absolute !important;
+  top: 70px !important;
+  right: 235px !important;
+  border: none !important;
+}
+.main-modal-tourguide-39-alt {
+  position: absolute !important;
+  top: 280px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-39 {
+  position: absolute !important;
+  top: 300px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-40 {
+  position: absolute !important;
+  top: 230px !important;
+  right: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-41-alt {
+  position: absolute !important;
+  top: 300px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-41 {
+  position: absolute !important;
+  top: 300px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-42-alt {
+  position: absolute !important;
+  top: 210px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-42-lib {
+  position: absolute !important;
+  top: 150px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-42-rep {
+  position: absolute !important;
+  top: 150px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-42-checker {
+  position: absolute !important;
+  top: 255px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-42 {
+  position: absolute !important;
+  top: 255px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-43-alt {
+  position: absolute !important;
+  top: 350px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-43-doc {
+  position: absolute !important;
+  top: 300px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-43-checker {
+  position: absolute !important;
+  top: 350px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-43 {
+  position: absolute !important;
+  top: 400px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-44-rep {
+  position: absolute !important;
+  top: 280px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-44-role {
+  position: absolute !important;
+  top: 400px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-44-checker {
+  position: absolute !important;
+  top: 400px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-44 {
+  position: absolute !important;
+  top: 400px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-45-alt {
+  position: absolute !important;
+  top: 280px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-45 {
+  position: absolute !important;
+  top: 440px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-46 {
+  position: absolute !important;
+  bottom: 200px !important;
+  right: 50px !important;
+  border: none !important;
+}
+.main-modal-tourguide-47 {
+  position: absolute !important;
+  bottom: 200px !important;
+  right: 420px !important;
+  border: none !important;
+}
+.main-modal-tourguide-48 {
+  position: absolute !important;
+  bottom: 250px !important;
+  right: 500px !important;
+  border: none !important;
+}
+.main-modal-tourguide-49-alt {
+  position: absolute !important;
+  bottom: 200px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-49-role {
+  position: absolute !important;
+  bottom: 100px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-49-checker {
+  position: absolute !important;
+  bottom: 95px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-49 {
+  position: absolute !important;
+  bottom: 95px !important;
+  left: 260px !important;
+  border: none !important;
+}
+.main-modal-tourguide-50 {
+  position: absolute !important;
+  top: 220px !important;
+  left: 250px !important;
+  border: none !important;
+}
+.main-modal-tourguide-51 {
+  position: absolute !important;
+  top: 220px !important;
+  left: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-52 {
+  position: absolute !important;
+  top: 220px !important;
+  left: 450px !important;
+  border: none !important;
+}
+.main-modal-tourguide-53 {
+  position: absolute !important;
+  top: 350px !important;
+  right: 70px !important;
+  border: none !important;
+}
+.main-modal-tourguide-54 {
+  position: absolute !important;
+  top: 450px !important;
+  left: 250px !important;
+  border: none !important;
+  z-index: 9999999999 !important;
+}
+.main-modal-tourguide-55 {
+  position: absolute !important;
+  top: 220px !important;
+  right: 550px !important;
+  border: none !important;
+}
+.main-modal-tourguide-56 {
+  position: absolute !important;
+  top: 350px !important;
+  right: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-57 {
+  position: absolute !important;
+  top: 330px !important;
+  right: 50px !important;
+  border: none !important;
+}
+.main-modal-tourguide-58-alt {
+  position: absolute !important;
+  top: 220px !important;
+  right: 550px !important;
+  border: none !important;
+}
+.main-modal-tourguide-58 {
+  position: absolute !important;
+  top: 220px !important;
+  right: 300px !important;
+  border: none !important;
+}
+.main-modal-tourguide-59 {
+  position: absolute !important;
+  top: 200px !important;
+  right: 180px !important;
+  border: none !important;
+}
+.main-modal-tourguide-60-alt {
+  position: absolute !important;
+  bottom: 330px !important;
+  left: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-60-role {
+  position: absolute !important;
+  bottom: 150px !important;
+  left: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-60-noti {
+  position: absolute !important;
+  bottom: 330px !important;
+  left: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-60-noti-alt {
+  position: absolute !important;
+  bottom: 330px !important;
+  left: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-60-checker {
+  position: absolute !important;
+  bottom: 230px !important;
+  left: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-60 {
+  position: absolute !important;
+  bottom: 150px !important;
+  left: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-61-alt {
+  position: absolute !important;
+  bottom: 283px !important;
+  left: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-61-noti {
+  position: absolute !important;
+  bottom: 283px !important;
+  left: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-61-comp {
+  position: absolute !important;
+  bottom: 50px !important;
+  left: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-61-checker {
+  position: absolute !important;
+  bottom: 190px !important;
+  left: 20px !important;
+  border: none !important;
+}
+.main-modal-tourguide-61 {
+  position: absolute !important;
+  bottom: 140px !important;
+  left: 20px !important;
+  border: none !important;
+}
+.announcement-guide {
+  z-index: 10;
+  background-color: #fff;
+  padding: 10px;
+  height: fit-content;
+}
+.announcement-guide > .card {
+  background-color: linear-gradient(89.83deg, #013f52 0.12%, #002f3d 99.83%);
+}
+.topup-card-wrapper .card {
+  background-color: #fff;
+  z-index: 10;
+  pointer-events: none;
+}
+.top-nav-flex {
+  flex: 1 !important;
+}
+.profile-guide {
+  background-color: #fff;
+  z-index: 10;
+  width: fit-content !important;
+  pointer-events: none !important;
+}
+.main-modal-tourguide-arrow::after {
+  content: '';
+  position: absolute;
+  margin-left: -5px;
+  border-width: 15px;
+  border-style: solid;
+  z-index: 10;
+}
+.main-modal-tourguide-1::after {
+  top: 31%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-2::after {
+  top: 50%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-3::after {
+  top: 50%;
+  right: -8%;
+  border-color: transparent transparent transparent white;
+}
+.main-modal-tourguide-4::after {
+  top: -14%;
+  left: 40%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-5::after {
+  top: 22%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-6::after {
+  top: 22%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-7::after {
+  top: 28%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-8::after {
+  top: 45%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-9::after {
+  top: 70%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-10::after {
+  top: 80%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-11::after {
+  top: 70%;
+  right: -7%;
+  border-color: transparent transparent transparent white;
+}
+.main-modal-tourguide-12::after {
+  top: 28%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-13::after {
+  top: 28%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-14::after {
+  top: 45%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-15::after {
+  top: 65%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-17::after {
+  top: 22%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-18::after {
+  top: 22%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-19::after {
+  top: 22%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-20::after {
+  top: 22%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-22::after {
+  top: 45%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-23::after {
+  top: 55%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-24::after {
+  top: 48%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-25::after {
+  top: 50%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-26::after {
+  top: 22%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-27::after {
+  top: 22%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-28::after {
+  bottom: 10%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-29::after {
+  bottom: -12%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-30::after {
+  bottom: -10%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-31::after {
+  top: 22%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-32::after {
+  top: 28%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-32-alt::after {
+  top: 18%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-33::after {
+  top: 40%;
+  right: -7%;
+  border-color: transparent transparent transparent white;
+}
+.main-modal-tourguide-34::after {
+  top: 50%;
+  right: -7%;
+  border-color: transparent transparent transparent white;
+}
+.main-modal-tourguide-35::after {
+  bottom: -14%;
+  left: 17%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-36-alt::after {
+  top: 30%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-36::after {
+  top: 55%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-37-alt::after {
+  top: 27%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-37::after {
+  top: 25%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-38::after {
+  top: 43%;
+  right: -7%;
+  border-color: transparent transparent transparent white;
+}
+.main-modal-tourguide-39-alt::after {
+  top: 25%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-39::after {
+  top: 40%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-40::after {
+  top: -13%;
+  left: 60%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-41-alt::after {
+  top: 30%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-41::after {
+  top: 55%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-42-checker::after {
+  top: 22%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-42-alt::after {
+  top: 20%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-42-lib::after {
+  top: 20%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-42-rep::after {
+  top: 22%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-42::after {
+  top: 40%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-43-alt::after {
+  top: 20%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-43-doc::after {
+  top: 20%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-43-checker::after {
+  top: 40%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-43::after {
+  top: 40%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-44-rep::after {
+  top: 30%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-44-role::after {
+  top: 40%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-44-checker::after {
+  top: 20%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-44::after {
+  top: 40%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-45-alt::after {
+  top: 23%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-45::after {
+  top: 35%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-46::after {
+  top: 45%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-47::after {
+  top: -14%;
+  left: 40%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-48::after {
+  top: 40%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-49-alt::after {
+  bottom: 62%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-49-role::after {
+  bottom: 25%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-49-checker::after {
+  bottom: 68%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-49::after {
+  bottom: 30%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-50::after {
+  top: -14%;
+  left: 20%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-51::after {
+  top: -14%;
+  left: 45%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-52::after {
+  top: -14%;
+  left: 43%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-53::after {
+  top: -14%;
+  right: 15%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-54::after {
+  top: -14%;
+  left: 25%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-55::after {
+  top: -16%;
+  left: 50%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-56::after {
+  top: -16%;
+  right: 15%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-57::after {
+  top: 45%;
+  left: -7%;
+  border-color: transparent white transparent transparent;
+}
+.main-modal-tourguide-58-alt::after {
+  top: -11%;
+  left: 25%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-58::after {
+  top: -11%;
+  left: 25%;
+  border-color: transparent transparent white transparent;
+}
+.main-modal-tourguide-59::after {
+  top: 22%;
+  right: -8%;
+  border-color: transparent transparent transparent white;
+}
+.main-modal-tourguide-60-alt::after {
+  bottom: -13%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-60-noti::after {
+  bottom: -13%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-60-noti-alt::after {
+  bottom: -13%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-60-role::after {
+  bottom: -13%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-60-checker::after {
+  bottom: -13%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-60::after {
+  bottom: -13%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-61-alt::after {
+  bottom: -13%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-61-noti::after {
+  bottom: -13%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-61-checker::after {
+  bottom: -13%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-tourguide-61::after {
+  bottom: -13%;
+  left: 15%;
+  border-color: white transparent transparent transparent;
+}
+.main-modal-sub {
+  position: relative;
+  z-index: 999999999 !important;
+  bottom: 250px;
+  right: 100px;
+}
+.tour-guide-element-preview {
+  background: white;
+  position: relative;
+  z-index: 10;
+  padding-bottom: 1em;
+  pointer-events: none !important;
+}
+.tour-guide-element-verification-name:nth-child(1) {
+  background: white;
+  position: relative;
+  z-index: 10;
+  padding-bottom: 1em;
+  pointer-events: none !important;
+}
+.tour-guide-element-verification-country:nth-child(2) {
+  background: white;
+  position: relative;
+  z-index: 10;
+  padding-bottom: 1em;
+  pointer-events: none !important;
+}
+.tour-guide-element-verification-image:nth-child(1) {
+  background: white;
+  position: relative;
+  z-index: 10;
+  padding-bottom: 1em;
+  pointer-events: none !important;
+}
+.tour-guide-element-verification-type:nth-child(2) {
+  background: white;
+  position: relative;
+  z-index: 10;
+  padding-bottom: 1em;
+  pointer-events: none !important;
+}
+.tour-guide-element-verification-document-country:nth-child(3) {
+  background: white;
+  position: relative;
+  z-index: 10;
+  padding-bottom: 1em;
+  pointer-events: none !important;
+}
+.tour-guide-learn-more {
+  padding: 1em 1em 1em 0.4em;
+}
+.tour-guide-learn-more a {
+  color: #37b7ab;
+  font-weight: 400 !important;
+}
+.app-guide-run-check {
+  background: white;
+  position: relative;
+  z-index: 20;
+  padding: 0px;
+  width: fit-content;
+  margin-top: 2em !important;
+  padding: 0px 10px;
+  pointer-events: none;
+  height: fit-content !important;
+}
+.app-guide-switch {
+  background: white;
+  position: relative;
+  z-index: 10;
+  padding: 0px 10px;
+  pointer-events: none !important;
+}
+.app-switch {
+  display: flex;
+  align-items: center;
+}
+.tour-guide-subscribe {
+  background: white;
+  position: relative;
+  z-index: 10;
+  width: fit-content;
+  align-items: center;
+  margin: auto;
+  padding: 10px;
+  pointer-events: none;
+}
+.tour-guide-toggler {
+  border-radius: unset !important;
+}
+.tour-guide-add-card {
+  background: white;
+  z-index: 10;
+  position: relative;
+  pointer-events: none;
+}
+.tour-guide-tab {
+  background-color: white;
+  position: relative;
+  z-index: 10;
+}
+.tour-guide-add-team {
+  background: white;
+  position: relative;
+  z-index: 10;
+  width: fit-content !important;
+  align-items: center;
+  margin: auto;
+  padding: 10px;
+  pointer-events: none;
+}
+.tour-guide-add-role {
+  background: white;
+  z-index: 10;
+  padding: 10px;
+  width: fit-content !important;
+  pointer-events: none;
+}
+.pointer-event {
+  pointer-events: none;
+}
+.info {
+  color: #007da3;
+}
+.tour-guide-create-app {
+  width: fit-content !important;
+  justify-content: flex-end;
+  background-color: white;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* responsiveness starts here */
+@media screen and (max-width: 991px) {
+  .sm-turn-off-tour-guide {
+      display: none;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1135px) {
+  .get-started-modal > .main-modal-content {
+      top: 40%;
+      left: 5%;
+      width: 41.66666667% !important;
+  }
+  .main-modal-tourguide-1 {
+      left: 210px !important;
+  }
+  .main-modal-tourguide-2 {
+      top: 165px !important;
+      right: 160px !important;
+  }
+  .main-modal-tourguide-5 {
+      top: 165px !important;
+      left: 210px !important;
+  }
+  .main-modal-tourguide-6 {
+      top: 320px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-25 {
+      top: 150px !important;
+      right: 10px !important;
+      height: fit-content !important;
+  }
+  .main-modal-tourguide-46 {
+      /* bottom: 300px !important; */
+      right: 50px !important;
+  }
+}
+
+@media screen and (min-width: 1136px) and (max-width: 1275px) {
+  .main-modal-tourguide-6 {
+      top: 310px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-25 {
+      height: fit-content !important;
+  }
+  .main-modal-tourguide-46 {
+      bottom: 120px !important;
+      right: 50px !important;
+  }
+}
+
+@media screen and (min-width: 1136px) and (max-width: 1183px) {
+  .main-modal-tourguide-2 {
+      top: 165px !important;
+      right: 160px !important;
+  }
+}
+
+@media screen and (min-width: 1136px) and (max-width: 1288px) {
+  .main-modal-tourguide-5 {
+      top: 165px !important;
+      left: 210px !important;
+  }
+  .main-modal-tourguide-25 {
+      top: 300px !important;
+      right: 40px !important;
+  }
+  .main-modal-tourguide-25::after {
+      left: -7%;
+  }
+  .main-modal-tourguide-46 {
+      bottom: 120px !important;
+      right: 25px !important;
+  }
+}
+
+@media screen and (min-width: 1321px) and (max-width: 1375px) {
+  .main-modal-tourguide-25 {
+      top: 300px !important;
+      right: 70px !important;
+  }
+  .main-modal-tourguide-6 {
+      top: 300px !important;
+      right: 280px !important;
+  }
+  .main-modal-tourguide-25::after {
+      left: -5%;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1174px) {
+  .main-modal-tourguide-7 {
+      top: 300px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-8 {
+      top: 380px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-9 {
+      top: 420px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-10 {
+      top: 620px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-11 {
+      left: 350px !important;
+  }
+  .main-modal-tourguide-12 {
+      top: 320px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-13 {
+      top: 420px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-14 {
+      top: 470px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-15 {
+      top: 520px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-18 {
+      top: 320px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-19 {
+      top: 410px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-20 {
+      top: 510px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-22 {
+      top: 162px !important;
+      left: 230px !important;
+  }
+  .main-modal-tourguide-23 {
+      top: 25px !important;
+      right: 120px !important;
+  }
+  .main-modal-tourguide-25 {
+      bottom: 30px !important;
+  }
+  .main-modal-tourguide-26 {
+      top: 510px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-27 {
+      top: 510px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-28 {
+      top: 510px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-31 {
+      top: 510px !important;
+      right: 220px !important;
+  }
+  .main-modal-tourguide-32 {
+      top: 190px !important;
+      left: 230px !important;
+  }
+  .main-modal-tourguide-33 {
+      top: 220px !important;
+      left: 140px !important;
+  }
+  .main-modal-tourguide-34 {
+      left: 140px !important;
+  }
+  .main-modal-tourguide-35 {
+      right: 200px !important;
+  }
+  .main-modal-tourguide-36 {
+      top: 180px !important;
+      left: 230px !important;
+  }
+  .main-modal-tourguide-41 {
+      top: 280px !important;
+      left: 230px !important;
+  }
+  .main-modal-tourguide-42 {
+      top: 235px !important;
+      left: 230px !important;
+  }
+  .main-modal-tourguide-43 {
+      top: 380px !important;
+      left: 230px !important;
+  }
+  .main-modal-tourguide-46 {
+      right: 10px !important;
+  }
+  .main-modal-tourguide-48 {
+      right: 400px !important;
+  }
+  .main-modal-tourguide-49 {
+      bottom: 10px !important;
+      left: 220px !important;
+  }
+  .main-modal-tourguide-54 {
+      bottom: -230px !important;
+  }
+  .main-modal-tourguide-55 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-55::after {
+      top: -14%;
+  }
+  .main-modal-tourguide-56::after {
+      top: -14%;
+  }
+  .main-modal-tourguide-57 {
+      right: 10px !important;
+  }
+  .main-modal-tourguide-58 {
+      right: 110px !important;
+      top: 220px !important;
+  }
+  .main-modal-tourguide-58::after {
+      top: -10.5%;
+  }
+  .main-modal-tourguide-60 {
+      bottom: 155px !important;
+  }
+  .main-modal-tourguide-61 {
+      bottom: 110px !important;
+  }
+}
+
+@media screen and (min-width: 1276px) and (max-width: 1324px) {
+  .main-modal-tourguide-2 {
+      top: 165px !important;
+      right: 190px !important;
+  }
+  .main-modal-tourguide-46 {
+      bottom: 120px !important;
+      right: 20px !important;
+  }
+}
+
+@media screen and (min-width: 1175px) and (max-width: 1320px) {
+  .main-modal-tourguide-6 {
+      top: 300px !important;
+      right: 270px !important;
+  }
+  .main-modal-tourguide-7 {
+      top: 300px !important;
+      right: 270px !important;
+  }
+  .main-modal-tourguide-8 {
+      top: 350px !important;
+      right: 270px !important;
+  }
+  .main-modal-tourguide-9 {
+      top: 400px !important;
+      right: 270px !important;
+  }
+  .main-modal-tourguide-10 {
+      top: 600px !important;
+      right: 270px !important;
+  }
+  .main-modal-tourguide-11 {
+      top: 400px !important;
+      left: 380px !important;
+  }
+  .main-modal-tourguide-12 {
+      right: 270px !important;
+  }
+  .main-modal-tourguide-13 {
+      top: 390px !important;
+      right: 270px !important;
+  }
+  .main-modal-tourguide-14 {
+      right: 270px !important;
+  }
+  .main-modal-tourguide-15 {
+      right: 270px !important;
+  }
+  .main-modal-tourguide-18 {
+      right: 270px !important;
+  }
+  .main-modal-tourguide-19 {
+      top: 390px !important;
+      right: 270px !important;
+  }
+  .main-modal-tourguide-20 {
+      top: 490px !important;
+      right: 270px !important;
+  }
+  .main-modal-tourguide-26 {
+      top: 490px !important;
+      right: 270px !important;
+  }
+  .main-modal-tourguide-27 {
+      top: 490px !important;
+      right: 270px !important;
+  }
+  .main-modal-tourguide-28 {
+      top: 490px !important;
+      right: 270px !important;
+  }
+  .main-modal-tourguide-31 {
+      top: 490px !important;
+      right: 270px !important;
+  }
+}
+@media screen and (min-width: 1175px) {
+  .main-modal-tourguide-61 {
+      bottom: 100px !important;
+  }
+}
+@media screen and (min-width: 1184px) and (max-width: 1275px) {
+  .main-modal-tourguide-2 {
+      right: 190px !important;
+  }
+  .main-modal-tourguide-5 {
+      left: 240px !important;
+  }
+  .main-modal-tourguide-17 {
+      left: 240px !important;
+  }
+  .main-modal-tourguide-22 {
+      left: 240px !important;
+  }
+  .main-modal-tourguide-23 {
+      top: 25px !important;
+      right: 160px !important;
+  }
+  .main-modal-tourguide-32 {
+      left: 240px !important;
+  }
+  .main-modal-tourguide-33 {
+      left: 140px !important;
+  }
+  .main-modal-tourguide-34 {
+      left: 160px !important;
+  }
+  .main-modal-tourguide-35 {
+      right: 200px !important;
+  }
+  .main-modal-tourguide-36 {
+      top: 180px !important;
+      left: 240px !important;
+  }
+  .main-modal-tourguide-37 {
+      left: 240px !important;
+  }
+  .main-modal-tourguide-39 {
+      left: 240px !important;
+  }
+  .main-modal-tourguide-41 {
+      top: 280px !important;
+      left: 240px !important;
+  }
+  .main-modal-tourguide-42 {
+      top: 240px !important;
+      left: 240px !important;
+  }
+  .main-modal-tourguide-43 {
+      top: 380px !important;
+      left: 240px !important;
+  }
+  .main-modal-tourguide-46 {
+      right: 10px !important;
+  }
+  .main-modal-tourguide-47 {
+      bottom: 160px !important;
+  }
+  .main-modal-tourguide-47::after {
+      top: -12.5%;
+  }
+  .main-modal-tourguide-48 {
+      right: 400px !important;
+  }
+  .main-modal-tourguide-49 {
+      bottom: 5px !important;
+      left: 240px !important;
+  }
+  .main-modal-tourguide-54 {
+      bottom: -230px !important;
+  }
+  .main-modal-tourguide-55 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-55::after {
+      top: -14%;
+  }
+  .main-modal-tourguide-56::after {
+      top: -14%;
+  }
+  .main-modal-tourguide-57 {
+      right: 10px !important;
+  }
+  .main-modal-tourguide-58 {
+      right: 160px !important;
+  }
+  .main-modal-tourguide-58::after {
+      top: -10.9%;
+  }
+  .main-modal-tourguide-59 {
+      top: 210px !important;
+      right: 190px !important;
+  }
+  .main-modal-tourguide-60 {
+      bottom: 142px !important;
+  }
+  .main-modal-tourguide-61 {
+      bottom: 80px !important;
+  }
+}
+@media screen and (min-width: 1325px) and (max-width: 1362px) {
+  .main-modal-tourguide-25 {
+      top: 300px !important;
+      right: 50px !important;
+  }
+  .main-modal-tourguide-2 {
+      right: 190px !important;
+  }
+  .main-modal-tourguide-25::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-46 {
+      bottom: 120px !important;
+      right: 20px !important;
+  }
+}
+
+@media screen and (min-width: 1503px) and (max-width: 1508px) {
+  .main-modal-tourguide-2 {
+      right: 250px !important;
+  }
+}
+
+@media screen and (min-width: 1646px) and (max-width: 1853px) {
+  .main-modal-tourguide-2 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-2::after {
+      top: 50%;
+      left: -5%;
+      border-color: transparent white transparent transparent;
+  }
+}
+
+@media screen and (min-width: 1520px) and (max-width: 2800px) {
+  .main-modal-tourguide-2::after {
+      top: 50%;
+      left: -5%;
+      border-color: transparent white transparent transparent;
+  }
+  .main-modal-tourguide-47 {
+      bottom: 380px !important;
+      right: 500px !important;
+  }
+}
+
+@media screen and (min-width: 2130px) {
+  .main-modal-tourguide-2::after {
+      top: 50%;
+      left: -4%;
+      border-color: transparent white transparent transparent;
+  }
+}
+
+@media screen and (min-width: 2799px) {
+  .main-modal-tourguide-2::after {
+      top: 50%;
+      left: -3%;
+      border-color: transparent white transparent transparent;
+  }
+}
+
+@media screen and (min-width: 1852px) {
+  .main-modal-tourguide-2 {
+      right: 280px !important;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1297px) {
+  .main-modal-tourguide-47 {
+      bottom: 120px !important;
+      right: 350px !important;
+  }
+  .main-modal-tourguide-47::after {
+      top: -12%;
+      left: 40%;
+  }
+}
+
+@media screen and (min-width: 1298px) and (max-width: 1477px) {
+  .main-modal-tourguide-47 {
+      /* bottom: 140px !important; */
+      right: 420px !important;
+  }
+  .main-modal-tourguide-47::after {
+      top: -13%;
+      left: 40%;
+  }
+}
+
+@media screen and (min-width: 1478px) and (max-width: 1518px) {
+  .main-modal-tourguide-25 {
+      top: 300px !important;
+      right: 90px !important;
+  }
+  .main-modal-tourguide-47 {
+      bottom: 380px !important;
+      right: 500px !important;
+  }
+  .main-modal-tourguide-2::after {
+      top: 50%;
+      left: -6%;
+      border-color: transparent white transparent transparent;
+  }
+  .main-modal-tourguide-25::after {
+      left: -5%;
+  }
+}
+
+@media screen and (min-width: 2756px) and (max-width: 2800px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 300px !important;
+      right: 1180px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -4%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2614px) and (max-width: 2656px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 300px !important;
+      right: 1100px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -4%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2551px) and (max-width: 2613px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 300px !important;
+      right: 1100px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -4%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2473px) and (max-width: 2550px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 1050px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -4%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2362px) and (max-width: 2472px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 1000px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -5%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2417px) and (max-width: 2471px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 1020px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -4%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2331px) and (max-width: 2361px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 1000px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -5%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2241px) and (max-width: 2330px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 980px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -5%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2234px) and (max-width: 2240px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 990px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -5%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2104px) and (max-width: 2233px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 891px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -5%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2126px) and (max-width: 2233px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 940px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -5%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+
+@media screen and (min-width: 2081px) and (max-width: 2103px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 880px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -5%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2078px) and (max-width: 2080px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 880px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -5%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 2026px) and (max-width: 2077px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 850px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -5%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 1867px) and (max-width: 2025px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 790px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -6%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 1955px) and (max-width: 2024px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 840px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -5%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 1815px) and (max-width: 1866px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 200px !important;
+      right: 790px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -6%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 1647px) and (max-width: 1814px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 220px !important;
+      right: 695px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -6%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 1506px) and (max-width: 1646px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 220px !important;
+      right: 640px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -7%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 1715px) and (max-width: 1814px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 220px !important;
+      right: 720px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -6%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 1756px) and (max-width: 1854px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 780px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -6%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 1579px) and (max-width: 1646px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 690px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -6%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+@media screen and (min-width: 1568px) and (max-width: 1578px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 220px !important;
+      right: 659px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -7%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+
+@media screen and (min-width: 2801px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 250px !important;
+      right: 1199px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -4%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+
+@media screen and (min-width: 2657px) and (max-width: 2755px) {
+  .main-modal-tourguide-3 {
+      position: absolute !important;
+      top: 300px !important;
+      right: 1120px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-3::after {
+      top: 50%;
+      right: -4%;
+      border-color: transparent transparent transparent white;
+  }
+}
+
+
+@media screen and (min-width: 1716px) and (max-width: 2800px) {
+  .main-modal-tourguide-4 {
+      position: absolute !important;
+      top: 110px !important;
+      right: 10px !important;
+      border: none !important;
+  }
+  .main-modal-tourguide-4::after {
+      top: -15%;
+      left: 70%;
+      border-color: transparent transparent white transparent;
+  }
+  .main-modal-tourguide-35 {
+      top: 450px !important;
+      right: 640px !important;
+  }
+}
+
+@media screen and (min-width: 2801px) {
+  .main-modal-tourguide-4::after {
+      top: -16%;
+      left: 70%;
+      border-color: transparent transparent white transparent;
+  }
+}
+
+@media screen and (min-width: 1499px) and (max-width: 1670px) {
+  .main-modal-tourguide-1::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 180px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-5 {
+      top: 180px !important;
+      left: 270px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 270px !important;
+  }
+}
+
+@media screen and (min-width: 1695px) and (max-width: 1768px) {
+  .main-modal-tourguide-1::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 180px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-5 {
+      top: 180px !important;
+      left: 310px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 310px !important;
+  }
+}
+
+@media screen and (min-width: 1769px) and (max-width: 1798px) {
+  .main-modal-tourguide-1::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 180px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-5 {
+      top: 180px !important;
+      left: 315px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 315px !important;
+  }
+}
+
+@media screen and (min-width: 1799px) and (max-width: 1847px) {
+  .main-modal-tourguide-1::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 180px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-5 {
+      /* top: 180px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 320px !important;
+  }
+}
+
+@media screen and (min-width: 1848px) and (max-width: 2017px) {
+  .main-modal-tourguide-1::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 180px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-5 {
+      /* top: 180px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 350px !important;
+  }
+}
+
+@media screen and (min-width: 2018px) and (max-width: 2340px) {
+  .main-modal-tourguide-1::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 190px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-5 {
+      top: 190px !important;
+      left: 400px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-24 {
+      top: 420px !important;
+      right: 180px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 400px !important;
+  }
+  .main-modal-tourguide-24::after {
+      left: -4%;
+  }
+}
+
+@media screen and (min-width: 2341px) and (max-width: 2418px)  {
+  .main-modal-tourguide-1::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 190px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-5 {
+      top: 190px !important;
+      left: 410px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 410px !important;
+  }
+}
+
+@media screen and (min-width: 2419px) and (max-width: 2490px) {
+  .main-modal-tourguide-1::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 190px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-5 {
+      top: 190px !important;
+      left: 420px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 420px !important;
+  }
+}
+
+@media screen and (min-width: 2491px)  and (max-width: 2587px) {
+  .main-modal-tourguide-1::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 190px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-5 {
+      top: 190px !important;
+      left: 440px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 440px !important;
+  }
+}
+
+@media screen and (min-width: 2587px)  and (max-width: 2664px) {
+  .main-modal-tourguide-1::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 190px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-5 {
+      top: 190px !important;
+      left: 450px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 450px !important;
+  }
+}
+
+@media screen and (min-width: 2664px) and (max-width: 2820px)   {
+  .main-modal-tourguide-1::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 190px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-5 {
+      top: 190px !important;
+      left: 460px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 460px !important;
+  }
+}
+
+@media screen and (min-width: 2821px)  {
+  .main-modal-tourguide-1::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-5::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-17::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-22::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-32::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-36::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-37::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-39::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-41::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-42::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-43::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-44::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-45::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-49::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-60::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-61::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-1 {
+      /* top: 190px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-5 {
+      top: 190px !important;
+      left: 500px !important;
+  }
+  .main-modal-tourguide-17 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-22 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-32 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-36 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-37 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-39 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-41 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-42 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-43 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-44 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-45 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-49 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-60 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+  .main-modal-tourguide-61 {
+      /* top: 210px !important; */
+      left: 500px !important;
+  }
+}
+
+@media screen and (min-width: 1671px) and (max-width: 1694px) {
+  .main-modal-tourguide-5 {
+      top: 180px !important;
+      left: 300px !important;
+  }
+  .main-modal-tourguide-5::after {
+      left: -5%;
+  }
+}
+
+@media screen and (min-width: 1483px) and (max-width: 1648px)   {
+  .main-modal-tourguide-25 {
+      top: 300px !important;
+      right: 110px !important;
+  }
+  .main-modal-tourguide-6::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-7::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-8::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-9::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-10::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-12::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-13::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-14::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-15::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-18::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-19::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-20::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-23::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-25::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-26::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-27::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-28::after {
+      left: -6%;
+  }
+  .main-modal-tourguide-31::after {
+      left: -6%;
+  }
+  
+}
+
+@media screen and (min-width: 1649px) and (max-width: 1709px)  {
+  .main-modal-tourguide-6 {
+      top: 300px !important;
+      right: 330px !important;
+  }
+  .main-modal-tourguide-7 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-8 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-9 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-10 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-11 {
+      left: 500px !important;
+  }
+  .main-modal-tourguide-12 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-13 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-14 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-15 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-18 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-19 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-20 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-23 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-24 {
+      top: 410px !important;
+      right: 85px !important;
+  }
+  .main-modal-tourguide-25 {
+      top: 300px !important;
+      right: 120px !important;
+  }
+  .main-modal-tourguide-26 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-27 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-28 {
+      right: 330px !important;
+  }
+  .main-modal-tourguide-31 {
+      right: 330px !important;
+  }
+   .main-modal-tourguide-6::after {
+      left: -5%;
+  }
+   .main-modal-tourguide-7::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-8::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-9::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-10::after {
+      left: -5%;
+  } 
+  .main-modal-tourguide-12::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-13::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-14::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-15::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-18::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-19::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-20::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-23::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-24::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-25::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-26::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-27::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-28::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-31::after {
+      left: -5%;
+  }
+}
+
+@media screen and (min-width: 1710px) and (max-width: 1894px) {
+  .main-modal-tourguide-6 {
+      top: 300px !important;
+      right: 350px !important;
+  }
+  .main-modal-tourguide-7 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-8 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-9 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-10 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-12 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-13 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-14 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-15 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-18 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-19 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-20 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-23 {
+      right: 420px !important;
+  }
+  .main-modal-tourguide-25 {
+      top: 300px !important;
+      right: 150px !important;
+  }
+  .main-modal-tourguide-26 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-27 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-28 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-31 {
+      right: 350px !important;
+  }
+   .main-modal-tourguide-6::after {
+      left: -5%;
+  }
+   .main-modal-tourguide-7::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-8::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-9::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-10::after {
+      left: -5%;
+  } 
+  .main-modal-tourguide-12::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-13::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-14::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-15::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-18::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-19::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-20::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-23::after {
+      top: 55%;
+      left: -5%;
+  }
+  .main-modal-tourguide-25::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-26::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-27::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-28::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-31::after {
+      left: -5%;
+  }
+}
+
+
+@media screen and (min-width: 1895px) and (max-width: 1930px) {
+  .main-modal-tourguide-6 {
+      top: 300px !important;
+      right: 350px !important;
+  }
+  .main-modal-tourguide-7 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-8 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-9 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-10 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-12 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-13 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-14 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-15 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-18 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-19 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-20 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-23 {
+      right: 500px !important;
+  }
+  .main-modal-tourguide-26 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-27 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-28 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-31 {
+      right: 350px !important;
+  }
+   .main-modal-tourguide-6::after {
+      left: -5%;
+  }
+   .main-modal-tourguide-7::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-8::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-9::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-10::after {
+      left: -5%;
+  } 
+  .main-modal-tourguide-12::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-13::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-14::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-15::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-18::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-19::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-20::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-23::after {
+      top: 55%;
+      left: -5%;
+  }
+  .main-modal-tourguide-26::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-27::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-28::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-31::after {
+      left: -5%;
+  }
+}
+
+@media screen and (min-width: 1931px) and (max-width: 1999px) {
+  .main-modal-tourguide-6 {
+      top: 300px !important;
+      right: 395px !important;
+  }
+  .main-modal-tourguide-7 {
+      right: 395px !important;
+  }
+  .main-modal-tourguide-8 {
+      right: 395px !important;
+  }
+  .main-modal-tourguide-9 {
+      right: 395px !important;
+  }
+  .main-modal-tourguide-10 {
+      right: 395px !important;
+  }
+  .main-modal-tourguide-12 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-13 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-14 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-15 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-18 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-19 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-20 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-23 {
+      right: 550px !important;
+  }
+  .main-modal-tourguide-24 {
+      top: 420px !important;
+      right: 160px !important;
+  }
+  .main-modal-tourguide-26 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-27 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-28 {
+      right: 350px !important;
+  }
+  .main-modal-tourguide-31 {
+      right: 350px !important;
+  }
+   .main-modal-tourguide-6::after {
+      left: -5%;
+  }
+   .main-modal-tourguide-7::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-8::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-9::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-10::after {
+      left: -5%;
+  } 
+  .main-modal-tourguide-12::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-13::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-14::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-15::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-18::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-19::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-20::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-23::after {
+      /* top: 55%; */
+      left: -5%;
+  }
+  .main-modal-tourguide-24::after {
+      /* top: 55%; */
+      left: -5%;
+  }
+  .main-modal-tourguide-26::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-27::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-28::after {
+      left: -5%;
+  }
+  .main-modal-tourguide-31::after {
+      left: -5%;
+  }
+}
+
+@media screen and (min-width: 2000px) and (max-width: 2162px) {
+  .main-modal-tourguide-6 {
+      top: 300px !important;
+      right: 430px !important;
+  }
+  .main-modal-tourguide-7 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-8 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-9 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-10 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-12 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-13 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-14 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-15 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-18 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-19 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-20 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-23 {
+      right: 600px !important;
+  }
+  .main-modal-tourguide-26 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-27 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-28 {
+      right: 430px !important;
+  }
+  .main-modal-tourguide-31 {
+      right: 430px !important;
+  }
+   .main-modal-tourguide-6::after {
+      left: -4%;
+  }
+   .main-modal-tourguide-7::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-8::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-9::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-10::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-12::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-13::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-14::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-15::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-18::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-19::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-20::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-23::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-26::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-27::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-28::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-31::after {
+      left: -4%;
+  }
+}
+
+
+@media screen and (min-width: 2163px) and (max-width: 2363px) {
+  .main-modal-tourguide-6 {
+      /* top: 300px !important; */
+      right: 490px !important;
+  }
+  .main-modal-tourguide-7 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-8 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-9 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-10 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-12 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-13 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-14 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-15 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-18 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-19 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-20 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-23 {
+      right: 650px !important;
+  }
+  .main-modal-tourguide-26 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-27 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-28 {
+      right: 490px !important;
+  }
+  .main-modal-tourguide-31 {
+      right: 490px !important;
+  }
+   .main-modal-tourguide-6::after {
+      left: -4%;
+  }
+   .main-modal-tourguide-7::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-8::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-9::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-10::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-12::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-13::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-14::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-15::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-18::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-19::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-20::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-23::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-26::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-27::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-28::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-31::after {
+      left: -4%;
+  }
+}
+
+@media screen and (min-width: 1321px) and (max-width: 1383px) {
+  .main-modal-tourguide-7 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-8 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-9 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-10 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-11 {
+      left: 400px !important;
+  }
+  .main-modal-tourguide-11::after {
+      right: -8%;
+  }
+  .main-modal-tourguide-12 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-13 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-14 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-15 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-18 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-19 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-20 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-26 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-27 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-28 {
+      right: 250px !important;
+  }
+  .main-modal-tourguide-31 {
+      right: 250px !important;
+  }
+}
+
+@media screen and (min-width: 1795px) and (max-width: 1920px) {
+  .main-modal-tourguide-11 {
+      left: 550px !important;
+  }
+  .main-modal-tourguide-25 {
+      top: 300px !important;
+      right: 180px !important;
+  }
+  .main-modal-tourguide-11::after {
+      right: -6%;
+  }
+  .main-modal-tourguide-25::after {
+      left: -5%;
+  }
+}
+
+@media screen and (min-width: 1921px) and (max-width: 2128px) {
+  .main-modal-tourguide-11 {
+      left: 600px !important;
+  }
+  .main-modal-tourguide-25 {
+      top: 300px !important;
+      right: 200px !important;
+  }
+  .main-modal-tourguide-11::after {
+      right: -5%;
+  }
+  .main-modal-tourguide-25::after {
+      left: -4%;
+  }
+}
+
+@media screen and (min-width: 2129px) and (max-width: 2270px) {
+  .main-modal-tourguide-11 {
+      left: 650px !important;
+  }
+  .main-modal-tourguide-25 {
+      top: 500px !important;
+      right: 250px !important;
+  }
+  .main-modal-tourguide-11::after {
+      right: -5%;
+  }
+  .main-modal-tourguide-25::after {
+      left: -4%;
+  }
+}
+
+/* @media screen and (min-width: 2565px) and (max-width: 2729px) {
+  .main-modal-tourguide-11 {
+      left: 1750px !important;
+  }
+  .main-modal-tourguide-11::after {
+      right: -5%;
+  }
+} */
+
+@media screen and (min-width: 2271px) and (max-width: 2472px) {
+  .main-modal-tourguide-11 {
+      left: 700px !important;
+  }
+  .main-modal-tourguide-24 {
+      top: 420px !important;
+      right: 200px !important;
+  }
+  .main-modal-tourguide-25 {
+      top: 500px !important;
+      right: 280px !important;
+  }
+  .main-modal-tourguide-11::after {
+      right: -4%;
+  }
+  .main-modal-tourguide-24::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-25::after {
+      left: -4%;
+  }
+}
+
+@media screen and (min-width: 2364px) and (max-width: 2473px) {
+  .main-modal-tourguide-6 {
+      top: 300px !important;
+      right: 480px !important;
+  }
+  .main-modal-tourguide-7 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-8 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-9 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-10 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-12 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-13 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-14 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-15 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-18 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-19 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-20 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-23 {
+      right: 800px !important;
+  }
+  .main-modal-tourguide-24 {
+      top: 430px !important;
+      right: 200px !important;
+  }
+  .main-modal-tourguide-25 {
+      top: 500px !important;
+      right: 320px !important;
+  }
+  .main-modal-tourguide-26 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-27 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-28 {
+      right: 480px !important;
+  }
+  .main-modal-tourguide-31 {
+      right: 480px !important;
+  }
+   .main-modal-tourguide-6::after {
+      left: -4%;
+  }
+   .main-modal-tourguide-7::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-8::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-9::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-10::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-12::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-13::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-14::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-15::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-18::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-19::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-20::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-23::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-24::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-25::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-26::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-27::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-28::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-31::after {
+      left: -4%;
+  } 
+}
+
+@media screen and (min-width: 2474px) {
+  .main-modal-tourguide-35 {
+      right: 1100px !important;
+  }
+  .main-modal-tourguide-6 {
+      top: 300px !important;
+      right: 520px !important;
+  }
+  .main-modal-tourguide-7 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-8 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-9 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-10 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-11 {
+      left: 750px !important;
+  }
+  .main-modal-tourguide-12 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-13 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-14 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-15 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-18 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-19 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-20 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-23 {
+      right: 850px !important;
+  }
+  .main-modal-tourguide-24 {
+      top: 420px !important;
+      right: 250px !important;
+  }
+  .main-modal-tourguide-25 {
+      top: 450px !important;
+      right: 320px !important;
+  }
+  .main-modal-tourguide-26 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-27 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-28 {
+      right: 520px !important;
+  }
+  .main-modal-tourguide-31 {
+      right: 520px !important;
+  }
+   .main-modal-tourguide-6::after {
+      left: -3%;
+  }
+   .main-modal-tourguide-7::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-8::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-9::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-10::after {
+      left: -3%;
+  } 
+  .main-modal-tourguide-11::after {
+      right: -4%;
+  }
+  .main-modal-tourguide-12::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-13::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-14::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-15::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-18::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-19::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-20::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-23::after {
+      left: -4%;
+  }
+  .main-modal-tourguide-24::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-25::after {
+      left: -3%;
+  }
+  .main-modal-tourguide-26::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-27::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-28::after {
+      left: -4%;
+  } 
+  .main-modal-tourguide-31::after {
+      left: -4%;
+  } 
+}
+
+
+/* end of tour guide */

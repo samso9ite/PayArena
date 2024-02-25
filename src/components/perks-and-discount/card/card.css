@@ -1,0 +1,61 @@
+.perks-dsicount-product-card {
+    height: 364px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px 0px #0000001a;
+}
+
+.perks-discount-product-image {
+    width: 100px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.perks-discount-product-desc-container {
+    position: relative;
+    height: calc(100% - 119px);
+}
+
+.perks-discount-card-image-container {
+    height: 119px;
+    background-color: #FFEBCC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media all and (min-width: 540px) {
+    .perks-dsicount-product-card {
+        width: 48%;
+    }
+}
+
+@media (min-height: 1366px) {
+    .perks-dsicount-product-card {
+        width: 48%;
+    }
+}
+
+@media all and (min-height: 1024px) and (min-width: 1366px) {
+    .perks-dsicount-product-card {
+        width: 48%;
+    }
+}
+
+@media all and (min-width: 1280px) {
+    .perks-dsicount-product-card {
+        width: 320px;
+    }
+}
+
+@media all and (min-width: 1300px) {
+    .perks-dsicount-product-card {
+        width: 330px;
+    }
+}
+
+@media all and (min-width: 1430px) {
+    .perks-dsicount-product-card {
+        width: 370px;
+    }
+}

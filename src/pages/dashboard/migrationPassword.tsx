@@ -1,0 +1,213 @@
+import { Link } from "react-router-dom"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../../redux/reducers"
+import { Spinner } from "react-bootstrap"
+import global from "../../redux/constants/global"
+import premblyLogo from "../../../../assets/logo.png"
+import { ServerErrorComp } from "../../components/utils"
+import { migrationSetPasswordRequest } from "../../redux/actions/accessToken"
+import { organisationInfoRequest } from "../../redux/actions/settings/organisationInfo"
+
+export default function SetMigrationPasswordComp(props: any) {
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [confViewPassword, setConfViewPassword] = useState(false)
+    const [viewPassword, setViewPassword] = useState(false)
+    const [passwordError, setPasswordError] = useState("")
+    const [confirmPasswordError, setConfirmPasswordError] = useState("")
+    // const [serverError, setServerError] = useState("")
+
+    const migrationSetPasswordState = useSelector((state: RootState) => state.migrationSetPasswordReducer)
+
+    const dispatch = useDispatch()
+
+    var letters_small = new RegExp("^((?=.*[a-z]))");
+    var letters_capitals = new RegExp("^((?=.*[a-z])(?=.*[A-Z]))");
+    var number_char = new RegExp("^(?=.*[0-9])");
+    var special_char = new RegExp("^(?=.*[!@#\$%\^&\*])");
+    var eight_char = new RegExp("^(?=.{8,})");
+
+
+    let checkPassword = () => {
+        if (password) { setPasswordError("") }
+        else { setPasswordError("Password cannot be blank") }
+    }
+    let checkConfPassword = () => {
+        if (!confirmPassword) { setConfirmPasswordError("Please confirm your Password") }
+        else if (password !== confirmPassword) {
+            setPasswordError("Passwords do not match")
+            setConfirmPasswordError("Passwords do not match")
+        }
+        else {
+            setPasswordError("")
+            setConfirmPasswordError("")
+        }
+    }
+
+    let setPasswordTrigger = () => {
+        const callback = (data: any) => {
+            if (data.status) {
+                props.pushNotifTitle("Success")
+                props.pushNotif("You have successfully set your password", true)
+                // setServerError("")
+
+                props?.closePasswordModal()
+                getOrgInfo()
+                // window.location.href = global.appBaseUrl
+            }
+            else {
+                props.pushNotifTitle("Error")
+                props.pushNotif(data.detail, true)
+                // setServerError(data.detail)
+            }
+        };
+
+        if (!password) {
+            setPasswordError("Password cannot be blank")
+            props.pushNotifTitle("Error")
+            props.pushNotif("Password cannot be blank", true)
+            return
+        }
+        if (!confirmPassword) {
+            setConfirmPasswordError("Please confirm your Password")
+            props.pushNotifTitle("Error")
+            props.pushNotif("Please confirm your Password", true)
+            return
+        }
+        if (password !== confirmPassword) {
+            setPasswordError("Passwords do not match")
+            setConfirmPasswordError("Passwords do not match")
+            props.pushNotifTitle("Error")
+            props.pushNotif("Passwords do not match", true)
+            return
+        }
+        if (!letters_small.test(password) || !letters_capitals.test(password) || !number_char.test(password)
+            || !special_char.test(password) || !eight_char.test(password)) {
+            props.pushNotifTitle("Error")
+            props.pushNotif("Password strength is weak", true)
+            // setServerError("Password strength is weak")
+            return
+        }
+
+        let data: any = {
+            values: {
+                new_password: confirmPassword,
+            },
+            callback,
+        };
+        dispatch(migrationSetPasswordRequest(data))
+    }
+
+    let getOrgInfo = () => {
+        const callback = (data: any) => {
+            if (!data.status) {
+                props.pushNotifTitle("Error")
+                props.pushNotif(data.detail, true)
+            }
+        };
+
+        let data: any = {
+            values: {},
+            callback,
+        };
+        dispatch(organisationInfoRequest(data))
+    }
+
+    return (
+        <div className="">
+            <div className="">
+                <label htmlFor="password">Password</label>
+                <div className="input-group">
+                    <input type={!viewPassword ? "password" : "text"} className={`form-control ${passwordError ? "input-error" : ""}`}
+                        onBlur={checkPassword}
+                        onChange={password => setPassword(password.target.value)} placeholder="*********"
+                    />
+                    <span >
+                        <div className="form-control py-3 d-flex align-items-center" style={{ borderRadius: "0px 5px 5px 0px" }}>
+                            {!viewPassword ?
+                                <i className="ri-eye-line ri-lg" onClick={() => setViewPassword(true)} style={{ cursor: "pointer" }} />
+                                :
+                                <i className="ri-eye-off-line ri-lg" onClick={() => setViewPassword(false)} style={{ cursor: "pointer" }} />
+                            }
+                        </div>
+                    </span>
+                </div>
+                {passwordError && <p style={{ color: "red" }} className="p-0 m-0">{passwordError}</p>}
+            </div>
+            <div className="">
+                <label htmlFor="confpassword">Confirm Password</label>
+                <div className="input-group">
+                    <input type={!confViewPassword ? "password" : "text"} className={`form-control ${confirmPasswordError ? "input-error" : ""}`}
+                        onBlur={checkConfPassword}
+                        onChange={conf => setConfirmPassword(conf.target.value)} placeholder="*********"
+                    />
+                    <span >
+                        <div className="form-control py-3 d-flex align-items-center" style={{ borderRadius: "0px 5px 5px 0px" }}>
+                            {!confViewPassword ?
+                                <i className="ri-eye-line ri-lg" onClick={() => setConfViewPassword(true)} style={{ cursor: "pointer" }} />
+                                :
+                                <i className="ri-eye-off-line ri-lg" onClick={() => setConfViewPassword(false)} style={{ cursor: "pointer" }} />
+                            }
+                        </div>
+                    </span>
+                </div>
+                {confirmPasswordError && <p style={{ color: "red" }} className="p-0 m-0">{confirmPasswordError}</p>}
+            </div>
+            <div className="password-strength-area mt-3">
+                <span className="d-flex align-items-center mb-2">
+                    {letters_small.test(password) ?
+                        <i className="ri-checkbox-circle-fill ri-lg me-2" /> :
+                        <i className="ri-close-circle-fill ri-lg me-2" />
+                    }
+                    <small>One lowercase letter</small>
+                </span>
+                <span className="d-flex align-items-center mb-2">
+                    {letters_capitals.test(password) ?
+                        <i className="ri-checkbox-circle-fill ri-lg me-2" /> :
+                        <i className="ri-close-circle-fill ri-lg me-2" />
+                    }
+                    <small>One uppercase letter</small>
+                </span>
+                <span className="d-flex align-items-center mb-2">
+                    {number_char.test(password) ?
+                        <i className="ri-checkbox-circle-fill ri-lg me-2" /> :
+                        <i className="ri-close-circle-fill ri-lg me-2" />
+                    }
+                    <small>One number </small>
+                </span>
+                <span className="d-flex align-items-center mb-2">
+                    {special_char.test(password) ?
+                        <i className="ri-checkbox-circle-fill ri-lg me-2" /> :
+                        <i className="ri-close-circle-fill ri-lg me-2" />
+                    }
+                    <small>One special character</small>
+                </span>
+                <span className="d-flex align-items-center mb-2">
+                    {eight_char.test(password) ?
+                        <i className="ri-checkbox-circle-fill ri-lg me-2" /> :
+                        <i className="ri-close-circle-fill ri-lg me-2" />
+                    }
+                    <small>8 character minimum</small>
+                </span>
+            </div>
+            <button className="btn btn-green w-100 py-3 mt-4" onClick={setPasswordTrigger}>
+                {migrationSetPasswordState.isLoading
+                    ?
+                    <div>
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                    :
+                    "Set Password"
+                }
+            </button>
+        </div>
+    )
+}

@@ -1,0 +1,261 @@
+.perks-discount-container {
+    gap: 20px;
+}
+
+.details-cards-wrapper {
+    flex-direction: column;
+}
+
+.details-img {
+    width: 172.48px;
+    height: 172.48px;
+    object-fit: contain;
+}
+
+.perks-discount-active-industry-title {
+    color: #42526b;
+    font-weight: 700;
+    font-family: S-bold;
+    margin-top: 50px;
+}
+
+.perks-discount-filter-btn {
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.perks-discount-filter-btn-active {
+    background-color: #005e7a;
+    color: white;
+}
+
+.perks-discount-filter-btn-inactive {
+    background-color: #f3f4f5b2;
+    color: #101828;
+}
+
+.perks-discount-product-card-container {
+    gap: 20px;
+}
+
+.perks-discount-product-title {
+    font-weight: 400;
+    font-size: 14px !important;
+    font-family: S-regular;
+    line-height: 28px;
+    color: #42526b;
+}
+
+.perks-dsicount-product-subtitle {
+    font-weight: 700;
+    font-size: 18px !important;
+    font-family: S-bold;
+    line-height: 28px;
+    color: #1d2939;
+}
+
+.perks-discount-product-desc {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: S-regular;
+    color: #42526b;
+    line-height: 18.9px;
+}
+
+.perks-discount-product-offer-btn {
+    position: absolute;
+    bottom: 23px;
+    left: 20px;
+    right: 20px;
+    height: 40px;
+    padding: 0;
+    border-radius: 4px;
+    background-color: #37b7ab;
+    gap: 8px;
+}
+
+.perks-discount-product-offer-btn:hover,
+.perks-discount-product-offer-btn:focus,
+.perks-discount-product-offer-btn:active {
+    background-color: #37b7ab;
+}
+
+.perks-discount-card2 {
+    margin-top: 20px;
+}
+
+/* PERKS DETAILS */
+.details-img-wrapper {
+    width: 100%;
+    padding-left: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.details-img-desc-wrapper {
+    width: 100%;
+    display: flex;
+    box-shadow: 0px 0px 6px 0px #0000001a;
+    justify-content: space-between !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+    padding-right: 25px !important;
+    flex-direction: column;
+}
+
+.details-desc-wrapper {
+    width: 100%;
+    font-family: S-regular;
+    color: #42526b;
+    text-align: justify;
+}
+
+.details-desc-header {
+    font-family: S-bold;
+    font-size: 22px;
+}
+
+.details-desc-paragraph {
+    line-height: 26px;
+    font-size: 16px;
+}
+
+.details-proceed-header {
+    font-size: 20px;
+    font-family: S-bold;
+}
+
+.details-proceed-paragraph {
+    font-size: 16px;
+    color: #344054;
+}
+
+.details-discount-price {
+    font-family: S-bold;
+    color: #344054;
+    font-size: 30px;
+}
+
+.details-proceed-wrapper {
+    width: 100%;
+    height: fit-content;
+    border-top: 0.5px solid #344054;
+    border-bottom: 0.5px solid #344054;
+}
+
+.details-discount-prev-price {
+    color: #526584;
+    font-size: 20px;
+    font-family: S-regular;
+    line-height: 27px;
+    margin-top: 10px;
+}
+
+.details-discount-percentage {
+    color: #e35044;
+    font-size: 16px;
+    font-family: S-regular;
+    line-height: 21.6px;
+}
+
+.details-get-offer-btn {
+    height: 40px;
+    padding: 0;
+    border-radius: 4px;
+    background-color: #37b7ab;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.details-get-offer-btn:hover,
+.details-get-offer-btn:focus,
+.details-get-offer-btn:active {
+    background-color: #37b7ab;
+}
+
+.perk-search-recommend-container {
+    position: relative;
+}
+
+.perk-recommend-container {
+    position: absolute;
+    right: 160px;
+    top: 75px;
+}
+
+.recommend-modal-ruler {
+    width: 100%;
+    height: 1px;
+    background-color: #ee778e;
+}
+
+.perks-recommend-modal-btn {
+    border-radius: 4px;
+    background-color: #007da3;
+}
+
+.perks-recommend-modal-btn:focus,
+.perks-recommend-modal-btn:hover {
+    background-color: #007da3;
+}
+
+.close-recommend-success-btn {
+    width: 131px;
+    border-radius: 4px;
+    background-color: #007da3;
+}
+
+.close-recommend-success-btn:focus,
+.close-recommend-success-btn:hover {
+    background-color: #007da3;
+}
+
+.success-text {
+    color: #003e51;
+    font-size: 18px;
+    font-family: S-bold;
+}
+.success-sub-text {
+    color: #a0aec4;
+    font-size: 18px;
+    font-family: S-medium;
+}
+
+@media all and (min-width: 1024px) {
+    .details-cards-wrapper {
+        flex-direction: row;
+    }
+
+    .details-img-desc-wrapper {
+        width: 60%;
+        flex-direction: column;
+        padding-left: 40px !important;
+    }
+    .details-proceed-wrapper {
+        width: 30%;
+    }
+
+    .details-img-wrapper {
+        padding-left: 50px;
+        width: calc(100% - 390px);
+        display: block;
+        padding-left: 10px;
+    }
+
+    .details-desc-wrapper {
+        width: 390px;
+    }
+}
+
+@media all and (min-width: 1280px) {
+    .details-img-desc-wrapper {
+        flex-direction: row;
+        padding-left: 0px !important;
+    }
+}
+
+@media all and (min-width: 1380px) {
+    .details-img-wrapper {
+        padding-left: 50px;
+    }
+}

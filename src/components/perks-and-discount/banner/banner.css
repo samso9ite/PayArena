@@ -1,0 +1,38 @@
+.perks-discount-bannner-container {
+    height: auto;
+    background-color: #f5ffff;
+    padding: 16px 24px 16px 24px;
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 20px;
+    align-items: center;
+}
+
+.perks-discount-info-text-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.perks-discount-banner-sub-title {
+    font-size: 18px;
+    font-family: S-medium;
+    color: #8b8b8b;
+}
+
+.banner-close-btn {
+    outline: none;
+    border: none;
+    background:none;
+}
+
+@media all and (min-width: 768px) {
+    .perks-discount-bannner-container {
+        height: 86px;
+    }
+
+    .perks-discount-info-text-container {
+        flex-direction: row;
+    }
+}
