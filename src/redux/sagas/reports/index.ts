@@ -117,9 +117,9 @@ const apiReportActivities = async (payload: any) => {
 const apiGenerateReportLogs = async (payload: any) => {
     const { data } = await axios.post<IAPIGenerateReportLogs[]>(
         payload.product === "3f20cd19-e739-419c-bec7-dd2c5c8a441b" ?
-        global.apiBaseUrl + `prembly/api/v1/report/download/report` 
+        global.apiBaseUrl + `identitypass/verification/download/apilogs` 
         :
-        global.reportUrl + `api/v1/report/filter/${payload.product}`,
+        global.reportUrl + `identitypass/verification/download/apilogs`,
         payload.product === "3f20cd19-e739-419c-bec7-dd2c5c8a441b" ? 
             payload = {
                 "end_date": payload.end_date,

@@ -12,7 +12,7 @@ let orgId = Cookies.get("org") || ""
 
 const accessTokenInfo = async (payload: any) => {
   const { data } = await axios.post<IAccessTokenInfo[]>(
-    global.apiBaseUrl + global.liveUrl + "api/v1/auth/switch/get-token",
+    global.apiBaseUrl +  "account/auth/get-token-with-session-id",
     payload,
     {
       headers: {
@@ -46,7 +46,7 @@ function* accessTokenInfoSaga(action: any) {
   try {
     const response: { data: any } = yield call(accessTokenInfo, {
       // email: action.payload.values.email,
-      session: action.payload.values.session,
+      session_id: action.payload.values.session,
     });
 
     yield put(

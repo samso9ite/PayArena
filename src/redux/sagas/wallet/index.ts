@@ -570,7 +570,8 @@ function* mpesaTopUpWalletSaga(action: any) {
       payment_gateway: action.payload.values.payment_gateway,
       mpesa_billing_number: action.payload.values.mpesa_billing_number,
       phone_number: action.payload.values.phone_number,
-      pay_with: action.payload.values.pay_with
+      pay_with: action.payload.values.pay_with,
+      organisation_id:orgId
     });
 
     yield put(

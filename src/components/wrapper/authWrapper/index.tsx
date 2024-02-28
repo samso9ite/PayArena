@@ -22,7 +22,6 @@ export default function AuthWrapper(props: any) {
     useEffect(() => {
 
         const session = queryParams.get("session") || ""
-        console.log(session);
         
         // const email = queryParams.get("email") || ""
         if (!session) {
@@ -53,9 +52,9 @@ export default function AuthWrapper(props: any) {
                 setTokenLoading(false)
             }
         }
-        let data = {
+        let data = { 
             values: {
-                session,
+                session
             },
             callback,
         }
