@@ -58,13 +58,13 @@ a {
 }
 
 .btn-green {
-    background: #007da3 !important;
+    background: #332ECF !important;
     font-family: S-bold !important;
     color: #fff !important;
     font-size: 15px !important;
 }
 .btn-green:hover {
-    background: #007da3 !important;
+    background: #373496 !important;
     font-family: S-bold !important;
     color: #fff !important;
     font-size: 15px !important;
@@ -811,7 +811,7 @@ select,
 .sidebar-area .navigation ul li.has-dropdown .sidebar-dropdown ul li:hover,
 .sidebar-area .navigation ul li.has-dropdown .sidebar-dropdown ul li.active {
     border-left: 2px solid #e95470;
-    color: #37b7ab !important;
+    color: #332ecf !important;
     background-color: transparent !important;
     border-radius: 0 !important;
 }

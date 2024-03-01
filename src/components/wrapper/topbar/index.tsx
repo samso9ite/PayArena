@@ -130,7 +130,9 @@ export default function Topbar(props: any) {
                                         : splitLocation[1] === 'Compliance-Certificates'
                                         ? 'ri-file-paper-2-line'
                                         : splitLocation[1] === 'Perks-discount'
-                                        ? 'ri-shield-keyhole-line'
+                                        ? 'ri-file-paper-2-line'
+                                        : splitLocation[1] === 'Faqs'
+                                        ? 'ri-questionnaire-line'
                                         : ''
                                 }
                             `}
@@ -171,6 +173,8 @@ export default function Topbar(props: any) {
                                     ? 'Settings'
                                     : splitLocation[1] === 'Notifications'
                                     ? 'Notifications'
+                                    : splitLocation[1] === 'Faqs'
+                                    ? 'Faqs'
                                     : splitLocation[1] === 'Compliance-Certificates'
                                     ? 'Compliance Certificates'
                                     : splitLocation[1] === 'Perks-And-Discount' ||

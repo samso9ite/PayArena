@@ -45,6 +45,12 @@ export default function ReferralPage(props: any) {
 
     const dispatch = useDispatch()
 
+    const cardStyleExtension = {
+        backgroundColor: '#fff',
+        boxShadow: "3px 3px 3px 3px #B853E614",
+        border:'none',
+    };
+
     useEffect(() => {
         // console.log("code", organisationInfoState?.resp?.data?.organisation?.referral_code)
         // else if(organisationInfoState?.resp?.data?.organisation?.referral_code == 'undefined'){
@@ -465,7 +471,7 @@ export default function ReferralPage(props: any) {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-6 mt-3 mt-md-0">
+                        <div className="col-md-6 mt-3 mt-md-0" >
                             <CommissionComponent
                                 currency={organisationInfoState?.resp?.data?.organisation?.currency}
                                 balance={commissionBalanceState?.resp?.data?.balance}
@@ -478,7 +484,7 @@ export default function ReferralPage(props: any) {
 
                         <div className="row text-center">
                             <div className="col-lg-3">
-                                <div className="card mt-3">
+                                <div className="card mt-3" style={cardStyleExtension}>
                                     <div className="card-body">
                                         <p> Total Referred Users </p>
                                         <h5 className="pt-2">
@@ -488,7 +494,7 @@ export default function ReferralPage(props: any) {
                                 </div>
                             </div>
                             <div className="col-lg-3">
-                                <div className="card mt-3">
+                                <div className="card mt-3" style={cardStyleExtension}>
                                     <div className="card-body">
                                         <p>Total Active users</p>
                                         <h5 className="pt-2">
@@ -498,7 +504,7 @@ export default function ReferralPage(props: any) {
                                 </div>
                             </div>
                             <div className="col-lg-3">
-                                <div className="card mt-3">
+                                <div className="card mt-3" style={cardStyleExtension}>
                                     <div className="card-body">
                                         <p> Total Inactive users </p>
                                         <h5 className="pt-2">
@@ -508,7 +514,7 @@ export default function ReferralPage(props: any) {
                                 </div>
                             </div>
                             <div className="col-lg-3">
-                                <div className="card mt-3">
+                                <div className="card mt-3" style={cardStyleExtension}>
                                     <div className="card-body">
                                         <p> Lifetime Commission earned </p>
                                         <h5 className="pt-2">

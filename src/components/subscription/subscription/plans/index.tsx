@@ -246,7 +246,7 @@ export default function SubPlans(props: any) {
                 </div>
 
                 <div className="plan-toggler-area col-md-6 text-center mx-auto">
-                    <div
+                    {/* <div
                         className={`plan-toggler ${
                             tourGuide.currentStep === 46
                                 ? 'tour-guide-element-preview tour-guide-toggler'
@@ -268,7 +268,7 @@ export default function SubPlans(props: any) {
                             }}>
                             Identityradar
                         </h6>
-                    </div>
+                    </div> */}
                     <h4>Choose Your Plan</h4>
                     <p>
                         No contracts, no surprise fees. <br />

@@ -471,9 +471,9 @@ export default function SubWalletComp(props:any) {
                                                 {/* {organisationInfoState?.resp?.data?.organisation.currency === 'NGN' &&
                                                     <option value="transfer">Bank Transfer</option>
                                                 } */}
-                                                {(!paymentOrg || orgId === paymentOrg) &&
+                                                {/* {(!paymentOrg || orgId === paymentOrg) &&
                                                     <option value="mpesa">MPESA</option>
-                                                }
+                                                } */}
                                                 {(paymentOrg && orgId !== paymentOrg) &&
                                                     <option value="wallet">Wallet Transfer</option>
                                                 }
@@ -744,7 +744,8 @@ export default function SubWalletComp(props:any) {
                                                 <th scope="col">Ref</th>
                                                 <th scope="col">Transaction Description</th>
                                                 <th scope="col">Amount</th>
-                                                <th scope="col">Product</th>
+                                                <th scope="col">Balance Before</th>
+                                                <th scope="col">Balance After</th>
                                                 <th scope="col">Date</th>
                                                 <th scope="col">Status</th>
                                             </tr>
@@ -755,7 +756,8 @@ export default function SubWalletComp(props:any) {
                                                     <th scope="row">{value?.reference}</th>
                                                     <td>{value?.description}</td>
                                                     <td>{value?.currency} {value?.amount}</td>
-                                                    <td>{value?.product}</td>
+                                                    <td>{value?.balance_before} {value?.balance_before}</td>
+                                                    <td>{value?.balance_after} {value?.balance_after}</td>
                                                     <td>{moment.utc(value?.created_at).format('lll')}</td>
                                                     <td>
                                                         {value?.status === "success" && <SuccessTag />}

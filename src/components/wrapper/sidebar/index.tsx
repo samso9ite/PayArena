@@ -389,10 +389,11 @@ export default function Sidebar(props: any) {
         } else if (tourGuide.currentStep === 60) {
             navigate('/Settings')
             setTourGuide({ ...tourGuide, currentStep: 59 })
-        } else if (tourGuide.currentStep === 61) {
-            navigate('/Notifications')
-            setTourGuide({ ...tourGuide, currentStep: 60 })
-        }
+        } 
+        // else if (tourGuide.currentStep === 61) {
+        //     navigate('/Notifications')
+        //     setTourGuide({ ...tourGuide, currentStep: 60 })
+        // }
     }
 
     const handleEndTour = () => {
@@ -1176,13 +1177,13 @@ export default function Sidebar(props: any) {
                                     />
                                 </div>
                                 <div className="main-modal-body-tourguide">
-                                    <div className="text-left mt-3 text-black">
+                                    {/* <div className="text-left mt-3 text-black">
                                         <h5>Notification</h5>
                                         <p>
                                             View notifications on activities going on around your
                                             account.
                                         </p>
-                                    </div>
+                                    </div> */}
                                     <div className="text-left d-flex flex-row align-items-center justify-content-between btn-reset">
                                         <button
                                             className="btn btn-deep-green-outline"
@@ -1760,14 +1761,14 @@ export default function Sidebar(props: any) {
                                     </Link>
                                 )}
 
-                                <Link to="/Referral" className="link">
+                                {/* <Link to="/Referral" className="link">
                                     <li className={splitLocation[1] === 'Referral' ? 'active' : ''}>
                                         <span>
                                             <i className="ri-team-line" />
                                             Referral
                                         </span>
                                     </li>
-                                </Link>
+                                </Link> */}
 
                                 <Link to="/Settings" className="link">
                                     <li className={splitLocation[1] === 'Settings' ? 'active' : ''}>
@@ -1781,7 +1782,7 @@ export default function Sidebar(props: any) {
                         </>
                     )}
 
-                    <h6  style={{color:"#B853E6"}}>OFFERINGS</h6>
+                    {/* <h6  style={{color:"#B853E6"}}>OFFERINGS</h6>
                     <ul onClick={filterRights}>
                         {!userRights?.includes('VERIFICATION') &&
                         !userRights?.includes('CHECKER_WIDGET') ? (
@@ -1810,15 +1811,23 @@ export default function Sidebar(props: any) {
                                 </Link>
                             </>
                         )}
-                    </ul>
+                    </ul> */}
 
-                    <h6>OTHERS</h6>
+                    <h6 style={{color:"#B853E6"}}>OTHERS</h6>
                     <ul onClick={filterRights}>
-                        <Link to="/Notifications" className="link">
+                        {/* <Link to="/Notifications" className="link">
                             <li className={splitLocation[1] === 'Notifications' ? 'active' : ''}>
                                 <span>
                                     <i className="ri-notification-3-line" />
                                     Notifications
+                                </span>
+                            </li>
+                        </Link> */}
+                        <Link to="/faqs" className="link">
+                            <li className={splitLocation[1] === 'Faqs' ? 'active' : ''}>
+                                <span>
+                                    <i className="ri-questionnaire-line" />
+                                    FAQs
                                 </span>
                             </li>
                         </Link>
@@ -2299,7 +2308,7 @@ export default function Sidebar(props: any) {
                                         </Link>
                                     )}
 
-                                    <Link to="/Referral" className="link">
+                                    {/* <Link to="/Referral" className="link">
                                         <li
                                             onClick={() => setOpenSidebar(false)}
                                             className={
@@ -2310,7 +2319,7 @@ export default function Sidebar(props: any) {
                                                 Referral
                                             </span>
                                         </li>
-                                    </Link>
+                                    </Link> */}
 
                                     <Link to="/Settings" className="link">
                                         <li
@@ -2327,43 +2336,34 @@ export default function Sidebar(props: any) {
                                 </ul>
 
                                 <h6  style={{color:"#B853E6"}}>OTHERS</h6>
-                                <ul onClick={filterRights}>
-                                    <Link to="/Notifications" className="link">
+                                    {/* <Link to="/Notifications" className="link">
                                         <li
                                             onClick={() => setOpenSidebar(false)}
                                             className={
                                                 splitLocation[1] === 'Notifications' ? 'active' : ''
                                             }>
                                             <span>
-                                                <i className="ri-notification-3-line" />
+                                                <i className="ri-questionnaire-line" />
                                                 Notifications
                                             </span>
                                         </li>
-                                    </Link>
-                                    {/* <Link to="/Compliance-Certificates" className="link"> */}
-                                    <a
-                                        href="https://app.drata.com/trust/25ec0103-c2ef-4f7f-b065-0151620dec24"
-                                        className="link"
-                                        target="_blank"
-                                        rel="noopener noreferrer">
+                                    </Link> */}
+                                    <Link to="/faqs" className="link">
                                         <li
                                             onClick={() => setOpenSidebar(false)}
                                             className={
-                                                splitLocation[1] === 'Compliance-Certificates'
-                                                    ? 'active'
-                                                    : ''
+                                                splitLocation[1] === 'Faqs' ? 'active' : ''
                                             }>
                                             <span>
-                                                <i className="ri-file-paper-2-line" />
-                                                Compliance Certificates
+                                                <i className="ri-notification-3-line" />
+                                                FAQs
                                             </span>
                                         </li>
-                                    </a>
-                                    {/* </Link> */}
-                                </ul>
+                                    </Link>
+                                    
                             </div>
                         )}
-                        {organisationInfoState?.resp?.data?.user?.migrated && (
+                        {/* {organisationInfoState?.resp?.data?.user?.migrated && (
                             <div
                                 className="mt-5 mb-4"
                                 style={{ paddingLeft: '13%', cursor: 'pointer' }}
@@ -2376,12 +2376,12 @@ export default function Sidebar(props: any) {
                                         font: '14px S-medium',
                                         padding: '15px 10px',
                                     }}>
-                                    Switch to{' '}
+                                    Switch to{''}
                                     <img src={passIcon} style={{ height: '20px' }} alt="" />{' '}
                                     Identitypass
                                 </button>
                             </div>
-                        )}
+                        )} */}
                     </>
                 )}
             </div>

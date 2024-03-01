@@ -12,7 +12,7 @@ let orgId = Cookies.get("org") || ""
 
 const walletHistory = async (payload: any) => {
   const { data } = await axios.get<IWalletHistory[]>(
-    global.apiBaseUrl + global.liveUrl + "api/v1/wallet/history/get",
+    global.apiBaseUrl + global.idpassApiUrl + "wallet/fund-wallet",
     {
       headers: {
         "Content-Type": "application/json",

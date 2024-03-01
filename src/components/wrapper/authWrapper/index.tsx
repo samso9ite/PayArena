@@ -39,8 +39,6 @@ export default function AuthWrapper(props: any) {
             
             if (data?.status) {
                 queryParams.delete('session')
-                
-                // queryParams.delete('email')
                 Cookies.set('babtbu', data?.data?.token)
                 Cookies.set("org", data?.data?.organisations[0]?.organisation?.id)
 

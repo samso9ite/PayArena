@@ -39,6 +39,8 @@ import BackgroundCheckUpdatePackagePage from './components/products/backgroundCh
 import Favourites from './pages/offerings/perks-and-discount/favourites'
 import PerksAndDiscountDetails from './pages/offerings/perks-and-discount/details'
 import PerksAndDiscount from './pages/offerings/perks-and-discount'
+import FaqsPage from './pages/faqs'
+
 
 interface IUserRights {
     userRights: any
@@ -64,7 +66,8 @@ function App() {
 
     return (
         <div>
-            {window.location.pathname === '/login' ||
+            {/* {
+            window.location.pathname === '/login' ||
             window.location.pathname === '/signUp' ||
             window.location.pathname === '/ResetPassword' ||
             window.location.pathname === '/Accept-Invitation' ||
@@ -86,7 +89,7 @@ function App() {
                         />
                     </Routes>
                 </div>
-            ) : (
+            ) : ( */}
                 <AuthWrapper>
                     <TourGuideProvider>
                         <>
@@ -121,7 +124,7 @@ function App() {
                                                     />
                                                 }
                                             />
-                                            <Route
+                                            {/* <Route
                                                 path="/Perks-And-Discount"
                                                 element={
                                                     <PerksAndDiscount
@@ -140,8 +143,8 @@ function App() {
                                                         changeLoadingState={changeLoadingState}
                                                     />
                                                 }
-                                            />
-                                            <Route
+                                            /> */}
+                                            {/* <Route
                                                 path="/Perks-And-Discount-Favorite"
                                                 element={
                                                     <Favourites
@@ -150,7 +153,7 @@ function App() {
                                                         changeLoadingState={changeLoadingState}
                                                     />
                                                 }
-                                            />
+                                            /> */}
                                             {/* <Route path="/Wallet" element={<WalletPage />} /> */}
                                             <Route
                                                 path="/Identitypass/Verification/Data"
@@ -194,31 +197,7 @@ function App() {
                                                 }
                                             />
 
-                                            <Route
-                                                path="/BackgroundCheck/Requests"
-                                                element={<BackgroundCheckRequestPage />}
-                                            />
-                                            <Route
-                                                path="/BackgroundCheck/Requests/report/:ref"
-                                                element={<CandidateReportPage />}
-                                            />
-                                            <Route
-                                                path="/BackgroundCheck/Requests/Initiate"
-                                                element={<BackgroundCheckRequestInitiatePage />}
-                                            />
-                                            <Route
-                                                path="/BackgroundCheck/Packages"
-                                                element={<BackgroundCheckPackagePage />}
-                                            />
-                                            <Route
-                                                path="/BackgroundCheck/Packages/Create-Package"
-                                                element={<BackgroundCheckCreatePackagePage />}
-                                            />
-                                            <Route
-                                                path="/BackgroundCheck/Packages/Update-Package/:ref"
-                                                element={<BackgroundCheckUpdatePackagePage />}
-                                            />
-
+                                        
                                             {/* <Route path="/Api-Library" element={<APILibraries/>} /> */}
                                             <Route
                                                 path="/API-Library/API-Keys"
@@ -264,8 +243,8 @@ function App() {
                                                 element={<NotificationsPage />}
                                             />
                                             <Route
-                                                path="/Compliance-Certificates"
-                                                element={<ComplianceCertPage />}
+                                                path="/Faqs"
+                                                element={<FaqsPage />}
                                             />
                                         </Routes>
                                     </div>
@@ -274,7 +253,7 @@ function App() {
                         </>
                     </TourGuideProvider>
                 </AuthWrapper>
-            )}
+           {/* ) } */}
         </div>
     )
 }

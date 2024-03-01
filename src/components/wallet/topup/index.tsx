@@ -399,9 +399,9 @@ export default function TopupComp(props:any) {
                                                 {/* {organisationInfoState?.resp?.data?.organisation.currency === 'NGN' &&
                                                     <option value="transfer">Bank Transfer</option>
                                                 } */}
-                                                {(!paymentOrg || orgId === paymentOrg) &&
+                                                {/* {(!paymentOrg || orgId === paymentOrg) &&
                                                     <option value="mpesa">MPESA</option>
-                                                }
+                                                } */}
                                                 {(paymentOrg && orgId !== paymentOrg) &&
                                                     <option value="wallet">Wallet Transfer</option>
                                                 }

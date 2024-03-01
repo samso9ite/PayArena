@@ -50,7 +50,7 @@ export const authorizationRedirect = () => {
 	Cookies.remove("org")
 	Cookies.remove('babtbu');
 	Cookies.remove('brbtbu');
-	window.location.assign(global.appBaseUrl + "login");
+	window.location.assign("https://account.prembly.com/");
 }
 
 export let serverCodes = [

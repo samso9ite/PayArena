@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/reducers';
-import walletIcon from '../../../assets/wallet-icon.png'
+import walletIcon from '../../../assets/walletImg.svg'
 import { NumericFormat } from 'react-number-format';
 import { Spinner } from 'react-bootstrap';
 import NotificationToast from '../../utils/notifToast';
@@ -277,7 +277,9 @@ export default function CommissionComponent(props: any) {
 
 
             <div className='topup-card'>
-                <div className="card" style={{ minHeight: "200px" }}>
+                <div className="card" style={{ minHeight: "200px",  backgroundColor: '#fff',
+                                boxShadow: "3px 3px 3px 3px #B853E614",
+                                border:'none' }}>
                     <div className="card-body">
                         <h5>Commission Wallet Balance</h5>
                         <div className="row align-items-center">
@@ -298,7 +300,7 @@ export default function CommissionComponent(props: any) {
                                 </button>
                             </div>
                             <div className="col-md-4">
-                                <img src={walletIcon} alt="" className='w-100' />
+                                <img src={walletIcon} alt="" className='w-65' />
                             </div>
                         </div>
                     </div>

@@ -150,6 +150,7 @@ import acceptInviteSagaTrigger from './auth/acceptInvite'
 import { tourGuideStatusSagaTrigger, tourGuideCompleteSagaTrigger } from './tourGuide'
 import { accessTokenInfoSagaTrigger, migrationSetPasswordSagaTrigger } from './accessToken'
 import { perksAndDiscountCloseBannerSagaTrigger, perksAndDiscountFavoriteSagaTrigger, perksAndDiscountGenerateCodeSagaTrigger, perksAndDiscountInfoSagaTrigger, perksAndDiscountLikeSagaTrigger, perksAndDiscountProductDetailsSagaTrigger, perksAndDiscountUnLikeSagaTrigger } from './perksAndDiscount'
+import { faqsSagaTrigger } from './faqs'
 
 export function* rootSaga() {
     yield all([fork(loginSagaTrigger)])
@@ -283,6 +284,7 @@ export function* rootSaga() {
     yield all([fork(notificationsInfoSagaTrigger)])
     yield all([fork(complianceDocInfoSagaTrigger)])
     yield all([fork(readNotificationSagaTrigger)])
+    yield all([fork(faqsSagaTrigger)])
 
     yield all([fork(perksAndDiscountInfoSagaTrigger)])
 

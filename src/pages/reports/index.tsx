@@ -15,7 +15,7 @@ export default function ReportsPage(props:any) {
     const [notifTitle, setNotifTitle] = useState("")
 
     const allProductsState = useSelector((state: RootState) => state.apiReportProductsReducer);
-   
+    
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -25,6 +25,7 @@ export default function ReportsPage(props:any) {
     let getAllProducts = () =>{
         const callback = (data: any) => {
             if (data.status) {
+
                 setNotifTitle("Success")
                 setNotif(data.detail)
                 setNotifVal(true)
@@ -63,8 +64,9 @@ export default function ReportsPage(props:any) {
                 <div className='container-fluid px-md-4 bg-light-blue pb-5'>
                     {allProductsState?.resp?.data.length > 0 &&
                         <div className="main-tabs mt-3">
-                            <Tabs defaultActiveKey={`${allProductsState?.resp?.data[0]?.name}Report`} id="reportsTabs" className="main-tab-card">
+                            <Tabs defaultActiveKey={"IdentitypassReport"} id="reportsTabs" className="main-tab-card">
                                 {allProductsState?.resp?.data?.map((val:any, i:number)=>(
+                                    (val?.name === "Identitypass") &&
                                     <Tab key={i} eventKey={`${val?.name}Report`} title={`${val?.name} Report`} mountOnEnter={true} unmountOnExit={true} >
                                         <VerificationReports productKey={val?.id}  userRights={props?.userRights} tag={val?.name} />
                                     </Tab>
@@ -77,9 +79,9 @@ export default function ReportsPage(props:any) {
                                 </Tab>
                                 <Tab eventKey="backgroundCheckReport" title="Background Check Report">
                                 </Tab> */}
-                                <Tab eventKey="customerReport" title="Customer Report" mountOnEnter={true} unmountOnExit={true}>
+                                {/* <Tab eventKey="customerReport" title="Customer Report" mountOnEnter={true} unmountOnExit={true}>
                                     <CustomerReports tag={"Customer"} />
-                                </Tab>
+                                </Tab> */}
                             </Tabs>
                         </div>
                     }
