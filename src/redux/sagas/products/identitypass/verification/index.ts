@@ -9,7 +9,6 @@ import { identitypassBulkHistoryFailure, identitypassBulkHistorySuccess, identit
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
-// axios.defaults.timeout = 10000000
 
 const identitypassVerification = async (payload: any) => {
   const { data } = await axios.post<IIdentitypassVerification[]>(
@@ -18,10 +17,19 @@ const identitypassVerification = async (payload: any) => {
     {
       headers: {
         "Content-Type": "application/json",
+        "X-Product": "PELEZA",
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
       },
+      onUploadProgress: (progressEvent: any) => {
+        if (progressEvent.event.lengthComputable) {
+          const percentage = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+        }
+        // const percentage = Math.round((progressEvent?.loaded / progressEvent?.total) * 100);
+        // setProgress(percentage);
+        // console.log(progressEvent, '>>', percentage)
+      }
     }
   );
   return data;
@@ -32,6 +40,7 @@ const identitypassEndpoints = async (payload: any) => {
     {
       headers: {
         "Content-Type": "application/json",
+        "X-Product": "PELEZA",
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
@@ -41,14 +50,17 @@ const identitypassEndpoints = async (payload: any) => {
   return data;
 };
 const identitypassBulkVerification = async (payload: any) => {
+  console.log(payload);
+  
   const { data } = await axios.post<IIdentitypassBulkVerification[]>(
-    global.apiBaseUrl + global.liveUrl + "api/v1/bulk/verification",
+    global.apiBaseUrl + "identitypass/verification/bulk-upload-middleware",
     payload,
     {
       headers: {
-        "Content-Type": "multipart/form-data",
-        // "Content-Type": "application/json",
-        // Accept: "application/json",
+        // "Content-Type": "multipart/form-data",
+        "X-Product": "PELEZA",
+        "Content-Type": "application/json",
+        Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
       },
@@ -62,6 +74,7 @@ const identitypassBulkHistory = async (payload: any) => {
     {
       headers: {
         "Content-Type": "application/json",
+        "X-Product": "PELEZA",
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
@@ -105,10 +118,10 @@ function* identitypassVerificationSaga(action: any) {
     } else {
       yield put(
         identitypassVerificationFailure({
-          error: (typeof e.response.data.detail == "string") ? e.response.data.detail : e.response.data.detail.message,
+          error: e.response.data.detail,
         })
       );
-      action.payload.callback(e?.response?.data);
+      action.payload.callback(e.response.data);
     }
   }
 }
@@ -148,15 +161,12 @@ function* identitypassEndpointsSaga(action: any) {
                                                                                                                                   
 function* identitypassBulkVerificationSaga(action: any) {
 
-  let bulkData = new FormData()
-
-  bulkData.append('product', action.payload.values.product);
-  bulkData.append('type', action.payload.values.type);
-  bulkData.append('file', action.payload.values.file);
-  bulkData.append('app_id', action.payload.values.app_id);
       
   try {
-    const response: { data: any } = yield call(identitypassBulkVerification, bulkData);
+    const response: { data: any } = yield call(identitypassBulkVerification, {  product: action.payload.values.product,
+      type: action.payload.values.type,
+      file: action.payload.values.file,
+      file_type: action.payload.values.file_type});
     yield put(
       identitypassBulkVerificationSuccess({
         resp: response,

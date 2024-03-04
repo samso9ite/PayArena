@@ -1328,8 +1328,8 @@ export default function PassSingleVerificationComp(props: any) {
                                                     channel ===
                                                         'ADVANCE-CONSUMER-CREDIT-BUREAU-NIG' ||
                                                     channel ===
-                                                        'BASIC-CONSUMER-CREDIT-BUREAU-NIG' ||
-                                                    channel === 'KENYA_CRB_ADVANCED' ? (
+                                                        'BASIC-CONSUMER-CREDIT-BUREAU-NIG'
+                                                    ? (
                                                         <CommercialCreditBereauAdvance
                                                             data={updatedResponse}
                                                         />

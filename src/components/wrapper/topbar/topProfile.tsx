@@ -146,10 +146,10 @@ export default function TopProfile() {
     }
 
     let logOut = () => {
-        Cookies.remove("org")
-        Cookies.remove("babtbu")
-        Cookies.remove("brbtbu")
-        window.location.href = global.appBaseUrl + "login"
+        // Cookies.remove("org")
+        // Cookies.remove("babtbu")
+        // Cookies.remove("brbtbu")
+        window.location.href = "https://account.prembly.com"
     }
 
     let setOrgID = (id: string) => {
@@ -224,7 +224,7 @@ export default function TopProfile() {
 
                         <div className="logout pt-2" onClick={logOut}>
                             <i className="ri-shut-down-line" />
-                            <p>Log out</p>
+                            <p>Go Back to Prembly</p>
                         </div>
                     </div>
                 }

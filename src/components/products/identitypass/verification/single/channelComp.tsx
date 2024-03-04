@@ -33,8 +33,6 @@ export default function ChannelComp(props: any) {
         clearPayload()
     }, [props?.channelPayloads?.[0].input_label])
 
-    
-    
     useEffect(() => {
         if (runCheck === true) {
             verifyData()
@@ -186,23 +184,26 @@ export default function ChannelComp(props: any) {
             setPayloadData(keyData)
         }
     }
-    
+
     let verifyData = () => {
         let filteredData = []
         const valuesArray = Object.values(payloadData);
         const firstValue = valuesArray.length > 0 ? valuesArray[0] : undefined;
-      
         filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || item.has_parent==false) 
-        let filteredHidden = filteredData.filter((item:any) => item.input_type !== "hidden")
         
-        
-        if (Object?.keys(payloadData)?.length < 1 || (Object?.keys(payloadData)?.length !== filteredHidden?.length)) 
+        if (
+            Object?.keys(payloadData)?.length < 1 || (Object?.keys(payloadData)?.length !== filteredData?.length)
+            // (props?.channelPayloads?.[0]?.is_required &&
+            //     Object?.keys(payloadData)?.length !== props?.channelPayloads?.length
+            //     )
+            ) 
         {
             setNotifTitle('Error')
             setNotif('Please fill in all required fields')
             setNotifVal(true)
             return
         } else {
+            
             if (!runCheck) {
                 filteredData?.forEach((allKey: any, i: number) => {
                     if (
@@ -215,11 +216,12 @@ export default function ChannelComp(props: any) {
                         setNotif(`${allKey.input_label} cannot be empty`)
                         setNotifVal(true)
                         return
-                    }
-                   
-                    else {
+                    } else {
+                        // console.log("parent payload index",  i)
+                        // console.log("payload index",  Object?.keys(payloadData)?.length - 1)
                         let patternRegExp: any =
                             new RegExp(allKey?.validation_pattern.replaceAll('/', '')) || ''
+                        // console.log(`false or true ${i}`, patternRegExp.test(payloadData[allKey?.request_key as keyof typeof payloadData]))
                         if (
                             allKey?.is_required === true &&
                             patternRegExp.test(
@@ -268,20 +270,11 @@ export default function ChannelComp(props: any) {
                 // })
                 return
             } else {
-                let updatedPayloadData = { ...payloadData };
-                props.channelPayloads.map((allKey:any) => {
-                    if(allKey?.input_type === "hidden"){
-                        updatedPayloadData = {
-                            ...updatedPayloadData,
-                            [allKey?.request_key]: allKey?.value
-                          };
-                    }
-                })
-                props?.verify(updatedPayloadData)
+                props?.verify(payloadData)
+                setRunCheck(false)
             }
         }
     }
-
     return (
         <div>
             {notif && notifVal && (
@@ -311,16 +304,14 @@ export default function ChannelComp(props: any) {
                     {!payload.has_mutiple_legs &&
                         !payload.has_parent &&
                         !payload.parent_value &&
-                        payload.input_type !== 'select'&& (
+                        payload.input_type !== 'select' && (
                             <>
-                             {payload.input_type !== "hidden" &&
                                 <label htmlFor={payload?.input_label}>
                                     {payload?.input_label}{' '}
                                     {payload?.is_required && (
                                         <span style={{ color: 'red' }}> *</span>
                                     )}
                                 </label>
-                            }
                                 <input
                                     type={payload?.input_type}
                                     className="form-control"
@@ -466,17 +457,14 @@ export default function ChannelComp(props: any) {
                         )}
                     {payload.has_parent &&
                         payload.parent_value === selectedFirstLevelCheck &&
-                        (payload.input_type !== 'select' ) && (
+                        payload.input_type !== 'select' && (
                             <>
-                                {
-                                    payload.input_type !== "hidden" &&
-                                        <label htmlFor={payload?.input_label}>
-                                            {payload?.input_label}{' '}
-                                            {payload?.is_required && (
-                                                <span style={{ color: 'red' }}> *</span>
-                                            )}
-                                        </label>
-                                }
+                                <label htmlFor={payload?.input_label}>
+                                    {payload?.input_label}{' '}
+                                    {payload?.is_required && (
+                                        <span style={{ color: 'red' }}> *</span>
+                                    )}
+                                </label>
                                 <input
                                     type={payload?.input_type}
                                     className="form-control"
@@ -618,7 +606,7 @@ export default function ChannelComp(props: any) {
                 </div>
             ))}
             <div className={`${tourGuide.currentStep === 10 ? 'tour-guide-element-preview' : ''}`}>
-                <button className="btn btn-deep-green w-100 py-3 mt-5" onClick={verifyData} disabled={props?.verifIsLoading}>
+                <button className="btn btn-deep-green w-100 py-3 mt-5" onClick={verifyData}>
                     {props?.verifIsLoading ? (
                         <div>
                             <Spinner

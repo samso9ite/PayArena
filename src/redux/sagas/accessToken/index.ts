@@ -12,7 +12,7 @@ let orgId = Cookies.get("org") || ""
 
 const accessTokenInfo = async (payload: any) => {
   const { data } = await axios.post<IAccessTokenInfo[]>(
-    global.apiBaseUrl +  "account/auth/get-token-with-session-id",
+    global.apiBaseUrl + global.idpassApiUrl+ "account/auth/get-token-with-session-id",
     payload,
     {
       headers: {

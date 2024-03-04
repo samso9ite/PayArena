@@ -43,8 +43,8 @@ export default function VerificationReports(props: any) {
     const [statusCode, setStatusCode] = useState('VERIFIED')
     // const [userLogs, setUserLogs] = useState('')
     const [reportData, setReportData] = useState({
-        next: '',
-        previous: '',
+        next_page: '',
+        previous_page: '',
         results: [],
     })
     const [pageNumber, setPageNumber] = useState('1')
@@ -70,17 +70,19 @@ export default function VerificationReports(props: any) {
 
     const [modalMessage, setModalMessage] = useState(false)
     const [modalErrMessage, setModalErrMessage] = useState('')
-
+    
     const activityReportState = useSelector((state: RootState) => state.apiReportActivitiesReducer)
     const apiReportState = useSelector((state: RootState) => state.apiReportReducer)
     const apiGenerateReportLogsState = useSelector(
         (state: RootState) => state.apiGenerateReportLogsReducer
     )
-   
+    // const apiEndpointReport = useSelector((state: RootState) => state.identitypassEndpointsReducer)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         getActivities()
+        // getReport()
     }, [])
 
     useEffect(() => {
@@ -142,6 +144,7 @@ export default function VerificationReports(props: any) {
     }
 
     let viewResponse = async (req: any, val: string, prod: string, endpName: string) => {
+        // fetch(val).then(response => response?.text())
         fetch(val)
             .then((response) => response?.json())
             .then((data) => {
@@ -156,22 +159,23 @@ export default function VerificationReports(props: any) {
     const handleReportFormSubmit = (e: any) => {
         e.preventDefault()
         const callback = (data: any) => {
-            
-            if (data.status ==  true) {
+            if (data.status) {
                 setNotifTitle('Success')
                 setNotif('Report Successfully Generated')
                 setNotifVal(true)
                 setReportModal(false)
                 setStartDate('')
                 setEndDate('')
-                downloadFunc(data.detail)
+                downloadFunc(data.data)
             } else {
+                // setNotifTitle('Error')
+                // setNotif(data.data)
+                // setNotifVal(true)
                 setModalMessage(true)
                 setModalErrMessage(data.message)
                 
                 setNotifTitle('Error')
                 if(props.productKey == "3f20cd19-e739-419c-bec7-dd2c5c8a441b"){
-                    
                     setNotif(data.message)
                 }else{
                     setNotif(data.data)
@@ -192,7 +196,15 @@ export default function VerificationReports(props: any) {
             setNotifVal(true)
             return
         }
-       if(props.productKey == "3f20cd19-e739-419c-bec7-dd2c5c8a441b") {
+
+        // if (!reportForm.name) {
+        //     setNotifTitle('Error')
+        //     setNotif('Your referral Report will be sent to your mail')
+        //     setNotifVal(true)
+        //     return
+        // }
+
+        if(props.productKey == "3f20cd19-e739-419c-bec7-dd2c5c8a441b") {
             if (reportForm.response_code.some(code => ['00', '01', '02', '03'].includes(code))) {
             let code = '00'
             let data: any = {
@@ -233,7 +245,6 @@ export default function VerificationReports(props: any) {
         }
         dispatch(apiGenerateReportLogsRequest(data)) 
        }
-      
     }
 
     const handleFilterModalReort = () => {
@@ -265,17 +276,16 @@ export default function VerificationReports(props: any) {
     }
 
     const triggerPage = (val: any) => {
-        
         let accessT = Cookies.get('babtbu') || ''
         let orgId = Cookies.get('org') || ''
 
         let requestOptions = {
             method: 'get',
-            // url: val?.replace(
-            //     'https://ifgn6xvqlj.execute-api.us-east-2.amazonaws.com/production/prembly-production',
-            //     'https://api.prembly.com/prembly'
-            // ),
-            url: val,
+            url: val?.replace(
+                'https://ifgn6xvqlj.execute-api.us-east-2.amazonaws.com/production/prembly-production',
+                'https://api.prembly.com/prembly'
+            ),
+
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
@@ -359,7 +369,8 @@ export default function VerificationReports(props: any) {
         let jsonObject = JSON.parse(val)
         return jsonObject?.name
     }
-    
+
+
     return (
         <div>
             {verifModal && (
@@ -642,6 +653,9 @@ export default function VerificationReports(props: any) {
                                             </div>
                                             <div className="col-md-8 ">
                                                 <div className="row justify-content-md-end align-items-center">
+                                                    {/* <div className="title-report-item">
+                                                    <p>Showing data for</p>
+                                                    </div> */}
                                                     <div className="col-12 col-md-6 ">
                                                         <form
                                                             action=""
@@ -756,12 +770,10 @@ export default function VerificationReports(props: any) {
                                                                             .replaceAll("'", '"')
                                                                     )}
                                                                 </th>
-                                                                <td
-                                                                    style={{
+                                                                <td style={{
                                                                         textTransform: 'capitalize',
                                                                     }}>
-                                                                    {val?.search_response_name ||
-                                                                        'N/A'}
+                                                                    {val?.search_response_name || 'N/A'}
                                                                 </td>
                                                                 <td>
                                                                     {' '}
@@ -818,6 +830,7 @@ export default function VerificationReports(props: any) {
                                                                                                 '"'
                                                                                             )
                                                                                     )
+                                                                                    // val?.endpoint.replaceAll('"', "'").split("'")[7]
                                                                                 )
                                                                             }>
                                                                             <i className="ri-eye-line me-3 ri-xl" />
@@ -837,22 +850,22 @@ export default function VerificationReports(props: any) {
                                         </table>
 
                                         <div className="d-flex justify-content-end align-items-center">
-                                            {reportData?.previous && (
+                                            {reportData?.previous_page && (
                                                 <p
                                                     style={{ cursor: 'pointer' }}
                                                     className="mb-0 me-3"
                                                     onClick={() =>
-                                                        triggerPage(reportData?.previous)
+                                                        triggerPage(reportData?.previous_page)
                                                     }>
                                                     Prev
                                                 </p>
                                             )}
                                             <button className="btn btn-green">{pageNumber}</button>
-                                            {reportData?.next && (
+                                            {reportData?.next_page && (
                                                 <p
                                                     style={{ cursor: 'pointer' }}
                                                     className="mb-0 ms-3"
-                                                    onClick={() => triggerPage(reportData?.next)}>
+                                                    onClick={() => triggerPage(reportData?.next_page)}>
                                                     Next
                                                 </p>
                                             )}
@@ -982,8 +995,8 @@ const ReportModal = ({
     handleSubmit: any
     apiReportState: any
     apiGenerateReportLogsState: any
-    product: any
-    modalMessage: any
+    product: any,
+    modalMessage:any, 
     modalErrMsg: any
 }) => {
     const { start_date, end_date, filter_type, response_code } = reportForm
@@ -1109,7 +1122,39 @@ const ReportModal = ({
                                     <option value={['03']}>Insufficient Wallet Balance</option>
                                 </select>
                             </div>
-                       
+                            {/* 
+                            <div>
+                            <label style={{ fontSize: '12px' }}>
+                                Filter By Product
+                            </label>
+                            <select
+                                className="form-control"
+                               
+                                onChange={onChange}
+                                value={product}
+                                required>
+                                
+                                {
+
+                                <option value={product}>{product.code}</option>
+                                }
+                                
+                            </select>
+                        </div> */}
+
+                            {/* <div>
+                                <label style={{ fontSize: '12px' }}>Filter By Endpoint</label>
+                                <select
+                                    className="form-control"
+                                    onChange={onChange}
+                                    name="endpoint"
+                                    required>
+                                    <option>All</option>
+                                    {endpointList.map((value: any) => (
+                                        <option value={value.code}>{value.name}</option>
+                                    ))}
+                                </select>
+                            </div> */}
 
                             <button
                                 className="btn btn-deep-green px-4 mt-3"

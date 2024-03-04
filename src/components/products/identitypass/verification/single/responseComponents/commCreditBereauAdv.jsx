@@ -6,6 +6,7 @@ import { Document, Page, Text, View, StyleSheet, PDFDownloadLink, Image } from '
 import PremblyLogo from '../../../../../../assets/logo.png'
 import { ActiveTag, FailedTag, imgUrl, InactiveTag, SuccessTag } from '../../../../../utils'
 
+
 const styles = StyleSheet.create({
     page: {
         backgroundColor: '#fff',
@@ -563,7 +564,7 @@ export default function CommercialCreditBereauAdvance(props) {
     <div className="px-2">
         <div className="text-center mb-3">
             <h5>{props?.data?.endpoint?.name}</h5>
-            <small className=""> Status: </small>
+            <small className="">Verification Status: </small>
             {responseData?.response_code === "00" ?
                 <>
                     <SuccessTag /><br />
@@ -660,7 +661,7 @@ export default function CommercialCreditBereauAdvance(props) {
                                             {key === "expirationDate" &&
                                                 <>
                                                     {/* {console.log(idData["documentStatus"])} */}
-                                                    <small>{getKeyLabel(key)}</small> <br />
+                                                    {/* <small>{getKeyLabel(key)}</small> <br /> */}
                                                     <p>
                                                         <span className={`${idData["documentStatus"] === "EXPIRED" ? "text-danger" : ""}`}>
                                                             {(idData[key] || 'Not Available')}
@@ -692,10 +693,11 @@ export default function CommercialCreditBereauAdvance(props) {
                                                                     return (
                                                                         // <span className={(k + 1) % 2 === 1 ? "col-md-6 py-1" : "col-md-6 text-md-end"} key={k} style={{ borderBottom: "1px solid #ddd", paddingBottom: "0px", marginBottom: "0px" }}>
                                                                         <span className="col-md-12 py-1" key={k} style={{ borderBottom: "1px solid #ddd", paddingBottom: "0px", marginBottom: "0px" }}>
-                                                                            <small>{getKeyLabel(val)?.replace(/_/g, " ")}</small>
+                                                                            {/* <small>{getKeyLabel(val)?.replace(/_/g, " ")}</small> */}
 
                                                                             {(idData[key][val] && idData[key][val]?.length < 1) ?
-                                                                                <p>{`${idData[key][val]}` || "Not Available"}</p>
+                                                                            <></>
+                                                                                // <p>{`${idData[key][val]}` || "Not Available"}</p>
                                                                                 :
                                                                                 <div className='row'>
                                                                                     {Object?.keys(idData[key][val])?.map((nestVal) => {

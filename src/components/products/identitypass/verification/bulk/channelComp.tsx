@@ -11,7 +11,8 @@ export default function BulkChannelComp(props: any) {
     const [notifTitle, setNotifTitle] = useState("")
     const [doc, setDoc] = useState<any>(null)
     const [app, setApp] = useState("")
-    
+    const [fileType, setFileType] = useState("")
+    const [fileName, setFileName] = useState("")
     const applicationInfoState = useSelector((state: RootState) => state.applicationInfoReducer)
 
     let dispatch = useDispatch()
@@ -46,8 +47,11 @@ export default function BulkChannelComp(props: any) {
     let verifyData = () => {
         let data = {
             doc,
-            appId:app
+            appId:app,
+            fileType
         }
+        console.log(data);
+        
         if (!app) {
             setNotifTitle("Error")
             setNotif("Please select an App")
@@ -63,9 +67,25 @@ export default function BulkChannelComp(props: any) {
         }
     }
 
-    // console.log(props?.templateLink)
+    const handleFileChange = (event:any) => {
+        const file = event.target.files[0];
+        
+        setFileName(file.name.substr(-4))
+        setFileType(file.name.split('.').pop())
+        if (file) {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            let base64Result = reader.result as string;
+            setDoc(base64Result.substring(base64Result.indexOf(',') + 1));
+            
+          };
+          reader.onerror = (error) => {
+            console.error('Error reading file:', error);
+          };
+        }
+    }
 
-    // console.log(applicationInfoState?.resp)
 
     return (
         <div>
@@ -88,9 +108,12 @@ export default function BulkChannelComp(props: any) {
                 <label htmlFor="document">Upload Document <span style={{ color: "red" }}> *</span></label>
 
                 {props?.templateLink &&
-                    <a href={props?.templateLink} download className="link text-end ms-auto" target="_blank" rel="noopener noreferrer">
+                <span className="badge add-ellipsis" style={{fontFamily: 'S-regular', backgroundColor: 'rgb(0, 125, 163)', borderRadius: '3px'}}>
+                    <a href={props?.templateLink} download className="link text-end ms-auto" target="_blank" rel="noopener noreferrer" >
                         Download {props?.endpName} template
                     </a>
+                </span>
+                  
                 }
 
                 {!doc ?
@@ -98,11 +121,13 @@ export default function BulkChannelComp(props: any) {
                         <div className="">
                             <input type="file"
                                 accept=".csv, .xlsx, .xls"
-                                onChange={(doc: any) => {
+                                onChange={
+                                    handleFileChange
+                                    // (doc: any) => {
                                     // imageHandler(doc)
                                     // updateDoc(doc,"busCert")
-                                    setDoc(doc.target.files[0])
-                                }}
+                                    // setDoc(doc.target.files[0])
+                                }
                             />
                             <small>Maximum file size: 1MB</small>
                             <small>Supported file types: (.csv, .xlsx, .xls).</small>
@@ -113,7 +138,7 @@ export default function BulkChannelComp(props: any) {
                         <div className="card-body py-1">
                             <div className="row justify-content-between ">
                                 <div className="col-md-7">
-                                    <p className='p-0'>Document. {doc?.name.substr(-4)}</p>
+                                    <p className='p-0'>Document. {fileName}</p>
                                 </div>
                                 <div className="col-md-3">
                                     <div className='d-flex justify-content-end align-items-center'>

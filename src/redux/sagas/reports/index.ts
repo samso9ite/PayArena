@@ -35,7 +35,7 @@ let orgId = Cookies.get('org') || ''
 
 const apiReport = async (payload: any) => {
     const { data } = await axios.get<IAPIReport[]>(
-        global.idpassApiUrl +
+        global.apiBaseUrl + global.idpassApiUrl +
             `verification/log/internal/recent-trans/${payload.product}`,
         {
             headers: {

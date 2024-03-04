@@ -48,6 +48,209 @@ export default function PassBulkVerificationComp() {
         (state: RootState) => state.identitypassBulkVerificationReducer
     )
 
+    const businessRegions = [
+        {
+            country: 'Argentina',
+            country_code: 'ARG',
+        },
+        {
+            country: 'Australia',
+            country_code: 'AU',
+        },
+        {
+            country: 'Azerbaijan',
+            country_code: 'AZE',
+        },
+        {
+            country: 'Belarus',
+            country_code: 'BY',
+        },
+        {
+            country: 'Belgium',
+            country_code: 'BE',
+        },
+        {
+            country: 'Botswana',
+            country_code: 'BW',
+        },
+        {
+            country: 'Bulgaria',
+            country_code: 'BG',
+        },
+        {
+            country: 'Canada',
+            country_code: 'CAN',
+        },
+        {
+            country: 'Croatia',
+            country_code: 'HR',
+        },
+        {
+            country: 'Cyprus',
+            country_code: 'CY',
+        },
+        {
+            country: 'Czech Republic',
+            country_code: 'CZ',
+        },
+        {
+            country: 'Denmark',
+            country_code: 'DNK',
+        },
+        {
+            country: 'Estonia',
+            country_code: 'EE',
+        },
+        {
+            country: 'Finland',
+            country_code: 'FI',
+        },
+        {
+            country: 'France',
+            country_code: 'FR',
+        },
+        {
+            country: 'Germany',
+            country_code: 'DEU',
+        },
+        {
+            country: 'Greece',
+            country_code: 'GRC',
+        },
+        {
+            country: 'Hungary',
+            country_code: 'HUN',
+        },
+        {
+            country: 'India',
+            country_code: 'IND',
+        },
+        {
+            country: 'Ireland',
+            country_code: 'IRL',
+        },
+        {
+            country: 'Kazakhstan',
+            country_code: 'KAZ',
+        },
+        {
+            country: 'Kenya',
+            country_code: 'KE',
+        },
+        {
+            country: 'Lesotho',
+            country_code: 'LSO',
+        },
+        {
+            country: 'Latvia',
+            country_code: 'LVA',
+        },
+        {
+            country: 'Lithuania',
+            country_code: 'LT',
+        },
+        {
+            country: 'Moldova',
+            country_code: 'MDA',
+        },
+        {
+            country: 'Morocco',
+            country_code: 'MAR',
+        },
+        {
+            country: 'Namibia',
+            country_code: 'NA',
+        },
+        {
+            country: 'Nepal',
+            country_code: 'NPL',
+        },
+        {
+            country: 'Nigeria',
+            country_code: 'NG',
+        },
+        {
+            country: 'Norway',
+            country_code: 'NOR',
+        },
+        {
+            country: 'Oman',
+            country_code: 'OMN',
+        },
+        {
+            country: 'Poland',
+            country_code: 'POL',
+        },
+        {
+            country: 'Romania',
+            country_code: 'ROU',
+        },
+        {
+            country: 'Russia',
+            country_code: 'RUS',
+        },
+        {
+            country: 'Saudi Arabia',
+            country_code: 'SAU',
+        },
+        {
+            country: 'Slovakia',
+            country_code: 'SVK',
+        },
+        {
+            country: 'Slovenia',
+            country_code: 'SVN',
+        },
+        {
+            country: 'South Africa',
+            country_code: 'ZAF',
+        },
+        {
+            country: 'Switzerland',
+            country_code: 'CHE',
+        },
+        {
+            country: 'Tanzania',
+            country_code: 'TZA',
+        },
+        {
+            country: 'Tunisia',
+            country_code: 'TUN',
+        },
+        {
+            country: 'Turkey',
+            country_code: 'TUR',
+        },
+        {
+            country: 'Ukraine',
+            country_code: 'UKR',
+        },
+        {
+            country: 'United Arab Emirates',
+            country_code: 'ARE',
+        },
+        {
+            country: 'United Kingdom',
+            country_code: 'GBR',
+        },
+        {
+            country: 'Uganda',
+            country_code: 'UG',
+        },
+        {
+            country: 'United States of America',
+            country_code: 'USA',
+        },
+        {
+            country: 'Uzbekizstan',
+            country_code: 'UZ',
+        },
+        {
+            country: 'Zambia',
+            country_code: 'ZM',
+        },
+    ]
+
     const dispatch = useDispatch()
     let location = useLocation()
     const { pathname } = location
@@ -110,7 +313,6 @@ export default function PassBulkVerificationComp() {
     let setPayload = (endpCode: string, mainData: any) => {
         mainData.map((val: any) => {
             if (endpCode === val?.code) {
-                // console.log(val);
                 setChannelPayloads(val?.payloads)
                 setTemplate(val?.bulk_template)
                 setEndpName(val?.description)
@@ -126,6 +328,7 @@ export default function PassBulkVerificationComp() {
     }
 
     let performBulkVerification = (requestData: any) => {
+        
         setUpdatedResponse(null)
         setOpenResponse(false)
 
@@ -147,10 +350,10 @@ export default function PassBulkVerificationComp() {
                 type: channel,
                 file: requestData?.doc,
                 app_id: requestData?.appId,
+                file_type: requestData?.fileType
             },
             callback,
         }
-
         dispatch(identitypassBulkVerificationRequest(data))
     }
 
@@ -223,8 +426,8 @@ export default function PassBulkVerificationComp() {
                                                 getFilteredEndp(code.target.value, endpointsState?.resp?.data)
                                                 setCountryCode(code.target.value)
                                             }}
-                                        >
-                                            <option value="">Select Country </option>
+                                            >
+                                            <option value="">Select Region </option>
                                             {getCountryCodes(endpointsState?.resp?.data)?.map((val: any, i: number) => {
                                                 if (verifType === "individual" && val?.is_individual && val?.country_code !== "GEN") {
                                                     return (
@@ -238,29 +441,42 @@ export default function PassBulkVerificationComp() {
                                         <Select
                                             placeholder={<>Select Region</>}
                                             onChange={(code: any) => {
-                                                getFilteredEndp(
+                                              getFilteredEndp(
                                                     code.value,
                                                     endpointsState?.resp?.data
                                                 )
                                                 setCountryCode(code.value)
                                                 return { value: code?.value, label: code?.label }
                                             }}
-                                            options={getCountryCodes(
-                                                endpointsState?.resp?.data
-                                            )?.map((val: any, i: number) => {
-                                                if (
-                                                    verifType !== '' &&
-                                                    val?.is_individual
-                                                    // && val?.country_code !== 'GEN'
-                                                ) {
-                                                    return {
-                                                        value: val?.country_code,
-                                                        label: `${getCountryFlag(
-                                                            val?.country_code
-                                                        )} ${val?.country}`,
-                                                    }
-                                                }
-                                            })}
+                                            options={
+                                                verifType === 'individual'
+                                                    ? getCountryCodes(
+                                                          endpointsState?.resp?.data
+                                                      )?.map((val: any, i: number) => {
+                                                          if (val?.is_individual && val.country_code !== 'GEN' ) {
+                                                                 return {
+                                                                  value: val?.country_code,
+                                                                  label: `${getCountryFlag(
+                                                                      val?.country_code
+                                                                  )} ${val?.country}`,
+                                                              }
+                                                           }
+                                                      }).filter(Boolean)
+                                                    : verifType === 'business'
+                                                    ? getCountryCodes(businessRegions)?.map(
+                                                          (val: any, i: number) => {
+                                                             if (val?.country_code !== 'GEN') {
+                                                              return {
+                                                                  value: val?.country_code,
+                                                                  label: `${getCountryFlag(
+                                                                      val?.country_code
+                                                                  )} ${val?.country}`,
+                                                              }
+                                                                }
+                                                          }
+                                                      )
+                                                    : [{ label: '', value: '' }]
+                                            }
                                             styles={customStyles}
                                             theme={(theme) => ({
                                                 ...theme,
