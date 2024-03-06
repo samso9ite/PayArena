@@ -39,7 +39,8 @@ export default function AuthWrapper(props: any) {
             
             if (data?.status) {
                 queryParams.delete('session')
-                Cookies.set('babtbu', data?.data?.token)
+                Cookies.set('babtbu', data?.data?.AccessToken
+                )
                 Cookies.set("org", data?.data?.organisations[0]?.organisation?.id)
 
                 window.location.href = global.appBaseUrl

@@ -30,6 +30,7 @@ import Cookies from 'js-cookie'
 import { authorizationRedirect, serverCodes } from '../../../redux/constants/api'
 import axios from 'axios'
 import moment from 'moment'
+import NotificationToast from '../../utils/notifToast'
 
 export default function VerificationReports(props: any) {
     const [notifVal, setNotifVal] = useState(false)
@@ -159,24 +160,28 @@ export default function VerificationReports(props: any) {
     const handleReportFormSubmit = (e: any) => {
         e.preventDefault()
         const callback = (data: any) => {
-            if (data.status) {
-                setNotifTitle('Success')
-                setNotif('Report Successfully Generated')
-                setNotifVal(true)
+            console.log(data);
+            
+            if (data.status == true) {
                 setReportModal(false)
                 setStartDate('')
                 setEndDate('')
-                downloadFunc(data.data)
-            } else {
-                // setNotifTitle('Error')
-                // setNotif(data.data)
-                // setNotifVal(true)
+                if(data.data.includes("https")){
+                    downloadFunc(data.data)
+                }else{
+                    setModalMessage(true)
+                    setNotifTitle('Success')
+                    setNotif(data.data)
+                    setNotifVal(true)
+                }
+                
+            } else if(data.status == false) {
                 setModalMessage(true)
-                setModalErrMessage(data.message)
+                setModalErrMessage(data.detail)
                 
                 setNotifTitle('Error')
                 if(props.productKey == "3f20cd19-e739-419c-bec7-dd2c5c8a441b"){
-                    setNotif(data.message)
+                    setNotif(data.detail)
                 }else{
                     setNotif(data.data)
                 }
@@ -196,13 +201,6 @@ export default function VerificationReports(props: any) {
             setNotifVal(true)
             return
         }
-
-        // if (!reportForm.name) {
-        //     setNotifTitle('Error')
-        //     setNotif('Your referral Report will be sent to your mail')
-        //     setNotifVal(true)
-        //     return
-        // }
 
         if(props.productKey == "3f20cd19-e739-419c-bec7-dd2c5c8a441b") {
             if (reportForm.response_code.some(code => ['00', '01', '02', '03'].includes(code))) {
@@ -373,6 +371,13 @@ export default function VerificationReports(props: any) {
 
     return (
         <div>
+             {notif && notifVal && (
+                <NotificationToast
+                    title={notifTitle}
+                    message={notif}
+                    closeNotif={() => setNotifVal(!notifVal)}
+                />
+            )}
             {verifModal && (
                 <div className="main-modal">
                     <div

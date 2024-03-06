@@ -7,6 +7,7 @@ import formIcon from '../../../assets/form-icon.png'
 import passIconBlack from '../../../assets/pass-icon-black.png'
 import radarIconBlack from '../../../assets/radar-icon-black.png'
 import formIconBlack from '../../../assets/form-icon-black.png'
+import PremblyLogo from '../../../assets/logo.png'
 import NotificationToast from '../../utils/notifToast'
 import { organizationRoleRequest } from '../../../redux/actions/settings/roles'
 import { useDispatch, useSelector } from 'react-redux'
@@ -426,7 +427,7 @@ export default function Sidebar(props: any) {
 
     return (
         <>
-            {migrationModal && (
+            {/* {migrationModal && (
                 <div className="main-modal">
                     <div className="main-modal-content card col-md-5 col-lg-3 mx-auto text-center">
                         <span onClick={() => setMigrationModal(false)}>
@@ -459,7 +460,7 @@ export default function Sidebar(props: any) {
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
 
             <div className="sidebar-area">
                 {notif && notifVal && (
@@ -1345,21 +1346,6 @@ export default function Sidebar(props: any) {
                                             <i className="ri-shield-check-line" />
                                                 Data Verification
                                             </span>
-                                            {/* <span> */}
-                                                {/* {splitLocation[3] === 'Data' ? (
-                                                    // <img src={passIcon} alt="" className="py-2" />
-                                                     
-                                                ) : (
-                                                    <img
-                                                        src={passIconBlack}
-                                                        alt=""
-                                                        className="py-2"
-                                                    />
-                                                )} */}
-                                                
-                                                {/* Data Verification
-                                            </span> */}
-                                          
                                         </li>
                                         
                                     </Link>
@@ -1853,7 +1839,7 @@ export default function Sidebar(props: any) {
                         <div
                             className="mt-5 mb-4"
                             style={{ paddingLeft: '13%', cursor: 'pointer' }}
-                            onClick={() => setMigrationModal(true)}>
+                            onClick={() => window.location.href = "https://account.prembly.com"}>
                             <button
                                 className="btn"
                                 style={{
@@ -1862,8 +1848,7 @@ export default function Sidebar(props: any) {
                                     font: '14px S-medium',
                                     padding: '15px 10px',
                                 }}>
-                                Switch to <img src={passIcon} style={{ height: '20px' }} alt="" />{' '}
-                                Identitypass
+                                Switch to <img src={PremblyLogo} style={{ height: '20px' }} alt="" />{' '}
                             </button>
                         </div>
                     )}
