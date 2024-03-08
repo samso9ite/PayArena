@@ -671,10 +671,6 @@ export default function PassBulkVerificationComp() {
                             )}
                         </>
                     )}
-
-                    {/* </div>
-                        </div>
-                    </div> */}
                 </div>
             )}
         </div>

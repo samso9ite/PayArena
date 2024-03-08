@@ -42,7 +42,14 @@ export default function AuthWrapper(props: any) {
                 Cookies.set('babtbu', data?.data?.AccessToken
                 )
                 Cookies.set("org", data?.data?.organisations[0]?.organisation?.id)
-
+                Cookies.set("tenant", data?.data?.tenant?.id)
+                Cookies.set("host",  data?.data?.tenant?.host)
+                data?.data?.tenant.products.map((product:any) => {
+                    if(product.name == "Identitypass"){
+                        Cookies.set("logo", product.logo)
+                        Cookies.set("loader", product.loader)
+                    }
+                })
                 window.location.href = global.appBaseUrl
             } else {
                 setNotifTitle("Error")

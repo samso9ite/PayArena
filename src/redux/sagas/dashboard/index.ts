@@ -9,6 +9,7 @@ import { acceptIndemnityFormFailure, acceptIndemnityFormSuccess, announcementFai
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const dashboardInfo = async (payload: any) => {
   const { data } = await axios.get<IDashboardInfo[]>(
@@ -19,6 +20,7 @@ const dashboardInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -33,6 +35,7 @@ const announcement = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -47,6 +50,7 @@ const viewAnnouncement = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -61,6 +65,7 @@ const acceptIndemnityForm = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

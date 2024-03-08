@@ -9,6 +9,7 @@ import { activateTeamMemberFailure, activateTeamMemberSuccess, changeTeamMemberR
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const teamInfo = async (payload: any) => {
   const { data } = await axios.get<ITeamInfo[]>(
@@ -19,6 +20,7 @@ const teamInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -34,6 +36,7 @@ const createTeamMember = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -49,6 +52,7 @@ const changeTeamMemberRole = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -64,6 +68,7 @@ const activateTeamMember = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -79,6 +84,7 @@ const deactivateTeamMember = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -94,6 +100,7 @@ const deleteTeamMember = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

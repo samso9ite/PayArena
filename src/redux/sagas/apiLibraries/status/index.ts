@@ -9,6 +9,7 @@ import { apiStatusFailure, apiStatusSuccess } from "../../../actions/apiLibrarie
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const apiStatus = async (payload: any) => {
   const { data } = await axios.get<IAPIStatus[]>(
@@ -19,6 +20,7 @@ const apiStatus = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

@@ -9,6 +9,7 @@ import { IUpdateProfileInfo, IUpdateUserPassword } from "../../../actions/settin
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const updateUserPassword = async (payload: any) => {
   const { data } = await axios.post<IUpdateUserPassword[]>(
@@ -20,6 +21,7 @@ const updateUserPassword = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -38,6 +40,7 @@ const updateProfileInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

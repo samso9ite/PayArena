@@ -32,6 +32,7 @@ import {
 
 let accessT = Cookies.get('babtbu') || ''
 let orgId = Cookies.get('org') || ''
+let tenantId = Cookies.get("tenant") || ""
 
 const apiReport = async (payload: any) => {
     const { data } = await axios.get<IAPIReport[]>(
@@ -43,6 +44,7 @@ const apiReport = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )
@@ -62,6 +64,7 @@ const apiSearchReport = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             }, 
         }
     )
@@ -80,6 +83,7 @@ const apiFilterReport = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )
@@ -94,6 +98,7 @@ const apiReportProducts = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )
@@ -109,6 +114,7 @@ const apiReportActivities = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )
@@ -134,6 +140,7 @@ const apiGenerateReportLogs = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )
@@ -148,6 +155,7 @@ const customerReportActivities = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )

@@ -478,7 +478,7 @@ const PDFComponent = ({ idData }) => {
                                 Secured and powered by
                             </Text>
                             <Image style={styles.logo} src={PremblyLogo} />
-                        </View>
+                        </View> 
                     </View>
                 </View>
             </Page>

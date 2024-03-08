@@ -768,12 +768,12 @@ export default function VerificationReports(props: any) {
                                                         (val: any, i: number) => (
                                                             <tr key={i}>
                                                                 <th scope="row">
-                                                                    {/* {val?.endpoint.replaceAll('"', "'").split("'")[7]} */}
-                                                                    {getEndPName(
+                                                                    {/* {getEndPName(
                                                                         val?.endpoint
                                                                             ?.replaceAll('/', '')
                                                                             .replaceAll("'", '"')
-                                                                    )}
+                                                                    )} */}
+                                                                    {val?.endpoint_name}
                                                                 </th>
                                                                 <td style={{
                                                                         textTransform: 'capitalize',

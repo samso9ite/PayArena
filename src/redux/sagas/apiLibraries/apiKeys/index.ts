@@ -9,6 +9,7 @@ import { regenerateLiveKeyFailure, regenerateLiveKeySuccess, regenerateSandboxKe
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const regenerateLiveKey = async (payload: any) => {
   const { data } = await axios.get<IRegenerateLiveKey[]>(
@@ -19,6 +20,7 @@ const regenerateLiveKey = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -34,6 +36,7 @@ const regenerateSandboxKey = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

@@ -26,6 +26,7 @@ export default function WalletPage() {
     const walletHistoryState = useSelector((state: RootState) => state.walletHistoryReducer);
     const thresholdState = useSelector((state: RootState) => state.setThresholdReducer);
 
+    
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -231,12 +232,16 @@ export default function WalletPage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {walletHistoryState?.resp?.data?.map((value: any, index: React.Key | null | undefined) => (
+                                {walletHistoryState?.resp?.results?.map((value: any, index: React.Key | null | undefined) => (
                                     <tr key={index}>
                                         <th scope="row">{value?.id}</th>
                                         <td>{value?.description}</td>
-                                        <td>₦ {value?.amount}</td>
                                         <td>{value?.product?.name}</td>
+                                        <td>{value?.currency.code} {value?.amount}</td>
+                                        <td>{value?.before_payment}</td>
+                                        <td>{value?.after_payment}</td>
+                                        
+                                       
                                         <td>{moment.utc(value?.created_at).format('lll')}</td>
                                         <td>
                                             {value?.status === "SUCCESSFUL" && <SuccessTag />}

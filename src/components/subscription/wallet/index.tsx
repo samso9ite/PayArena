@@ -742,7 +742,7 @@ export default function SubWalletComp(props:any) {
                                         <thead className="">
                                             <tr>
                                                 <th scope="col">Ref</th>
-                                                <th scope="col">Transaction Description</th>
+                                                <th scope="col"> Description</th>
                                                 <th scope="col">Amount</th>
                                                 <th scope="col">Balance Before</th>
                                                 <th scope="col">Balance After</th>
@@ -755,9 +755,9 @@ export default function SubWalletComp(props:any) {
                                                 <tr key={index}>
                                                     <th scope="row">{value?.reference}</th>
                                                     <td>{value?.description}</td>
-                                                    <td>{value?.currency} {value?.amount}</td>
-                                                    <td>{value?.balance_before} {value?.balance_before}</td>
-                                                    <td>{value?.balance_after} {value?.balance_after}</td>
+                                                    <td>{value?.currency.code} {value?.amount}</td>
+                                                    <td>{value?.balance_before}</td>
+                                                    <td>{value?.balance_after} </td>
                                                     <td>{moment.utc(value?.created_at).format('lll')}</td>
                                                     <td>
                                                         {value?.status === "success" && <SuccessTag />}

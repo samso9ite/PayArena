@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import passLogo from  '../../../assets/idpasslogoBlue.svg'
+// import passLogo from  '../../../assets/idpasslogoBlue.svg'
 import passIcon from '../../../assets/pass-icon.png'
 import radarIcon from '../../../assets/radar-icon.png'
 import formIcon from '../../../assets/form-icon.png'
@@ -25,6 +25,7 @@ export default function Sidebar(props: any) {
         userRights: []
         includes: any
     }
+    let passLogo = Cookies.get("logo") || ""
 
     const navigate = useNavigate()
     const [tourGuide, setTourGuide] = useTourGuide()
@@ -48,7 +49,7 @@ export default function Sidebar(props: any) {
     const splitLocation = pathname.split('/')
 
     const dispatch = useDispatch()
-
+    let host = Cookies.get("host") || ""
     useEffect(() => {
         if (!orgRoleState?.resp || !organisationInfoState.resp || userPermission?.length < 1) {
             getuserRoles()
@@ -1839,7 +1840,7 @@ export default function Sidebar(props: any) {
                         <div
                             className="mt-5 mb-4"
                             style={{ paddingLeft: '13%', cursor: 'pointer' }}
-                            onClick={() => window.location.href = "https://account.prembly.com"}>
+                            onClick={() => window.location.href = host}>
                             <button
                                 className="btn"
                                 style={{

@@ -23,6 +23,7 @@ import useTourGuide from '../../../../../hooks/useTourGuide'
 import TourGuideVerificationResult from '../../../../TourGuide/VerificationResult'
 import CommercialCreditBereauAdvance from './responseComponents/commCreditBereauAdv'
 import VeriicationLoader from '../../../../../assets/verification_loader.gif'
+import RetryVerification from './retryComp'
 
 const steps = [8, 9, 10]
 
@@ -417,6 +418,8 @@ export default function PassSingleVerificationComp(props: any) {
     }
 
     let performSingleVerification = (requestData: any) => {
+        // console.log("This was clicked");
+        
         setUpdatedResponse(null)
         setOpenResponse(false)
 
@@ -1313,6 +1316,12 @@ export default function PassSingleVerificationComp(props: any) {
                                             <div className="col-md-8 mx-auto">
                                                 <img src={emptyBox} alt="" className="w-100" />
                                             </div>
+                                            {/* <span
+                                                className="d-flex align-items-center btn btn-deep-green mx-auto my-3 "
+                                                style={{ width: 'fit-content' }} onClick={performSingleVerification}>
+                                                    Retry Verification
+                                            </span> */}
+                                            {/* <RetryVerification verify={verify} /> */}
                                         </div>
                                     ) : (
                                         <>
@@ -1363,6 +1372,12 @@ export default function PassSingleVerificationComp(props: any) {
                                                             />
                                                         </div>
                                                     </div>
+                                                    {/* <span
+                                                        className="d-flex align-items-center btn btn-deep-green mx-auto my-3 px-3"
+                                                        style={{ width: 'fit-content' }} onClick={performSingleVerification}>
+                                                            Retry Verification
+                                                    </span> */}
+                                                   
                                                 </div>
                                             ) : (
                                                 // <ResponseVerificationComponent data={identitypassVerifState.resp} />
@@ -1372,6 +1387,7 @@ export default function PassSingleVerificationComp(props: any) {
                                                     <>
                                                         <FailedTag />
                                                         <br />
+                                                       
                                                     </>
                                                     <div className="col-md-8 mx-auto py-4">
                                                         <div className="my-5">
@@ -1386,6 +1402,11 @@ export default function PassSingleVerificationComp(props: any) {
                                                             />
                                                         </div>
                                                     </div>
+                                                    {/* <span
+                                                        className="d-flex align-items-center btn btn-deep-green mx-auto my-3 "
+                                                        style={{ width: 'fit-content' }} onClick={performSingleVerification}>
+                                                            Retry Verification
+                                                    </span> */}
                                                 </div>
                                             )}
                                         </>

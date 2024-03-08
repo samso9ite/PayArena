@@ -9,6 +9,7 @@ import { identitypassBulkHistoryFailure, identitypassBulkHistorySuccess, identit
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const identitypassVerification = async (payload: any) => {
   const { data } = await axios.post<IIdentitypassVerification[]>(
@@ -21,6 +22,7 @@ const identitypassVerification = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
       onUploadProgress: (progressEvent: any) => {
         if (progressEvent.event.lengthComputable) {
@@ -44,6 +46,7 @@ const identitypassEndpoints = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -63,6 +66,7 @@ const identitypassBulkVerification = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -78,6 +82,7 @@ const identitypassBulkHistory = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

@@ -29,6 +29,7 @@ import {
 
 let accessT = Cookies.get('babtbu') || ''
 let orgId = Cookies.get('org') || ''
+let tenantId = Cookies.get("tenant") || ""
 
 // axios declarations
 const identityPassGetAllConfig = async (payload: any) => {
@@ -40,6 +41,7 @@ const identityPassGetAllConfig = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )
@@ -55,6 +57,7 @@ const identityPassCreateWidget = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )
@@ -70,6 +73,7 @@ const identityPassUpdateWidget = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )
@@ -85,6 +89,7 @@ const identityPassDeleteWidget = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )
@@ -99,6 +104,7 @@ const identityPassEndpoints = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )
@@ -114,6 +120,7 @@ const identityPassGetWidget = async (payload: any) => {
                 Accept: 'application/json',
                 Authorization: accessT,
                 Organisation: orgId,
+                TenantId: tenantId
             },
         }
     )

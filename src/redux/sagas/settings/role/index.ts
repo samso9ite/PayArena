@@ -9,6 +9,7 @@ import { createUserRoleFailure, createUserRoleSuccess, organizationModuleFailure
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const organizationModule = async (payload: any) => {
   const { data } = await axios.get<IOrganizationModule[]>(
@@ -19,6 +20,7 @@ const organizationModule = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -33,6 +35,7 @@ const organizationRole = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -48,6 +51,7 @@ const createUserRole = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -63,6 +67,7 @@ const updateUserRole = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

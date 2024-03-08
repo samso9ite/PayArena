@@ -45,12 +45,12 @@ import global from './global'
 
 export const authorizationRedirect = () => {
 	//place rentry location.....login
-
+	let host = Cookies.get("host") || ""
 	Cookies.remove('authenticated');
 	Cookies.remove("org")
 	Cookies.remove('babtbu');
 	Cookies.remove('brbtbu');
-	window.location.assign("https://account.prembly.com/");
+	window.location.assign(host);
 }
 
 export let serverCodes = [

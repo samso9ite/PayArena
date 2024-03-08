@@ -9,6 +9,7 @@ import { myOrganisationInfoFailure, myOrganisationInfoSuccess, createMyOrganisat
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const myOrganisationInfo = async (payload: any) => {
   const { data } = await axios.get<IMyOrganisationInfo[]>(
@@ -19,6 +20,7 @@ const myOrganisationInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -34,6 +36,7 @@ const createMyOrganisationInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -49,6 +52,7 @@ const updateMyOrganisationInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

@@ -9,6 +9,7 @@ import { currentSubFailure, currentSubSuccess, subLogsFailure, subLogsSuccess, s
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const subPlans = async (payload: any) => {
   const { data } = await axios.get<ISubPlans[]>(
@@ -19,6 +20,7 @@ const subPlans = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -33,6 +35,7 @@ const subPlansByTenure = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -47,6 +50,7 @@ const subscription = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -61,6 +65,7 @@ const subLogs = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -75,6 +80,7 @@ const currentSub = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -89,6 +95,7 @@ const subPricing = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -206,7 +213,8 @@ function* subscriptionSaga(action: any) {
 function* subLogsSaga(action: any) {
   try {
     const response: { data: any } = yield call(subLogs, { });
-
+    console.log(response);
+    
     yield put(
       subLogsSuccess({
         resp: response,

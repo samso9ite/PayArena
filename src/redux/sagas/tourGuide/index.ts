@@ -9,6 +9,7 @@ import { tourGuideStatusFailure, tourGuideStatusSuccess, tourGuideCompleteFailur
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const tourGuideStatus = async (payload: any) => {
   const { data } = await axios.get<ITourGuideStatus[]>(
@@ -19,6 +20,7 @@ const tourGuideStatus = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -34,6 +36,7 @@ const tourGuideComplete = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

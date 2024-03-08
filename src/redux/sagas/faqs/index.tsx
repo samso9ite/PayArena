@@ -9,6 +9,7 @@ import {faqsFailure, faqsSuccess } from "../../actions/faqs";
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const faqs = async (payload: any) => {
   const { data } = await axios.get<IFaqs[]>(
@@ -19,6 +20,7 @@ const faqs = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

@@ -9,8 +9,10 @@ import { authorizationRedirect, serverCodes } from "../../constants/api";
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const walletHistory = async (payload: any) => {
+  
   const { data } = await axios.get<IWalletHistory[]>(
     global.apiBaseUrl + global.idpassApiUrl + "wallet/fund-wallet",
     {
@@ -19,6 +21,7 @@ const walletHistory = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -33,6 +36,7 @@ const cardInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -51,6 +55,7 @@ const mpesaTopUpWallet = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -67,6 +72,7 @@ const addCard = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -82,6 +88,7 @@ const setDefaultCard = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -96,6 +103,7 @@ const removeCard = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -111,6 +119,7 @@ const setThreshold = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -125,6 +134,7 @@ const virtualAccountInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -140,6 +150,7 @@ const topUpWallet = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -187,6 +198,7 @@ const walletToWalletTransfer = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -197,12 +209,13 @@ const walletToWalletTransfer = async (payload: any) => {
 function* walletHistorySaga(action: any) {
   try {
     const response: { data: any } = yield call(walletHistory, {});
-
+    
     yield put(
       walletHistorySuccess({
         resp: response,
       })
     );
+    
     action.payload.callback(response);
   } catch (e: any) {
     if(serverCodes.includes(e?.response?.request?.status) || !e?.response?.request?.status){

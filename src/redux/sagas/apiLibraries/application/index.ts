@@ -9,6 +9,7 @@ import { applicationInfoFailure, applicationInfoSuccess, createApplicationFailur
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const applicationInfo = async (payload: any) => {
   const { data } = await axios.get<IApplicationInfo[]>(
@@ -19,6 +20,7 @@ const applicationInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -35,6 +37,7 @@ const createApplication = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -50,6 +53,7 @@ const editApplication = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -64,6 +68,7 @@ const getAppTeamMembers = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

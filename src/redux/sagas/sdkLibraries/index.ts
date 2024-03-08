@@ -9,6 +9,7 @@ import { updateWebhookUrlFailure, updateWebhookUrlSuccess } from "../../actions/
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const updateWebhookUrl = async (payload: any) => {
   const { data } = await axios.put<IUpdateWebhookUrl[]>(
@@ -20,6 +21,7 @@ const updateWebhookUrl = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
