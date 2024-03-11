@@ -35,6 +35,9 @@ export default function TopProfile() {
     const dispatch = useDispatch()
 
     let orgId = Cookies.get("org") || ""
+    let hostName = Cookies.get('hostName') || ''
+    let host = Cookies.get('host') || ''
+    let passLogo = Cookies.get('logo') || ''
 
     let validateEmail = emailValidator(email.toLowerCase())
 
@@ -146,10 +149,7 @@ export default function TopProfile() {
     }
 
     let logOut = () => {
-        // Cookies.remove("org")
-        // Cookies.remove("babtbu")
-        // Cookies.remove("brbtbu")
-        window.location.href = "https://account.prembly.com"
+        // window.location.href = host
     }
 
     let setOrgID = (id: string) => {
@@ -224,7 +224,7 @@ export default function TopProfile() {
 
                         <div className="logout pt-2" onClick={logOut}>
                             <i className="ri-shut-down-line" />
-                            <p>Go Back to Prembly</p>
+                            <p>Go Back to {hostName}</p>
                         </div>
                     </div>
                 }

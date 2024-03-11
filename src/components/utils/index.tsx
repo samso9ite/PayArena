@@ -4,6 +4,7 @@ import useTourGuide from '../../hooks/useTourGuide'
 import rocketGif from '../../assets/rocket-icon.gif'
 import LoadingPageLogo from '../../assets/loadingPageLogo.svg'
 import loadingPageGif from '../../assets/loadingPageGif.gif'
+import Cookies from 'js-cookie'
 
 export function SuccessTag() {
     return <span className="success-tag">SUCCESSFUL</span>
@@ -110,6 +111,8 @@ export function InvalidAccessRightComp() {
 }
 
 export default function Mainloader() {
+    let passLogo = Cookies.get('logo') || ''
+
     return (
         <>
             <div
@@ -123,7 +126,7 @@ export default function Mainloader() {
                 }}>
                 <div>
                     <div style={{ width: '200px', position: 'relative', bottom: '-50px' }}>
-                        <img src={LoadingPageLogo} alt="" className="w-100" />
+                        <img src={passLogo} alt="" className="w-100" />
                     </div>
                     <div style={{ width: '200px',  paddingTop:"8%"}}>
                         <img src={loadingPageGif} alt="" className="w-100" />

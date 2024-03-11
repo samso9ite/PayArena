@@ -8,6 +8,7 @@ import { ActiveTag, FailedTag, SuccessTag, imgUrl, InactiveTag } from '../../../
 import QRcodeImage from '../../../../../assets/QRCode.png'
 import ComplianceImage from '../../../../../assets/complianceImage.png'
 import PremblyLogo from '../../../../../assets/logo.png'
+import Cookies from 'js-cookie'
 // import moment from 'moment';
 // import React, { useEffect, useState } from 'react';
 // import { PaginatedList } from 'react-paginated-list';
@@ -323,7 +324,8 @@ const individual_channel = {
 }
 
 const PDFComponent = ({ idData, verifyType, channel }) => {
-
+    let hostName = Cookies.get('hostName') || ''
+    let passLogo = Cookies.get('logo') || ''
     if (verifyType === 'individual') {
         let getKeyLabel = (data) => {
             var formattedText = ''
@@ -344,7 +346,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
             <Document>
                 <Page size="A4" style={styles.page}>
                     <View style={styles.topHeader_logo_individual}>
-                        <Image style={styles.logo_header_individual} src={PremblyLogo} />
+                        <Image style={styles.logo_header_individual} src={passLogo} />
                     </View>
                     <View style={styles.response_header_individual}>
                         <Text style={styles.response_header_two}>
@@ -494,14 +496,14 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                             where required by law, no information provided in our reports may be
                             revealed directly or indirectly to any person except to those whose
                             official duties require them to pass this report on in relation to which
-                            the report was requested by the client. Prembly International Limited
+                            the report was requested by the client. {hostName} International Limited
                             neither warrants, vouches for, or authenticates the reliability of the
                             information contained herein that the records are accurately reported as
                             they were found at the source as of the date and time of this report,
                             whether on a computer information system, retrieved by manual search, or
                             telephonic interviews. The information provided herein shall not be
                             construed to constitute a legal opinion; rather it is a compilation of
-                            public records and/or data for your review. Prembly International Limited
+                            public records and/or data for your review. {hostName} International Limited
                             shall not be liable for any losses or injuries now or in the future
                             resulting from or relating to the information provided herein. The
                             recommended searches provided on our website should not serve as legal
@@ -516,7 +518,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                 <Text style={styles.company_details_footer_text}>
                                     Secured and powered by
                                 </Text>
-                                <Image style={styles.logo} src={PremblyLogo} />
+                                <Image style={styles.logo} src={passLogo} />
                             </View>
                         </View>
                     </View>
@@ -551,7 +553,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                         </View>
                     </View>
                     <View style={styles.topHeader_logo}>
-                        <Image style={styles.logo_header} src={PremblyLogo} />
+                        <Image style={styles.logo_header} src={passLogo} />
                     </View>
                 </View>
                 <View style={styles.response_header}>
@@ -786,13 +788,13 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                         information provided in our reports may be revealed directly or indirectly
                         to any person except to those whose official duties require them to pass
                         this report on in relation to which the report was requested by the client.
-                        Prembly International Limited neither warrants, vouches for, or authenticates
+                        {hostName} International Limited neither warrants, vouches for, or authenticates
                         the reliability of the information contained herein that the records are
                         accurately reported as they were found at the source as of the date and time
                         of this report, whether on a computer information system, retrieved by
                         manual search, or telephonic interviews. The information provided herein
                         shall not be construed to constitute a legal opinion; rather it is a
-                        compilation of public records and/or data for your review. Prembly
+                        compilation of public records and/or data for your review. {hostName}
                         International Limited shall not be liable for any losses or injuries now or
                         in the future resulting from or relating to the information provided herein.
                         The recommended searches provided on our website should not serve as legal
@@ -807,7 +809,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                             <Text style={styles.company_details_footer_text}>
                                 Secured and powered by
                             </Text>
-                            <Image style={styles.logo} src={PremblyLogo} />
+                            <Image style={styles.logo} src={passLogo} />
                         </View>
                     </View>
                 </View>

@@ -9,6 +9,7 @@ import { addContactInfoFailure, addContactInfoSuccess, contactInfoFailure, conta
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
+let tenantId = Cookies.get("tenant") || ""
 
 const preferenceInfo = async (payload: any) => {
   const { data } = await axios.get<IPreferenceInfo[]>(
@@ -19,6 +20,7 @@ const preferenceInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -34,6 +36,7 @@ const updatePreferenceInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -48,6 +51,7 @@ const contactInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -63,6 +67,7 @@ const addContactInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );
@@ -76,6 +81,7 @@ const removeContactInfo = async (payload: any) => {
         Accept: "application/json",
         Authorization: accessT,
         Organisation: orgId,
+        TenantId: tenantId
       },
     }
   );

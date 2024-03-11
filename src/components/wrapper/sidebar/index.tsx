@@ -1849,7 +1849,7 @@ export default function Sidebar(props: any) {
                                     font: '14px S-medium',
                                     padding: '15px 10px',
                                 }}>
-                                Switch to <img src={PremblyLogo} style={{ height: '20px' }} alt="" />{' '}
+                                Switch to <img src={passLogo} style={{ height: '20px' }} alt="" />{' '}
                             </button>
                         </div>
                     )}

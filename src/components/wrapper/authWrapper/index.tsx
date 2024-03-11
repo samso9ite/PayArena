@@ -44,8 +44,9 @@ export default function AuthWrapper(props: any) {
                 Cookies.set("org", data?.data?.organisations[0]?.organisation?.id)
                 Cookies.set("tenant", data?.data?.tenant?.id)
                 Cookies.set("host",  data?.data?.tenant?.host)
+                Cookies.set("hostName",  data?.data?.tenant?.name)
                 data?.data?.tenant.products.map((product:any) => {
-                    if(product.name == "Identitypass"){
+                    if(product.code == "IDENTITYPASS"){
                         Cookies.set("logo", product.logo)
                         Cookies.set("loader", product.loader)
                     }
