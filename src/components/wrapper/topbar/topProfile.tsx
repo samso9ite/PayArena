@@ -149,7 +149,7 @@ export default function TopProfile() {
     }
 
     let logOut = () => {
-        // window.location.href = host
+        window.location.href = "https://"+host
     }
 
     let setOrgID = (id: string) => {

@@ -3,7 +3,7 @@ import { Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { mpesaTopUpWalletRequest,
-    topUpWalletRequest, virtualAccountInfoRequest, walletHistoryRequest, walletToWalletTransferRequest } from "../../../redux/actions/wallet";
+    topUpWalletRequest, virtualAccountInfoRequest, walletBalanceRequest, walletHistoryRequest, walletToWalletTransferRequest } from "../../../redux/actions/wallet";
 import global from "../../../redux/constants/global";
 import { RootState } from "../../../redux/reducers";
 import Mainloader, { EmptyStateComp, FailedTag, PendingTag, removeLetters, SuccessTag } from "../../utils";
@@ -40,7 +40,7 @@ export default function SubWalletComp(props:any) {
     const mpesaTopUpWalletState = useSelector((state: RootState) => state.mpesaTopUpWalletReducer);
     const myOrganisationInfoState = useSelector((state: RootState) => state.myOrganisationInfoReducer);
     const walletTransferState = useSelector((state: RootState) => state.walletToWalletTransferReducer);
-    
+    const walletBalanceState = useSelector((state: RootState) => state.walletBalanceReducer);
 
 
     const dispatch = useDispatch()
@@ -55,6 +55,7 @@ export default function SubWalletComp(props:any) {
     useEffect(() => {
         getWalletHist()
         getOrgInfo()
+        walletBalance()
 
         if(successPayment === "true"){
             setNotifTitle("Success")
@@ -70,7 +71,21 @@ export default function SubWalletComp(props:any) {
         }
     }, [])
 
-
+    let walletBalance = () => {
+        
+        const callback = (data: any) => {
+            if (!data.status) {
+                setNotifTitle('Error')
+                setNotif(data.detail)
+                setNotifVal(true)
+            }
+        }
+        let data: any = {
+            currency_code:  organisationInfoState?.resp?.data?.organisation.currency,
+            callback,
+        }
+        dispatch(walletBalanceRequest(data))
+    }
     let getOrgInfo = () => {
         const callback = (data: any) => {
             if (data.status) {
@@ -661,11 +676,11 @@ export default function SubWalletComp(props:any) {
                                         <div className="col-md-8">
                                             <div className="d-flex ">
                                                 <span className="me-2 p-1 rounded" style={{fontSize:"12px",backgroundColor:"#E95470"}}>
-                                                    {organisationInfoState?.resp?.data?.organisation?.currency}
+                                                    {walletBalanceState?.resp?.results[0]?.currency.code}
                                                 </span>
                                                 <h5 className="p-0 m-0 add-ellipsis">
-                                                    <NumericFormat value={organisationInfoState?.resp?.data.organisation?.wallet_balance} 
-                                                        thousandsGroupStyle={organisationInfoState?.resp?.data?.organisation?.currency} 
+                                                    <NumericFormat value={walletBalanceState?.resp?.results[0]?.balance} 
+                                                        thousandsGroupStyle={walletBalanceState?.resp?.results[0]?.currency.code} 
                                                         thousandSeparator="," 
                                                     />
                                                 </h5>

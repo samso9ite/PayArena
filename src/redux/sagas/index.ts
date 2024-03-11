@@ -132,7 +132,8 @@ import {
     virtualAccountInfoSagaTrigger,
     walletHistorySagaTrigger,
     walletToWalletTransferSagaTrigger,
-    mpesaTopUpWalletSagaTrigger
+    mpesaTopUpWalletSagaTrigger,
+    walletBalanceSagaTrigger
 } from './wallet'
 import {
     allRefereesSagaTrigger,
@@ -182,7 +183,7 @@ export function* rootSaga() {
     yield all([fork(virtualAccountInfoSagaTrigger)])
     yield all([fork(topUpWalletSagaTrigger)])
     yield all([fork(mpesaTopUpWalletSagaTrigger)])
-    // yield all([fork(paystackTopUpWalletSagaTrigger)])
+    yield all([fork(walletBalanceSagaTrigger)])
     // yield all([fork(flutterwaveTopUpWalletSagaTrigger)])
     yield all([fork(walletToWalletTransferSagaTrigger)])
 

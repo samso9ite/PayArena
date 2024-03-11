@@ -37,6 +37,9 @@ export interface IWalletToWalletTransfer {
 export interface IMpesaTopUpWallet {
   resp: any;
 }
+export interface IWalletBalance {
+  resp: any;
+}
 
 
 export interface WalletHistoryState {
@@ -96,6 +99,11 @@ export interface WalletToWalletTransferState {
 }
 
 export interface MpesaTopUpWalletState {
+  isLoading: boolean;
+  resp: any;
+  error: string | null;
+}
+export interface walletBalanceState {
   isLoading: boolean;
   resp: any;
   error: string | null;
@@ -184,6 +192,14 @@ export interface WalletToWalletTransferPayload {
   callback: any;
 }
 
+export interface walletBalancePayload {
+  values: {
+    currency_code: string,
+   
+  };
+  callback: any;
+}
+
 
 export interface WalletHistorySuccessPayload {
   resp: any;
@@ -222,6 +238,10 @@ export interface WalletToWalletTransferSuccessPayload {
 export interface MpesaTopUpWalletSuccessPayload {
   resp: any;
 }
+
+export interface WalletBalanceSuccessPayload {
+  resp: any;
+}
 export interface WalletHistoryFailurePayload {
   error: string;
 }
@@ -229,6 +249,9 @@ export interface CardInfoFailurePayload {
   error: string;
 }
 export interface AddCardFailurePayload {
+  error: string;
+}
+export interface WalletBalanceFailurePayload {
   error: string;
 }
 export interface SetDefaultCardFailurePayload {
@@ -308,6 +331,10 @@ export interface MpesaWalletRequest {
   type: typeof actionTypes.MPESA_TOP_UP_WALLET_REQUEST;
   payload: MpesaTopUpWalletPayload;
 }
+export interface WalletBalanceRequest {
+  type: typeof actionTypes.WALLET_BALANCE_REQUEST;
+  payload: walletBalancePayload;
+}
 
 
 export type WalletHistorySuccess = {
@@ -358,6 +385,10 @@ export type WalletToWalletTransferSuccess = {
   type: typeof actionTypes.WALLET_TO_WALLET_TRANSFER_SUCCESS,
   payload: WalletToWalletTransferSuccessPayload,
 };
+export type WalletBalanceSuccess = {
+  type: typeof actionTypes.WALLET_BALANCE_SUCCESS,
+  payload: WalletBalanceSuccessPayload,
+};
 
 
 export type WalletHistoryFailure = {
@@ -407,6 +438,10 @@ export type WalletToWalletTransferFailure = {
 export type MpesaTopUpWalletFailure = {
   type: typeof actionTypes.MPESA_TOP_UP_WALLET_FAILURE,
   payload: MpesaTopUpWalletFailurePayload,
+}
+export type WalletBalanceFailure = {
+  type: typeof actionTypes.WALLET_BALANCE_FAILURE,
+  payload: WalletBalanceFailurePayload,
 }
 
 
@@ -469,4 +504,10 @@ export type WalletToWalletTransferActions =
   | WalletToWalletTransferRequest
   | WalletToWalletTransferSuccess
   | WalletToWalletTransferFailure;
+  
+
+export type walletBalanceActions =
+  | WalletBalanceRequest
+  | WalletBalanceSuccess
+  | WalletBalanceFailure;
   

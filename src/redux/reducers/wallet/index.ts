@@ -1,6 +1,6 @@
 import { AddCardState, CardInfoState, FlutterwaveTopUpWalletState, PaystackTopUpWalletState, MpesaTopUpWalletState,
     RemoveCardState, SetDefaultCardState, SetThresholdState, TopUpWalletState, VirtualAccountInfoState, 
-    WalletHistoryState, WalletToWalletTransferState } from '../../actions/wallet/types';
+    WalletHistoryState, WalletToWalletTransferState, walletBalanceState} from '../../actions/wallet/types';
 import { actionTypes } from './../../constants/actionTypes';
 
 const initialState : WalletHistoryState = {
@@ -69,6 +69,12 @@ const walletToWalletInitialState : WalletToWalletTransferState = {
 };
 
 const mpesaInitialState : MpesaTopUpWalletState = {
+    isLoading: false,
+    error: null,
+    resp:null,
+};
+
+const walletBalanceInitialState : walletBalanceState = {
     isLoading: false,
     error: null,
     resp:null,
@@ -353,6 +359,30 @@ export const walletToWalletTransferReducer = (state = walletToWalletInitialState
                 resp:action.payload.resp
             };
         case actionTypes.WALLET_TO_WALLET_TRANSFER_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload.error
+            };
+        default:
+            return state;
+    }
+};
+
+export const walletBalanceReducer = (state = walletBalanceInitialState, action: { type: any; payload: any; }) => {
+    switch (action.type) {
+        case actionTypes.WALLET_BALANCE_REQUEST:
+            return {
+                ...state,
+                isLoading: true
+            };
+        case actionTypes.WALLET_BALANCE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                resp:action.payload.resp
+            };
+        case actionTypes.WALLET_BALANCE_FAILURE:
             return {
                 ...state,
                 isLoading: false,

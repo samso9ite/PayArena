@@ -28,6 +28,7 @@ import {
 } from '../../components/utils'
 // import { tourGuideCompleteRequest, tourGuideStatusRequest } from '../../redux/actions/tourGuide'
 import SetMigrationPasswordComp from './migrationPassword'
+import { walletBalanceRequest } from '../../redux/actions/wallet'
 
 export default function Dashboard(props: any) {
     const navigate = useNavigate()
@@ -41,10 +42,11 @@ export default function Dashboard(props: any) {
     const [moreModal, setMoreModal] = useState(false)
     const [passwordModal, setPasswordModal] = useState(false)
 
-    const organisationInfoState = useSelector((state: RootState) => state.organisationInfoReducer)
+    const organisationInfoState = useSelector((state: RootState) => state.organisationInfoReducer);
     const dashboardState = useSelector((state: RootState) => state.dashboardInfoReducer)
     const announcementState = useSelector((state: RootState) => state.announcementReducer)
     const viewAnnouncementState = useSelector((state: RootState) => state.viewAnnouncementReducer)
+   
     // const tourGuideStatusState = useSelector((state: RootState) => state.tourGuideReducer)
 
     const dispatch = useDispatch()
@@ -53,10 +55,13 @@ export default function Dashboard(props: any) {
     const queryParams = new URLSearchParams(location.search)
     let successPayment = queryParams.get('success')
     let failedPayment = queryParams.get('failed')
+    console.log(organisationInfoState);
+    
 
     useEffect(() => {
         getDashboardInfo()
         getAnnouncement()
+        walletBalance()
 
         if (successPayment === 'true') {
             setNotifTitle('Success')
@@ -92,6 +97,21 @@ export default function Dashboard(props: any) {
             callback,
         }
         dispatch(dashboardInfoRequest(data))
+    }
+
+    let walletBalance = () => {
+        const callback = (data: any) => {
+            if (!data.status) {
+                setNotifTitle('Error')
+                setNotif(data.detail)
+                setNotifVal(true)
+            }
+        }
+        let data: any = {
+            currency_code:  organisationInfoState?.resp?.data?.organisation.currency,
+            callback,
+        }
+        dispatch(walletBalanceRequest(data))
     }
 
     let getAnnouncement = () => {

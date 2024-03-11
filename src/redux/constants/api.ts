@@ -50,7 +50,7 @@ export const authorizationRedirect = () => {
 	Cookies.remove("org")
 	Cookies.remove('babtbu');
 	Cookies.remove('brbtbu');
-	window.location.assign(host);
+	window.location.assign("https://"+host);
 }
 
 export let serverCodes = [

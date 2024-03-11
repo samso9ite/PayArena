@@ -326,6 +326,22 @@ const individual_channel = {
 const PDFComponent = ({ idData, verifyType, channel }) => {
     let hostName = Cookies.get('hostName') || ''
     let passLogo = Cookies.get('logo') || ''
+    // console.log(passLogo);
+    // const fetchImage = async () => {
+    //     let responseImg 
+    //     try {
+    //        responseImg = await fetch(passLogo); // Replace with your image URL
+    //     //   const blob = await response.blob();
+    //     //   const base64 = await imaget(blob);
+    //     //   const img = `data:image/jpeg;base64,${base64}`
+    //       console.log(responseImg);
+    //     }
+    //     catch (error) {
+    //       console.error('Error fetching image:', error);
+    //     }
+    //   };
+
+   
     if (verifyType === 'individual') {
         let getKeyLabel = (data) => {
             var formattedText = ''
@@ -346,7 +362,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
             <Document>
                 <Page size="A4" style={styles.page}>
                     <View style={styles.topHeader_logo_individual}>
-                        <Image style={styles.logo_header_individual} src={passLogo} />
+                        <Image style={styles.logo_header_individual} src={imgUrl(passLogo)} />
                     </View>
                     <View style={styles.response_header_individual}>
                         <Text style={styles.response_header_two}>
@@ -518,7 +534,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                 <Text style={styles.company_details_footer_text}>
                                     Secured and powered by
                                 </Text>
-                                <Image style={styles.logo} src={passLogo} />
+                                <Image style={styles.logo} src={imgUrl()} />
                             </View>
                         </View>
                     </View>
@@ -553,7 +569,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                         </View>
                     </View>
                     <View style={styles.topHeader_logo}>
-                        <Image style={styles.logo_header} src={passLogo} />
+                        <Image style={styles.logo_header} src={imgUrl(passLogo)} />
                     </View>
                 </View>
                 <View style={styles.response_header}>
@@ -809,7 +825,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                             <Text style={styles.company_details_footer_text}>
                                 Secured and powered by
                             </Text>
-                            <Image style={styles.logo} src={passLogo} />
+                            <Image style={styles.logo} src={imgUrl(passLogo)} />
                         </View>
                     </View>
                 </View>

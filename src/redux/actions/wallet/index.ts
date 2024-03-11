@@ -31,8 +31,12 @@ import { WalletHistoryPayload, WalletHistoryRequest, WalletHistorySuccess,
 
     WalletToWalletTransferPayload, WalletToWalletTransferRequest, WalletToWalletTransferSuccessPayload,
     WalletToWalletTransferSuccess, WalletToWalletTransferFailurePayload, WalletToWalletTransferFailure, 
+
     MpesaTopUpWalletPayload, MpesaWalletTopUpSuccess, MpesaWalletRequest, 
-    MpesaTopUpWalletSuccessPayload, MpesaTopUpWalletFailurePayload, MpesaTopUpWalletFailure
+    MpesaTopUpWalletSuccessPayload, MpesaTopUpWalletFailurePayload, MpesaTopUpWalletFailure,
+
+    walletBalancePayload, WalletBalanceSuccess, WalletBalanceRequest, 
+    WalletBalanceSuccessPayload, WalletBalanceFailurePayload, WalletBalanceFailure,
 } from "./types";
 
 export const mpesaTopUpWalletRequest = (payload:MpesaTopUpWalletPayload):MpesaWalletRequest => ({
@@ -160,34 +164,6 @@ export const topUpWalletFailure = (payload:TopUpWalletFailurePayload):TopUpWalle
 });
 
 
-// export const paystackTopUpWalletRequest = (payload:PaystackTopUpWalletPayload):PaystackTopUpWalletRequest => ({
-//     type: actionTypes.PAYSTACK_TOP_UP_WALLET_REQUEST,
-//     payload,
-// });
-// export const paystackTopUpWalletSuccess = (payload:PaystackTopUpWalletSuccessPayload):PaystackTopUpWalletSuccess => ({
-//     type: actionTypes.PAYSTACK_TOP_UP_WALLET_SUCCESS,
-//     payload,
-// });
-// export const paystackTopUpWalletFailure = (payload:PaystackTopUpWalletFailurePayload):PaystackTopUpWalletFailure => ({
-//     type: actionTypes.PAYSTACK_TOP_UP_WALLET_FAILURE,
-//     payload,
-// });
-
-
-// export const flutterwaveTopUpWalletRequest = (payload:FlutterwaveTopUpWalletPayload):FlutterwaveTopUpWalletRequest => ({
-//     type: actionTypes.FLUTTERWAVE_TOP_UP_WALLET_REQUEST,
-//     payload,
-// });
-// export const flutterwaveTopUpWalletSuccess = (payload:FlutterwaveTopUpWalletSuccessPayload):FlutterwaveTopUpWalletSuccess => ({
-//     type: actionTypes.FLUTTERWAVE_TOP_UP_WALLET_SUCCESS,
-//     payload,
-// });
-// export const flutterwaveTopUpWalletFailure = (payload:FlutterwaveTopUpWalletFailurePayload):FlutterwaveTopUpWalletFailure => ({
-//     type: actionTypes.FLUTTERWAVE_TOP_UP_WALLET_FAILURE,
-//     payload,
-// });
-
-
 export const walletToWalletTransferRequest = (payload:WalletToWalletTransferPayload):WalletToWalletTransferRequest => ({
     type: actionTypes.WALLET_TO_WALLET_TRANSFER_REQUEST,
     payload,
@@ -198,6 +174,20 @@ export const walletToWalletTransferSuccess = (payload:WalletToWalletTransferSucc
 });
 export const walletToWalletTransferFailure = (payload:WalletToWalletTransferFailurePayload):WalletToWalletTransferFailure => ({
     type: actionTypes.WALLET_TO_WALLET_TRANSFER_FAILURE,
+    payload,
+});
+
+
+export const walletBalanceRequest = (payload:walletBalancePayload):WalletBalanceRequest => ({
+    type: actionTypes.WALLET_BALANCE_REQUEST,
+    payload,
+});
+export const walletBalanceSuccess = (payload:WalletBalanceSuccessPayload):WalletBalanceSuccess => ({
+    type: actionTypes.WALLET_BALANCE_SUCCESS,
+    payload,
+});
+export const walletBalanceFailure = (payload:WalletBalanceFailurePayload):WalletBalanceFailure => ({
+    type: actionTypes.WALLET_BALANCE_FAILURE,
     payload,
 });
 

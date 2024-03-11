@@ -12,9 +12,6 @@ import { removeLetters } from '../../utils';
 import Cookies from 'js-cookie';
 
 export default function TopupComp(props:any) {
-
-    // console.log(organisationInfoState?.resp)
-
     const [notifVal, setNotifVal] = useState(false)
     const [notif, setNotif] = useState("")
     const [notifTitle, setNotifTitle] = useState("")
@@ -39,6 +36,7 @@ export default function TopupComp(props:any) {
     // const flutterwaveTopUpWalletState = useSelector((state: RootState) => state.flutterwaveTopUpWalletReducer);
     const myOrganisationInfoState = useSelector((state: RootState) => state.myOrganisationInfoReducer);
     const walletTransferState = useSelector((state: RootState) => state.walletToWalletTransferReducer);
+    const walletBalanceState = useSelector((state: RootState) => state.walletBalanceReducer)
 
 
     const dispatch = useDispatch()
@@ -90,7 +88,6 @@ export default function TopupComp(props:any) {
     //     dispatch(virtualAccountInfoRequest(data))
     // }
 
-    
     let proceedToNext = () => {
         if (!amount) {
             setNotifTitle("Error")
@@ -588,8 +585,8 @@ export default function TopupComp(props:any) {
                                         {organisationInfoState?.resp?.data?.organisation?.currency}
                                     </h4>
                                     <h4 className='p-0 m-0 add-ellipsis'>
-                                        <NumericFormat value={organisationInfoState?.resp?.data.organisation?.wallet_balance}
-                                            thousandsGroupStyle={organisationInfoState?.resp?.data?.organisation?.currency}
+                                        <NumericFormat value={walletBalanceState?.resp?.results[0]?.balance}
+                                            thousandsGroupStyle={walletBalanceState?.resp?.results[0]?.currency.code}
                                             thousandSeparator=","
                                         />
                                     </h4>

@@ -1840,7 +1840,7 @@ export default function Sidebar(props: any) {
                         <div
                             className="mt-5 mb-4"
                             style={{ paddingLeft: '13%', cursor: 'pointer' }}
-                            onClick={() => window.location.href = host}>
+                            onClick={() => window.location.href = "https://"+host}>
                             <button
                                 className="btn"
                                 style={{

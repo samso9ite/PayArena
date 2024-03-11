@@ -213,7 +213,6 @@ function* subscriptionSaga(action: any) {
 function* subLogsSaga(action: any) {
   try {
     const response: { data: any } = yield call(subLogs, { });
-    console.log(response);
     
     yield put(
       subLogsSuccess({

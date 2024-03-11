@@ -2,8 +2,8 @@ import axios from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import { actionTypes } from "../../constants/actionTypes"
 import global from "../../constants/global";
-import {IMpesaTopUpWallet, IAddCard, ICardInfo, IFlutterwaveTopUpWallet, IPaystackTopUpWallet, IRemoveCard, ISetDefaultCard, ISetThreshold, ITopUpWallet, IVirtualAccountInfo, IWalletHistory, IWalletToWalletTransfer } from "../../actions/wallet/types";
-import { addCardFailure, addCardSuccess, cardInfoFailure, cardInfoSuccess, mpesaTopUpWalletFailure, mpesaTopUpWalletSuccess, removeCardFailure, removeCardSuccess, setDefaultCardFailure, setDefaultCardSuccess, setThresholdFailure, setThresholdSuccess, topUpWalletFailure, topUpWalletSuccess, virtualAccountInfoFailure, virtualAccountInfoSuccess, walletHistoryFailure, walletHistorySuccess, walletToWalletTransferFailure, walletToWalletTransferSuccess } from "../../actions/wallet";
+import {IMpesaTopUpWallet, IAddCard, ICardInfo, IFlutterwaveTopUpWallet, IPaystackTopUpWallet, IRemoveCard, ISetDefaultCard, ISetThreshold, ITopUpWallet, IVirtualAccountInfo, IWalletHistory, IWalletToWalletTransfer, IWalletBalance } from "../../actions/wallet/types";
+import { addCardFailure, addCardSuccess, cardInfoFailure, cardInfoSuccess, mpesaTopUpWalletFailure, mpesaTopUpWalletSuccess, removeCardFailure, removeCardSuccess, setDefaultCardFailure, setDefaultCardSuccess, setThresholdFailure, setThresholdSuccess, topUpWalletFailure, topUpWalletSuccess, virtualAccountInfoFailure, virtualAccountInfoSuccess, walletBalanceFailure, walletBalanceSuccess, walletHistoryFailure, walletHistorySuccess, walletToWalletTransferFailure, walletToWalletTransferSuccess } from "../../actions/wallet";
 import Cookies from "js-cookie";
 import { authorizationRedirect, serverCodes } from "../../constants/api";
 
@@ -43,7 +43,6 @@ const cardInfo = async (payload: any) => {
   return data;
 };
 const mpesaTopUpWallet = async (payload: any) => {
-  console.log("This ran");
   
   const { data } = await axios.post<IMpesaTopUpWallet[]>(
     global.apiBaseUrl +  "wallet/fund-wallet",
@@ -206,6 +205,23 @@ const walletToWalletTransfer = async (payload: any) => {
 };
 
 
+const walletBalance = async (payload: any) => {
+  const { data } = await axios.get<IWalletBalance[]>(
+    global.apiBaseUrl + global.idpassApiUrl + `wallet/?currency_code=${payload.currency_code}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: accessT,
+        Organisation: orgId,
+        TenantId: tenantId
+      },
+    }
+  );
+  return data;
+};
+
+
 function* walletHistorySaga(action: any) {
   try {
     const response: { data: any } = yield call(walletHistory, {});
@@ -241,6 +257,7 @@ function* walletHistorySaga(action: any) {
     }
   }
 }
+
 function* cardInfoSaga(action: any) {
   try {
     const response: { data: any } = yield call(cardInfo, {});
@@ -496,85 +513,9 @@ function* topUpWalletSaga(action: any) {
     }
   }
 }
-// function* paystackTopUpWalletSaga(action: any) {
-//   try {
-//     const response: { data: any } = yield call(paystackTopUpWallet, {
-//       amount: action.payload.values.amount,
-//       currency: action.payload.values.currency,
-//       callback_url: action.payload.values.callback_url
-//     });
 
-//     yield put(
-//       paystackTopUpWalletSuccess({
-//         resp: response,
-//       })
-//     );
-//     action.payload.callback(response);
-//   } catch (e: any) {
-//     if(serverCodes.includes(e?.response?.request?.status) || !e?.response?.request?.status){
-//       yield put(
-//         paystackTopUpWalletFailure({
-//           error: "An error occurred, hang on a minute as we work towards fixing this error.",
-//         })
-//       );
-//       action.payload.callback(
-//         { detail:"An error occurred, hang on a minute as we work towards fixing this error." }
-//       );
-//       return
-//     }
-//     if (e.response.request.status === 401) {
-//       authorizationRedirect()
-//     } else {
-//       yield put(
-//         paystackTopUpWalletFailure({
-//           error: e.response.data.detail,
-//         })
-//       );
-//       action.payload.callback(e.response.data);
-//     }
-//   }
-// }
-// function* flutterwaveTopUpWalletSaga(action: any) {
-//   try {
-//     const response: { data: any } = yield call(flutterwaveTopUpWallet, {
-//       amount: action.payload.values.amount,
-//       callback_url:action.payload.values.callback_url,
-//     });
-
-//     yield put(
-//       flutterwaveTopUpWalletSuccess({
-//         resp: response,
-//       })
-//     );
-//     action.payload.callback(response);
-//   } catch (e: any) {
-//     if(serverCodes.includes(e?.response?.request?.status) || !e?.response?.request?.status){
-//       yield put(
-//         flutterwaveTopUpWalletFailure({
-//           error: "An error occurred, hang on a minute as we work towards fixing this error.",
-//         })
-//       );
-//       action.payload.callback(
-//         { detail:"An error occurred, hang on a minute as we work towards fixing this error." }
-//       );
-//       return
-//     }
-//     if (e.response.request.status === 401) {
-//       authorizationRedirect()
-//     } else {
-//       yield put(
-//         flutterwaveTopUpWalletFailure({
-//           error: e.response.data.detail,
-//         })
-//       );
-//       action.payload.callback(e.response.data);
-//     }
-//   }
-// }
 
 function* mpesaTopUpWalletSaga(action: any) {
-  console.log("This is here now");
-  
   try {
     const response: { data: any } = yield call(mpesaTopUpWallet, {
       amount: action.payload.values.amount,
@@ -662,6 +603,41 @@ function* walletToWalletTransferSaga(action: any) {
   }
 }
 
+function* walletBalanceSaga(action: any) {
+  try {
+    const response: { data: any } = yield call(walletBalance, {
+      currency_code: action.payload.currency_code
+    });
+    yield put(
+      walletBalanceSuccess({
+        resp: response,
+      })
+    );
+    action.payload.callback(response);
+  } catch (e: any) {
+    if(serverCodes.includes(e?.response?.request?.status) || !e?.response?.request?.status){
+      yield put(
+        walletBalanceFailure({
+          error: "An error occurred, hang on a minute as we work towards fixing this error.",
+        })
+      );
+      action.payload.callback(
+        { detail:"An error occurred, hang on a minute as we work towards fixing this error." }
+      );
+      return
+    }
+    if (e.response.request.status === 401) {
+      authorizationRedirect()
+    } else {
+      yield put(
+        walletBalanceFailure({
+          error: e.response.data.detail,
+        })
+      );
+      action.payload.callback(e.response.data);
+    }
+  }
+}
 
 export function* walletHistorySagaTrigger() {
   yield all([takeLatest(actionTypes.WALLET_HISTORY_REQUEST, walletHistorySaga)]);
@@ -687,15 +663,12 @@ export function* virtualAccountInfoSagaTrigger() {
 export function* topUpWalletSagaTrigger() {
   yield all([takeLatest(actionTypes.TOP_UP_WALLET_REQUEST, topUpWalletSaga)]);
 }
-// export function* paystackTopUpWalletSagaTrigger() {
-//   yield all([takeLatest(actionTypes.PAYSTACK_TOP_UP_WALLET_REQUEST, paystackTopUpWalletSaga)]);
-// }
-// export function* flutterwaveTopUpWalletSagaTrigger() {
-//   yield all([takeLatest(actionTypes.FLUTTERWAVE_TOP_UP_WALLET_REQUEST, flutterwaveTopUpWalletSaga)]);
-// }
 export function* walletToWalletTransferSagaTrigger() {
   yield all([takeLatest(actionTypes.WALLET_TO_WALLET_TRANSFER_REQUEST, walletToWalletTransferSaga)]);
 }
 export function* mpesaTopUpWalletSagaTrigger() {
   yield all([takeLatest(actionTypes.MPESA_TOP_UP_WALLET_REQUEST, mpesaTopUpWalletSaga)]);
+}
+export function* walletBalanceSagaTrigger() {
+  yield all([takeLatest(actionTypes.WALLET_BALANCE_REQUEST, walletBalanceSaga)]);
 }

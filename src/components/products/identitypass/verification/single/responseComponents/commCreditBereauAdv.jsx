@@ -295,7 +295,7 @@ const PDFComponent = ({ idData }) => {
                             where required by law, no information provided in our reports may be
                             revealed directly or indirectly to any person except to those whose
                             official duties require them to pass this report on in relation to which
-                            the report was requested by the client. {hostName} International Limited
+                            the report was requested by the client. {hostName} {passLogo} International Limited
                             neither warrants, vouches for, or authenticates the reliability of the
                             information contained herein that the records are accurately reported as
                             they were found at the source as of the date and time of this report,
