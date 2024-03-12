@@ -14,12 +14,12 @@ export default function ReportsPage(props:any) {
     const [notif, setNotif] = useState("")
     const [notifTitle, setNotifTitle] = useState("")
 
-    const allProductsState = useSelector((state: RootState) => state.apiReportProductsReducer);
+    // const allProductsState = useSelector((state: RootState) => state.apiReportProductsReducer);
     
     const dispatch = useDispatch()
 
     useEffect(() => {
-        getAllProducts()
+        // getAllProducts()
     }, [])
 
     let getAllProducts = () =>{
@@ -58,19 +58,19 @@ export default function ReportsPage(props:any) {
                 </div>
             </div>
 
-            {(allProductsState?.isLoading) && <Mainloader/>}
+            {/* {(allProductsState?.isLoading) && <Mainloader/>} */}
 
-            {(!allProductsState?.isLoading) && 
+            {/* {(!allProductsState?.isLoading) &&  */}
                 <div className='container-fluid px-md-4 bg-light-blue pb-5'>
-                    {allProductsState?.resp?.data.length > 0 &&
+                    {/* {allProductsState?.resp?.data.length > 0 && */}
                         <div className="main-tabs mt-3">
-                            <Tabs defaultActiveKey={"IdentitypassReport"} id="reportsTabs" className="main-tab-card">
-                                {allProductsState?.resp?.data?.map((val:any, i:number)=>(
-                                    (val?.name === "Identitypass") &&
-                                    <Tab key={i} eventKey={`${val?.name}Report`} title={`${val?.name} Report`} mountOnEnter={true} unmountOnExit={true} >
-                                        <VerificationReports productKey={val?.id}  userRights={props?.userRights} tag={val?.name} />
-                                    </Tab>
-                                ))}
+                            {/* <Tabs defaultActiveKey={"Identitypass Report"} id="reportsTabs" className="main-tab-card"> */}
+                                {/* {allProductsState?.resp?.data?.map((val:any, i:number)=>(
+                                    (val?.name === "Identitypass") && */}
+                                    {/* <Tab eventKey={"IdentityPass Report"} title="IdentityPass Report" mountOnEnter={true} unmountOnExit={true} > */}
+                                        <VerificationReports  userRights={props?.userRights} tag={"IdentityPass Report"} />
+                                    {/* </Tab> */}
+                                {/* ))} */}
                                {/* <Tab eventKey="verificationReport" title="Verification Report"  mountOnEnter={true} unmountOnExit={true}>
                                     <VerificationReports  report={apiReportState?.resp?.data} tag={'Verification'} />
                                 </Tab> 
@@ -82,11 +82,11 @@ export default function ReportsPage(props:any) {
                                 {/* <Tab eventKey="customerReport" title="Customer Report" mountOnEnter={true} unmountOnExit={true}>
                                     <CustomerReports tag={"Customer"} />
                                 </Tab> */}
-                            </Tabs>
+                            {/* </Tabs> */}
                         </div>
-                    }
+                    {/* } */}
                 </div>
-            }
+            {/* } */}
         </div>
     )
 }

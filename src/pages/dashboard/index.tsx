@@ -54,14 +54,11 @@ export default function Dashboard(props: any) {
 
     const queryParams = new URLSearchParams(location.search)
     let successPayment = queryParams.get('success')
-    let failedPayment = queryParams.get('failed')
-    console.log(organisationInfoState);
-    
+    let failedPayment = queryParams.get('failed')  
 
     useEffect(() => {
         getDashboardInfo()
         getAnnouncement()
-        walletBalance()
 
         if (successPayment === 'true') {
             setNotifTitle('Success')
@@ -99,21 +96,7 @@ export default function Dashboard(props: any) {
         dispatch(dashboardInfoRequest(data))
     }
 
-    let walletBalance = () => {
-        const callback = (data: any) => {
-            if (!data.status) {
-                setNotifTitle('Error')
-                setNotif(data.detail)
-                setNotifVal(true)
-            }
-        }
-        let data: any = {
-            currency_code:  organisationInfoState?.resp?.data?.organisation.currency,
-            callback,
-        }
-        dispatch(walletBalanceRequest(data))
-    }
-
+    
     let getAnnouncement = () => {
         const callback = (data: any) => {
             if (!data.status) {

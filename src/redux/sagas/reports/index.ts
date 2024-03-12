@@ -56,7 +56,7 @@ const apiSearchReport = async (payload: any) => {
 
         // `https://o5rvlgg4dk.execute-api.us-east-2.amazonaws.com/dev/prembly-backend-dev/api/v1/report/log/search`,
 
-        global.reportUrl + `api/v1/report/log/search`,
+        global.apiBaseUrl + `api/v1/report/log/search`,
         payload,
         {
             headers: {
@@ -72,11 +72,8 @@ const apiSearchReport = async (payload: any) => {
 }
 const apiFilterReport = async (payload: any) => {
     const { data } = await axios.get<IAPIFilterReport[]>(
-        // global.apiBaseUrl + global.liveUrl + `api/v1/report/log/internal/recent-trans/${payload.product}`,
-
-        // `'https://o5rvlgg4dk.execute-api.us-east-2.amazonaws.com/dev/prembly-backend-dev/api/v1/report/log/search?status=${payload.status}&product=${payload.product}&start_date=${payload.start_date}`,
-
-        global.reportUrl + `api/v1/report/log/search?status${payload?.status &&('='+payload?.status)}&product${payload?.product &&('='+payload?.product)}&start_date${payload?.start_date &&('='+payload?.start_date)}&end_date${payload?.end_date &&('='+payload?.end_date)}`,
+      
+        global.apiBaseUrl + `api/v1/report/log/search?status${payload?.status &&('='+payload?.status)}&product${payload?.product &&('='+payload?.product)}&start_date${payload?.start_date &&('='+payload?.start_date)}&end_date${payload?.end_date &&('='+payload?.end_date)}`,
         {
             headers: {
                 'Content-Type': 'application/json',
@@ -91,7 +88,7 @@ const apiFilterReport = async (payload: any) => {
 }
 const apiReportProducts = async (payload: any) => {
     const { data } = await axios.get<IAPIReportProducts[]>(
-        global.reportUrl + `api/v1/billing/product`,
+        global.apiBaseUrl + `api/v1/billing/product`,
         {
             headers: {
                 'Content-Type': 'application/json',
@@ -102,12 +99,12 @@ const apiReportProducts = async (payload: any) => {
             },
         }
     )
-    return data
+    return data 
 }
 const apiReportActivities = async (payload: any) => {
     const { data } = await axios.get<IAPIReportActivities[]>(
-        global.reportUrl +
-            `api/v1/report/log/internal/activity-report/${payload.product}`,
+        global.apiBaseUrl + global.idpassApiUrl +
+            `verification/log/internal/activity-report/${payload.product}`,
         {
             headers: {
                 'Content-Type': 'application/json',
@@ -123,9 +120,9 @@ const apiReportActivities = async (payload: any) => {
 const apiGenerateReportLogs = async (payload: any) => {
     const { data } = await axios.post<IAPIGenerateReportLogs[]>(
         payload.product === "3f20cd19-e739-419c-bec7-dd2c5c8a441b" ?
-        global.apiBaseUrl + `identitypass/verification/download/apilogs` 
+        global.apiBaseUrl + global.idpassApiUrl +`verification/download/apilogs` 
         :
-        global.reportUrl + `identitypass/verification/download/apilogs`,
+        global.apiBaseUrl + global.idpassApiUrl + `verification/download/apilogs`,
         payload.product === "3f20cd19-e739-419c-bec7-dd2c5c8a441b" ? 
             payload = {
                 "end_date": payload.end_date,
@@ -148,7 +145,7 @@ const apiGenerateReportLogs = async (payload: any) => {
 }
 const customerReportActivities = async (payload: any) => {
     const { data } = await axios.get<ICustomerReport[]>(
-        global.reportUrl + `api/v1/report/log/internal/customer_report`,
+        global.apiBaseUrl + `api/v1/report/log/internal/customer_report`,
         {
             headers: {
                 'Content-Type': 'application/json',

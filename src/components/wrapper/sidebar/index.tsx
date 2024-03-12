@@ -1844,10 +1844,12 @@ export default function Sidebar(props: any) {
                             <button
                                 className="btn"
                                 style={{
-                                    background: '#5D16B1',
                                     color: '#fff',
                                     font: '14px S-medium',
                                     padding: '15px 10px',
+                                    backgroundColor: '#fff',
+                                    boxShadow: "3px 3px 3px 3px #B853E614",
+                                    border:'none',
                                 }}>
                                 Switch to <img src={passLogo} style={{ height: '20px' }} alt="" />{' '}
                             </button>

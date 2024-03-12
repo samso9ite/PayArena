@@ -4,7 +4,7 @@ import { organisationInfoRequest } from '../../../redux/actions/settings/organis
 import { RootState } from '../../../redux/reducers';
 import walletIcon from '../../../assets/walletImg.svg'
 import { NumericFormat } from 'react-number-format';
-import { mpesaTopUpWalletRequest, topUpWalletRequest, virtualAccountInfoRequest, walletToWalletTransferRequest } from '../../../redux/actions/wallet';
+import { mpesaTopUpWalletRequest, topUpWalletRequest, virtualAccountInfoRequest, walletBalanceRequest, walletToWalletTransferRequest } from '../../../redux/actions/wallet';
 import global from '../../../redux/constants/global';
 import { Spinner } from 'react-bootstrap';
 import NotificationToast from '../../utils/notifToast';
@@ -42,10 +42,12 @@ export default function TopupComp(props:any) {
     const dispatch = useDispatch()
 
     let orgId = Cookies.get("org") || ""
+    let hostName = Cookies.get('hostName') || ''
 
     useEffect(() => {
         // getOrgInfo()
         // getVirtualAccountInfo()
+        walletBalance()
     }, [])
 
     let getOrgInfo = () => {
@@ -107,9 +109,15 @@ export default function TopupComp(props:any) {
             setNotifVal(true)
             return
         }
-        if((paymentCurrency === "USD") && (organisationInfoState?.resp?.data?.organisation?.currency === "USD") && (amount < 200)){
+        if((hostName == "Prembly" && (paymentCurrency === "USD") && (organisationInfoState?.resp?.data?.organisation?.currency === "USD") && (amount < 200))){
             setNotifTitle("Error")
             setNotif("Amount cannot be less than USD200")
+            setNotifVal(true)
+            return
+        }
+        else if((hostName !== "Prembly" && (paymentCurrency === "USD") && (organisationInfoState?.resp?.data?.organisation?.currency === "USD") && (amount < 150))){
+            setNotifTitle("Error")
+            setNotif("Amount cannot be less than USD150")
             setNotifVal(true)
             return
         }
@@ -319,6 +327,7 @@ export default function TopupComp(props:any) {
         dispatch(walletToWalletTransferRequest(data))
     }
 
+
 	let copyFunc = (val:any)=>{
 		navigator.clipboard.writeText(val)
 		setNotifTitle("Success")
@@ -326,7 +335,21 @@ export default function TopupComp(props:any) {
 		setNotifVal(true)
 	}
 
-    // console.log(organisationInfoState?.resp)
+    let walletBalance = () => {
+        const callback = (data: any) => {
+            if (!data.status) {
+                setNotifTitle('Error')
+                setNotif(data.detail)
+                setNotifVal(true)
+            }
+        }
+        let data: any = {
+            currency_code:  organisationInfoState?.resp?.data?.organisation.currency,
+            callback,
+        }
+        dispatch(walletBalanceRequest(data))
+    }
+
 
     return (
         <>
@@ -382,6 +405,9 @@ export default function TopupComp(props:any) {
                                                         style={{ borderRadius: "0px 5px 5px 0px" }}>
                                                         <option value="NGN">NGN</option>
                                                         <option value="USD">USD</option>
+                                                        {hostName == "Peleza" &&
+                                                            <option value="KES">KES</option>
+                                                        }
                                                     </select>
                                                 </span>
                                             </div>
@@ -396,9 +422,9 @@ export default function TopupComp(props:any) {
                                                 {/* {organisationInfoState?.resp?.data?.organisation.currency === 'NGN' &&
                                                     <option value="transfer">Bank Transfer</option>
                                                 } */}
-                                                {/* {(!paymentOrg || orgId === paymentOrg) &&
+                                                {(paymentCurrency == "KES") && (!paymentOrg || orgId === paymentOrg) &&
                                                     <option value="mpesa">MPESA</option>
-                                                } */}
+                                                }
                                                 {(paymentOrg && orgId !== paymentOrg) &&
                                                     <option value="wallet">Wallet Transfer</option>
                                                 }

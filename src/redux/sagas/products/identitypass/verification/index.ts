@@ -5,7 +5,9 @@ import global from "../../../../constants/global";
 import Cookies from "js-cookie";
 import { authorizationRedirect, serverCodes } from "../../../../constants/api";
 import { IIdentitypassBulkHistory, IIdentitypassBulkVerification, IIdentitypassEndpoints, IIdentitypassVerification } from "../../../../actions/products/identitypass/verification/types";
-import { identitypassBulkHistoryFailure, identitypassBulkHistorySuccess, identitypassBulkVerificationFailure, identitypassBulkVerificationSuccess, identitypassEndpointsFailure, identitypassEndpointsSuccess, identitypassVerificationFailure, identitypassVerificationSuccess } from "../../../../actions/products/identitypass/verification";
+import { identitypassBulkHistoryFailure, identitypassBulkHistorySuccess, identitypassBulkVerificationFailure, 
+  identitypassBulkVerificationSuccess, identitypassEndpointsFailure, identitypassEndpointsSuccess, 
+  identitypassVerificationFailure, identitypassVerificationSuccess } from "../../../../actions/products/identitypass/verification";
 
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""

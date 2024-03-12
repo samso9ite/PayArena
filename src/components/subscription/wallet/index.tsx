@@ -47,6 +47,7 @@ export default function SubWalletComp(props:any) {
     const location = useLocation()
 
     let orgId = Cookies.get("org") || ""
+    let hostName = Cookies.get('hostName') || ''
 
     const queryParams = new URLSearchParams(location.search)
     let successPayment = queryParams.get("success")
@@ -145,9 +146,15 @@ export default function SubWalletComp(props:any) {
             setNotifVal(true)
             return
         }
-        if((paymentCurrency === "USD") && (organisationInfoState?.resp?.data?.organisation?.currency === "USD") && (amount < 200)){
+        if((hostName == "Prembly" && (paymentCurrency === "USD") && (organisationInfoState?.resp?.data?.organisation?.currency === "USD") && (amount < 200))){
             setNotifTitle("Error")
             setNotif("Amount cannot be less than USD200")
+            setNotifVal(true)
+            return
+        }
+        else if((hostName !== "Prembly" && (paymentCurrency === "USD") && (organisationInfoState?.resp?.data?.organisation?.currency === "USD") && (amount < 150))){
+            setNotifTitle("Error")
+            setNotif("Amount cannot be less than USD150")
             setNotifVal(true)
             return
         }
@@ -208,7 +215,6 @@ export default function SubWalletComp(props:any) {
     }
 
     let fundWallet = () => {
-        console.log("This triggered");
         
         let refinedPaymentMethod
         let refinedPaymentPlatform
@@ -472,6 +478,9 @@ export default function SubWalletComp(props:any) {
                                                         style={{ borderRadius: "0px 5px 5px 0px" }}>
                                                         <option value="NGN">NGN</option>
                                                         <option value="USD">USD</option>
+                                                        {hostName == "Peleza" &&
+                                                            <option value="KES">KES</option>
+                                                        }
                                                     </select>
                                                 </span>
                                             </div>
@@ -486,9 +495,9 @@ export default function SubWalletComp(props:any) {
                                                 {/* {organisationInfoState?.resp?.data?.organisation.currency === 'NGN' &&
                                                     <option value="transfer">Bank Transfer</option>
                                                 } */}
-                                                {/* {(!paymentOrg || orgId === paymentOrg) &&
+                                                {(paymentCurrency == "KES") && (!paymentOrg || orgId === paymentOrg) &&
                                                     <option value="mpesa">MPESA</option>
-                                                } */}
+                                                }
                                                 {(paymentOrg && orgId !== paymentOrg) &&
                                                     <option value="wallet">Wallet Transfer</option>
                                                 }
@@ -504,17 +513,6 @@ export default function SubWalletComp(props:any) {
                                                     }}
                                                 >
                                                     <option value="">Select Platform</option>
-                                                    {/* {organisationInfoState?.resp?.data?.organisation.currency === "NGN" ?
-                                                        <>
-                                                            <option value="stripe">Fund with Stripe</option>
-                                                            <option value="paystack">Fund with Paystack</option>
-                                                            <option value="flutterwave">Fund with Flutterwave</option>
-                                                        </>
-                                                        :
-                                                        <>
-                                                            <option value="stripe">Fund with Stripe(USD)</option>
-                                                        </>
-                                                    } */}
                                                     {(paymentMethod == 'card') ?
                                                         <>
                                                             <option value="stripe">Fund with Stripe</option>

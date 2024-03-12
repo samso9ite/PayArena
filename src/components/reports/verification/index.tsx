@@ -50,11 +50,6 @@ export default function VerificationReports(props: any) {
     })
     const [pageNumber, setPageNumber] = useState('1')
     const [reportModal, setReportModal] = useState(false)
-    // const [newReport, setNewReport] = useState('products')
-    // const [filterType, setFilterType] = useState('excel')
-    // const [filterByStatus, setFilterByStatus] = useState('all')
-    // const [filterByProduct, setFilterByProduct] = useState('all')
-    // const [filterByEndpoints, setFilterByEndpoints] = useState('all')
     const [verifModal, setVerifModal] = useState(false)
     const [verifResult, setVerifResult] = useState({})
     const [requestData, setRequestData] = useState({})
@@ -77,13 +72,11 @@ export default function VerificationReports(props: any) {
     const apiGenerateReportLogsState = useSelector(
         (state: RootState) => state.apiGenerateReportLogsReducer
     )
-    // const apiEndpointReport = useSelector((state: RootState) => state.identitypassEndpointsReducer)
-
+    
     const dispatch = useDispatch()
 
     useEffect(() => {
         getActivities()
-        // getReport()
     }, [])
 
     useEffect(() => {
@@ -115,7 +108,7 @@ export default function VerificationReports(props: any) {
         }
         let data: any = {
             values: {
-                product: props.productKey,
+                product: "3f20cd19-e739-419c-bec7-dd2c5c8a441b",
             },
             callback,
         }
@@ -137,7 +130,7 @@ export default function VerificationReports(props: any) {
         }
         let data: any = {
             values: {
-                product: props.productKey,
+                product: "3f20cd19-e739-419c-bec7-dd2c5c8a441b",
             },
             callback,
         }
@@ -145,7 +138,6 @@ export default function VerificationReports(props: any) {
     }
 
     let viewResponse = async (req: any, val: string, prod: string, endpName: string) => {
-        // fetch(val).then(response => response?.text())
         fetch(val)
             .then((response) => response?.json())
             .then((data) => {
@@ -160,7 +152,6 @@ export default function VerificationReports(props: any) {
     const handleReportFormSubmit = (e: any) => {
         e.preventDefault()
         const callback = (data: any) => {
-            console.log(data);
             
             if (data.status == true) {
                 setReportModal(false)
@@ -175,16 +166,14 @@ export default function VerificationReports(props: any) {
                     setNotifVal(true)
                 }
                 
-            } else if(data.status == false) {
+            } else if(data.status == "false") {
                 setModalMessage(true)
+                console.log(data.status);
+                
                 setModalErrMessage(data.detail)
                 
                 setNotifTitle('Error')
-                if(props.productKey == "3f20cd19-e739-419c-bec7-dd2c5c8a441b"){
-                    setNotif(data.detail)
-                }else{
-                    setNotif(data.data)
-                }
+                setNotif(data.detail)
                
                 setNotifVal(true)
             }
@@ -202,8 +191,8 @@ export default function VerificationReports(props: any) {
             return
         }
 
-        if(props.productKey == "3f20cd19-e739-419c-bec7-dd2c5c8a441b") {
-            if (reportForm.response_code.some(code => ['00', '01', '02', '03'].includes(code))) {
+        // if(props.productKey == "3f20cd19-e739-419c-bec7-dd2c5c8a441b") {
+        if (reportForm.response_code.some(code => ['00', '01', '02', '03'].includes(code))) {
             let code = '00'
             let data: any = {
                 values: {
@@ -211,33 +200,33 @@ export default function VerificationReports(props: any) {
                     end_date: reportForm.end_date,
                     filter_type: reportForm.filter_type,
                     response_code: code,
-                    product: props.productKey,
+                    product: "3f20cd19-e739-419c-bec7-dd2c5c8a441b",
                 },
                 callback,
             }
             dispatch(apiGenerateReportLogsRequest(data))
-            }else{
-                let data: any = {
-                    values: {
-                        start_date: reportForm.start_date,
-                        end_date: reportForm.end_date,
-                        filter_type: reportForm.filter_type,
-                        response_code: reportForm.response_code,
-                        product: props.productKey,
-                    },
-                    callback,
-                }
-                dispatch(apiGenerateReportLogsRequest(data))
-            }
+            // }else{
+            //     let data: any = {
+            //         values: {
+            //             start_date: reportForm.start_date,
+            //             end_date: reportForm.end_date,
+            //             filter_type: reportForm.filter_type,
+            //             response_code: reportForm.response_code,
+            //             product: props.productKey,
+            //         },
+            //         callback,
+            //     }
+            //     dispatch(apiGenerateReportLogsRequest(data))
+            // }
        
-       }else{
+        }else{
         let data: any = {
             values: {
                 start_date: reportForm.start_date,
                 end_date: reportForm.end_date,
                 filter_type: reportForm.filter_type,
                 response_code: reportForm.response_code,
-                product: props.productKey,
+                product: "3f20cd19-e739-419c-bec7-dd2c5c8a441b",
             },
             callback,
         }
@@ -337,7 +326,7 @@ export default function VerificationReports(props: any) {
         let data: any = {
             values: {
                 param: searchData,
-                product: props.productKey,
+                product: "3f20cd19-e739-419c-bec7-dd2c5c8a441b",
             },
             callback,
         }
@@ -356,7 +345,7 @@ export default function VerificationReports(props: any) {
                 start_date: startDate,
                 end_date: endDate,
                 status: statusCode,
-                product: props.productKey,
+                product: "3f20cd19-e739-419c-bec7-dd2c5c8a441b",
             },
             callback,
         }
@@ -422,7 +411,7 @@ export default function VerificationReports(props: any) {
                     handleSubmit={handleReportFormSubmit}
                     apiReportState={apiReportState}
                     apiGenerateReportLogsState={apiGenerateReportLogsState}
-                    product={props.productKey}
+                    product={"3f20cd19-e739-419c-bec7-dd2c5c8a441b"}
                     modalMessage = {modalMessage}
                     modalErrMsg= {modalErrMessage}
                 />
@@ -658,9 +647,6 @@ export default function VerificationReports(props: any) {
                                             </div>
                                             <div className="col-md-8 ">
                                                 <div className="row justify-content-md-end align-items-center">
-                                                    {/* <div className="title-report-item">
-                                                    <p>Showing data for</p>
-                                                    </div> */}
                                                     <div className="col-12 col-md-6 ">
                                                         <form
                                                             action=""
@@ -713,29 +699,7 @@ export default function VerificationReports(props: any) {
                                                             Export
                                                         </button>
 
-                                                        {/* {downloadFiles === true ? (
-                                                        <div className="small-modal">
-                                                            <div
-                                                                style={{
-                                                                    display: 'block',
-                                                                    fontSize: '14px',
-                                                                }}>
-                                                                <span
-                                                                    onClick={() =>
-                                                                        openReportModal('pdf')
-                                                                    }>
-                                                                    PDF
-                                                                </span>
-                                                                <hr />
-                                                                <span
-                                                                    onClick={() =>
-                                                                        openReportModal('excel')
-                                                                    }>
-                                                                    Xls
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    ) : null} */}
+                                                     
                                                     </div>
                                                 </div>
                                             </div>
@@ -1089,7 +1053,7 @@ const ReportModal = ({
                         <div className="main-modal-header col-md-7 col-lg-4">
                             <h5>Download Report</h5>
                         </div>
-                        {modalMessage && <p style={{color:'red'}}>{modalErrMsg}</p>}
+                        {/* {modalMessage && <p style={{color:'red'}}>{modalErrMsg}</p>} */}
                         <div className="">
                             <div>
                                 <label htmlFor="startDate">Start Date</label>
