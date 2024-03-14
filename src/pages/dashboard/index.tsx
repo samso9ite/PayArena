@@ -29,6 +29,7 @@ import {
 // import { tourGuideCompleteRequest, tourGuideStatusRequest } from '../../redux/actions/tourGuide'
 import SetMigrationPasswordComp from './migrationPassword'
 import { walletBalanceRequest } from '../../redux/actions/wallet'
+import Cookies from 'js-cookie'
 
 export default function Dashboard(props: any) {
     const navigate = useNavigate()
@@ -51,6 +52,8 @@ export default function Dashboard(props: any) {
 
     const dispatch = useDispatch()
     const location = useLocation()
+    let hostName = Cookies.get('hostName') || ''
+    let passLogo = Cookies.get('logo') || ''
 
     const queryParams = new URLSearchParams(location.search)
     let successPayment = queryParams.get('success')
@@ -218,11 +221,11 @@ export default function Dashboard(props: any) {
                         <div className="main-modal-content card col-md-5 col-lg-4 mx-auto">
                             <div className="card-body">
                                 <div className="text-center">
-                                    <img src={premblyLogo} alt="" width="150px" className="mb-3" />
+                                    <img src={passLogo} alt="" width="150px" className="mb-3" />
                                 </div>
                                 <div className="main-modal-body">
                                     <div className="text-center mt-3">
-                                        <h5>Welcome to the Prembly Interface Tour!</h5>
+                                        <h5>Welcome to the {hostName} Interface Tour!</h5>
                                         <p>Let's explore and enjoy the interface together!</p>
                                     </div>
                                 </div>

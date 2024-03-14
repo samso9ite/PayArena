@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Sidebar from './components/wrapper/sidebar'
 import Topbar from './components/wrapper/topbar'
@@ -40,6 +40,7 @@ import Favourites from './pages/offerings/perks-and-discount/favourites'
 import PerksAndDiscountDetails from './pages/offerings/perks-and-discount/details'
 import PerksAndDiscount from './pages/offerings/perks-and-discount'
 import FaqsPage from './pages/faqs'
+import Cookies from 'js-cookie'
 
 
 interface IUserRights {
@@ -51,6 +52,7 @@ function App() {
     const [userRights, setUserRights] = useState<IUserRights | []>([])
     const [permissionKey, setPermissionKey] = useState('')
     const [loadingState, setLoadingState] = useState(false)
+    let hostName = Cookies.get('hostName') || ''
 
     let setFilteredRights = (val: any) => {
         setUserRights(val)
@@ -63,6 +65,14 @@ function App() {
     let changeLoadingState = (val: boolean) => {
         setLoadingState(val)
     }
+    useEffect(() => {
+        if(hostName === "Prembly"){
+            document.title = "IdentityPass Dashboard"
+        }else{
+            document.title = "Peleza KYC/KYB"
+        }
+    }, [])
+   
 
     return (
         <div>

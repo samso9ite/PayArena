@@ -13,7 +13,7 @@ const Loader = () => {
             <div style={{ width: '200px', position: 'relative', bottom: '-50px' }}>
                 <img src={passLogo} alt="" className="w-100" />
             </div>
-            <div style={{ width: '200px', paddingTop:"8%" }}>
+            <div style={{ width: '200px', paddingTop:"15%" }}>
                 <img src={loadingPageGif} alt="" className="w-100" />
             </div>
         </div>

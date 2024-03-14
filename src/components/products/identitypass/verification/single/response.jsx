@@ -451,17 +451,17 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                         </View>
                                                     ))}
                                                     </>
-                                                    : <View  style={[styles.test_two]}> 
-                                                        <Text style={styles.company_details_subtitle_right_two}>
-                                                            {getKeyLabel(newVal[0])?.replace(
-                                                                    /_/g,
-                                                                    ' '
-                                                            )} 
-                                                        </Text>
-                                                        <Text style={[styles.company_details_subtitle_left_two,]}>
-                                                            {newVal[1] ? newVal[1] : 'N/A'}
-                                                        </Text>
-                                                    </View>
+                                                    :  <View  style={[styles.test_two]}> 
+                                                            <Text style={styles.company_details_subtitle_right_two}>
+                                                                {getKeyLabel(newVal[0])?.replace(
+                                                                        /_/g,
+                                                                        ' '
+                                                                )} 
+                                                            </Text>
+                                                            <Text style={[styles.company_details_subtitle_left_two,]}>
+                                                                {newVal[1] ? newVal[1] : 'N/A'}
+                                                            </Text>
+                                                        </View>
                                                 }
                                             </View>
                                         ))
@@ -1173,9 +1173,9 @@ export const ResponseVerificationComponent = (props) => {
                                                                                 <span className={(k + 1) % 2 === 1 ? 'col-md-6 py-1' : 'col-md-6 text-md-end'}
                                                                                     key={k} style={{ borderBottom: '1px solid #ddd', paddingBottom: '0px', marginBottom:'0px',}}>
                                                                                     <small>
-                                                                                        {getKeyLabel( val)?.replace( /_/g, ' ' )}
+                                                                                        {val !== null && getKeyLabel(val)?.replace( /_/g, ' ' )}
                                                                                     </small>
-                                                                                    {typeof idData[key][val] == 'object'  ?
+                                                                                    {typeof idData[key][val] == 'object' && idData[key][val] !== null  ?
                                                                                         Object.entries(idData[key][val])?.map(([newKey, newVal], index) => {
                                                                                             if(typeof newVal == 'object'){
                                                                                                 return(
@@ -1192,7 +1192,8 @@ export const ResponseVerificationComponent = (props) => {
                                                                                                 </p>
                                                                                             }
                                                                                           
-                                                                                        }) :
+                                                                                        }) 
+                                                                                        :
                                                                                         <p>
                                                                                             {`${idData[key][val]}` || '-'}
                                                                                         </p>

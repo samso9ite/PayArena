@@ -23,11 +23,13 @@ export default function LoginPage() {
     const loginState = useSelector((state: RootState) => state.loginReducer)
 
     const dispatch = useDispatch()
-
+    let hostName = Cookies.get('hostName') || ''
+    let passLogo = Cookies.get('logo') || ''
     useEffect(() => {
         getUserLocation()
 
         let accessT = Cookies.get('babtbu') || ''
+       
 
         if (accessT) {
             window.location.href = global.appBaseUrl
@@ -68,7 +70,6 @@ export default function LoginPage() {
         const callback = (data: any) => {
             if (data?.status) {
                 // let sortedData = data?.organisations.sort((d1:any, d2:any) => d1?.organisation?.created_at - d2?.organisation?.created_at)
-                // console.log(sortedData)
                 setServerError('')
                 Cookies.set('babtbu', data?.data?.AccessToken)
                 Cookies.set('brbtbu', data?.data?.RefreshToken)
@@ -122,8 +123,8 @@ export default function LoginPage() {
                         <div className="card py-5 px-md-4">
                             <div className="card-body">
                                 <div className="text-center">
-                                    <img src={premblyLogo} alt="" width="150px" className="mb-3" />
-                                    <h4>Welcome Back to Prembly</h4>
+                                    <img src={passLogo} alt="" width="150px" className="mb-3" />
+                                    <h4>Welcome Back to {hostName}</h4>
                                     <p className="mb-4">
                                         Kindly fill in your details to sign in to your account
                                     </p>

@@ -119,16 +119,16 @@ const apiReportActivities = async (payload: any) => {
 }
 const apiGenerateReportLogs = async (payload: any) => {
     const { data } = await axios.post<IAPIGenerateReportLogs[]>(
-        payload.product === "3f20cd19-e739-419c-bec7-dd2c5c8a441b" ?
-        global.apiBaseUrl + global.idpassApiUrl +`verification/download/apilogs` 
-        :
-        global.apiBaseUrl + global.idpassApiUrl + `verification/download/apilogs`,
+        // payload.product === "3f20cd19-e739-419c-bec7-dd2c5c8a441b" ?
+        // global.apiBaseUrl + global.idpassApiUrl +`verification/download/apilogs` 
+        // :
+        global.apiBaseUrl + global.idpassApiUrl + `verification/api/logs/3f20cd19-e739-419c-bec7-dd2c5c8a441b`,
         payload.product === "3f20cd19-e739-419c-bec7-dd2c5c8a441b" ? 
             payload = {
                 "end_date": payload.end_date,
                 "start_date": payload.start_date,
-                "response_code": payload.response_code,
-                "platform": "PREMBLY"
+                // "response_code": payload.response_code,
+                // "platform": "PREMBLY"
             } :
             payload,
         {

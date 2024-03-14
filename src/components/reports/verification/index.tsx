@@ -152,8 +152,9 @@ export default function VerificationReports(props: any) {
     const handleReportFormSubmit = (e: any) => {
         e.preventDefault()
         const callback = (data: any) => {
+            console.log(data);
             
-            if (data.status == true) {
+            if (data.status == "true") {
                 setReportModal(false)
                 setStartDate('')
                 setEndDate('')
