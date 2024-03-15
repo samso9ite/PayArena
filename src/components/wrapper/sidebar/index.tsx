@@ -50,6 +50,7 @@ export default function Sidebar(props: any) {
 
     const dispatch = useDispatch()
     let host = Cookies.get("host") || ""
+    let documentation = Cookies.get("documentation") || ""
     useEffect(() => {
         if (!orgRoleState?.resp || !organisationInfoState.resp || userPermission?.length < 1) {
             getuserRoles()
@@ -1699,7 +1700,7 @@ export default function Sidebar(props: any) {
 
                                 <li>
                                     <a
-                                        href="https://docs.prembly.com/docs"
+                                        href={documentation}
                                         className="link"
                                         target="_blank"
                                         rel="noopener noreferrer">

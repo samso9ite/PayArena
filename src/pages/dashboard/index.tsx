@@ -363,7 +363,7 @@ export default function Dashboard(props: any) {
 
             <div>
                 {!openGetStarted && (
-                    <div className="fixed-bottom text-end pe-5 pb-5">
+                    <div className="fixed-bottom text-end pe-5" style={{marginBottom:"5%"}}>
                         <button
                             className="btn btn-deep-green align-items-center d-flex ms-auto"
                             onClick={() => setOpenGetStarted(true)}>
