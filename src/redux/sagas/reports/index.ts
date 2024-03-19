@@ -52,11 +52,7 @@ const apiReport = async (payload: any) => {
 }
 const apiSearchReport = async (payload: any) => {
     const { data } = await axios.post<IAPISearchReport[]>(
-        // global.apiBaseUrl + global.liveUrl + `api/v1/report/log/internal/recent-trans/${payload.product}`,
-
-        // `https://o5rvlgg4dk.execute-api.us-east-2.amazonaws.com/dev/prembly-backend-dev/api/v1/report/log/search`,
-
-        global.apiBaseUrl + `api/v1/report/log/search`,
+        global.apiBaseUrl + global.idpassApiUrl+'verification/filter/3f20cd19-e739-419c-bec7-dd2c5c8a441b',
         payload,
         {
             headers: {
@@ -72,8 +68,7 @@ const apiSearchReport = async (payload: any) => {
 }
 const apiFilterReport = async (payload: any) => {
     const { data } = await axios.get<IAPIFilterReport[]>(
-      
-        global.apiBaseUrl + `api/v1/report/log/search?status${payload?.status &&('='+payload?.status)}&product${payload?.product &&('='+payload?.product)}&start_date${payload?.start_date &&('='+payload?.start_date)}&end_date${payload?.end_date &&('='+payload?.end_date)}`,
+        global.apiBaseUrl + global.idpassApiUrl+`verification/filter/3f20cd19-e739-419c-bec7-dd2c5c8a441b?status${payload?.status &&('='+payload?.status)}&start_date${payload?.start_date &&('='+payload?.start_date)}&end_date${payload?.end_date &&('='+payload?.end_date)}`,
         {
             headers: {
                 'Content-Type': 'application/json',
@@ -84,6 +79,7 @@ const apiFilterReport = async (payload: any) => {
             },
         }
     )
+  
     return data
 }
 const apiReportProducts = async (payload: any) => {
@@ -201,7 +197,7 @@ function* apiSearchReportSaga(action: any) {
     try {
         const response: { data: any } = yield call(apiSearchReport, {
             param: action.payload.values.param,
-            product: action.payload.values.product
+            // product: action.payload.values.product
         })
 
         yield put(
@@ -351,7 +347,6 @@ function* apiGenerateReportLogsSaga(action: any) {
             filter_type: action.payload.values.filter_type,
             response_code: action.payload.values.response_code,
             product: action.payload.values.product
-               
         })
 
         yield put(

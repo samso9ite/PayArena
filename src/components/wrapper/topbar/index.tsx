@@ -6,6 +6,7 @@ import formIconBlack from '../../../assets/form-icon-black.png'
 import useTourGuide from '../../../hooks/useTourGuide'
 import perksActive from '../../../assets/perks-active.svg'
 import perksInactive from '../../../assets/perks-inactive.svg'
+import Cookies from 'js-cookie'
 
 export default function Topbar(props: any) {
     const navigate = useNavigate()
@@ -13,6 +14,9 @@ export default function Topbar(props: any) {
     const { pathname } = location
     const splitLocation = pathname.split('/')
     const [tourGuide, setTourGuide] = useTourGuide()
+
+    let hostName = Cookies.get('hostName') || ''
+    let passLogo = Cookies.get('logo') || ''
 
     const handleBack = () => {
         navigate('/')
@@ -138,7 +142,7 @@ export default function Topbar(props: any) {
                             `}
                             />
                             {splitLocation[1] === 'Identitypass' ? (
-                                <img src={passIconBlack} alt="" width="30px" className="me-2" />
+                                <img src={hostName === "Prembly" ? passIconBlack : " " } alt="" width="30px" className="me-2" />
                             ) : splitLocation[1] === 'Identityradar' ? (
                                 <img src={radarIconBlack} alt="" width="30px" className="me-2" />
                             ) : splitLocation[1] === 'BackgroundCheck' ? (
@@ -154,7 +158,7 @@ export default function Topbar(props: any) {
                                 {splitLocation[1] === ''
                                     ? 'Dashboard'
                                     : splitLocation[1] === 'Identitypass'
-                                    ? 'IdentityPass'
+                                    ? (hostName === "Prembly" ? 'IdentityPass' : 'KYC/KYB')
                                     : splitLocation[1] === 'Identityradar'
                                     ? 'IdentityRadar'
                                     : splitLocation[1] === 'BackgroundCheck'

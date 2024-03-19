@@ -44,8 +44,8 @@ export default function VerificationReports(props: any) {
     const [statusCode, setStatusCode] = useState('VERIFIED')
     // const [userLogs, setUserLogs] = useState('')
     const [reportData, setReportData] = useState({
-        next_page: '',
-        previous_page: '',
+        next: '',
+        previous: '',
         results: [],
     })
     const [pageNumber, setPageNumber] = useState('1')
@@ -152,7 +152,6 @@ export default function VerificationReports(props: any) {
     const handleReportFormSubmit = (e: any) => {
         e.preventDefault()
         const callback = (data: any) => {
-            console.log(data);
             
             if (data.status == "true") {
                 setReportModal(false)
@@ -169,7 +168,6 @@ export default function VerificationReports(props: any) {
                 
             } else if(data.status == "false") {
                 setModalMessage(true)
-                console.log(data.status);
                 
                 setModalErrMessage(data.detail)
                 
@@ -281,10 +279,11 @@ export default function VerificationReports(props: any) {
                 Organisation: orgId,
             },
         }
-
+        
         axios
             .request(requestOptions)
             .then((response) => {
+                
                 let page = val?.slice(-6).match(/(\d+)/)
 
                 if (val?.includes('page=')) {
@@ -358,7 +357,6 @@ export default function VerificationReports(props: any) {
         return jsonObject?.name
     }
 
-
     return (
         <div>
              {notif && notifVal && (
@@ -389,6 +387,7 @@ export default function VerificationReports(props: any) {
                                     <RadarReportResponseComponent
                                         data={verifResult}
                                         dataName={endpName}
+                                        
                                     />
                                 )}
                                 {productName === '3f20cd19-e739-419c-bec7-dd2c5c8a441b' && (
@@ -786,9 +785,11 @@ export default function VerificationReports(props: any) {
                                                                             className="btn btn-view"
                                                                             onClick={() =>
                                                                                 viewResponse(
+                                                                                    
                                                                                     val?.request_data,
                                                                                     val?.response_data,
                                                                                     val?.product,
+                                                                                    
                                                                                     getEndPName(
                                                                                         val?.endpoint
                                                                                             ?.replaceAll(
@@ -820,22 +821,22 @@ export default function VerificationReports(props: any) {
                                         </table>
 
                                         <div className="d-flex justify-content-end align-items-center">
-                                            {reportData?.previous_page && (
+                                            {reportData?.previous && (
                                                 <p
                                                     style={{ cursor: 'pointer' }}
                                                     className="mb-0 me-3"
                                                     onClick={() =>
-                                                        triggerPage(reportData?.previous_page)
+                                                        triggerPage(reportData?.previous)
                                                     }>
                                                     Prev
                                                 </p>
                                             )}
                                             <button className="btn btn-green">{pageNumber}</button>
-                                            {reportData?.next_page && (
+                                            {reportData?.next && (
                                                 <p
                                                     style={{ cursor: 'pointer' }}
                                                     className="mb-0 ms-3"
-                                                    onClick={() => triggerPage(reportData?.next_page)}>
+                                                    onClick={() => triggerPage(reportData?.next)}>
                                                     Next
                                                 </p>
                                             )}
