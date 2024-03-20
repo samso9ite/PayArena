@@ -479,7 +479,8 @@ export default function Dashboard(props: any) {
                         </div>
                     )}
                 </div>
-                <div className=" px-3 py-4 mt-5">
+               {(hostName == "Prembly") && 
+                    <div className=" px-3 py-4 mt-5">
                 <div className="row">
                         <div className='col-lg-2'>
                             <h6>Most Used Endpoints </h6>
@@ -515,7 +516,8 @@ export default function Dashboard(props: any) {
                             </div>
                         ))}
                     </div>
-                </div>
+                    </div>
+                }
                 <div className="px-3 py-4 mt-5">
                     <div className="row">
                         <div className='col-lg-1'>

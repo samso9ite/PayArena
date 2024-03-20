@@ -53,7 +53,7 @@ function App() {
     const [permissionKey, setPermissionKey] = useState('')
     const [loadingState, setLoadingState] = useState(false)
     let hostName = Cookies.get('hostName') || ''
-
+    let logo = Cookies.get('logo') || ''
     let setFilteredRights = (val: any) => {
         setUserRights(val)
     }
@@ -71,11 +71,18 @@ function App() {
         }else{
             document.title = "Peleza KYC/KYB"
         }
+        var link = document.createElement('link');
+        link.rel = 'icon';
+        link.type = 'image/x-icon';
+        link.href = logo;
+        document.head.appendChild(link)
     }, [])
    
 
     return (
+        
         <div>
+          
             {/* {
             window.location.pathname === '/login' ||
             window.location.pathname === '/signUp' ||

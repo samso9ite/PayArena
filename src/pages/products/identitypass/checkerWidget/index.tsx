@@ -19,6 +19,7 @@ import { InvalidAccessRightComp, TableLoader } from '../../../../components/util
 import NotificationToast from '../../../../components/utils/notifToast'
 import useTourGuide from '../../../../hooks/useTourGuide'
 import UpdateWidget from '../../../../components/products/identitypass/checkerWidget/update-widget'
+import Cookies from 'js-cookie'
 
 interface IWidget {
     widgetName: String
@@ -33,6 +34,7 @@ export default function IdpassCheckerWidgetPage(props: any) {
     const [notifTitle, setNotifTitle] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    let documentation = Cookies.get('documentation') || ''
 
     useEffect(() => {
         if (tourGuide.currentStep === 25) {
@@ -495,7 +497,7 @@ export default function IdpassCheckerWidgetPage(props: any) {
                                 }`}>
                                 Automate onboarding with our Customizable KYC & KYB SDK. Click here
                                 to &nbsp;
-                                <a href="https://docs.prembly.com/docs/identity-verification-sdk">
+                                <a href={documentation+"/identity-verification-sdk"}>
                                     Learn More
                                 </a>
                             </small>

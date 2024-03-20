@@ -37,7 +37,8 @@ export default function AuthWrapper(props: any) {
         setTokenLoading(true)
         const callback = (data: any) => {
             
-            if (data?.status) {
+            if (data?.status == true) {
+                
                 queryParams.delete('session')
                 Cookies.set('babtbu', data?.data?.AccessToken
                 )
@@ -59,6 +60,7 @@ export default function AuthWrapper(props: any) {
                 setNotif(data?.data)
                 setNotifVal(true)
                 setTokenLoading(false)
+                window.location.assign(`${global.appSSOUrl}`);
             }
         }
         let data = { 
