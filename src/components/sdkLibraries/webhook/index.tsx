@@ -5,6 +5,7 @@ import { updateWebhookUrlRequest } from '../../../redux/actions/sdkLibraries'
 import { RootState } from '../../../redux/reducers'
 import Mainloader from '../../utils'
 import NotificationToast from '../../utils/notifToast'
+import Cookies from 'js-cookie'
 
 export default function WebhookComp() {
     const [notifVal, setNotifVal] = useState(false)
@@ -15,6 +16,7 @@ export default function WebhookComp() {
     const organisationInfoState = useSelector((state: RootState) => state.organisationInfoReducer)
     const updateWebhookUrlState = useSelector((state: RootState) => state.updateWebhookUrlReducer)
 
+    let sdkUrl = Cookies.get("sdkUrl") || " "
     const dispatch = useDispatch()
 
     let updateWebhook = () => {
@@ -71,7 +73,7 @@ export default function WebhookComp() {
                                                 <p>
                                                     Integrate Your SDK. Click here to &nbsp;
                                                     <a
-                                                        href="https://docs.prembly.com/docs/prembly-sdk"
+                                                        href={sdkUrl}
                                                         target="_blank"
                                                         rel="noreferrer">
                                                         Learn More

@@ -327,22 +327,23 @@ const individual_channel = {
 const PDFComponent = ({ idData, verifyType, channel }) => {
     let hostName = Cookies.get('hostName') || ''
     let passLogo = Cookies.get('logo') || ''
-    if (verifyType === 'individual') {
-        let getKeyLabel = (data) => {
-            var formattedText = ''
-            for (var i = 0, len = data.length; i < len; i++) {
-                if (i === 0) {
-                    formattedText += data.charAt(0).toUpperCase()
-                    continue
-                }
-                if (i !== 0 && data.charAt(i) === data.charAt(i).toUpperCase()) {
-                    formattedText += ' ' + data.charAt(i).toUpperCase()
-                    continue
-                }
-                formattedText += data.charAt(i)
+    let getKeyLabel = (data) => {
+        var formattedText = ''
+        for (var i = 0, len = data.length; i < len; i++) {
+            if (i === 0) {
+                formattedText += data.charAt(0).toUpperCase()
+                continue
             }
-            return formattedText
+            if (i !== 0 && data.charAt(i) === data.charAt(i).toUpperCase()) {
+                formattedText += ' ' + data.charAt(i).toUpperCase()
+                continue
+            }
+            formattedText += data.charAt(i)
         }
+        return formattedText
+    }
+    if (verifyType === 'individual') {
+        
         return (
             <Document>
                 <Page size="A4" style={styles.page}>
@@ -541,6 +542,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                         idData?.company ||
                                         idData?.company_name ||
                                         idData[0]?.name ||
+                                        idData?.subscriber ||
                                         '-'}
                                 </Text>
                             </View>
@@ -571,16 +573,79 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                         ? Object?.entries(idData).map((v) => {
                               return (
                                   v[0] !== 'file_base64' &&
-                                  typeof v[1] === 'string' && (
-                                      <View style={styles.test}>
-                                          <Text style={[styles.company_details_subtitle_right, {width:"20%"}]}>
-                                              {v[0]?.replace(/_/g, ' ')}
-                                          </Text>
-                                         <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
-                                              {v[1] ? v[1] : 'N/A'}
-                                          </Text>
-                                      </View>
-                                  )
+                                    typeof v[1] === 'string' ? (
+                                        <View style={styles.test}>
+                                            <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
+                                            { getKeyLabel(v[0])?.replace(
+                                                /_/g,
+                                                ' '
+                                            )}
+                                            </Text>
+                                            <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
+                                                {v[1] ? v[1] : 'N/A'}
+                                            </Text>
+                                        </View>
+                                    ) :
+                                    
+                                    typeof v[1] === "object" && (
+                                        (Object.entries(v[1]).map(([key, value]) => (
+                                            typeof value == "object" 
+                                            ?
+                                            <>
+                                            <View style={styles.test}>
+                                                <Text style={[styles.company_details_subtitle_right, {width:"30%", fontWeight:800}]}>
+                                                    { getKeyLabel(key)?.replace(
+                                                        /_/g,
+                                                        ' '
+                                                    )}
+                                                </Text>
+                                            </View> 
+                                            { Object.entries(value).map(([key, childVal]) => (
+                                               typeof childVal == "object" ?
+                                               Object.entries(childVal).map(([key, subChildVal]) => (
+                                                <View style={styles.test}>
+                                                    <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
+                                                        { getKeyLabel(key)?.replace(
+                                                                /_/g,
+                                                                ' '
+                                                            )}
+                                                    </Text>
+                                                    <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
+                                                        {subChildVal ? subChildVal : 'N/A'}
+                                                    </Text>
+                                                </View> 
+                                                ))
+                                                    :
+                                                <View style={styles.test}>
+                                                    <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
+                                                        { getKeyLabel(key)?.replace(
+                                                                /_/g,
+                                                                ' '
+                                                            )}
+                                                    </Text>
+                                                    <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
+                                                        {childVal ? childVal : 'N/A'}
+                                                    </Text>
+                                                </View> 
+                                              )) 
+                                                }
+                                                </>
+                                            :
+                                                <View style={styles.test}>
+                                                    <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
+                                                        { getKeyLabel(key)?.replace(
+                                                            /_/g,
+                                                            ' '
+                                                        )}
+                                                    </Text>
+                                                    <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
+                                                        {value ? value : 'N/A'}
+                                                    </Text>
+                                                </View>
+                                            
+                                            )
+                                        ))
+                                    )
                               )
                           })
                         : Array?.isArray(idData) &&
@@ -611,79 +676,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                               )
                               // )
                           })}
-                    {/* <View style={styles.company_details_section_alt}>
-                        <Text style={styles.company_details_subtitle_right}>
-                            Company Registration Number
-                        </Text>
-                        <Text style={styles.company_details_subtitle_left}>
-                            {idData?.registration_number
-                                ? idData?.registration_number
-                                : idData?.company_number
-                                ? idData?.company_number
-                                : '-'}
-                        </Text>
-                    </View> */}
-                    {/* <View style={styles.company_details_section_alt}>
-                        <Text style={styles.company_details_subtitle_right}>
-                            Date of Registration
-                        </Text>
-                        <Text style={styles.company_details_subtitle_left}>
-                            {idData?.date_of_registration || '-'}
-                        </Text>
-                    </View>
-                    <View style={styles.company_details_section}>
-                        <Text style={styles.company_details_subtitle_right_alt_2}>
-                            Norminal Share
-                        </Text>
-                        <Text style={styles.company_details_subtitle_left}>
-                            {idData?.nominal_share_capital || '-'}
-                        </Text>
-                    </View>
-                    <View style={styles.company_details_section}>
-                        <Text style={styles.company_details_subtitle_right_alt_2}>
-                            Number of Share
-                        </Text>
-                        <Text style={styles.company_details_subtitle_left}>
-                            {idData?.number_and_type_of_shares || '-'}
-                        </Text>
-                    </View> */}
                 </View>
-
-                {/* <View style={styles.company_details}>
-                    <Text style={styles.company_details_text}>Registered Company Address</Text>
-                    <View style={styles.company_details_section}>
-                        <Text style={styles.company_details_subtitle_right_alt}>
-                            Registered Office Location
-                        </Text>
-                        <Text style={styles.company_details_subtitle_left}>
-                            {idData?.registered_office || '-'}
-                        </Text>
-                    </View>
-                    <View style={styles.company_details_section}>
-                        <Text style={styles.company_details_subtitle_right_alt}>
-                            Registered Address
-                        </Text>
-                        <Text style={styles.company_details_subtitle_left}>
-                            {idData?.postal_address || '-'}
-                        </Text>
-                    </View>
-                    <View style={styles.company_details_section}>
-                        <Text style={styles.company_details_subtitle_right_alt}>
-                            Registered Email
-                        </Text>
-                        <Text style={styles.company_details_subtitle_left}>
-                            {idData?.email || '-'}
-                        </Text>
-                    </View>
-                    <View style={styles.company_details_section}>
-                        <Text style={styles.company_details_subtitle_right_alt}>
-                            Registered Telephone
-                        </Text>
-                        <Text style={styles.company_details_subtitle_left}>
-                            {idData?.phone || '-'}
-                        </Text>
-                    </View>
-                </View> */}
 
                 {idData?.directors && Object?.values(idData?.directors)?.length && (
                     <View style={styles.company_details}>
@@ -730,55 +723,6 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                         })}
                     </View>
                 )}
-
-                {/* <View style={styles.company_details}>
-                    <Text style={styles.company_details_text}>Share Holding and Directorship</Text>
-                    <View style={styles.company_details_record_header}>
-                        <Text style={styles.company_details_record_header_text}>NAME</Text>
-                        <Text style={styles.company_details_record_header_text}>DESCRIPTION</Text>
-                        <Text style={styles.company_details_record_header_text}>ADDRESS</Text>
-                        <Text style={styles.company_details_record_header_text}>CITIZENSHIP</Text>
-                        <Text style={styles.company_details_record_header_text}>SHARES</Text>
-                        <Text style={styles.company_details_record_header_text}>
-                            TYPE OF SHARES PERCENTAGE
-                        </Text>
-                    </View>
-                    {idData?.directors?.map((director) => (
-                        <View style={styles.company_details_record_header}>
-                            <Text style={styles.company_details_record_header_text}>
-                                {director?.name}
-                            </Text>
-                            <Text style={styles.company_details_record_header_text}>
-                                {director?.description}
-                            </Text>
-                            <Text style={styles.company_details_record_header_text}>
-                                {director?.address}
-                            </Text>
-                            <Text style={styles.company_details_record_header_text}>
-                                {director?.country}
-                            </Text>
-                            <Text style={styles.company_details_record_header_text}>
-                                {director?.shares || '-'}
-                            </Text>
-                            <Text style={styles.company_details_record_header_text}>{'-'}</Text>
-                        </View>
-                    ))}
-                </View> */}
-
-                {/* <View style={styles.company_details}>
-                    <Text style={styles.company_details_text}>Comments</Text>
-                    <Text style={styles.company_details_comment_text}>Norminal share capital</Text>
-                </View> */}
-
-                {/* <View>
-                    <View style={styles.compliance_image_wrapper}>
-                        <Image style={styles.compliance_image} src={ComplianceImage} />
-                        <Image style={styles.compliance_image} src={QRcodeImage} />
-                    </View>
-                    <Text style={styles.company_details_comment_text}>
-                        We are SOC 2 and NDPR compliant. Scan QR code to visit webpage
-                    </Text>
-                </View> */}
 
                 <View style={styles.footer_alt}>
                     <Text style={styles.disclaimer}>

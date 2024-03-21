@@ -54,7 +54,7 @@ export const authorizationRedirect = () => {
 	Cookies.remove("hostName")
 	Cookies.remove('documentation');
 	Cookies.remove('sdkUrl');
-	window.location.assign(`${global.appSSOUrl}?loggedOut=true&&fromProd=${window?.location?.href}`);
+	// window.location.assign(`${global.appSSOUrl}?loggedOut=true&&fromProd=${window?.location?.href}`);
 	
 }
 

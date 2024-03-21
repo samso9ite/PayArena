@@ -50,14 +50,13 @@ export default function BulkChannelComp(props: any) {
             appId:app,
             fileType
         }
-        console.log(data);
         
-        if (!app) {
-            setNotifTitle("Error")
-            setNotif("Please select an App")
-            setNotifVal(true)
-        }
-        else if (!doc) {
+        // if (!app) {
+        //     setNotifTitle("Error")
+        //     setNotif("Please select an App")
+        //     setNotifVal(true)
+        // }
+        if (!doc) {
             setNotifTitle("Error")
             setNotif("Please upload bulk document")
             setNotifVal(true)
@@ -92,7 +91,7 @@ export default function BulkChannelComp(props: any) {
             {(notif && notifVal) && <NotificationToast title={notifTitle} message={notif} closeNotif={() => setNotifVal(!notifVal)} />}
 
 
-            <div>
+            {/* <div>
                 <label htmlFor="app">Select App <span style={{ color: "red" }}> *</span></label>
                 <div className="">
                     <select value={app} className="form-select" onChange={e => setApp(e.target.value)}>
@@ -102,7 +101,7 @@ export default function BulkChannelComp(props: any) {
                         ))}
                     </select>
                 </div>
-            </div>
+            </div> */}
 
             <div>
                 <label htmlFor="document">Upload Document <span style={{ color: "red" }}> *</span></label>
