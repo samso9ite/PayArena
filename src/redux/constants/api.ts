@@ -54,7 +54,11 @@ export const authorizationRedirect = () => {
 	Cookies.remove("hostName")
 	Cookies.remove('documentation');
 	Cookies.remove('sdkUrl');
-	// window.location.assign(`${global.appSSOUrl}?loggedOut=true&&fromProd=${window?.location?.href}`);
+	if (window.location.href.indexOf("prembly") !== -1){
+		window.location.assign(`${global.appSSOUrl}?loggedOut=true&&fromProd=${window?.location?.href}`);
+	} else{
+		window.location.assign(`${global.pelezaAppSSOUrl}?loggedOut=true&&fromProd=${window?.location?.href}`);
+	}
 	
 }
 

@@ -8,6 +8,7 @@ const backgroundCheckApiUrl = `${process.env.REACT_APP_API_BACKGROUNDCHECK_URL}`
 const reportUrl = `${process.env.REACT_APP_API_REPORTBILLING_URL}`
 const idPassReportDownloadUrl = `${process.env.REACT_APP_IDPASS_REPORT_DOWNLOAD_URL}`
 const appSSOUrl = `${process.env.REACT_APP_SSO_URL}` 
+const pelezaAppSSOUrl = `${process.env.REACT_APP_PELEZA_SSO_URL}` 
 
 
 // const apiBaseUrl = `https://api.prembly.com/` 
@@ -17,6 +18,7 @@ const appSSOUrl = `${process.env.REACT_APP_SSO_URL}`
 // const idradarApiUrl = `identityradar/`
 
 
-const global = {apiBaseUrl, appBaseUrl, liveUrl, idpassApiUrl, idradarApiUrl, backgroundCheckApiUrl, reportUrl, idPassReportDownloadUrl, appSSOUrl};
+const global = {apiBaseUrl, appBaseUrl, liveUrl, idpassApiUrl, idradarApiUrl, backgroundCheckApiUrl, 
+                reportUrl, idPassReportDownloadUrl, appSSOUrl, pelezaAppSSOUrl};
 
 export default global 

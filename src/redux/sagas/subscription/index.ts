@@ -88,7 +88,7 @@ const currentSub = async (payload: any) => {
 };
 const subPricing = async (payload: any) => {
   const { data } = await axios.get<ISubPricing[]>(
-    global.apiBaseUrl + global.backgroundCheckApiUrl + `background/api/v1/get_price_for_all_countries`,
+    global.apiBaseUrl + global.idpassApiUrl + `internal/core/endpoints/organisation-pricings`,
     {
       headers: {
         "Content-Type": "application/json",

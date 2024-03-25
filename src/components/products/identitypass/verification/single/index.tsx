@@ -23,7 +23,6 @@ import useTourGuide from '../../../../../hooks/useTourGuide'
 import TourGuideVerificationResult from '../../../../TourGuide/VerificationResult'
 import CommercialCreditBereauAdvance from './responseComponents/commCreditBereauAdv'
 import VeriicationLoader from '../../../../../assets/verification_loader.gif'
-import RetryVerification from './retryComp'
 
 const steps = [8, 9, 10]
 
@@ -256,6 +255,7 @@ export default function PassSingleVerificationComp(props: any) {
     const [verifType, setVerifType] = useState('')
     const [endPData, setEndPData] = useState([])
     const [progress, setProgress] = useState(0)
+    const [retryRequestData, setRetryRequestData] = useState()
 
     const endpointsState = useSelector((state: RootState) => state.identitypassEndpointsReducer)
     const identitypassVerifState = useSelector(
@@ -418,8 +418,12 @@ export default function PassSingleVerificationComp(props: any) {
     }
 
     let performSingleVerification = (requestData: any) => {
-        // console.log("This was clicked");
-        
+        if (identitypassVerifState?.resp?.response_code  !== "02"){
+            setRetryRequestData(requestData)
+        }else if (identitypassVerifState?.resp?.response_code  == "02"){
+            requestData = retryRequestData
+        }
+     
         setUpdatedResponse(null)
         setOpenResponse(false)
 
@@ -448,7 +452,6 @@ export default function PassSingleVerificationComp(props: any) {
                 },
                 callback,
             }
-    
             dispatch(identitypassVerificationRequest(dataa))
         }
       
@@ -1316,12 +1319,7 @@ export default function PassSingleVerificationComp(props: any) {
                                             <div className="col-md-8 mx-auto">
                                                 <img src={emptyBox} alt="" className="w-100" />
                                             </div>
-                                            {/* <span
-                                                className="d-flex align-items-center btn btn-deep-green mx-auto my-3 "
-                                                style={{ width: 'fit-content' }} onClick={performSingleVerification}>
-                                                    Retry Verification
-                                            </span> */}
-                                            {/* <RetryVerification verify={verify} /> */}
+                                          
                                         </div>
                                     ) : (
                                         <>
@@ -1372,12 +1370,6 @@ export default function PassSingleVerificationComp(props: any) {
                                                             />
                                                         </div>
                                                     </div>
-                                                    {/* <span
-                                                        className="d-flex align-items-center btn btn-deep-green mx-auto my-3 px-3"
-                                                        style={{ width: 'fit-content' }} onClick={performSingleVerification}>
-                                                            Retry Verification
-                                                    </span> */}
-                                                   
                                                 </div>
                                             ) : (
                                                 // <ResponseVerificationComponent data={identitypassVerifState.resp} />
@@ -1402,11 +1394,11 @@ export default function PassSingleVerificationComp(props: any) {
                                                             />
                                                         </div>
                                                     </div>
-                                                    {/* <span
+                                                    <span
                                                         className="d-flex align-items-center btn btn-deep-green mx-auto my-3 "
                                                         style={{ width: 'fit-content' }} onClick={performSingleVerification}>
                                                             Retry Verification
-                                                    </span> */}
+                                                    </span>
                                                 </div>
                                             )}
                                         </>

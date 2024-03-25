@@ -400,8 +400,9 @@ export default function Dashboard(props: any) {
                             </div>
                         </div>
                         <div className="col-md-8" >
-                            <button className='btn' style={{float:'right', backgroundColor:'#ECEBF8', color:'#332ECF'}}>
+                            <a target='_blank' href={hostName == "Prembly" ? "https://prembly-my.sharepoint.com/:v:/p/michael/EUCuzXBdOcVCshdKUlP95Z0BUUu2qFO4ON1NfwR3-u9x6g?e=3FhsY4" : ""}> <button className='btn' style={{float:'right', backgroundColor:'#ECEBF8', color:'#332ECF'}}>
                                 Take a tour <i className="ri-arrow-right-line ms-2" /></button>
+                            </a>
                         </div>
                 </div>
                

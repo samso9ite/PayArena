@@ -92,9 +92,9 @@ export default function SubscriptionPage(props: any) {
                             <SubscriptionComp userRights={props?.userRights} idpassId={idpassId} radarId={radarId}/>
                         </Tab>
                     )}
-                    {/* <Tab eventKey="pricing" title="Pricing">
+                    <Tab eventKey="pricing" title="Pricing">
                         <SubPricingComp userRights={props?.userRights}/>
-                    </Tab> */}
+                    </Tab>
                     {/* <Tab eventKey="overview" title="Overview">
 						<SubOverview />
 					</Tab> */}

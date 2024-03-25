@@ -56,6 +56,8 @@ export default function WalletPage() {
 
     let getOrgInfo = () => {
         const callback = (data: any) => {
+            console.log(data);
+            
             if (data.status) {
                 setNotifTitle("Success")
                 setNotif(data.detail)

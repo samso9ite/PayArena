@@ -60,7 +60,11 @@ export default function AuthWrapper(props: any) {
                 setNotif(data?.data)
                 setNotifVal(true)
                 setTokenLoading(false)
-                window.location.assign(`${global.appSSOUrl}`);
+                if (window.location.href.indexOf("prembly") !== -1){
+                    window.location.assign(`${global.appSSOUrl}?loggedOut=true&&fromProd=${window?.location?.href}`);
+                } else{
+                    window.location.assign(`${global.pelezaAppSSOUrl}?loggedOut=true&&fromProd=${window?.location?.href}`);
+                }
             }
         }
         let data = { 

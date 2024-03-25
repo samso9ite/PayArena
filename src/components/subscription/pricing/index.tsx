@@ -13,6 +13,8 @@ export default function SubPricingComp(props: any) {
 
 
     const subPricingState = useSelector((state: RootState) => state.subPricingReducer)
+    console.log(subPricingState);
+    
 
     const dispatch = useDispatch()
 
@@ -22,6 +24,8 @@ export default function SubPricingComp(props: any) {
 
     let getPricing = () => {
         const callback = (data: any) => {
+            console.log(data);
+            
             if (data.status) {
                 getPricingCountries(data?.detail)
             } else {
@@ -56,10 +60,10 @@ export default function SubPricingComp(props: any) {
             <div className="table-header mt-5">
                 <div className="row">
                     <div className="col-md-7">
-                        <h5>BGC Pricing</h5>
-                        <p> Filter by country to see all available checks in that country </p>
+                        <h5> Pricing</h5>
+                        <p> View the prices of all endpoints. </p>
                     </div>
-                    <div className="col-md-5">
+                    {/* <div className="col-md-5">
                         <div className="col-md-7 ms-md-auto">
                             <select className='form-select' value={filterValue} onChange={(e)=>setFilterValue(e?.target?.value)}>
                                 <option value="">All Countries</option>
@@ -68,7 +72,7 @@ export default function SubPricingComp(props: any) {
                                 ))}
                             </select>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -85,12 +89,13 @@ export default function SubPricingComp(props: any) {
                         </tr>
                     </thead>
                     <tbody>
-                        {subPricingState?.resp?.detail?.filter((data:any)=> data?.country === filterValue).map((val: any, index: number) => (
+                        {/* {subPricingState?.resp?.detail?.filter((data:any)=> data?.country === filterValue).map((val: any, index: number) => ( */}
+                        {subPricingState?.resp?.pricings?.map((val: any, index: number) => (
                             <tr key={index}>
                                 <th scope="row">{index + 1}</th>
-                                <td>{val?.endpoint?.replaceAll("_", " ")}</td>
-                                <td>{val?.country_name}</td>
-                                <td>{`${val?.currency} ${val?.price}`}</td>
+                                <td>{val?.endpoint?.name.replaceAll("_", " ")}</td>
+                                <td>{val?.endpoint?.country}</td>
+                                <td>{subPricingState?.resp?.currency?.currency_code} {val?.price}</td>
                                 <td>
                                     <AvailableTag />
                                     {/* {val?.status === "UNAVAILABLE" && <PartialTag />} */}
