@@ -10,6 +10,7 @@ import { acceptIndemnityFormFailure, acceptIndemnityFormSuccess, announcementFai
 let accessT = Cookies.get("babtbu") || ""
 let orgId = Cookies.get("org") || ""
 let tenantId = Cookies.get("tenant") || ""
+let host = Cookies.get("hostName") || ""
 
 const dashboardInfo = async (payload: any) => {
   const { data } = await axios.get<IDashboardInfo[]>(
@@ -28,7 +29,7 @@ const dashboardInfo = async (payload: any) => {
 };
 const announcement = async (payload: any) => {
   const { data } = await axios.get<IAnnouncement[]>(
-    global.apiBaseUrl + global.liveUrl + "customer/announcement/get",
+    global.apiBaseUrl + global.idpassApiUrl + `notification/announcements/all?platform=${host}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -41,6 +42,7 @@ const announcement = async (payload: any) => {
   );
   return data;
 };
+// https://api.prembly.com/identitypass/notification/announcements/all?platform=PELEZA%27
 const viewAnnouncement = async (payload: any) => {
   const { data } = await axios.get<IViewAnnouncement[]>(
     global.apiBaseUrl + global.liveUrl + `customer/announcement/${payload.ref}/content`,

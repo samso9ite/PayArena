@@ -49,7 +49,8 @@ export default function Dashboard(props: any) {
     const viewAnnouncementState = useSelector((state: RootState) => state.viewAnnouncementReducer)
    
     // const tourGuideStatusState = useSelector((state: RootState) => state.tourGuideReducer)
-
+    console.log(announcementState);
+    
     const dispatch = useDispatch()
     const location = useLocation()
     let hostName = Cookies.get('hostName') || ''
@@ -58,7 +59,7 @@ export default function Dashboard(props: any) {
     const queryParams = new URLSearchParams(location.search)
     let successPayment = queryParams.get('success')
     let failedPayment = queryParams.get('failed')  
-
+    
     useEffect(() => {
         getDashboardInfo()
         getAnnouncement()
@@ -352,8 +353,8 @@ export default function Dashboard(props: any) {
                         <div className="card-body">
                             <div className="main-modal-body">
                                 <div className="text-center mt-4">
-                                    <h5>{viewAnnouncementState?.resp?.data?.title}</h5>
-                                    <p>{viewAnnouncementState?.resp?.data?.content} </p>
+                                    <h5>{viewAnnouncementState?.resp?.results?.title}</h5>
+                                    <p>{viewAnnouncementState?.resp?.results?.content} </p>
                                 </div>
                             </div>
                         </div>
@@ -424,9 +425,9 @@ export default function Dashboard(props: any) {
                                     <div className='row'>
                                     <div className="col-md-8">
                                         <h5> Announcement</h5>
-                                        {announcementState?.resp?.data?.length > 0 && (
+                                        {announcementState?.resp?.results?.length > 0 && (
                                             <Carousel>
-                                                {announcementState?.resp?.data?.map(
+                                                {announcementState?.resp?.results?.map(
                                                     (val: any, i: number) => (
                                                         <Carousel.Item interval={5000} key={i}>
                                                             <img
@@ -449,7 +450,7 @@ export default function Dashboard(props: any) {
                                                                 </p>
                                                                 <a
                                                                     className="btn btn-read-more p-0 mt-1 mb-2"
-                                                                    href={val?.redirct_link}
+                                                                    href={val?.redirect_link}
                                                                     target="_blank"
                                                                     rel="noreferrer noopener">
                                                                     Read More

@@ -587,7 +587,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                         </View>
                                     ) :
                                     
-                                    typeof v[1] === "object" && (
+                                   typeof v[1] === "object" && v[0] !== "directors" && (
                                         (Object.entries(v[1]).map(([key, value]) => (
                                             typeof value == "object" 
                                             ?

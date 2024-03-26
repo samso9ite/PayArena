@@ -26,6 +26,7 @@ export default function Sidebar(props: any) {
         includes: any
     }
     let passLogo = Cookies.get("logo") || ""
+    let hostLogo = Cookies.get("hostLogo") || " "
 
     const navigate = useNavigate()
     const [tourGuide, setTourGuide] = useTourGuide()
@@ -1289,39 +1290,9 @@ export default function Sidebar(props: any) {
                                 </span>
                             </li>
                         </Link>
-
-                        {/* <Link to="/Wallet" className="link" >
-                        <li className={splitLocation[1] === "Wallet" ? "active" : ""}>
-                            <span>
-                                <i className="ri-wallet-3-line" />
-                                Wallet
-                            </span>
-                        </li>
-                    </Link> */}
                     </ul>
-                    {/* <hr /> */}
-
+                
                     {sidebarLoading === false && (
-                        // ? (
-                        //     [0, 1, 2, 3, 4, 5, 6].map((loader) => (
-                        //         <div style={{ textAlign: 'center' }} key={loader} className="mb-2">
-                        //             <Placeholder as="p" animation="glow">
-                        //                 <Placeholder
-                        //                     md={10}
-                        //                     style={{ height: '10px', background: '#37B7AB' }}
-                        //                 />
-                        //                 <Placeholder
-                        //                     md={10}
-                        //                     style={{ height: '10px', background: '#37B7AB' }}
-                        //                 />
-                        //                 <Placeholder
-                        //                     md={10}
-                        //                     style={{ height: '10px', background: '#37B7AB' }}
-                        //                 />
-                        //             </Placeholder>
-                        //         </div>
-                        //     ))
-                        // ) :
                         <>
                             <h6 style={{color:"#B853E6"}}> PRODUCTS </h6>
                             <ul onClick={filterRights}>
@@ -1839,25 +1810,25 @@ export default function Sidebar(props: any) {
                         </a> */}
                         {/* </Link> */}
                     </ul>
-                    {organisationInfoState?.resp?.data?.user?.migrated && (
+                    {
                         <div
-                            className="mt-5 mb-4"
+                            className="mt-2 mb-4"
                             style={{ paddingLeft: '13%', cursor: 'pointer' }}
                             onClick={() => window.location.href = "https://"+host}>
                             <button
                                 className="btn"
                                 style={{
-                                    color: '#fff',
+                                    color: '#000',
                                     font: '14px S-medium',
                                     padding: '15px 10px',
                                     backgroundColor: '#fff',
                                     boxShadow: "3px 3px 3px 3px #B853E614",
                                     border:'none',
                                 }}>
-                                Switch to <img src={passLogo} style={{ height: '20px' }} alt="" />{' '}
+                                Switch to <img src={hostLogo} style={{ height: '20px' }} alt="" />{' '}
                             </button>
                         </div>
-                    )}
+                    }
                 </div>
 
                 {/* Mobile and tablet sidebar starts here ---------------------------*/}
@@ -1884,205 +1855,82 @@ export default function Sidebar(props: any) {
                                     !userRights?.includes('CHECKER_WIDGET') ? (
                                         ''
                                     ) : (
+                                        <>
                                         <Link
                                             to={
-                                                userRights?.includes('CHECKER_WIDGET') &&
-                                                !userRights?.includes('VERIFICATION')
-                                                    ? '/Identitypass/Checker-Widget'
-                                                    : (userRights?.includes('VERIFICATION') &&
-                                                          !userRights?.includes(
-                                                              'CHECKER_WIDGET'
-                                                          )) ||
-                                                      (userRights?.includes('VERIFICATION') &&
-                                                          userRights?.includes('CHECKER_WIDGET'))
-                                                    ? '/Identitypass/Verification/Data'
-                                                    : ''
+                                                userRights?.includes('VERIFICATION') &&
+                                                '/Identitypass/Verification/Data'
+                                             
                                             }
                                             className="link">
                                             <li
-                                                onClick={() => setOpenSidebar(false)}
                                                 className={
-                                                    splitLocation[1] === 'Identitypass'
-                                                        ? 'active has-dropdown'
+                                                    splitLocation[3] === 'Data'
+                                                        ? 'active'
                                                         : ''
                                                 }
-                                                style={{ padding: '12px 0px' }}>
+                                                onClick={() => setOpenSidebar(false)}
+                                                style={{ padding: '7px 0px' }}
+                                                >
                                                 <span>
-                                                    {splitLocation[1] === 'Identitypass' ? (
-                                                        <img src={passIcon} alt="" />
-                                                    ) : (
-                                                        <img src={passIconBlack} alt="" />
-                                                    )}
-                                                    Identitypass
+                                                <i className="ri-shield-check-line" />
+                                                    Data Verification
                                                 </span>
-                                                {splitLocation[1] === 'Identitypass' && (
-                                                    <div className="sidebar-dropdown">
-                                                        <ul>
-                                                            {userRights?.includes(
-                                                                'VERIFICATION'
-                                                            ) && (
-                                                                <Link
-                                                                    to="/Identitypass/Verification/Data"
-                                                                    className="link">
-                                                                    <li
-                                                                        className={
-                                                                            splitLocation[3] ===
-                                                                            'Data'
-                                                                                ? 'active'
-                                                                                : ''
-                                                                        }>
-                                                                        Data Verification
-                                                                    </li>
-                                                                </Link>
-                                                            )}
-
-                                                            {userRights?.includes(
-                                                                'VERIFICATION'
-                                                            ) && (
-                                                                <Link
-                                                                    to="/Identitypass/Verification/Document"
-                                                                    className="link">
-                                                                    <li
-                                                                        className={
-                                                                            splitLocation[3] ===
-                                                                            'Document'
-                                                                                ? 'active'
-                                                                                : ''
-                                                                        }>
-                                                                        Document Verification
-                                                                    </li>
-                                                                </Link>
-                                                            )}
-
-                                                            {userRights?.includes(
-                                                                'CHECKER_WIDGET'
-                                                            ) && (
-                                                                <Link
-                                                                    to="/Identitypass/Checker-Widget"
-                                                                    className="link">
-                                                                    <li
-                                                                        className={
-                                                                            splitLocation[2] ===
-                                                                            'Checker-Widget'
-                                                                                ? 'active'
-                                                                                : ''
-                                                                        }>
-                                                                        ID Checker Widget
-                                                                    </li>
-                                                                </Link>
-                                                            )}
-                                                        </ul>
-                                                    </div>
-                                                )}
+                                            </li>
+                                            
+                                        </Link>
+    
+                                        <Link
+                                            to={
+                                                userRights?.includes('VERIFICATION') &&
+                                                '/Identitypass/Verification/Document'
                                              
-                                            </li>
-                                        </Link>
-                                    )}
-                                  
-                                    {userRights?.includes('RADAR_CHECK') && (
-                                        <Link to="/Identityradar/Radar-Check" className="link">
+                                            }
+                                            className="link">
                                             <li
-                                                onClick={() => setOpenSidebar(false)}
                                                 className={
-                                                    splitLocation[1] === 'Identityradar'
-                                                        ? 'active has-dropdown reduced-40'
+                                                    splitLocation[3] === 'Document'
+                                                        ? 'active'
                                                         : ''
                                                 }
-                                                style={{ padding: '12px 0px' }}>
+                                                onClick={() => setOpenSidebar(false)}
+                                                style={{ padding: '7px 0px' }}
+                                                >
                                                 <span>
-                                                    {splitLocation[1] === 'Identityradar' ? (
-                                                        <img src={radarIcon} alt="" />
-                                                    ) : (
-                                                        <img src={radarIconBlack} alt="" />
-                                                    )}
-                                                    Identityradar
+                                                  
+                                                    <i className="ri-qr-scan-2-line" />
+                                                    Document Verification
                                                 </span>
-                                                {splitLocation[1] === 'Identityradar' && (
-                                                    <div className="sidebar-dropdown">
-                                                        <ul>
-                                                            <Link
-                                                                to="/Identityradar/Radar-Check"
-                                                                className="link">
-                                                                <li
-                                                                    className={
-                                                                        splitLocation[2] ===
-                                                                        'Radar-Check'
-                                                                            ? 'active'
-                                                                            : ''
-                                                                    }>
-                                                                    Radar Check
-                                                                </li>
-                                                            </Link>
-                                                        </ul>
-                                                    </div>
-                                                )}
+                                              
                                             </li>
+                                            
                                         </Link>
-                                    )}
-                                    <Link to={'/BackgroundCheck/Requests'} className="link">
-                                        <li
-                                            onClick={() => setOpenSidebar(false)}
-                                            className={
-                                                splitLocation[1] === 'BackgroundCheck'
-                                                    ? 'active has-dropdown increased-100'
-                                                    : ''
+                                        <Link
+                                            to={
+                                                userRights?.includes('CHECKER_WIDGET') &&
+                                                '/Identitypass/Checker-Widget'
+                                             
                                             }
-                                            style={{ padding: '12px 0px' }}>
-                                            <span>
-                                                {splitLocation[1] === 'BackgroundCheck' ? (
-                                                    <img src={formIcon} alt="" className="py-2" />
-                                                ) : (
-                                                    <img
-                                                        src={formIconBlack}
-                                                        alt=""
-                                                        className="py-2"
-                                                    />
-                                                )}
-                                                Background Check
-                                            </span>
-                                            {splitLocation[1] === 'BackgroundCheck' && (
-                                                <div className="sidebar-dropdown">
-                                                    <ul>
-                                                        <Link
-                                                            to="/BackgroundCheck/Requests"
-                                                            className="link">
-                                                            <li
-                                                                className={
-                                                                    splitLocation[2] === 'Requests'
-                                                                        ? 'active'
-                                                                        : ''
-                                                                }>
-                                                                Requests
-                                                            </li>
-                                                        </Link>
-                                                        <Link
-                                                            to="/BackgroundCheck/Packages"
-                                                            className="link">
-                                                            <li
-                                                                className={
-                                                                    splitLocation[2] === 'Packages'
-                                                                        ? 'active'
-                                                                        : ''
-                                                                }>
-                                                                Packages
-                                                            </li>
-                                                        </Link>
-                                                    </ul>
-                                                </div>
-                                            )}
-                                        </li>
-                                    </Link>
-                                    {/* <li style={{ padding: "12px 0px" }}>
-                        <span>
-                                {splitLocation[1] === "BackgroundCheck" 
-                                    ? 
-                                    <img src={formIcon} alt="" />
-                                    : 
-                                    <img src={formIconBlack} alt="" />
-                                }
-                            Background Check
-                        </span>
-                    </li> */}
+                                            className="link">
+                                            <li
+                                                className={
+                                                    splitLocation[2] === 'Checker-Widget'
+                                                        ? 'active'
+                                                        : ''
+                                                }
+                                                onClick={() => setOpenSidebar(false)}
+                                                style={{ padding: '7px 0px' }}
+                                                >
+                                               <span>
+                                                  <i className="ri-insert-column-right" />
+                                                  Checker Widget
+                                              </span>
+                                              
+                                            </li>
+                                            
+                                        </Link>
+                                       </> 
+                                    )}
                                 </ul>
 
                                 <h6  style={{color:"#B853E6"}}>INTEGRATIONS </h6>
@@ -2224,7 +2072,7 @@ export default function Sidebar(props: any) {
                                                         </Link>
 
                                                         <a
-                                                            href="https://docs.prembly.com/docs/identity-verification-sdk"
+                                                            href={sdkUrl+"/identity-verification-sdk"}
                                                             className="link"
                                                             target="_blank"
                                                             rel="noopener noreferrer">
@@ -2232,7 +2080,7 @@ export default function Sidebar(props: any) {
                                                         </a>
 
                                                         <a
-                                                            href="https://docs.prembly.com/docs/bank-statement"
+                                                            href={sdkUrl+"/bank-statement"}
                                                             className="link"
                                                             target="_blank"
                                                             rel="noopener noreferrer">
@@ -2246,7 +2094,7 @@ export default function Sidebar(props: any) {
 
                                     <li onClick={() => setOpenSidebar(false)}>
                                         <a
-                                            href="https://docs.prembly.com/docs"
+                                            href={documentation}
                                             className="link"
                                             target="_blank"
                                             rel="noopener noreferrer">
@@ -2299,19 +2147,6 @@ export default function Sidebar(props: any) {
                                         </Link>
                                     )}
 
-                                    {/* <Link to="/Referral" className="link">
-                                        <li
-                                            onClick={() => setOpenSidebar(false)}
-                                            className={
-                                                splitLocation[1] === 'Referral' ? 'active' : ''
-                                            }>
-                                            <span>
-                                                <i className="ri-team-line" />
-                                                Referral
-                                            </span>
-                                        </li>
-                                    </Link> */}
-
                                     <Link to="/Settings" className="link">
                                         <li
                                             onClick={() => setOpenSidebar(false)}
@@ -2327,18 +2162,7 @@ export default function Sidebar(props: any) {
                                 </ul>
 
                                 <h6  style={{color:"#B853E6"}}>OTHERS</h6>
-                                    {/* <Link to="/Notifications" className="link">
-                                        <li
-                                            onClick={() => setOpenSidebar(false)}
-                                            className={
-                                                splitLocation[1] === 'Notifications' ? 'active' : ''
-                                            }>
-                                            <span>
-                                                <i className="ri-questionnaire-line" />
-                                                Notifications
-                                            </span>
-                                        </li>
-                                    </Link> */}
+                                <ul >
                                     <Link to="/faqs" className="link">
                                         <li
                                             onClick={() => setOpenSidebar(false)}
@@ -2351,28 +2175,29 @@ export default function Sidebar(props: any) {
                                             </span>
                                         </li>
                                     </Link>
-                                    
+                                </ul>
                             </div>
                         )}
-                        {/* {organisationInfoState?.resp?.data?.user?.migrated && (
+                        {
                             <div
-                                className="mt-5 mb-4"
+                                className="mt-2 mb-4"
                                 style={{ paddingLeft: '13%', cursor: 'pointer' }}
-                                onClick={() => setMigrationModal(true)}>
+                                onClick={() => window.location.href = "https://"+host}>
                                 <button
                                     className="btn"
                                     style={{
-                                        background: '#5D16B1',
-                                        color: '#fff',
+                                        color: '#000',
                                         font: '14px S-medium',
                                         padding: '15px 10px',
+                                        backgroundColor: '#fff',
+                                        boxShadow: "3px 3px 3px 3px #B853E614",
+                                        border:'none',
                                     }}>
-                                    Switch to{''}
-                                    <img src={passIcon} style={{ height: '20px' }} alt="" />{' '}
-                                    Identitypass
+                                    Switch to <img src={hostLogo} style={{ height: '20px' }} alt="" />{' '}
+                                    
                                 </button>
                             </div>
-                        )} */}
+                        }
                     </>
                 )}
             </div>
