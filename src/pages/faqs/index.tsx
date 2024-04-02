@@ -1,4 +1,32 @@
+import { useEffect, useState } from "react"
+import { faqsRequest } from "../../redux/actions/faqs"
+import { useDispatch } from "react-redux"
+
 export default function FaqsPage(){
+    const dispatch = useDispatch()
+    const [notifVal, setNotifVal] = useState(false)
+    const [notif, setNotif] = useState('')
+    const [notifTitle, setNotifTitle] = useState('')
+
+    let getFaqs = () => {
+        const callback = (data: any) => {
+            if (!data.status) {
+                setNotifTitle('Error')
+                setNotif(data.detail)
+                setNotifVal(true)
+            }
+        }
+        let data: any = {
+            values: {},
+            callback,
+        }
+        dispatch(faqsRequest(data))
+    }
+
+    useEffect(() => {
+        getFaqs()
+    })
+
     return(
         <div className='container-fluid px-md-4'>
       

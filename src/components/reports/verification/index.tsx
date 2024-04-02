@@ -268,8 +268,8 @@ export default function VerificationReports(props: any) {
         let requestOptions = {
             method: 'get',
             url: val?.replace(
-                'https://ifgn6xvqlj.execute-api.us-east-2.amazonaws.com/production/prembly-production',
-                'https://api.prembly.com/prembly'
+                'http',
+                'https'
             ),
 
             headers: {

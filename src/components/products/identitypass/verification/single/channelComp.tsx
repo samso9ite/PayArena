@@ -26,6 +26,7 @@ export default function ChannelComp(props: any) {
     const [runCheck, setRunCheck] = useState(false)
     const [fileCheck, setFileCheck] = useState('')
     const [selectedFirstLevelCheck, setSelectedFirstLevelCheck] = useState('')
+    // const [payloadChange, setPayloadChange] =  useState(false)
     // const [filteredData, setFilteredData] = useState([])
     
 
@@ -189,10 +190,13 @@ export default function ChannelComp(props: any) {
         let filteredData = []
         const valuesArray = Object.values(payloadData);
         const firstValue = valuesArray.length > 0 ? valuesArray[0] : undefined;
-        filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || item.has_parent==false) 
         
+        filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || 
+            (!item.has_parent && !item.skip_required))   
+            
+        // filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || !item.has_parent)   
         if (
-            Object?.keys(payloadData)?.length < 1 || (Object?.keys(payloadData)?.length !== filteredData?.length)
+                Object?.keys(payloadData)?.length < 1 || (Object?.keys(payloadData)?.length !== filteredData?.length)
             // (props?.channelPayloads?.[0]?.is_required &&
             //     Object?.keys(payloadData)?.length !== props?.channelPayloads?.length
             //     )
@@ -217,11 +221,11 @@ export default function ChannelComp(props: any) {
                         setNotifVal(true)
                         return
                     } else {
-                        // console.log("parent payload index",  i)
-                        // console.log("payload index",  Object?.keys(payloadData)?.length - 1)
-                        let patternRegExp: any =
-                            new RegExp(allKey?.validation_pattern.replaceAll('/', '')) || ''
-                        // console.log(`false or true ${i}`, patternRegExp.test(payloadData[allKey?.request_key as keyof typeof payloadData]))
+                        let patternRegExp: any
+                        if(allKey?.validation_pattern !== null){
+                            patternRegExp = new RegExp(allKey?.validation_pattern.replaceAll('/', '')) || '' 
+                        }
+                    
                         if (
                             allKey?.is_required === true &&
                             patternRegExp.test(
@@ -271,7 +275,7 @@ export default function ChannelComp(props: any) {
                 return
             } else {
                 props?.verify(payloadData)
-                setRunCheck(false)
+                    setRunCheck(false)
             }
         }
     }
@@ -317,14 +321,16 @@ export default function ChannelComp(props: any) {
                                     className="form-control"
                                     placeholder={payload?.input_placeholder}
                                     defaultValue={''}
-                                    onChange={(e) =>
-                                        updateData(
+                                    onChange={(e) =>{
+                                    // setPayloadChange(true)
+                                     return updateData(
                                             payload?.input_type === 'file' ? e : e.target.value,
                                             payload?.request_key,
                                             payload?.validation_pattern,
                                             payload?.input_label,
                                             payload?.input_type
                                         )
+                                     } 
                                     }
                                 />
                                 {payload?.input_label === 'Virtual National Identity Number' && (
@@ -606,7 +612,7 @@ export default function ChannelComp(props: any) {
                 </div>
             ))}
             <div className={`${tourGuide.currentStep === 10 ? 'tour-guide-element-preview' : ''}`}>
-                <button className="btn btn-deep-green w-100 py-3 mt-5" onClick={verifyData}>
+                <button className="btn btn-deep-green w-100 py-3 mt-5" onClick={verifyData} disabled={props?.verifIsLoading}>
                     {props?.verifIsLoading ? (
                         <div>
                             <Spinner

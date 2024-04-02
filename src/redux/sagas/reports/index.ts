@@ -36,8 +36,8 @@ let tenantId = Cookies.get("tenant") || ""
 
 const apiReport = async (payload: any) => {
     const { data } = await axios.get<IAPIReport[]>(
-        global.apiBaseUrl + 
-            `identitypass/verification/log/internal/recent-trans/${payload.product}`,
+        global.apiBaseUrl + global.idpassApiUrl +
+            `verification/log/internal/recent-trans/${payload.product}`,
         {
             headers: {
                 'Content-Type': 'application/json',

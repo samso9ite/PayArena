@@ -407,7 +407,7 @@ export default function PassSingleVerificationComp(props: any) {
             if (endpCode === val?.code) {
                 setChannelPayloads(val?.payloads)
             }
-        })
+        })  
     }
 
     let clearData = () => {
@@ -418,11 +418,13 @@ export default function PassSingleVerificationComp(props: any) {
     }
 
     let performSingleVerification = (requestData: any) => {
-        // if (identitypassVerifState?.resp?.response_code  !== "02"){
-        //     setRetryRequestData(requestData)
-        // }else if (identitypassVerifState?.resp?.response_code  == "02"){
-        //     requestData = retryRequestData
-        // }
+        if (identitypassVerifState?.resp?.response_code  !== "02"){
+          setRetryRequestData(requestData)
+        }else if (identitypassVerifState?.resp?.response_code  == "02"){
+          if(requestData == retryRequestData){
+              requestData = retryRequestData
+          }     
+        }
      
         setUpdatedResponse(null)
         setOpenResponse(false)
@@ -1031,7 +1033,7 @@ export default function PassSingleVerificationComp(props: any) {
                                         {!channel && (
                                             <button
                                                 className="btn btn-deep-green w-100 py-3 mt-5"
-                                                disabled>
+                                                disabled={identitypassVerifState.isLoading == true}>
                                                 {' '}
                                                 Verify
                                             </button>
@@ -1394,11 +1396,11 @@ export default function PassSingleVerificationComp(props: any) {
                                                             />
                                                         </div>
                                                     </div>
-                                                    {/* <span
+                                                    <span
                                                         className="d-flex align-items-center btn btn-deep-green mx-auto my-3 "
                                                         style={{ width: 'fit-content' }} onClick={performSingleVerification}>
                                                             Retry Verification
-                                                    </span> */}
+                                                    </span>
                                                 </div>
                                             )}
                                         </>

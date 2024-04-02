@@ -13,7 +13,7 @@ let tenantId = Cookies.get("tenant") || ""
 
 const faqs = async (payload: any) => {
   const { data } = await axios.get<IFaqs[]>(
-    global.apiBaseUrl + global.liveUrl + "settings/faq",
+    global.apiBaseUrl + global.idpassApiUrl + "settings/faq",
     {
       headers: {
         "Content-Type": "application/json",
