@@ -13,7 +13,7 @@ let tenantId = Cookies.get("tenant") || ""
 
 const regenerateLiveKey = async (payload: any) => {
   const { data } = await axios.get<IRegenerateLiveKey[]>(
-    global.apiBaseUrl + global.liveUrl + "api/v1/account/key/live/reset",
+    global.apiBaseUrl + global.idpassApiUrl + "account/key/live/reset",
     {
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +29,7 @@ const regenerateLiveKey = async (payload: any) => {
 
 const regenerateSandboxKey = async (payload: any) => {
   const { data } = await axios.get<IRegenerateSandboxKey[]>(
-    global.apiBaseUrl + global.liveUrl + "api/v1/account/key/sandbox/reset",
+    global.apiBaseUrl + global.idpassApiUrl + "account/key/sandbox/reset",
     {
       headers: {
         "Content-Type": "application/json",

@@ -1045,7 +1045,8 @@ export const ResponseVerificationComponent = (props) => {
                                                     )}
 
                                                     {(key === 'directors' ||
-                                                        key === 'service_provider') && <> </>}
+                                                        key === 'service_provider') && <> </>
+                                                    }
                                                 </span>
                                             )
                                         } else {
@@ -1121,22 +1122,41 @@ export const ResponseVerificationComponent = (props) => {
                                                                                     </small>
                                                                                     {typeof idData[key][val] == 'object' && idData[key][val] !== null  ?
                                                                                         Object.entries(idData[key][val])?.map(([newKey, newVal], index) => {
-                                                                                            if(typeof newVal == 'object'){
-                                                                                                return(
-                                                                                                      Object.entries(newVal).map(([childKey, childVal], childIndex) => (
-                                                                                                        <>
+                                                                                            if (typeof newVal === 'object') {
+                                                                                                return Object.entries(newVal).map(([childKey, childVal], childIndex) => (
+                                                                                                    <React.Fragment key={childIndex}>
                                                                                                         <small>{getKeyLabel(childKey)?.replace(/_/g, " ")}</small>
-                                                                                                        <p key={childIndex}> {`${childVal}` || '-'}</p>
-                                                                                                        </>
-                                                                                                      ))
-                                                                                                )
-                                                                                            }else{
+                                                                                                        {typeof childVal === 'object' ?
+                                                                                                            Object.entries(childVal).map(([grandChildKey, grandChildVal], grandChildIndex) => (
+                                                                                                                <React.Fragment key={grandChildIndex}>
+                                                                                                                    <small>{getKeyLabel(grandChildKey)?.replace(/_/g, " ")}</small>
+                                                                                                                    {typeof grandChildVal === 'object' ?
+                                                                                                                        Object.entries(grandChildVal).map(([greatGrandChildKey, greatGrandChildVal], greatGrandChildIndex) => (
+                                                                                                                            <React.Fragment key={greatGrandChildIndex}>
+                                                                                                                                <p>{getKeyLabel(greatGrandChildKey)?.replace(/_/g, " ")}: {`${greatGrandChildVal || '-'}`}</p>
+                                                                                                                                {/* <p>{`${greatGrandChildVal || '-'}`}</p> */}
+                                                                                                                            </React.Fragment>
+                                                                                                                        ))
+                                                                                                                        :
+                                                                                                                        <p>{`${grandChildVal || '-'}`}</p>
+                                                                                                                    }
+                                                                                                                </React.Fragment>
+                                                                                                            ))
+                                                                                                            :
+                                                                                                            <p>{`${childVal || '-'}`}</p>
+                                                                                                        }
+                                                                                                    </React.Fragment>
+                                                                                                ));
+                                                                                            }
+                                                                                            
+                                                                                            else{
                                                                                                return <p key={index}>
                                                                                                     {`${newKey}: ${newVal}` || '-'}
                                                                                                 </p>
                                                                                             }
                                                                                           
-                                                                                        }) 
+                                                                                        }
+                                                                                        ) 
                                                                                         :
                                                                                         <p>
                                                                                             {`${idData[key][val]}` || '-'}
@@ -1260,9 +1280,6 @@ export const ResponseVerificationComponent = (props) => {
                                                                                                                             ))
                                                                                                                       :  Object.entries(childVal).map(([key, newVal]) => (
                                                                                                                         <>
-                                                                                                                        {/* <small>
-                                                                                                                        {getKeyLabel(key)?.replace( /_/g, ' ' )}
-                                                                                                                        </small> */}
                                                                                                                             <p key={key}>
                                                                                                                                 {/* {`${newVal}` || "Shale"} */}
                                                                                                                             </p>

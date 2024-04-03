@@ -138,7 +138,7 @@ export default function TeamsComp(props: any) {
             values: {
                 email,
                 permission_id: permission,
-                url_path: global.appBaseUrl + 'Accept-Invitation',
+                url_path: global.appSSOUrl + 'Accept-Invitation',
             },
             callback,
         }

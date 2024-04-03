@@ -189,8 +189,10 @@ export default function VerificationReports(props: any) {
             setNotifVal(true)
             return
         }
-
+        
         // if(props.productKey == "3f20cd19-e739-419c-bec7-dd2c5c8a441b") {
+            console.log(reportForm.response_code);
+            
         if (reportForm.response_code.some(code => ['00', '01', '02', '03'].includes(code))) {
             let code = '00'
             let data: any = {
@@ -251,11 +253,14 @@ export default function VerificationReports(props: any) {
     }
 
     const openReportModal = (filter_type: string) => {
+        console.log(filter_type);
+        
         setReportModal(true)
         setReportForm((prev) => ({ ...prev, filter_type }))
     }
 
     const handleReportFormChange = (e: any) => {
+        console.log(e.target.value);
         const value = e.target.value
         const name = e.target.name
         setReportForm((prev) => ({ ...prev, [name]: value }))
@@ -1087,10 +1092,10 @@ const ReportModal = ({
                                     required
                                     value={response_code}>
                                     <option value={['00', '01', '02', '03']}>All</option>
-                                    <option value={['00']}>Sucessfull</option>
+                                    {/* <option value={['00']}>Sucessfull</option>
                                     <option value={['01']}>Id Not found</option>
                                     <option value={['02']}>Service Not Available</option>
-                                    <option value={['03']}>Insufficient Wallet Balance</option>
+                                    <option value={['03']}>Insufficient Wallet Balance</option> */}
                                 </select>
                             </div>
                             {/* 
