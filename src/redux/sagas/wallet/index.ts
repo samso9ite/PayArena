@@ -45,7 +45,7 @@ const cardInfo = async (payload: any) => {
 const mpesaTopUpWallet = async (payload: any) => {
   
   const { data } = await axios.post<IMpesaTopUpWallet[]>(
-    global.apiBaseUrl +  "wallet/fund-wallet",
+    global.apiBaseUrl +global.idpassApiUrl+  "wallet/fund-wallet",
     payload,
     {
       headers: {

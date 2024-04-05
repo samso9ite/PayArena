@@ -573,7 +573,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                         ? Object?.entries(idData).map((v) => {
                               return (
                                   v[0] !== 'file_base64' &&
-                                    typeof v[1] === 'string' ? (
+                                    v[1] !== null && typeof v[1] === 'string' ? (
                                         <View style={styles.test}>
                                             <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
                                             { getKeyLabel(v[0])?.replace(
@@ -582,14 +582,14 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                             )}
                                             </Text>
                                             <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
-                                                {v[1] ? v[1] : 'N/A'}
+                                                {v[1] !== null ? v[1] : 'N/A'}
                                             </Text>
                                         </View>
                                     ) :
                                     
-                                   typeof v[1] === "object" && v[0] !== "directors" && (
+                                  v[1] !== null && typeof v[1] === "object" && v[0] !== "directors" && (
                                         (Object.entries(v[1]).map(([key, value]) => (
-                                            typeof value == "object" 
+                                           value !== null && typeof value == "object" 
                                             ?
                                             <>
                                             <View style={styles.test}>
@@ -601,7 +601,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                 </Text>
                                             </View> 
                                             { Object.entries(value).map(([key, childVal]) => (
-                                               typeof childVal == "object" ?
+                                              childVal !== null && typeof childVal == "object" ?
                                                Object.entries(childVal).map(([key, subChildVal]) => (
                                                 <View style={styles.test}>
                                                     <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
@@ -628,7 +628,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                     </Text>
                                                 </View> 
                                               )) 
-                                                }
+                                            }
                                                 </>
                                             :
                                                 <View style={styles.test}>
@@ -639,7 +639,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                         )}
                                                     </Text>
                                                     <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
-                                                        {value ? value : 'N/A'}
+                                                        {(value || value !== null) ? value : 'N/A'}
                                                     </Text>
                                                 </View>
                                             
@@ -651,8 +651,8 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                         : Array?.isArray(idData) &&
                           idData.map((v, index) => {
                               return (
-                                  Object.entries(v).map(([key, value]) =>
-                                      typeof value === 'object' ? (
+                                 v !== null && Object.entries(v).map(([key, value]) =>
+                                      value !== null && typeof value === 'object' ? (
                                           value?.map((vt) => <Text></Text>)
                                       ) : (
                                           <View style={styles.test}>
@@ -660,21 +660,12 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                   {key}
                                               </Text>
                                               <Text style={styles.company_details_subtitle_left}>
-                                                  {value ? value : 'N/A'}
+                                                  {value !== null ? value : 'N/A'}
                                               </Text>
                                           </View>
                                       )
                                   )
-                                  // <View style={styles.test}>
-                                  //     <Text style={styles.company_details_subtitle_right}>
-                                  //       {Object.keys(v)}
-                                  //     </Text>
-                                  //     <Text style={styles.company_details_subtitle_left}>
-                                  //       {Object.values ? Object.values(v) : 'N/A'}
-                                  //     </Text>
-                                  // </View>
-                              )
-                              // )
+                                )
                           })}
                 </View>
 
@@ -697,7 +688,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                 TYPE OF SHARES PERCENTAGE
                             </Text>
                         </View>
-                        {Object?.values(idData?.directors).map((director) => {
+                        { Object?.values(idData?.directors).map((director) => {
                             return (
                                 <View style={styles.company_details_record_header}>
                                     <Text style={styles.company_details_record_header_text}>
@@ -795,6 +786,9 @@ export const ResponseVerificationComponent = (props) => {
         }
         if (data?.hasOwnProperty('base64Image')) {
             return data.base64Image
+        } 
+        if (data?.hasOwnProperty('base64Image')) {
+            return data.base64Image
         }
         if (data?.hasOwnProperty('photo')) {
             return data.photo
@@ -805,6 +799,7 @@ export const ResponseVerificationComponent = (props) => {
         if (data?.hasOwnProperty('DriverImage')) {
             return data.DriverImage
         }
+        
         return null
     }
 
@@ -946,7 +941,6 @@ export const ResponseVerificationComponent = (props) => {
                             props?.channel !== 'ADDRESS_NG_STATUS' &&
                             props?.channel !== 'PEZESHA_PETASCORE_SYNC' &&
                             props.channel !== 'VEHICLE-ID' && 
-                            // props.channel !== 'KENYA_CRB_ADVANCED' &&
                             Object.keys(idData).length !== 0 ? (
                                 <PDFDownloadLink
                                     className="d-flex align-items-center btn btn-deep-green mx-auto my-3 px-3"

@@ -12,6 +12,7 @@ import { NumericFormat } from 'react-number-format';
 import { organisationInfoRequest } from "../../../redux/actions/settings/organisationInfo";
 import Cookies from "js-cookie";
 import moment from "moment";
+import success from '../../../assets/success.svg'
 
 export default function SubWalletComp(props:any) {
 
@@ -233,11 +234,11 @@ export default function SubWalletComp(props:any) {
                 if(paymentPlatform == "qr-code"){
                     setCode(data?.link)
                     setFundPage('4')
-                }else if(paymentPlatform == 'usd'){
+                }else if(paymentPlatform == 'ussd'){
                     setCode(data?.link)
                     setFundPage('5')
                 }else if(paymentPlatform == "stk-push"){
-                    setFundPage('5')
+                    setFundPage('6')
                 }
             }
             else {
@@ -276,8 +277,6 @@ export default function SubWalletComp(props:any) {
                 redirect_url: global.appBaseUrl,
         }
     }
-       console.log(values);
-        
         let data: any = {
             values: values,
             callback,
@@ -521,9 +520,9 @@ export default function SubWalletComp(props:any) {
                                                         </> 
                                                         :
                                                         <>
-                                                            <option value="qr-code">QR Code</option>
-                                                            <option value="ussd">USSD</option>
-                                                            {/* <option value="stk-push">STK Push</option> */}
+                                                            {/* <option value="qr-code">QR Code</option> */}
+                                                            {/* <option value="ussd">USSD</option> */}
+                                                            <option value="stk-push">STK Push</option>
                                                         </> 
                                                     }
                                                 </select>
@@ -653,6 +652,15 @@ export default function SubWalletComp(props:any) {
                                                     </small>
                                                 </button>
                                             <p className="mt-3"> click the code to copy it</p>
+                                        </div>
+                                        <button className="btn link-underline " onClick={() => setFundPage("1")}>Change Payment Method</button>
+                                    </div>
+                                }
+                                {(fundPage === "6") &&
+                                    <div>
+                                        <div className="bg-light     text-center my-5 py-3 px-2">
+                                            <img src={success} alt="success" />
+                                            <p>Payment initiated, please proceed to make payment. </p>
                                         </div>
                                         <button className="btn link-underline " onClick={() => setFundPage("1")}>Change Payment Method</button>
                                     </div>

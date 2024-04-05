@@ -49,8 +49,6 @@ export default function Dashboard(props: any) {
     const viewAnnouncementState = useSelector((state: RootState) => state.viewAnnouncementReducer)
    
     // const tourGuideStatusState = useSelector((state: RootState) => state.tourGuideReducer)
-    console.log(announcementState);
-    
     const dispatch = useDispatch()
     const location = useLocation()
     let hostName = Cookies.get('hostName') || ''

@@ -10,6 +10,7 @@ import { Spinner } from 'react-bootstrap';
 import NotificationToast from '../../utils/notifToast';
 import { removeLetters } from '../../utils';
 import Cookies from 'js-cookie';
+import success from '../../../assets/success.svg'
 
 export default function TopupComp(props:any) {
     const [notifVal, setNotifVal] = useState(false)
@@ -193,12 +194,14 @@ export default function TopupComp(props:any) {
             }else if(data.status && paymentMethod == "mpesa"){
                 if(paymentPlatform == "qr-code"){
                     setCode(data?.link)
-                    setFundPage('3')
-                }else if(paymentPlatform == 'usd'){
-                    setCode(data?.link)
                     setFundPage('4')
-                }else if(paymentPlatform == "stk-push"){
-                    setFundPage('5')
+                }
+                // else if(paymentPlatform == 'ussd'){
+                //     setCode(data?.link)
+                //     setFundPage('4')
+                // }
+                else if(paymentPlatform == "stk-push"){
+                    setFundPage('6')
                 }
             }
             else {
@@ -459,9 +462,9 @@ export default function TopupComp(props:any) {
                                                         </> 
                                                         :
                                                         <>
-                                                            <option value="qr-code">QR Code</option>
-                                                            <option value="ussd">USSD</option>
-                                                            {/* <option value="stk-push">STK Push</option> */}
+                                                            {/* <option value="qr-code">QR Code</option> */}
+                                                            {/* <option value="ussd">USSD</option> */}
+                                                            <option value="stk-push">STK Push</option>
                                                         </> 
                                                     }
                                                 </select>
@@ -591,6 +594,15 @@ export default function TopupComp(props:any) {
                                                     </small>
                                                 </button>
                                             <p className="mt-3"> click the code to copy it</p>
+                                        </div>
+                                        <button className="btn link-underline " onClick={() => setFundPage("1")}>Change Payment Method</button>
+                                    </div>
+                                }
+                                {(fundPage === "6") &&
+                                    <div>
+                                        <div className="bg-light     text-center my-5 py-3 px-2">
+                                            <img src={success} alt="success" />
+                                            <p>Payment initiated, please proceed to make payment. </p>
                                         </div>
                                         <button className="btn link-underline " onClick={() => setFundPage("1")}>Change Payment Method</button>
                                     </div>
