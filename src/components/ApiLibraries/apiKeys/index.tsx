@@ -11,6 +11,11 @@ import { RootState } from '../../../redux/reducers'
 import Mainloader, { InvalidAccessRightComp } from '../../utils'
 import NotificationToast from '../../utils/notifToast'
 import useTourGuide from '../../../hooks/useTourGuide'
+import Cookies from 'js-cookie'
+// import  from 'axios'
+import { authorizationRedirect } from '../../../redux/constants/api'
+import global from '../../../redux/constants/global'
+import axios, { AxiosResponse } from 'axios'
 
 export default function APIKeys(props: any) {
     const [tourGuide, setTourGuide] = useTourGuide()
@@ -27,10 +32,13 @@ export default function APIKeys(props: any) {
         (state: RootState) => state.regenerateSandboxKeyReducer
     )
 
+    const [apiKeys, setApiKeys] = useState<any>({})
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         getOrgInfo()
+        triggerListApiKeys()
     }, [])
 
     let getOrgInfo = ()=>{
@@ -72,6 +80,7 @@ export default function APIKeys(props: any) {
                 setNotif('Live Keys successfully regenerated')
                 setNotifVal(true)
                 setRegenerateModal(false)
+                triggerListApiKeys()
                 getOrgInfo()
             } else {
                 setNotifTitle('Error')
@@ -93,7 +102,9 @@ export default function APIKeys(props: any) {
                 setNotif('Sandbox Keys successfully regenerated')
                 setNotifVal(true)
                 setRegenerateModal(false)
+                triggerListApiKeys()
                 getOrgInfo()
+                
             } else {
                 setNotifTitle('Error')
                 setNotif(data.detail)
@@ -113,6 +124,44 @@ export default function APIKeys(props: any) {
         setNotif(`Your ${type} has been copied`)
         setNotifVal(true)
     }
+
+    interface apiKeysResponseType {
+        sandbox_api_key: string; // or whatever type sandbox_api_key is
+        // other properties if exists
+      }
+
+    const triggerListApiKeys = () => {
+        let accessT = Cookies.get('babtbu') || ''
+        let orgId = Cookies.get('org') || ''
+
+        let requestOptions = {
+            method: 'get',
+            url: global.apiBaseUrl + global.idpassApiUrl + "account/organisation/details",
+
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: accessT,
+                Organisation: orgId,
+            },
+        }
+        axios
+            .request(requestOptions)
+            .then((res) => {
+                console.log(res.data.sandbox_api_key);
+                
+                setApiKeys(res.data)
+            })
+            .catch((e: any) => {
+                if (e.response.request.status === 401) {
+                        authorizationRedirect()
+                    } else {
+                        console.log("An error occured");
+                        
+                     }
+            })
+    }
+
     return (
         <div>
             {tourGuide.currentStep === 38 && (
@@ -293,8 +342,13 @@ export default function APIKeys(props: any) {
                                         <tr>
                                             <th scope="row">Sandbox Public Key</th>
                                             <td style={{ fontSize: '25px' }}>
-                                                {organisationInfoState?.resp?.data?.organisation?.sandbox_public_key?.replaceAll(
+                                                {/* {organisationInfoState?.resp?.data?.organisation?.sandbox_public_key?.replaceAll(
                                                     organisationInfoState?.resp?.data?.organisation
+                                                        ?.sandbox_public_key,
+                                                    '**********  **********  **********'
+                                                )} */}
+                                                 {apiKeys?.sandbox_public_key?.replaceAll(
+                                                    apiKeys
                                                         ?.sandbox_public_key,
                                                     '**********  **********  **********'
                                                 )}
@@ -305,8 +359,10 @@ export default function APIKeys(props: any) {
                                                     className="btn btn-copy"
                                                     onClick={() =>
                                                         copyFunc(
-                                                            organisationInfoState?.resp?.data
-                                                                ?.organisation?.sandbox_public_key,
+                                                            // organisationInfoState?.resp?.data
+                                                            //     ?.organisation?.sandbox_public_key,
+                                                            // 'Public Sandbox Key'
+                                                            apiKeys?.sandbox_public_key,
                                                             'Public Sandbox Key'
                                                         )
                                                     }>
@@ -317,8 +373,8 @@ export default function APIKeys(props: any) {
                                         <tr>
                                             <th scope="row">Sandbox Private Key</th>
                                             <td style={{ fontSize: '25px' }}>
-                                                {organisationInfoState?.resp?.data?.organisation?.sandbox_api_key?.replaceAll(
-                                                    organisationInfoState?.resp?.data?.organisation
+                                                {apiKeys?.sandbox_api_key?.replaceAll(
+                                                    apiKeys
                                                         ?.sandbox_api_key,
                                                     '**********  **********  **********'
                                                 )}
@@ -329,8 +385,10 @@ export default function APIKeys(props: any) {
                                                     className="btn btn-copy"
                                                     onClick={() =>
                                                         copyFunc(
-                                                            organisationInfoState?.resp?.data
-                                                                ?.organisation?.sandbox_api_key,
+                                                            // organisationInfoState?.resp?.data
+                                                            //     ?.organisation?.sandbox_api_key,
+                                                            // 'Private Sandbox Key'
+                                                          apiKeys?.sandbox_api_key,
                                                             'Private Sandbox Key'
                                                         )
                                                     }>
@@ -344,8 +402,13 @@ export default function APIKeys(props: any) {
                                         <tr>
                                             <th scope="row">Live Public Key</th>
                                             <td style={{ fontSize: '25px' }}>
-                                                {organisationInfoState?.resp?.data?.organisation?.live_public_key?.replaceAll(
+                                                {/* {organisationInfoState?.resp?.data?.organisation?.live_public_key?.replaceAll(
                                                     organisationInfoState?.resp?.data?.organisation
+                                                        ?.live_public_key,
+                                                    '**********  **********  **********'
+                                                )} */}
+                                                {apiKeys?.live_public_key?.replaceAll(
+                                                    apiKeys
                                                         ?.live_public_key,
                                                     '**********  **********  **********'
                                                 )}
@@ -356,8 +419,7 @@ export default function APIKeys(props: any) {
                                                     className="btn btn-copy"
                                                     onClick={() =>
                                                         copyFunc(
-                                                            organisationInfoState?.resp?.data
-                                                                ?.organisation?.live_public_key,
+                                                            apiKeys?.live_public_key,
                                                             'Public Live Key'
                                                         )
                                                     }>
@@ -368,8 +430,8 @@ export default function APIKeys(props: any) {
                                         <tr>
                                             <th scope="row">Live Private Key</th>
                                             <td style={{ fontSize: '25px' }}>
-                                                {organisationInfoState?.resp?.data?.organisation?.live_api_key?.replaceAll(
-                                                    organisationInfoState?.resp?.data?.organisation
+                                                {apiKeys?.live_api_key?.replaceAll(
+                                                    apiKeys
                                                         ?.live_api_key,
                                                     '**********  **********  **********'
                                                 )}
@@ -380,8 +442,7 @@ export default function APIKeys(props: any) {
                                                     className="btn btn-copy"
                                                     onClick={() =>
                                                         copyFunc(
-                                                            organisationInfoState?.resp?.data
-                                                                ?.organisation?.live_api_key,
+                                                            apiKeys?.live_api_key,
                                                             'Private Live Key'
                                                         )
                                                     }>

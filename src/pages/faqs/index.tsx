@@ -1,16 +1,30 @@
 import { useEffect, useState } from "react"
-import { faqsRequest } from "../../redux/actions/faqs"
-import { useDispatch } from "react-redux"
+import { faqsRequest, faqsFailure, faqsSuccess } from "../../redux/actions/faqs"
+import { useDispatch, useSelector } from "react-redux"
 import Accordion from 'react-bootstrap/Accordion';
+import axios from "axios";
+import Cookies from 'js-cookie'
+import { authorizationRedirect, serverCodes } from '../../redux/constants/api'
+import { RootState } from "../../redux/reducers";
+import Mainloader from "../../components/utils";
 
 export default function FaqsPage(){
     const dispatch = useDispatch()
     const [notifVal, setNotifVal] = useState(false)
     const [notif, setNotif] = useState('')
     const [notifTitle, setNotifTitle] = useState('')
+    const [faqData, setFaqData] = useState({
+        next: '',
+        previous: '',
+        results: [],
+    })
+    const [pageNumber, setPageNumber] = useState('1')
+    const faqState = useSelector((state: RootState) => state.faqReducer);
 
     let getFaqs = () => {
         const callback = (data: any) => {
+            console.log(data);
+            setFaqData(data)
             if (!data.status) {
                 setNotifTitle('Error')
                 setNotif(data.detail)
@@ -26,7 +40,61 @@ export default function FaqsPage(){
 
     useEffect(() => {
         getFaqs()
-    })
+    }, [])
+    
+    const triggerPage = (val: any) => {
+        let accessT = Cookies.get('babtbu') || ''
+        let orgId = Cookies.get('org') || ''
+
+        let requestOptions = {
+            method: 'get',
+            url: val?.replace(
+                'http',
+                'https'
+            ),
+
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: accessT,
+                Organisation: orgId,
+            },
+        }
+        
+        axios
+            .request(requestOptions)
+            .then((response) => {
+                
+                let page = val?.slice(-6).match(/(\d+)/)
+
+                if (val?.includes('page=')) {
+                    if (page) {
+                        setPageNumber(page[0])
+                    }
+                } else {
+                    setPageNumber('1')
+                }
+                setFaqData(response?.data)
+            })
+            .catch((e: any) => {
+                if (
+                    serverCodes.includes(e?.response?.request?.status) ||
+                    !e?.response?.request?.status
+                ) {
+                    faqsFailure({
+                        error: 'An error occurred, hang on a minute as we work towards fixing this error.',
+                    })
+                    return
+                }
+                if (e.response.request.status === 401) {
+                    authorizationRedirect()
+                } else {
+                    faqsFailure({
+                        error: e.response.data.detail,
+                    })
+                }
+            })
+    }
 
     return(
         <div className='container-fluid px-md-4'>
@@ -39,33 +107,67 @@ export default function FaqsPage(){
                 </div>
             </div>
         </div>
+        <div
+            className="card mt-5"
+            style={{
+                backgroundColor: '#fff',
+                border:'none',
+               padding:"2%"
+            }}>
+            {faqState?.isLoading ? <Mainloader/>
+                :
+                 faqData?.results?.length > 0 ? (
+                    <>
+                        <Accordion className="mt-2">
+                            {faqData?.results?.map(
+                                (val: any, i: number) => (
+                                    <Accordion.Item eventKey={val?.id} style={{marginBottom:"20px"}}>
+                                        <Accordion.Header><p style={{color:"#1D2939", fontSize:"17px", fontWeight:"700", marginBottom:0}}>{val?.question}</p></Accordion.Header>
+                                            <Accordion.Body>
+                                            <div dangerouslySetInnerHTML={{ __html: val?.answer }} />
+                                            </Accordion.Body>
+                                    </Accordion.Item>
+                                ))} 
+                        </Accordion>
+                        <div className="d-flex justify-content-end align-items-center">
+                            {faqData?.previous && (
+                                <p
+                                    style={{ cursor: 'pointer' }}
+                                    className="mb-0 me-3"
+                                    onClick={() =>
+                                        triggerPage(faqData?.previous)
+                                    }>
+                                    Prev
+                                </p>
+                            )}
+                            <button className="btn btn-green">{pageNumber}</button>
+                            {faqData?.next && (
+                                <p
+                                    style={{ cursor: 'pointer' }}
+                                    className="mb-0 ms-3"
+                                    onClick={() => triggerPage(faqData?.next)}>
+                                    Next
+                                </p>
+                            )}
+                        </div>
+                        <div>
+                            <h5>Still have a question?</h5>
+                            <p>Our contact team will be happy to help you.</p>
+                            <button className="btn btn-lg btn-green">Contact Us</button>
+                        </div>
+                    </>
+                    ): 
+               
+                    <div className="mt-5">
+                        <h5 className="">No Record Found</h5>
+                    </div>
+            
+                    
+            
+        }
+        </div>
 
-        <Accordion defaultActiveKey="0" className="mt-2">
-            <Accordion.Item eventKey="0">
-                <Accordion.Header>Accordion Item #1</Accordion.Header>
-                <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum.
-                </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1" style={{marginTop:"2%", border:"2px solid black", borderRadius:"10px"}}>
-                <Accordion.Header style={{backgroundColor:"#0000"}}>Accordion Item #2</Accordion.Header>
-                <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum.
-                </Accordion.Body>
-            </Accordion.Item>
-            </Accordion>
+        
     </div>
     )
 }

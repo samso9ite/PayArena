@@ -373,9 +373,7 @@ export default function SubComp(props: any) {
                                                                                     <FailedTag />
                                                                                 )}
                                                                             </td>
-                                                                            {/* <td>
-																			<i className="ri-download-2-line ri-xl" />
-																		</td> */}
+                                                                          
                                                                         </tr>
                                                                     )
                                                                 )}

@@ -160,6 +160,7 @@ import {
 import { notificationsInfoReducer, readNotificationReducer } from './notifications'
 import { complianceDocInfoReducer } from './complianceCert'
 import { perksAndDiscountInfoReducer } from './perksAndDiscount'
+import { faqReducer } from './faqs'
 
 // import {getPolicyReducer, getPolicyTemplateReducer, adoptPolicyTemplateReducer, createPolicyTemplateReducer, deletePolicyReducer, editPolicyReducer, partialUpdatePolicyReducer} from './policies'
 
@@ -328,6 +329,8 @@ export const rootReducers = combineReducers({
     // partialUpdatePolicyReducer
 
     perksAndDiscountInfoReducer,
+
+    faqReducer,
 
 })
 

@@ -401,7 +401,7 @@ export default function Dashboard(props: any) {
                         <div className="col-md-8" >
                             {hostName == "Prembly" &&
                                 <a target='_blank' href={hostName == "Prembly" ? "https://youtu.be/Ou35K3E0rWc" : ""}> <button className='btn' style={{float:'right', backgroundColor:'#ECEBF8', color:'#332ECF'}}>
-                                    Take a tour <i className="ri-arrow-right-line ms-2" /></button>
+                                    Watch a tour <i className="ri-arrow-right-line ms-2" /></button>
                                 </a>
                             }
                         </div>
