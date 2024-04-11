@@ -13,9 +13,7 @@ export default function SubPricingComp(props: any) {
 
 
     const subPricingState = useSelector((state: RootState) => state.subPricingReducer)
-    console.log(subPricingState);
     
-
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -24,7 +22,6 @@ export default function SubPricingComp(props: any) {
 
     let getPricing = () => {
         const callback = (data: any) => {
-            console.log(data);
             
             if (data.status) {
                 getPricingCountries(data?.detail)

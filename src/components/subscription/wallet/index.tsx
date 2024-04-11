@@ -13,6 +13,8 @@ import { organisationInfoRequest } from "../../../redux/actions/settings/organis
 import Cookies from "js-cookie";
 import moment from "moment";
 import success from '../../../assets/success.svg'
+import axios from "axios";
+import { authorizationRedirect } from "../../../redux/constants/api";
 
 export default function SubWalletComp(props:any) {
 
@@ -42,6 +44,8 @@ export default function SubWalletComp(props:any) {
     const myOrganisationInfoState = useSelector((state: RootState) => state.myOrganisationInfoReducer);
     const walletTransferState = useSelector((state: RootState) => state.walletToWalletTransferReducer);
     const walletBalanceState = useSelector((state: RootState) => state.walletBalanceReducer);
+    const [searchData, setSearchData] = useState('')
+    const [resultData, setResultData] = useState<any>()
 
 
     const dispatch = useDispatch()
@@ -110,6 +114,7 @@ export default function SubWalletComp(props:any) {
 
     let getWalletHist = () => {
         const callback = (data: any) => {
+            setResultData(data)
             if (data.status) {
                 setNotifTitle("Success")
                 setNotif(data.detail)
@@ -127,6 +132,37 @@ export default function SubWalletComp(props:any) {
         };
         dispatch(walletHistoryRequest(data))
     }
+
+    const fetchDataBySearch = (e:any) => {
+        e.preventDefault()
+        let accessT = Cookies.get('babtbu') || ''
+        let orgId = Cookies.get('org') || ''
+
+        let requestOptions = {
+            method: 'get',
+            url: global.apiBaseUrl + global.idpassApiUrl + `wallet/fund-wallet?query=${searchData}`,
+
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: accessT,
+                Organisation: orgId,
+            },
+        }
+        axios
+            .request(requestOptions)
+            .then((res) => {
+                setResultData(res.data)
+            })
+            .catch((e: any) => {
+                if (e.response.request.status === 401) {
+                        authorizationRedirect()
+                    } else {
+                        console.log(e);
+                }
+            })
+    }
+
 
     let proceedToNext = () => {
         if (!amount) {
@@ -284,52 +320,6 @@ export default function SubWalletComp(props:any) {
         dispatch(mpesaTopUpWalletRequest(data))
         
     }
-
-    // let paystackFundWallet = () => {
-    //     const callback = (data: any) => {
-    //         if (data.success) {
-    //             window.location.href = data?.response?.url
-    //         }
-    //         else {
-    //             setNotifTitle("Error")
-    //             setNotif(data.detail)
-    //             setNotifVal(true)
-    //         }
-    //     };
-    //     let data: any = {
-    //         values: {
-    //             amount: amount.toString(),
-    //             // currency: paymentCurrency || organisationInfoState?.resp?.data?.organisation?.currency,
-    //             currency: paymentCurrency,
-    //             callback_url: global.appBaseUrl + window.location.pathname.replace("/",''),
-    //         },
-    //         callback,
-    //     };
-    //     dispatch(paystackTopUpWalletRequest(data))
-    // }
-
-    // let flutterwaveFundWallet = () => {
-    //     const callback = (data: any) => {
-    //         if (data?.success) {
-    //             window.location.href = data?.response
-    //         }
-    //         else {
-    //             setNotifTitle("Error")
-    //             setNotif(data.detail)
-    //             setNotifVal(true)
-    //         }
-    //     };
-    //     let data: any = {
-    //         values: {
-    //             amount: amount.toString(),
-    //             // currency: paymentCurrency || organisationInfoState?.resp?.data?.organisation?.currency,
-    //             // currency: paymentCurrency,
-    //             callback_url: global.appBaseUrl + window.location.pathname.replace("/",''),
-    //         },
-    //         callback,
-    //     };
-    //     dispatch(flutterwaveTopUpWalletRequest(data))
-    // }
 
     let walletTransfer = () => {
         const callback = (data: any) => {
@@ -752,18 +742,59 @@ export default function SubWalletComp(props:any) {
                                     <p>View all transactions in your wallet here</p>
                                 </div>
                                 <div className="col-md-7">
+                                <div className="row justify-content-md-end align-items-center">
+                                                    <div className="col-12 col-md-6 ">
+                                                        <form
+                                                            action=""
+                                                            onSubmit={fetchDataBySearch}
+                                                            >
+                                                            <input
+                                                                // value={searchData}
+                                                                type="text"
+                                                                className="form-control"
+                                                                placeholder="Search by  reference, name, email, amount, press enter to search"
+                                                                onChange={(e) =>
+                                                                    setSearchData(e.target.value)
+                                                                }
+                                                            />
+                                                        </form>
+                                                    </div>
+                                                   
+                                                    {/* <div className="col-6 col-md-3 col-lg-2 pt-3 pt-md-0">
+                                                        <button
+                                                            className="px-3 d-flex align-items-center justify-content-center rounded-1 w-100"
+                                                            style={{
+                                                                outline: 'none',
+                                                                background: '#007DA3',
+                                                                color: '#ffffff',
+                                                                border: '1px solid #62789D',
+                                                                fontSize: '15px',
+                                                                height: '50px',
+                                                                cursor: 'pointer',
+                                                            }}
+                                                            // onClick={handleFileModal}
+                                                           >
+                                                            Export
+                                                        </button>
+
+                                                     
+                                                    </div> */}
+                                                </div>
                                 </div>
                             </div>
                         </div>
+
+                      
         
                         <div className="mt-4">
-                            {walletHistoryState?.resp?.results?.length > 0 ? 
+                            {resultData?.results?.length > 0 ? 
                                 <div className="table-responsive">
                                     <table className="table">
                                         <thead className="">
                                             <tr>
                                                 <th scope="col">Ref</th>
                                                 <th scope="col"> Description</th>
+                                                <th scope="col">Name</th>
                                                 <th scope="col">Amount</th>
                                                 <th scope="col">Balance Before</th>
                                                 <th scope="col">Balance After</th>
@@ -772,10 +803,11 @@ export default function SubWalletComp(props:any) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {walletHistoryState?.resp?.results?.map((value: any, index: React.Key | null | undefined) => (
+                                            {resultData?.results?.map((value: any, index: React.Key | null | undefined) => (
                                                 <tr key={index}>
                                                     <th scope="row">{value?.reference}</th>
                                                     <td>{value?.description}</td>
+                                                    <td>{value?.user.full_name}</td>
                                                     <td>{value?.currency.code} {value?.amount}</td>
                                                     <td>{value?.balance_before}</td>
                                                     <td>{value?.balance_after} </td>

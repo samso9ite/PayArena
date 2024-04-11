@@ -1048,75 +1048,13 @@ export const ReportResponseComponent = (props) => {
                     </div>
             }
 
-            {responseData?.response_code === "00" ?
+{responseData?.response_code === '00' ? (
                 <>
-                    {(idDataKeys.length < 1 && (requestData.hasOwnProperty("image_one" || requestData.hasOwnProperty("image_two"))) && (props?.endpName !== "Face Liveliness")) ?
-
-                        <div className="row align-items-center justify-content-between text-center">
-                            <div className="col-md-4 ">
-                                <img className="response-img" alt="dashboard-user"
-                                    src={imgUrl(requestData?.image_one)}
-                                /><br />
-                                <small>ID IMAGE</small>
-                            </div>
-                            <div className="col-md-4 mt-2 ">
-                                {
-                                    responseData?.status ?
-                                        <div style={{ backgroundColor: 'green', borderRadius: 10, }}>
-                                            <h6 className="m-0 p-0 text-white" style={{font:"12px S-regular",}}>{responseData.message}</h6>
-                                        </div>
-                                        :
-                                        <div style={{ backgroundColor: 'red', borderRadius: 10, }} className=" p-1">
-                                            <h6 className="m-0 p-0 text-white" style={{font:"12px S-regular",}}>{responseData.message}</h6>
-                                        </div>
-                                }
-                                <p className="pt-2">Confidence Level: {responseData?.confidence?.toFixed(2)} OF 100</p>
-                            </div>
-                            <div className="col-md-4 ">
-                                <img className="response-img" alt="dashboard-user"
-                                    src={imgUrl(requestData?.image_two)}
-                                /><br />
-                                <small>SELFIE IMAGE</small>
-                            </div>
-                        </div>
-
-                        :
-                        idDataKeys.length < 1 && requestData.hasOwnProperty("image") ?
-                            <div className="text-center">
-                                <img className="response-img" alt="dashboard-user"
-                                    src={imgUrl(getRequestImg())}
-                                />
-                                <div>
-                                    {
-                                        responseData?.status ?
-                                            <div style={{ backgroundColor: 'green', borderRadius: 10, }}>
-                                                <h6 className="m-0 p-0 text-white" style={{font:"12px S-regular",}}>{responseData.message}</h6>
-                                            </div>
-                                            :
-                                            <div style={{ backgroundColor: 'red', borderRadius: 10, }} className=" p-1">
-                                                <h6 className="m-0 p-0 text-white" style={{font:"12px S-regular",}}>{responseData.message}</h6>
-                                            </div>
-                                    }
-                                    <p className="pt-2">Confidence Level: {responseData?.confidence_in_percentage} OF 100</p>
-                                </div>
-                            </div>
-                            :
-                            <>
-                                {idDataKeys?.indexOf("directors") !== -1 &&
-                                    <div className="text-center mt-4" >
-                                        {/* <button className={`btn btn-grey p-2 rounded ${!openDirectors ? "active" : ""}`}
-                                            style={{ font: "12px C-book", borderRadius: "20px, 0px, 0px, 20px," }}
-                                            onClick={() => setOpenDirectors(false)}
-                                        >
-                                            Document Info
-                                        </button>
-                                        <button className={`btn btn-grey p-2 rounded ${openDirectors ? "active" : ""}`}
-                                            style={{ font: "13px C-book", borderRadius: "20px, 0px, 0px, 20px," }}
-                                            onClick={() => setOpenDirectors(true)}
-                                        >
-                                            Directors Info
-                                        </button> */}
-                                        <Nav
+                    {
+                        <>
+                            {idDataKeys?.indexOf('directors') !== -1 && (
+                                <div className="text-center mt-4">
+                                    <Nav
                                         variant="pills"
                                         defaultActiveKey={0}
                                         className="response-tab-menu"
@@ -1132,12 +1070,25 @@ export const ReportResponseComponent = (props) => {
                                             </Nav.Link>
                                         </Nav.Item>
                                     </Nav>
+                                    {/* {props.channel === 'KENYA_BRS_DETAIL' && ( */}
+                                    <div className="my-2">
+                                        {/* <PDFDownloadLink
+                                            document={<PDFComponent idData={idData} />}
+                                            fileName={`${idData?.company || idData?.name || idData?.company_name}.pdf`}>
+                                            {({ blob, url, loading, error }) =>
+                                                loading ? 'Loading document...' : 'Download'
+                                            }
+                                        </PDFDownloadLink> */}
+                                        {/* <p>some</p> */}
                                     </div>
-                                }
-                                   {idData &&
-                            // props?.channel !== 'ADDRESS_NG' &&
-                            // props?.channel !== 'ADDRESS_NG_STATUS' &&
-                            // props?.channel !== 'PEZESHA_PETASCORE_SYNC' &&
+                                    {/* )} */}
+                                </div>
+                            )}
+                            {idData &&
+                            props?.channel !== 'ADDRESS_NG' &&
+                            props?.channel !== 'ADDRESS_NG_STATUS' &&
+                            props?.channel !== 'PEZESHA_PETASCORE_SYNC' &&
+                            props.channel !== 'VEHICLE-ID' && 
                             Object.keys(idData).length !== 0 ? (
                                 <PDFDownloadLink
                                     className="d-flex align-items-center btn btn-deep-green mx-auto my-3 px-3"
@@ -1145,8 +1096,8 @@ export const ReportResponseComponent = (props) => {
                                     document={
                                         <PDFComponent
                                             idData={idData}
-                                            // verifyType={props?.verifyType}
-                                            endPname={props?.endpName}
+                                            verifyType={props?.verifyType}
+                                            channel={props?.channel}
                                         />
                                     }
                                     fileName={`${
@@ -1162,161 +1113,387 @@ export const ReportResponseComponent = (props) => {
                             ) : (
                                 ''
                             )}
-                                <div className='row justify-content-between mt-3'>
-                                    {!openDirectors && idDataKeys?.map((key, index) => {
-                                        if (typeof idData[key] !== "object") {
+                            <div className="row justify-content-between mt-3">
+                                {!openDirectors &&
+                                    idDataKeys?.map((key, index) => {
+                                        if (typeof idData[key] !== 'object') {
                                             return (
-                                                <span className={(index + 1) % 2 === 1 ? "col-md-6 py-1" : "col-md-6 text-md-end"} key={index} style={{ borderBottom: "1px solid #ddd", paddingBottom: "0px", marginBottom: "0px" }}>
-
-                                                    {((key !== "photo") && (key !== "Photo") && (key !== "image") && (key !== "base64Image") && (key !== "DriverImage")&& (key !== "file_base64") && (key !== "signature") && (key !== "directors") && (key !== "expirationDate") && (key !== "service_provider")) &&
-                                                        <>
-                                                            <small>{getKeyLabel(key)?.replace(/_/g, " ")}</small>
-                                                            <p>{(idData[key] || 'Not Available')}</p>
-                                                            {/* {typeof idData[key] === "object" ? "" : */}
-                                                            {/* <p>{idData[key]?.replace("null", '""') || 'Not Available'}</p> */}
-                                                            {/* } */}
-                                                        </>
+                                                <span
+                                                    className={
+                                                        (index + 1) % 2 === 1
+                                                            ? 'col-md-6 py-1'
+                                                            : 'col-md-6 text-md-end'
                                                     }
+                                                    key={index}
+                                                    style={{
+                                                        borderBottom: '1px solid #ddd',
+                                                        paddingBottom: '0px',
+                                                        marginBottom: '0px',
+                                                    }}>
+                                                    {key !== 'photo' &&
+                                                        key !== 'Photo' &&
+                                                        key !== 'image' &&
+                                                        key !== 'DriverImage' &&
+                                                        key !== 'file_base64' &&
+                                                        key !== 'base64Image' &&
+                                                        key !== 'signature' &&
+                                                        key !== 'Signature' &&
+                                                        key !== 'directors' &&
+                                                        key !== 'expirationDate' &&
+                                                        key !== 'Picture' &&
+                                                        key !== 'service_provider' && (
+                                                            <>
+                                                                <small>
+                                                                    {getKeyLabel(key)?.replace(
+                                                                        /_/g,
+                                                                        ' '
+                                                                    )}
+                                                                </small>
+                                                                <p>{idData[key] || '-'}</p>
+                                                              
+                                                            </>
+                                                        )}
 
-
-                                                    {key === "signature" &&
+                                                    {key === 'signature' && (
                                                         <>
                                                             <small>{getKeyLabel(key)}</small> <br />
-                                                            {key === "signature" ?
-                                                                <img style={{ width: "50px" }} src={idData[key]} alt='' />
-                                                                :
-                                                                <p>{'Not Available'}</p>
-                                                            }
+                                                            {key === 'signature' ? (
+                                                                <img
+                                                                    style={{ width: '50px' }}
+                                                                    src={idData[key]}
+                                                                    alt=""
+                                                                />
+                                                            ) : (
+                                                                <p>{'N/A'}</p>
+                                                            )}
                                                         </>
-                                                    }
+                                                    )}
 
-                                                    {key === "expirationDate" &&
+                                                    {key === 'expirationDate' && (
                                                         <>
                                                             <small>{getKeyLabel(key)}</small> <br />
                                                             <p>
-                                                                <span className={`${idData["documentStatus"] === "EXPIRED" ? "text-danger" : ""}`}>
-                                                                    {(idData[key] || 'Not Available')}
+                                                                <span
+                                                                    className={`${
+                                                                        idData['documentStatus'] ===
+                                                                        'EXPIRED'
+                                                                            ? 'text-danger'
+                                                                            : ''
+                                                                    }`}>
+                                                                    {idData[key] || 'N/A'}
                                                                 </span>
                                                             </p>
                                                         </>
-                                                    }
+                                                    )}
 
-                                                    {(key === "directors" || key === "service_provider") && <> </>}
+                                                    {(key === 'directors' ||
+                                                        key === 'service_provider') && <> </>
+                                                    }
                                                 </span>
                                             )
-                                        }
-                                        else {
+                                        } else {
                                             return (
-                                                <span className={(key === "0" || key === "1" || key === "2" || key === "3") && (key !== "directors" || key !== "signature" || key !== "PerformanceSummary" || key !== "expirationDate" || key !== "service_provider") ? "col-md-12 py-1" : ((index + 1) % 2 === 1 ? "col-md-6 py-1" : "col-md-6 text-md-end")}
-                                                    key={index} style={{ borderBottom: `${(key === "0" || key === "1" || key === "2" || key === "3") && (key !== "directors" || key !== "signature" || key !== "PerformanceSummary" || key !== "expirationDate" || key !== "service_provider") ? "" : "1px solid #ddd"}`, paddingBottom: "0px", marginBottom: "0px" }}
-                                                >
+                                                <span
+                                                    className={
+                                                        (key === '0' ||
+                                                            key === '1' ||
+                                                            key === '2' ||
+                                                            key === '3') &&
+                                                        (key !== 'directors' ||
+                                                            key !== 'signature' ||
+                                                            key !== 'Signature' ||
+                                                            key !== 'PerformanceSummary' ||
+                                                            key !== 'expirationDate' ||
+                                                            key !== 'service_provider')
+                                                            ? 'col-md-12 py-1'
+                                                            : (index + 1) % 2 === 1
+                                                            ? 'col-md-6 py-1'
+                                                            : 'col-md-6 text-md-end'
+                                                    }
+                                                    key={index}
+                                                    style={{
+                                                        borderBottom: `${
+                                                            (key === '0' ||
+                                                                key === '1' ||
+                                                                key === '2' ||
+                                                                key === '3') &&
+                                                            (key !== 'directors' ||
+                                                                key !== 'signature' ||
+                                                                key !== 'Signature' ||
+                                                                key !== 'PerformanceSummary' ||
+                                                                key !== 'expirationDate' ||
+                                                                key !== 'service_provider')
+                                                                ? ''
+                                                                : '1px solid #ddd'
+                                                        }`,
+                                                        paddingBottom: '0px',
+                                                        marginBottom: '0px',
+                                                    }}>
                                                     <>
-                                                        {(idData[key]?.length < 1) ?
+                                                        {idData[key]?.length < 1 ? (
                                                             <>
-                                                                <small>{getKeyLabel(key).replace(/_/g, " ")}</small>
-                                                                <p>Not Available</p>
+                                                                <small>
+                                                                    {getKeyLabel(key)?.replace(
+                                                                        /_/g,
+                                                                        ' '
+                                                                    )}
+                                                                </small>
+                                                                <p>N/A</p>
                                                             </>
-                                                            :
+                                                        ) : (
                                                             <>
-                                                                {(key === "0" || key === "1" || key === "2" || key === "3") && (key !== "directors" || key !== "signature" || key !== "PerformanceSummary" || key !== "expirationDate" || key !== "service_provider") ?
-                                                                    <div className='row'>
-                                                                        {Object?.keys(idData[key])?.map((val, k) => {
+                                                                {(key === '0' ||
+                                                                    key === '1' ||
+                                                                    key === '2' ||
+                                                                    key === '3') &&
+                                                                (key !== 'directors' ||
+                                                                    key !== 'signature' ||
+                                                                    key !== 'Signature' ||
+                                                                    key !== 'PerformanceSummary' ||
+                                                                    key !== 'expirationDate' ||
+                                                                    key !== 'service_provider') ? (
+                                                                    <div className="row">
+                                                                        {Object?.keys(
+                                                                            idData[key]
+                                                                        )?.map((val, k) => {
                                                                             return (
-                                                                                <span className={(k + 1) % 2 === 1 ? "col-md-6 py-1" : "col-md-6 text-md-end"} key={k} style={{ borderBottom: "1px solid #ddd", paddingBottom: "0px", marginBottom: "0px" }}>
-                                                                                    <small>{getKeyLabel(val).replace(/_/g, " ")}</small>
-                                                                                    <p>{`${idData[key][val]?.replace("null", '""')}` || "Not Available"}</p>
+                                                                                <span className={(k + 1) % 2 === 1 ? 'col-md-6 py-1' : 'col-md-6 text-md-end'}
+                                                                                    key={k} style={{ borderBottom: '1px solid #ddd', paddingBottom: '0px', marginBottom:'0px',}}>
+                                                                                    <small>
+                                                                                        {val !== null && getKeyLabel(val)?.replace( /_/g, ' ' )}
+                                                                                    </small>
+                                                                                    {typeof idData[key][val] == 'object' && idData[key][val] !== null  ?
+                                                                                        Object.entries(idData[key][val])?.map(([newKey, newVal], index) => {
+                                                                                            if (typeof newVal === 'object') {
+                                                                                                return Object.entries(newVal).map(([childKey, childVal], childIndex) => (
+                                                                                                    <React.Fragment key={childIndex}>
+                                                                                                        <small>{getKeyLabel(childKey)?.replace(/_/g, " ")}</small>
+                                                                                                        {typeof childVal === 'object' ?
+                                                                                                            Object.entries(childVal).map(([grandChildKey, grandChildVal], grandChildIndex) => (
+                                                                                                                <React.Fragment key={grandChildIndex}>
+                                                                                                                    <small>{getKeyLabel(grandChildKey)?.replace(/_/g, " ")}</small>
+                                                                                                                    {typeof grandChildVal === 'object' ?
+                                                                                                                        Object.entries(grandChildVal).map(([greatGrandChildKey, greatGrandChildVal], greatGrandChildIndex) => (
+                                                                                                                            <React.Fragment key={greatGrandChildIndex}>
+                                                                                                                                <p>{getKeyLabel(greatGrandChildKey)?.replace(/_/g, " ")}: {`${greatGrandChildVal || '-'}`}</p>
+                                                                                                                                {/* <p>{`${greatGrandChildVal || '-'}`}</p> */}
+                                                                                                                            </React.Fragment>
+                                                                                                                        ))
+                                                                                                                        :
+                                                                                                                        <p>{`${grandChildVal || '-'}`}</p>
+                                                                                                                    }
+                                                                                                                </React.Fragment>
+                                                                                                            ))
+                                                                                                            :
+                                                                                                            <p>{`${childVal || '-'}`}</p>
+                                                                                                        }
+                                                                                                    </React.Fragment>
+                                                                                                ));
+                                                                                            }
+                                                                                            
+                                                                                            else{
+                                                                                               return <p key={index}>
+                                                                                                    {`${newKey}: ${newVal}` || '-'}
+                                                                                                </p>
+                                                                                            }
+                                                                                          
+                                                                                        }
+                                                                                        ) 
+                                                                                        :
+                                                                                        <p>
+                                                                                            {`${idData[key][val]}` || '-'}
+                                                                                        </p>
+                                                                                    }
+                                                                                   
                                                                                 </span>
                                                                             )
-                                                                            // }
                                                                         })}
                                                                     </div>
-                                                                    :
+                                                                ) : (
                                                                     <>
-                                                                        <div className={`d-flex ${(index + 1) % 2 === 1 ? "justify-content-md-start" : "justify-content-md-end pt-2"}`}>
-                                                                            <small>{getKeyLabel(key).replace(/_/g, " ")}</small>
-                                                                            {(openDataChild && dataChild === getKeyLabel(key)) ?
-                                                                                <i className="ri-arrow-up-s-line ri-lg ms-3"
-                                                                                    style={{ cursor: "pointer" }}
-                                                                                    onClick={() => {
-                                                                                        setOpenDataChild(false)
-                                                                                        setDataChild("")
+                                                                    { getKeyLabel(
+                                                                                    key
+                                                                                ).replace(
+                                                                                    /_/g,
+                                                                                    ' '
+                                                                                ) !== 'Directors' ? (
+                                                                        <div
+                                                                            className={`d-flex ${
+                                                                                (index + 1) % 2 ===
+                                                                                1
+                                                                                    ? 'justify-content-md-start'
+                                                                                    : 'justify-content-md-end pt-2'
+                                                                            }`}>
+                                                                            <small>
+                                                                                {getKeyLabel(
+                                                                                    key
+                                                                                ).replace(
+                                                                                    /_/g,
+                                                                                    ' '
+                                                                                )}
+                                                                            </small>
+                                                                            {openDataChild &&
+                                                                            dataChild ===
+                                                                                getKeyLabel(key) ? (
+                                                                                <i
+                                                                                    className="ri-arrow-up-s-line ri-lg ms-3"
+                                                                                    style={{
+                                                                                        cursor: 'pointer',
                                                                                     }}
-                                                                                />
-                                                                                :
-                                                                                <i className="ri-arrow-down-s-line ri-lg ms-3"
-                                                                                    style={{ cursor: "pointer" }}
                                                                                     onClick={() => {
-                                                                                        setOpenDataChild(true)
-                                                                                        setDataChild(getKeyLabel(key))
-                                                                                    }}
-                                                                                />
-                                                                            }
-                                                                        </div>
-
-                                                                        {(openDataChild && dataChild === getKeyLabel(key)) &&
-                                                                            <div>
-                                                                                {idData[key] && Object?.keys(idData[key])?.map(val => {
-                                                                                    if ((idData[key][val]?.length === undefined) && (typeof idData[key][val] === "object")) {
-                                                                                        idData[key][val] && Object?.keys(idData[key][val])?.map(newVal => (
-                                                                                            <>
-                                                                                                <small>{getKeyLabel(newVal).replace(/_/g, " ")}</small>
-                                                                                                <p>{`${idData[key][val][newVal]?.replace("null", '""')}` || "Not Available"}</p>
-                                                                                            </>
-                                                                                        ))
-                                                                                    }
-                                                                                    else {
-                                                                                        return (
-                                                                                            <>
-                                                                                                <small>{getKeyLabel(val).replace(/_/g, " ")}</small>
-                                                                                                {getKeyLabel(val) === 'Individual _image' || getKeyLabel(val) === 'Residence _image' 
-                                                                                                ||  getKeyLabel(val) === 'Signature' 
-                                                                                                ? (<img src={idData[key][val]} alt="preview" style={{ height: '', objectFit: 'cover'}} />) : (
-                                                                                                    <p>{`${idData[key][val]?.replace("null", '""')}` || "Not Available"}</p>
-                                                                                                )}
-
-                                                                                            </>
+                                                                                        setOpenDataChild(
+                                                                                            false
                                                                                         )
-                                                                                    }
-                                                                                })}
-                                                                            </div>
-                                                                        }
-                                                                    </>
-                                                                }
-                                                            </>
-                                                        }
+                                                                                        setDataChild(
+                                                                                            ''
+                                                                                        )
+                                                                                    }}
+                                                                                />
+                                                                            ) : (
+                                                                                <i
+                                                                                    className="ri-arrow-down-s-line ri-lg ms-3"
+                                                                                    style={{
+                                                                                        cursor: 'pointer',
+                                                                                    }}
+                                                                                    onClick={() => {
+                                                                                        setOpenDataChild(
+                                                                                            true
+                                                                                        )
+                                                                                        setDataChild(
+                                                                                            getKeyLabel(
+                                                                                                key
+                                                                                            )
+                                                                                        )
+                                                                                    }}
+                                                                                />
+                                                                            )}
+                                                                        </div>
+                                                                                ) : '-'}
 
+                                                                        {openDataChild &&
+                                                                            dataChild ===
+                                                                                getKeyLabel(
+                                                                                    key
+                                                                                ) && (
+                                                                                <div>
+                                                                                    {idData[key] &&
+                                                                                        Object?.keys(idData[key])?.map((val) => {
+                                                                                                if (
+                                                                                                    idData[key][val] ?.length === undefined && typeof idData[key][val] === 'object'
+                                                                                                ) {
+                                                                                                    return  idData[key][val] && Object?.keys(idData[key][val])?.map((newVal) => {
+                                                                                                        <small>
+                                                                                                            {getKeyLabel(newVal)?.replace( /_/g, ' ' )}
+                                                                                                        </small>
+                                                                                                               return (typeof idData[key][val][newVal] === "object") ? 
+                                                                                                                Object.entries(idData[key][val][newVal]).map(([key, childVal]) => (
+                                                                                                                    Array.isArray(childVal) ? 
+                                                                                                                        Object.entries(childVal).map(([key, value]) => (
+                                                                                                                          Object.entries(value).map(([key, newVal]) => (
+                                                                                                                                <p key={key}>
+                                                                                                                                    {`${key}: ${newVal}` || "Shale"}
+                                                                                                                                </p>
+                                                                                                                                ))
+                                                                                                                            ))
+                                                                                                                      :  Object.entries(childVal).map(([key, newVal]) => (
+                                                                                                                        <>
+                                                                                                                            <p key={key}>
+                                                                                                                                {/* {`${newVal}` || "Shale"} */}
+                                                                                                                            </p>
+                                                                                                                        </>
+                                                                                                                    ))
+                                                                                                                ))
+                                                                                                                :<>
+                                                                                                                    <small>
+                                                                                                                        {getKeyLabel(newVal)?.replace( /_/g, ' ' )}
+                                                                                                                    </small>
+                                                                                                                    <p>
+                                                                                                                    {`${idData[key][val][newVal]}` || '-'}
+                                                                                                                </p>
+                                                                                                                </>
+                                                                                                        }
+                                                                                                    )
+                                                                                                } else {
+                                                                                                    return (
+                                                                                                        <>
+                                                                                                            <small>
+                                                                                                                {getKeyLabel(val )?.replace( /_/g, ' ' )} 
+                                                                                                            </small>
+                                                                                                            {getKeyLabel( val) === 'Individual _image' || getKeyLabel(val) === 'Residence _image' ||
+                                                                                                            getKeyLabel( val ) === 'Signature' ? ( <img  src={ idData[key][val]} alt="preview" 
+                                                                                                            style={{ height: '', objectFit: 'cover', }} />) : 
+                                                                                                            ( typeof idData[key][val] === "object") ? 
+                                                                                                             (idData[key][val].length > 0 ) ?
+                                                                                                              Object?.keys(idData[key][val])?.map(newVal => {
+                                                                                                                if(!Array.isArray(newVal) && typeof idData[key][val][newVal] === "object"){
+                                                                                                                   return (Object.entries(idData[key][val][newVal]).map(([innerKey, innerValue]) => (
+                                                                                                                    <div key={innerKey}>
+                                                                                                                        <small>
+                                                                                                                            {getKeyLabel(innerKey)?.replace(/_/g, " ")}
+                                                                                                                        </small>
+                                                                                                                      
+                                                                                                                        {Array.isArray(innerValue) ?  
+                                                                                                                          Object.entries(innerValue).map(([key, value]) => (
+                                                                                                                            Object.entries(value).map(([key, newVal]) => (
+                                                                                                                                <p key={key}>
+                                                                                                                                    {`${key}: ${newVal}` || "Shale"}
+                                                                                                                                </p>
+                                                                                                                                  ))
+                                                                                                                              ))
+                                                                                                                        : 
+                                                                                                                         <p>{`${JSON.stringify(innerValue).replace(/[\{\}"]/g, "")}` || "N/A"}</p>
+                                                                                                                        }
+                                                                                                                        
+                                                                                                                      </div>
+                                                                                                                  )))
+                                                                                                                   
+                                                                                                                }else{ 
+                                                                                                                    return(
+                                                                                                                        <>
+                                                                                                                           <small>
+                                                                                                                                {getKeyLabel(newVal)?.replace(/_/g, " ")}
+                                                                                                                            </small>
+                                                                                                                            <p>{`${idData[key][val][newVal]}` || "N/A"}</p>
+                                                                                                                        </>
+                                                                                                                    )
+                                                                                                                }
+                                                                                                              
+                                                                                                        }) : <p>
+                                                                                                                    {`${idData[key][val]}` ||
+                                                                                                                        '-'}
+                                                                                                                        
+                                                                                                                </p>
+                                                                                                        : 
+                                                                                                            
+                                                                                                            (
+                                                                                                                <p>
+                                                                                                                    {`${idData[key][val]}` ||
+                                                                                                                        '-'}
+                                                                                                                        
+                                                                                                                </p>
+                                                                                                            )}
+                                                                                                        </>
+                                                                                                    )
+                                                                                                }
+                                                                                            }
+                                                                                        )}
+                                                                                </div>
+                                                                            )}
+                                                                    </>
+                                                                )}
+                                                            </>
+                                                        )}
                                                     </>
                                                 </span>
                                             )
                                             // }
                                         }
                                     })}
-                                    {/* {!openDirectors && idDataKeys?.map((key, index) => (
-                                        <span className={(index + 1) % 2 === 1 ? "col-md-6 py-1" : "col-md-6 text-md-end"} key={index} style={{ borderBottom: "1px solid #ddd", paddingBottom: "0px", marginBottom: "0px" }}>
-
-                                            {((key !== "photo") && (key !== "image") && (key !== "base64Image") && (key !== "signature") && (key !== "directors")) &&
-                                                <>
-                                                    <small>{getKeyLabel(key).replace(/_/g, " ")}</small>
-                                                    <p>{idData[key] || 'Not Available'}</p>
-                                                </>
-                                            }
-                                            {key === "signature" &&
-                                                <>
-                                                    <small>{getKeyLabel(key)}</small> <br />
-                                                    {key === "signature" ?
-                                                        <img style={{ width: "50px" }} src={idData[key]} alt='' />
-                                                        :
-                                                        <p>{'Not Available'}</p>
-                                                    }
-                                                </>
-                                            }
-                                            {key === "directors" && <> </>}
-                                        </span>
-                                    ))} */}
-                                </div>
-                                {(openDirectors && idDataKeys?.filter(dir => (dir === "directors")).length > 0) &&
+                            </div>
+                            {openDirectors &&
+                                idDataKeys?.filter((dir) => dir === 'directors').length > 0 && (
                                     <PaginatedList
-                                        list={idData["directors"]}
+                                        list={idData['directors']}
                                         itemsPerPage={1}
                                         useMinimalControls={true}
                                         leftMargin={1}
@@ -1330,182 +1507,158 @@ export const ReportResponseComponent = (props) => {
                                             <>
                                                 {list.map((value, index) => (
                                                     <div key={index}>
-                                                        <div className='row justify-content-between'>
+                                                        <div className="row justify-content-between">
                                                             <span className="col-md-6">
                                                                 <small>Fullname</small>
-                                                                <p>{value?.name || `${value?.firstname} ${value?.otherName} ${value?.surname}`}</p>
+                                                                <p>
+                                                                    {value?.name ||
+                                                                        `${value?.firstname} ${value?.otherName} ${value?.surname}`}
+                                                                </p>
                                                             </span>
                                                             <span className="col-md-6 text-md-end">
                                                                 <small>Gender</small>
-                                                                <p>{value?.gender || "Not Available"}</p>
+                                                                <p>{value?.gender || '-'}</p>
                                                             </span>
-                                                        </div><hr />
-                                                        <div className='row justify-content-between'>
+                                                        </div>
+                                                        <hr />
+                                                        <div className="row justify-content-between">
                                                             <span className="col-md-6">
                                                                 <small>Date of Birth</small>
-                                                                <p>{moment(value?.dateOfBirth).format("MMMM Do YYYY, h:mm") || "Not Available"}</p>
+                                                                <p>
+                                                                    {/* {moment(
+                                                                        value?.dateOfBirth
+                                                                    ).format(
+                                                                        'MMMM Do YYYY, h:mm'
+                                                                    ) || '-'} */}
+                                                                    {'-'}
+                                                                </p>
                                                             </span>
                                                             <span className="col-md-6 text-md-end">
                                                                 <small>Email</small>
-                                                                <p>{value?.email || "Not Available"}</p>
+                                                                <p>{value?.email || '-'}</p>
                                                             </span>
-                                                        </div><hr />
-                                                        <div className='row justify-content-between'>
+                                                        </div>
+                                                        <hr />
+                                                        <div className="row justify-content-between">
                                                             <span className="col-md-6">
                                                                 <small>Phone Number</small>
-                                                                <p>{value?.phoneNumber || "Not Available"}</p>
+                                                                <p>{value?.phoneNumber || '-'}</p>
                                                             </span>
                                                             <span className="col-md-6 text-md-end">
                                                                 <small>Address</small>
-                                                                <p>{value?.address || "Not Available"}</p>
+                                                                <p>{value?.address || '-'}</p>
                                                             </span>
-                                                        </div><hr />
-                                                        <div className='row justify-content-between'>
+                                                        </div>
+                                                        <hr />
+                                                        <div className="row justify-content-between">
                                                             <span className="col-md-6">
                                                                 <small>City</small>
-                                                                <p>{value?.city || "Not Available"}</p>
+                                                                <p>{value?.city || '-'}</p>
                                                             </span>
                                                             <span className="col-md-6 text-md-end">
                                                                 <small>LGA</small>
-                                                                <p>{value?.lga || "Not Available"}</p>
+                                                                <p>{value?.lga || '-'}</p>
                                                             </span>
-                                                        </div><hr />
-                                                        <div className='row justify-content-between'>
+                                                        </div>
+                                                        <hr />
+                                                        <div className="row justify-content-between">
                                                             <span className="col-md-6">
                                                                 <small>State</small>
-                                                                <p>{value?.state || "Not Available"}</p>
+                                                                <p>{value?.state || '-'}</p>
                                                             </span>
                                                             <span className="col-md-6 text-md-end">
                                                                 <small>Postcode</small>
-                                                                <p>{value?.postcode || "Not Available"}</p>
+                                                                <p>{value?.postcode || '-'}</p>
                                                             </span>
-                                                        </div><hr />
-                                                        <div className='row justify-content-between'>
+                                                        </div>
+                                                        <hr />
+                                                        <div className="row justify-content-between">
                                                             <span className="col-md-6">
                                                                 <small>Country</small>
-                                                                <p>{value?.countryFk?.name || "Not Available"}</p>
+                                                                <p>
+                                                                    {value?.countryFk?.name || '-'}
+                                                                </p>
                                                             </span>
                                                             <span className="col-md-6 text-md-end">
                                                                 <small>Nationality</small>
-                                                                <p>{value?.nationality || "Not Available"}</p>
+                                                                <p>{value?.nationality || '-'}</p>
                                                             </span>
-                                                        </div><hr />
-                                                        <div className='row justify-content-between'>
+                                                        </div>
+                                                        <hr />
+                                                        <div className="row justify-content-between">
                                                             <span className="col-md-6">
                                                                 <small>Identity Number</small>
-                                                                <p>{value?.identityNumber || "Not Available"}</p>
+                                                                <p>
+                                                                    {value?.identityNumber || '-'}
+                                                                </p>
                                                             </span>
                                                             <span className="col-md-6 text-md-end">
                                                                 <small>Accreditation Number</small>
-                                                                <p>{value?.accreditationnumber || "Not Available"}</p>
+                                                                <p>
+                                                                    {value?.accreditationnumber ||
+                                                                        '-'}
+                                                                </p>
                                                             </span>
-                                                        </div><hr />
-                                                        <div className='row justify-content-between'>
+                                                        </div>
+                                                        <hr />
+                                                        <div className="row justify-content-between">
                                                             <span className="col-md-6">
                                                                 <small>Occupation</small>
-                                                                <p>{value?.occupation || "Not Available"}</p>
+                                                                <p>{value?.occupation || '-'}</p>
                                                             </span>
                                                             <span className="col-md-6 text-md-end">
                                                                 <small>Date of Appointment</small>
-                                                                <p>{moment(value?.dateOfAppointment).format("MMMM Do YYYY, h:mm") || "Not Available"}</p>
+                                                                <p>
+                                                                    {/* {moment(
+                                                                        value?.dateOfAppointment
+                                                                    ).format(
+                                                                        'MMMM Do YYYY, h:mm'
+                                                                    ) || '-'} */}
+                                                                    {'-'}
+                                                                </p>
                                                             </span>
-                                                        </div><hr />
-                                                        <div className='row justify-content-between'>
+                                                        </div>
+                                                        <hr />
+                                                        <div className="row justify-content-between">
                                                             <span className="col-md-6">
                                                                 <small>Shares Alloted</small>
-                                                                <p>{value?.numSharesAlloted || value?.shares || "Not Available"}</p>
+                                                                <p>
+                                                                    {value?.numSharesAlloted ||
+                                                                        value?.shares ||
+                                                                        '-'}
+                                                                </p>
                                                             </span>
                                                             <span className="col-md-6 text-md-end">
                                                                 <small>Type of Shares</small>
-                                                                <p>{value?.typeOfShares || "Not Available"}</p>
+                                                                <p>{value?.typeOfShares || '-'}</p>
                                                             </span>
-                                                        </div><hr />
-                                                        <div className='row justify-content-between'>
-                                                            <span className="col-md-6">
-                                                                <small>Affiliate</small>
-                                                                <p>{value?.affiliateTypeFk?.name || "Not Available"}</p>
-                                                            </span>
-                                                            <span className="col-md-6 text-md-end">
-                                                                <small>Affiliate Description</small>
-                                                                <p>{value?.affiliateTypeFk?.description || "Not Available"}</p>
-                                                            </span>
-                                                        </div><hr />
-                                                        <div className='row justify-content-between'>
+                                                        </div>
+                                                        <hr />
+                                                        <div className="row justify-content-between">
                                                             <span className="col-md-6">
                                                                 <small>Status</small>
-                                                                <p>{value?.status === "ACTIVE" ? <ActiveTag /> : <InactiveTag />}</p>
+                                                                <p>
+                                                                    {value?.status === 'ACTIVE' ? (
+                                                                        <ActiveTag />
+                                                                    ) : (
+                                                                        '-'
+                                                                    )}
+                                                                </p>
                                                             </span>
-                                                        </div><hr />
+                                                        </div>
+                                                        <hr />
                                                     </div>
-
                                                 ))}
                                             </>
                                         )}
                                     />
-                                }
-                            </>
+                                )}
+                        </>
                     }
                 </>
-                : responseData?.response_code === "01" ?
-                    <>
-                        {(idDataKeys.length < 1 && (requestData.hasOwnProperty("image_one" || requestData.hasOwnProperty("image_two"))) && (props?.endpName !== "Face Liveliness")) ?
-
-                            <div className="row align-items-center justify-content-between text-center">
-                                <div className="col-md-4 ">
-                                    <img className="response-img" alt="dashboard-user"
-                                        src={imgUrl(requestData?.image_one) }
-                                    /><br />
-                                    <small>ID IMAGE</small>
-                                </div>
-                                <div className="col-md-4 mt-2 ">
-                                    {
-                                        responseData?.status ?
-                                            <div style={{ backgroundColor: 'green', borderRadius: 10, }}>
-                                                <h6 className="m-0 p-0 text-white" style={{font:"12px S-regular",}}>{responseData.message}</h6>
-                                            </div>
-                                            :
-                                            <div style={{ backgroundColor: 'red', borderRadius: 10, }} className=" p-1">
-                                                <h6 className="m-0 p-0 text-white" style={{font:"12px S-regular",}}>{responseData.message}</h6>
-                                            </div>
-                                    }
-                                    <p className="pt-2">Confidence Level: {responseData?.confidence?.toFixed(2)} OF 100</p>
-                                </div>
-                                <div className="col-md-4 ">
-                                    {/* {console.log((getRequestImg()))} */}
-                                    <img className="response-img" alt="dashboard-user"
-                                        src={imgUrl(getRequestImg())}
-                                    /><br />
-                                    <small>SELFIE IMAGE</small>
-                                </div>
-                            </div>
-
-                            :
-                            idDataKeys.length < 1 && requestData.hasOwnProperty("image") ?
-                                <div className="text-center">
-                                    <img className="response-img" alt="dashboard-user"
-                                        src={imgUrl(getRequestImg())}
-                                    />
-                                    <div>
-                                        {
-                                            responseData?.status ?
-                                                <div style={{ backgroundColor: 'green', borderRadius: 10, }}>
-                                                    <h6 className="m-0 p-0 text-white" style={{font:"12px S-regular",}}>{responseData.message}</h6>
-                                                </div>
-                                                :
-                                                <div style={{ backgroundColor: 'red', borderRadius: 10, }} className=" p-1">
-                                                    <h6 className="m-0 p-0 text-white" style={{font:"12px S-regular",}}>{responseData.message}</h6>
-                                                </div>
-                                        }
-                                        <p className="pt-2">Confidence Level: {responseData?.confidence_in_percentage} OF 100</p>
-                                    </div>
-                                </div>
-                                :
-                                <h5 className="text-center mt-5">{responseData.message}</h5>
-                        }
-                    </>
-                    :
-                    <h5 className="text-center mt-5">{responseData.message || responseData?.detail}</h5>
-            }
+            ) : (
+                <h5 className="text-center mt-5">{responseData.message}</h5>
+            )}
         </div>
     );
 }
