@@ -890,20 +890,6 @@ export const ResponseVerificationComponent = (props) => {
                 <>
                     {
                         <>
-                        {/* 
-                            {idData && (
-
-                            <div className='my-2'>
-                                        <PDFDownloadLink
-                                            document={<PDFComponent idData={idData && idData} />}
-                                            fileName={`${idData?.company || idData?.name || idData?.company_name}.pdf`}>
-                                            {({ blob, url, loading, error }) =>
-                                                loading ? 'Loading document...' : 'Download'
-                                            }
-                                        </PDFDownloadLink>
-                                    </div>
-                                                )} 
-                            */}
                             {idDataKeys?.indexOf('directors') !== -1 && (
                                 <div className="text-center mt-4">
                                     <Nav
@@ -1466,13 +1452,13 @@ export const ResponseVerificationComponent = (props) => {
                                                             <span className="col-md-6">
                                                                 <small>Identity Number</small>
                                                                 <p>
-                                                                    {value?.identityNumber || '-'}
+                                                                    {value?.identityNumber || value?.id_number || '-'}
                                                                 </p>
                                                             </span>
                                                             <span className="col-md-6 text-md-end">
-                                                                <small>Accreditation Number</small>
+                                                                <small>Identity Type</small>
                                                                 <p>
-                                                                    {value?.accreditationnumber ||
+                                                                    {value?.id_type ||
                                                                         '-'}
                                                                 </p>
                                                             </span>
@@ -1511,25 +1497,13 @@ export const ResponseVerificationComponent = (props) => {
                                                             </span>
                                                         </div>
                                                         <hr />
-                                                        {/* <div className="row justify-content-between">
-                                                            <span className="col-md-6">
-                                                                <small>Affiliate</small>
-                                                                <p>
-                                                                    {value?.affiliateTypeFk?.name ||
-                                                                        '-'}
-                                                                </p>
+                                                      
+                                                        <div className="row justify-content-between">
+                                                        <span className="col-md-6">
+                                                                <small>Percentage</small>
+                                                                <p>{value?.percentage || '-'}</p>
                                                             </span>
                                                             <span className="col-md-6 text-md-end">
-                                                                <small>Affiliate Description</small>
-                                                                <p>
-                                                                    {value?.affiliateTypeFk
-                                                                        ?.description || '-'}
-                                                                </p>
-                                                            </span>
-                                                        </div>
-                                                        <hr /> */}
-                                                        <div className="row justify-content-between">
-                                                            <span className="col-md-6">
                                                                 <small>Status</small>
                                                                 <p>
                                                                     {value?.status === 'ACTIVE' ? (

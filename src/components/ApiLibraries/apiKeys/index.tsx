@@ -148,8 +148,6 @@ export default function APIKeys(props: any) {
         axios
             .request(requestOptions)
             .then((res) => {
-                console.log(res.data.sandbox_api_key);
-                
                 setApiKeys(res.data)
             })
             .catch((e: any) => {
