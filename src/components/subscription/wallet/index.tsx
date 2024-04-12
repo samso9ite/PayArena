@@ -15,6 +15,7 @@ import moment from "moment";
 import success from '../../../assets/success.svg'
 import axios from "axios";
 import { authorizationRedirect } from "../../../redux/constants/api";
+import ExportToExcel from "../../../utils/exportToExcel";
 
 export default function SubWalletComp(props:any) {
 
@@ -46,6 +47,7 @@ export default function SubWalletComp(props:any) {
     const walletBalanceState = useSelector((state: RootState) => state.walletBalanceReducer);
     const [searchData, setSearchData] = useState('')
     const [resultData, setResultData] = useState<any>()
+    const [excelData, setExcelData] = useState<any>()
 
 
     const dispatch = useDispatch()
@@ -112,9 +114,28 @@ export default function SubWalletComp(props:any) {
         dispatch(organisationInfoRequest(data))
     }
 
+    let xlsData = (data:any) => {
+        let arr:any[] = []
+        data.forEach((item:any) => {
+            let itemArr = {
+                reference: item.reference,
+                name: item.user.full_name,
+                description: item.description,
+                amount: item.currency.code + item.amount,
+                balance_before: item.balance_before,
+                balance_after: item.balance_after,
+                date: item.created_on,
+                status: item.status
+            }
+            arr.push(itemArr)
+        })
+        return arr
+    }
+    
     let getWalletHist = () => {
         const callback = (data: any) => {
             setResultData(data)
+            setExcelData(xlsData(data.results))
             if (data.status) {
                 setNotifTitle("Success")
                 setNotif(data.detail)
@@ -153,6 +174,7 @@ export default function SubWalletComp(props:any) {
             .request(requestOptions)
             .then((res) => {
                 setResultData(res.data)
+                setExcelData(xlsData(res.data.results))
             })
             .catch((e: any) => {
                 if (e.response.request.status === 401) {
@@ -355,52 +377,6 @@ export default function SubWalletComp(props:any) {
         };
         dispatch(walletToWalletTransferRequest(data))
     }
-
-    // let fundWallet = () => {
-    //     const callback = (data: any) => {
-    //         if (data.status) {
-    //             window.location.href = data?.data?.url
-    //         }
-    //         else {
-    //             setNotifTitle("Error")
-    //             setNotif(data.detail)
-    //             setNotifVal(true)
-    //         }
-    //     };
-    //     if (!amount) {
-    //         setNotifTitle("Error")
-    //         setNotif("Please enter an Amount")
-    //         setNotifVal(true)
-    //         return
-    //     }
-    //     else if(paymentCurrency === "NGN" && (amount < 5000)){
-    //         setNotifTitle("Error")
-    //         setNotif("Amount cannot be less than NGN5000")
-    //         setNotifVal(true)
-    //         return
-    //     }
-    //     else if (!paymentMethod){
-    //         setNotifTitle("Error")
-    //         setNotif("Please select payment method")
-    //         setNotifVal(true)
-    //         return
-    //     }
-    //     else if (paymentMethod === "transfer"){
-    //         setFundPage("2")
-    //         return
-    //     }
-    //     let data: any = {
-    //         values: {
-    //             amount,
-    //             email: organisationInfoState?.resp?.data?.organisation.official_email,
-    //             currency: paymentCurrency,
-    //             success_url: global.appBaseUrl + "Subscription?success=true",
-    //             cancel_url: global.appBaseUrl + "Subscription?failed=true"
-    //         },
-    //         callback,
-    //     };
-    //     dispatch(topUpWalletRequest(data))
-    // }
 
 	let copyFunc = (val:any)=>{
 		navigator.clipboard.writeText(val)
@@ -749,7 +725,6 @@ export default function SubWalletComp(props:any) {
                                                             onSubmit={fetchDataBySearch}
                                                             >
                                                             <input
-                                                                // value={searchData}
                                                                 type="text"
                                                                 className="form-control"
                                                                 placeholder="Search by  reference, name, email, amount, press enter to search"
@@ -760,25 +735,9 @@ export default function SubWalletComp(props:any) {
                                                         </form>
                                                     </div>
                                                    
-                                                    {/* <div className="col-6 col-md-3 col-lg-2 pt-3 pt-md-0">
-                                                        <button
-                                                            className="px-3 d-flex align-items-center justify-content-center rounded-1 w-100"
-                                                            style={{
-                                                                outline: 'none',
-                                                                background: '#007DA3',
-                                                                color: '#ffffff',
-                                                                border: '1px solid #62789D',
-                                                                fontSize: '15px',
-                                                                height: '50px',
-                                                                cursor: 'pointer',
-                                                            }}
-                                                            // onClick={handleFileModal}
-                                                           >
-                                                            Export
-                                                        </button>
-
-                                                     
-                                                    </div> */}
+                                                    <div className="col-6 col-md-3 col-lg-2 pt-3 pt-md-0">
+                                                       <ExportToExcel fileName="Transactions" excelData={excelData} />
+                                                    </div>
                                                 </div>
                                 </div>
                             </div>
