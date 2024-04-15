@@ -1,13 +1,13 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Development Deployment
+name: Production Deployment
 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ dev ]
+    branches: [ main ]
   pull_request:
-    branches: [ dev ]
+    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     
     #environment
-    environment: dev
+    environment: production
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -46,6 +46,7 @@ jobs:
           REACT_APP_API_IDENTITYRADAR_URL: ${{ secrets.REACT_APP_API_IDENTITYRADAR_URL }}
           REACT_APP_API_BACKGROUNDCHECK_URL: ${{ secrets.REACT_APP_API_BACKGROUNDCHECK_URL }}
           REACT_APP_SSO_URL: ${{ secrets.REACT_APP_SSO_URL }}
+          REACT_APP_API_REPORTBILLING_URL: ${{ secrets.REACT_APP_API_REPORTBILLING_URL }}
          
           
       # Syncs your 'build' folder from buildng the Vue app with an S3 bucket
@@ -54,7 +55,7 @@ jobs:
         with:
           args: --delete
         env:
-          AWS_S3_BUCKET: 'identitypass-dashboard-live'
+          AWS_S3_BUCKET: ${{ secrets.CLOUDFRONT_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-2'
