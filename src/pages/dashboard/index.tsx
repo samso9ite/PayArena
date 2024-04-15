@@ -1,5 +1,5 @@
 import TopupComp from '../../components/wallet/topup'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/reducers'
 import { useEffect, useState } from 'react'
@@ -14,7 +14,7 @@ import NotificationToast from '../../components/utils/notifToast'
 import global from '../../redux/constants/global'
 import GetStartedComp from '../../components/wrapper/getStarted'
 // import { PaginatedList } from "react-paginated-list";
-import { Carousel, Spinner } from 'react-bootstrap'
+import { Alert, Carousel, Spinner } from 'react-bootstrap'
 import walletImg from '../../assets/wallet-bg-2.png'
 import premblyLogo from '../../assets/logo.png'
 import announcement from '../../assets/announcement.svg'
@@ -26,9 +26,9 @@ import {
     UnavailableTag,
     SuccessTag,
 } from '../../components/utils'
-// import { tourGuideCompleteRequest, tourGuideStatusRequest } from '../../redux/actions/tourGuide'
 import SetMigrationPasswordComp from './migrationPassword'
 import { walletBalanceRequest } from '../../redux/actions/wallet'
+import emptyImg from '../../assets/empty.svg'
 import Cookies from 'js-cookie'
 
 export default function Dashboard(props: any) {
@@ -194,6 +194,9 @@ export default function Dashboard(props: any) {
         setTourGuide({ ...tourGuide, onGoing: true, currentStep: 44 })
     }
 
+    const truncateString= (str:string, maxLength:number) => {
+        return [...str].slice(0, maxLength).join('') + (str.length > maxLength ? "..." : "");
+    }
     return (
         <div className="dashboard-area">
             {notif && notifVal && (
@@ -392,6 +395,15 @@ export default function Dashboard(props: any) {
 
             <div className="container-fluid px-md-4 mt-4">
                 <div className="row">
+                       {    organisationInfoState?.resp?.data?.organisation?.verification_status &&  
+                            organisationInfoState?.resp?.data?.organisation?.business_document == null &&
+                            <Alert variant="warning" style={{backgroundColor:"#FEC84B", border:"#FDB002"}}>
+                                <span style={{ color:"black"}}>
+                                    <i className="ri-error-warning-fill" style={{color:"white", fontSize:"20px", paddingRight:"15px"}}></i> 
+                                        Finish setting up your account by completing your Business Information verification on IdentityPass.<Link to={"/Settings"}> Go to Settings</Link>
+                                </span>
+                            </Alert>
+                        }
                         <div className="col-md-4">
                             <div className="pb-4">
                                 <h5 style={{textTransform:"capitalize"}}>Welcome, {organisationInfoState?.resp?.data?.user?.first_name}!</h5>
@@ -400,7 +412,7 @@ export default function Dashboard(props: any) {
                         </div>
                         <div className="col-md-8" >
                             {hostName == "Prembly" &&
-                                <a target='_blank' href={hostName == "Prembly" ? "https://youtu.be/Ou35K3E0rWc" : ""}> <button className='btn' style={{float:'right', backgroundColor:'#ECEBF8', color:'#332ECF'}}>
+                                <a target='_blank' href={hostName == "Prembly" ? "https://youtu.be/Ou35K3E0rWc" : "https://youtu.be/Cy2buzNKxEEhttps://youtu.be/Cy2buzNKxEE"}> <button className='btn' style={{float:'right', backgroundColor:'#ECEBF8', color:'#332ECF'}}>
                                     Watch a tour <i className="ri-arrow-right-line ms-2" /></button>
                                 </a>
                             }
@@ -494,29 +506,38 @@ export default function Dashboard(props: any) {
                     <p>In the last 30days</p>
 
                     <div className="row">
-                        {dashboardState?.resp?.data?.most_used?.map((val: any, index: number) => (
-                            <div className="col-lg-3" key={index}>
-                                <div className="card  mt-3" style={{
-                                     backgroundColor: '#fff',
-                                     boxShadow: "3px 3px 3px 3px #B853E614",
-                                     border:'none',
-                                }}>
-                                    <div className="card-body">
-                                        <span style={{color:'#323232', fontWeight:'500', fontSize:'14px'}}> {val?.product_name} </span>
-                                        <div className="d-flex justify-content-between">
-                                        <h5 className="pt-2">
-                                            {val?.total}
-                                            <span style={{ fontSize: 12, color: "#62789D" }}> Checks</span>
-                                        </h5>
-                                        <i className="ri-arrow-right-line ms-2" style={{fontSize:"25px", color:"#323232"}}/>
+                        {dashboardState?.resp?.data?.most_used?.length > 0 ? 
+                            dashboardState?.resp?.data?.most_used?.map((val: any, index: number) => (
+                                <div key={index} style={{width:"20%"}}>
+                                    <div className="card  mt-3" style={{
+                                            backgroundColor: '#fff',
+                                            boxShadow: "3px 3px 3px 3px #B853E614",
+                                            border:'none',
+                                    }}>
+                                        <div className="card-body">
+                                            <span style={{color:'#323232', fontWeight:'500', fontSize:'14px'}}> {truncateString(val?.endpoint_name, 20)} </span>
+                                            <div className="d-flex justify-content-between">
+                                                <h5 className="pt-2">
+                                                    {val?.total}
+                                                    <span style={{ fontSize: 12, color: "#62789D" }}> Checks</span>
+                                                </h5>
+                                                <i className="ri-arrow-right-line ms-2" style={{fontSize:"25px", color:"#323232"}}/>
+                                            </div>
+                                            {/* <div className="d-flex justify-content-between">
+                                                <span className="success-tag">10 <img src={riseArrow} /></span>
+                                            </div> */}
                                         </div>
-                                        {/* <div className="d-flex justify-content-between">
-                                            <span className="success-tag">10 <img src={riseArrow} /></span>
-                                        </div> */}
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                        )) : 
+                            <center>
+                                <div>
+                                    <img src={emptyImg} />
+                                    <h5>No most used endpoints results yet</h5>
+                                    <p style={{maxWidth:"25%"}}>Most used APIs will appear here when you carry out verifications</p>
+                                </div>
+                            </center>
+                        }
                     </div>
                     </div>
                 }
@@ -537,18 +558,29 @@ export default function Dashboard(props: any) {
                     </button>  <button className='btn btn-default' style={{border:'1px solid #62789D', color:'#62789D',  marginLeft:'10px'}}>
                     <i className="ri-line-chart-line"></i> Graph
                     </button> */}
-                <div className=" card my-4 px-md-3 py-4" style={{border:'none'}}>
-                    <div className="card-body">
-                        {/* <div className="d-flex justify-content-end" style={{color:'#62789D'}}>
-                            <i className="ri-checkbox-blank-circle-fill"  style={{color:'#542D77'}}/> Email Intelligence  <i className="ri-checkbox-blank-circle-fill" style={{color:'#9154C7', paddingLeft:'10px'}}/> Phone Intelligence
-                            <i className="ri-checkbox-blank-circle-fill" style={{color:'#BD98DD', paddingLeft:'10px'}}/> Phone Number Verification <i className="ri-checkbox-blank-circle-fill" style={{color:'#DECCEF', paddingLeft:'10px'}}/> BVN Check 
-                            <i className="ri-checkbox-blank-circle-fill" style={{color:'#E9DDF4', paddingLeft:'10px'}}/> NIN Verification  
-                        </div> */}
-                        <div style={{ backgroundColor: '#FFFFFF' }} className="p-4">
-                            <DashboardChart chartData={dashboardState?.resp?.data?.graph} />
+                    <div className=" card my-4 px-md-3 py-4" style={{border:'none'}}>
+                        <div className="card-body">
+                        {dashboardState?.resp?.data?.most_used?.length > 0 ?  
+                            <>
+                                {/* <div className="d-flex justify-content-end" style={{color:'#62789D'}}>
+                                    <i className="ri-checkbox-blank-circle-fill"  style={{color:'#542D77'}}/> Email Intelligence  <i className="ri-checkbox-blank-circle-fill" style={{color:'#9154C7', paddingLeft:'10px'}}/> Phone Intelligence
+                                    <i className="ri-checkbox-blank-circle-fill" style={{color:'#BD98DD', paddingLeft:'10px'}}/> Phone Number Verification <i className="ri-checkbox-blank-circle-fill" style={{color:'#DECCEF', paddingLeft:'10px'}}/> BVN Check 
+                                    <i className="ri-checkbox-blank-circle-fill" style={{color:'#E9DDF4', paddingLeft:'10px'}}/> NIN Verification  
+                                </div> */}
+                                <div style={{ backgroundColor: '#FFFFFF' }} className="p-4">
+                                    {/* <DashboardChart chartData={dashboardState?.resp?.data?.graph} /> */}
+                                </div>
+                            </> :
+                            <center>
+                                <div>
+                                    <img src={emptyImg} />
+                                    <h5>No charts results yet</h5>
+                                    <p style={{maxWidth:"25%"}}>Most used APIs will appear on your chart when you carry out verifications</p>
+                                </div>
+                            </center>
+                            }
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>

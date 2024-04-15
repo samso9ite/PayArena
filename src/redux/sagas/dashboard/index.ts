@@ -14,7 +14,7 @@ let host = Cookies.get("hostName") || ""
 
 const dashboardInfo = async (payload: any) => {
   const { data } = await axios.get<IDashboardInfo[]>(
-    global.apiBaseUrl + global.liveUrl + "api/v1/report/log/internal/dashboard",
+    global.apiBaseUrl + global.idpassApiUrl + "verification/log/metrics/",
     {
       headers: {
         "Content-Type": "application/json",

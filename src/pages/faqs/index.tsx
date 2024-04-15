@@ -20,7 +20,7 @@ export default function FaqsPage(){
     })
     const [pageNumber, setPageNumber] = useState('1')
     const faqState = useSelector((state: RootState) => state.faqReducer);
-
+    let hostName = Cookies.get('hostName') || ''
     let getFaqs = () => {
         const callback = (data: any) => {
             console.log(data);
@@ -153,7 +153,12 @@ export default function FaqsPage(){
                         <div>
                             <h5>Still have a question?</h5>
                             <p>Our contact team will be happy to help you.</p>
-                            <button className="btn btn-lg btn-green">Contact Us</button>
+                            {hostName== "Prembly" ? <a href="mailto:team@prembly.com" target="_blank">
+                                <button className="btn btn-lg btn-green">Contact Us</button></a> : 
+                                <a href="mailto:support@peleza.com" target="_blank">
+                                    <button className="btn btn-lg btn-green">Contact Us</button>
+                                </a>
+                            }
                         </div>
                     </>
                     ): 

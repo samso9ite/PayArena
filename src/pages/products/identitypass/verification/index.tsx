@@ -33,9 +33,6 @@ export default function IdPassVerificationPage(props: any) {
                         <Tab eventKey="bulk" title="Bulk" mountOnEnter={true} unmountOnExit={true}>
                             <PassBulkVerificationComp />
                         </Tab>
-                        {/* <Tab eventKey="verifResults" title="Verification Results">
-							<PassVerificationHistoryComp />
-						</Tab> */}
                     </Tabs>
                 </div>
             ) : (
