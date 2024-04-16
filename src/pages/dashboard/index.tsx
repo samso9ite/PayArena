@@ -207,12 +207,11 @@ export default function Dashboard(props: any) {
                 />
             )}
 
-            {dashboardState?.isLoading || organisationInfoState?.isLoading
+            {organisationInfoState?.isLoading
                 ? props.changeLoadingState(true)
                 : props.changeLoadingState(false)}
 
             {!tourGuide.isActive &&
-                !dashboardState?.isLoading &&
                 !organisationInfoState?.isLoading &&
                 organisationInfoState?.resp?.data?.organisation?.indemnity_signed &&
                 ((organisationInfoState?.resp?.data?.user?.migrated &&
