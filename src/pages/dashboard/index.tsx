@@ -394,8 +394,7 @@ export default function Dashboard(props: any) {
 
             <div className="container-fluid px-md-4 mt-4">
                 <div className="row">
-                       {    organisationInfoState?.resp?.data?.organisation?.verification_status &&  
-                            organisationInfoState?.resp?.data?.organisation?.business_document == null &&
+                       {    organisationInfoState?.resp?.data?.organisation?.verification_status !== "APPROVED" &&  
                             <Alert variant="warning" style={{backgroundColor:"#FEC84B", border:"#FDB002"}}>
                                 <span style={{ color:"black"}}>
                                     <i className="ri-error-warning-fill" style={{color:"white", fontSize:"20px", paddingRight:"15px"}}></i> 

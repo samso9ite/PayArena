@@ -42,7 +42,7 @@ const announcement = async (payload: any) => {
   );
   return data;
 };
-// https://api.prembly.com/identitypass/notification/announcements/all?platform=PELEZA%27
+
 const viewAnnouncement = async (payload: any) => {
   const { data } = await axios.get<IViewAnnouncement[]>(
     global.apiBaseUrl + global.liveUrl + `customer/announcement/${payload.ref}/content`,
