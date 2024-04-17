@@ -329,7 +329,7 @@ export default function SubComp(props: any) {
                                                         <table className="table">
                                                             <thead className="">
                                                                 <tr>
-                                                                    <th scope="col">Ref</th>
+                                                                    <th scope="col">Refs</th>
                                                                     <th scope="col">Product</th>
                                                                     <th scope="col">Amount</th>
                                                                     <th scope="col">Date</th>
