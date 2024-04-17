@@ -30,6 +30,8 @@ export default function SubComp(props: any) {
     const plansByTenureState = useSelector((state: RootState) => state.subPlansByTenureReducer)
     const subLogsState = useSelector((state: RootState) => state.subLogsReducer)
     const currentSubState = useSelector((state: RootState) => state.currentSubReducer)
+    console.log(currentSubState);
+    
 
     const dispatch = useDispatch()
 
@@ -200,8 +202,7 @@ export default function SubComp(props: any) {
                                 <div className="text-left mt-3 text-black">
                                     <h5>Select platform</h5>
                                     <p>
-                                        Switch between Identitypass and Identityradar and choose
-                                        your preferred plan.
+                                        Switch to IdentityPass
                                     </p>
                                 </div>
                                 <div className="text-left d-flex flex-row align-items-center justify-content-between btn-reset">
@@ -328,7 +329,7 @@ export default function SubComp(props: any) {
                                                         <table className="table">
                                                             <thead className="">
                                                                 <tr>
-                                                                    <th scope="col">Ref</th>
+                                                                    <th scope="col">Refs</th>
                                                                     <th scope="col">Product</th>
                                                                     <th scope="col">Amount</th>
                                                                     <th scope="col">Date</th>

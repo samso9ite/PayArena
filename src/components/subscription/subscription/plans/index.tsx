@@ -31,6 +31,9 @@ export default function SubPlans(props: any) {
     const plansByTenureState = useSelector((state: RootState) => state.subPlansByTenureReducer)
     const subLogsState = useSelector((state: RootState) => state.subLogsReducer)
 
+    console.log(plansByTenureState);
+    
+
     const dispatch = useDispatch()
 
     useEffect(() => {
