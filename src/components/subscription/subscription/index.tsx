@@ -280,7 +280,8 @@ export default function SubComp(props: any) {
                                                 <>
                                                     {list?.map((val: any, i: number) => (
                                                         <div key={i}>
-                                                            <h5>{val?.plan_name}</h5>
+                                                            {/* <h5>{val?.plan_name}</h5> */}
+                                                            <h5>Premium Plan</h5>
                                                             <hr />
                                                             <div className="mt-5">
                                                                 <small>

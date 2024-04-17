@@ -532,7 +532,7 @@ export default function Dashboard(props: any) {
                                 <div>
                                     <img src={emptyImg} />
                                     <h5>No most used endpoints results yet</h5>
-                                    <p style={{maxWidth:"25%"}}>Most used APIs will appear here when you carry out verifications</p>
+                                    <p style={{maxWidth:"25%"}}>Most used APIs will appear here.</p>
                                 </div>
                             </center>
                         }
@@ -573,7 +573,7 @@ export default function Dashboard(props: any) {
                                 <div>
                                     <img src={emptyImg} />
                                     <h5>No charts results yet</h5>
-                                    <p style={{maxWidth:"25%"}}>Most used APIs will appear on your chart when you carry out verifications</p>
+                                    <p style={{maxWidth:"25%"}}>Most used APIs chart will appear here</p>
                                 </div>
                             </center>
                             }
