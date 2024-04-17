@@ -764,8 +764,8 @@ export default function SubWalletComp(props:any) {
                                         <tbody>
                                             {resultData?.results?.map((value: any, index: React.Key | null | undefined) => (
                                                 <tr key={index}>
-                                                    <th scope="row">{value?.reference}</th>
-                                                    <td>{value?.description}</td>
+                                                    <th scope="row" className="restrict-width">{value?.reference}</th>
+                                                    <td className="restrict-width">{value?.description}</td>
                                                     <td>{value?.user.full_name}</td>
                                                     <td>{value?.currency.code} {value?.amount}</td>
                                                     <td>{value?.balance_before}</td>
