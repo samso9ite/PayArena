@@ -267,6 +267,9 @@ a {
     /* number of lines to show */
     -webkit-box-orient: vertical;
 }
+.restrict-width{
+    max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
 
 .link {
     text-decoration: none;
