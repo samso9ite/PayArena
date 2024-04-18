@@ -36,6 +36,7 @@ export default function AuthWrapper(props: any) {
     let getLatestToken = (session: string) => {
         setTokenLoading(true)
         const callback = (data: any) => {
+            console.log(data);
             
             if (data?.status == true) {
                 

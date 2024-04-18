@@ -191,10 +191,10 @@ export default function ChannelComp(props: any) {
         const valuesArray = Object.values(payloadData);
         const firstValue = valuesArray.length > 0 ? valuesArray[0] : undefined;
         
-        // filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || 
-        //     (!item.has_parent && !item.skip_required))   
+        filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || 
+            (!item.has_parent && !item.skip_required))   
             
-        filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || !item.has_parent)   
+        // filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || !item.has_parent)   
         if (
                 Object?.keys(payloadData)?.length < 1 || (Object?.keys(payloadData)?.length !== filteredData?.length)
             // (props?.channelPayloads?.[0]?.is_required &&
