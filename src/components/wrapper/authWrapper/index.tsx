@@ -36,7 +36,6 @@ export default function AuthWrapper(props: any) {
     let getLatestToken = (session: string) => {
         setTokenLoading(true)
         const callback = (data: any) => {
-            
             if (data?.status == true) {
                 
                 queryParams.delete('session')
