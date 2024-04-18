@@ -927,6 +927,7 @@ export const ResponseVerificationComponent = (props) => {
                             props?.channel !== 'ADDRESS_NG_STATUS' &&
                             props?.channel !== 'PEZESHA_PETASCORE_SYNC' &&
                             props.channel !== 'VEHICLE-ID' && 
+                            props.channel !== 'KENYA_BRS_DETAIL' &&
                             Object.keys(idData).length !== 0 ? (
                                 <PDFDownloadLink
                                     className="d-flex align-items-center btn btn-deep-green mx-auto my-3 px-3"
