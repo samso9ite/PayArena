@@ -387,13 +387,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                  <Text style={{fontSize:'8px', marginTop:"1%", marginBottom: "0.5%"}} >{getKeyLabel(newVal[0])}</Text>
                                                     {Object.entries(newVal[1]).map(innerNewVal => (
                                                         <View key={innerNewVal[0]} style={styles.test_two}>
-                                                            {
-                                                            /* <Text style={styles.company_details_subtitle_right_two}>
-                                                            {getKeyLabel(innerNewVal[0])?.replace(
-                                                                    /_/g,
-                                                                    ' '
-                                                                )}
-                                                            </Text> */}
+                                                           
                                                             {
                                                                 (typeof innerNewVal[1] === "object") ?
                                                                     Object.entries(innerNewVal[1]).map(innerChildVal => (
@@ -568,106 +562,67 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                 </View>
 
                 <View style={styles.company_details}>
-                    <Text style={styles.company_details_text}>Company Registration Details</Text>
-                    {!Array.isArray(idData)
-                        ? Object?.entries(idData).map((v) => {
+    <Text style={styles.company_details_text}>Company Registration Details</Text>
+    {!Array.isArray(idData)
+        ? Object.entries(idData).map(([key, value]) => {
+              if (key !== 'file_base64' && value !== null && typeof value === 'object' && !Array.isArray(value) && key !== 'directors') {
+                  return (
+                      <React.Fragment key={key}>
+                          <View style={styles.test}>
+                              <Text style={[styles.company_details_subtitle_right, { width: "30%" }]}>
+                                  {getKeyLabel(key)?.replace(/_/g, ' ')}
+                              </Text>
+                          </View>
+                          {Object.entries(value).map(([childKey, childVal]) => {
                               return (
-                                  v[0] !== 'file_base64' &&
-                                    v[1] !== null && typeof v[1] === 'string' ? (
-                                        <View style={styles.test}>
-                                            <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
-                                            { getKeyLabel(v[0])?.replace(
-                                                /_/g,
-                                                ' '
-                                            )}
-                                            </Text>
-                                            <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
-                                                {v[1] !== null ? v[1] : 'N/A'}
-                                            </Text>
-                                        </View>
-                                    ) :
-                                    
-                                  v[1] !== null && typeof v[1] === "object" && v[0] !== "directors" && (
-                                        (Object.entries(v[1]).map(([key, value]) => (
-                                           value !== null && typeof value == "object" 
-                                            ?
-                                            <>
-                                            <View style={styles.test}>
-                                                <Text style={[styles.company_details_subtitle_right, {width:"30%", fontWeight:800}]}>
-                                                    { getKeyLabel(key)?.replace(
-                                                        /_/g,
-                                                        ' '
-                                                    )}
-                                                </Text>
-                                            </View> 
-                                            { Object.entries(value).map(([key, childVal]) => (
-                                              childVal !== null && typeof childVal == "object" ?
-                                               Object.entries(childVal).map(([key, subChildVal]) => (
-                                                <View style={styles.test}>
-                                                    <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
-                                                        { getKeyLabel(key)?.replace(
-                                                                /_/g,
-                                                                ' '
-                                                            )}
-                                                    </Text>
-                                                    <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
-                                                        {subChildVal ? subChildVal : 'N/A'}
-                                                    </Text>
-                                                </View> 
-                                                ))
-                                                    :
-                                                <View style={styles.test}>
-                                                    <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
-                                                        { getKeyLabel(key)?.replace(
-                                                                /_/g,
-                                                                ' '
-                                                            )}
-                                                    </Text>
-                                                    <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
-                                                        {childVal ? childVal : 'N/A'}
-                                                    </Text>
-                                                </View> 
-                                              )) 
-                                            }
-                                                </>
-                                            :
-                                                <View style={styles.test}>
-                                                    <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
-                                                        { getKeyLabel(key)?.replace(
-                                                            /_/g,
-                                                            ' '
-                                                        )}
-                                                    </Text>
-                                                    <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
-                                                        {(value || value !== null) ? value : 'N/A'}
-                                                    </Text>
-                                                </View>
-                                            
-                                            )
-                                        ))
-                                    )
-                              )
-                          })
-                        : Array?.isArray(idData) &&
-                          idData.map((v, index) => {
-                              return (
-                                 v !== null && Object.entries(v).map(([key, value]) =>
-                                      value !== null && typeof value === 'object' ? (
-                                          value?.map((vt) => <Text></Text>)
+                                  <View style={styles.test} key={childKey}>
+                                      <Text style={[styles.company_details_subtitle_right, { width: "30%" }]}>
+                                          {getKeyLabel(childKey)?.replace(/_/g, ' ')}
+                                      </Text>
+                                      {typeof childVal === "object" ? (
+                                          Object.entries(childVal).map(([subChildKey, subChildVal]) => (
+                                              <View style={styles.test} key={subChildKey}>
+                                                  <Text style={[styles.company_details_subtitle_left, { width: "100%" }]}>
+                                                      {getKeyLabel(subChildKey)?.replace(/_/g, ' ')}: {subChildVal || 'N/A'}
+                                                  </Text>
+                                              </View>
+                                          ))
                                       ) : (
-                                          <View style={styles.test}>
-                                              <Text style={styles.company_details_subtitle_right}>
-                                                  {key}
-                                              </Text>
-                                              <Text style={styles.company_details_subtitle_left}>
-                                                  {value !== null ? value : 'N/A'}
-                                              </Text>
-                                          </View>
-                                      )
-                                  )
-                                )
+                                          <Text style={[styles.company_details_subtitle_left, { width: "100%" }]}>
+                                              {childVal || 'N/A'}
+                                          </Text>
+                                      )}
+                                  </View>
+                              );
                           })}
-                </View>
+                      </React.Fragment>
+                  );
+              } else {
+                  return null;
+              }
+          })
+        : Array.isArray(idData) &&
+          idData.map((v, index) => {
+              return (
+                  <View key={index}>
+                      {v !== null &&
+                          Object.entries(v).map(([key, value]) => {
+                              return (
+                                  <View style={styles.test} key={key}>
+                                      <Text style={styles.company_details_subtitle_right}>
+                                          {key}
+                                      </Text>
+                                      <Text style={styles.company_details_subtitle_left}>
+                                          {value !== null ? value : 'N/A'}
+                                      </Text>
+                                  </View>
+                              );
+                          })}
+                  </View>
+              );
+          })}
+</View>
+
 
                 {idData?.directors && Object?.values(idData?.directors)?.length && (
                     <View style={styles.company_details}>
@@ -927,7 +882,7 @@ export const ResponseVerificationComponent = (props) => {
                             props?.channel !== 'ADDRESS_NG_STATUS' &&
                             props?.channel !== 'PEZESHA_PETASCORE_SYNC' &&
                             props.channel !== 'VEHICLE-ID' && 
-                            props.channel !== 'KENYA_BRS_DETAIL' &&
+                            // props.channel !== 'KENYA_BRS_DETAIL' &&
                             Object.keys(idData).length !== 0 ? (
                                 <PDFDownloadLink
                                     className="d-flex align-items-center btn btn-deep-green mx-auto my-3 px-3"
@@ -1115,8 +1070,7 @@ export const ResponseVerificationComponent = (props) => {
                                                                                                                         Object.entries(grandChildVal).map(([greatGrandChildKey, greatGrandChildVal], greatGrandChildIndex) => (
                                                                                                                             <React.Fragment key={greatGrandChildIndex}>
                                                                                                                                 <p>{getKeyLabel(greatGrandChildKey)?.replace(/_/g, " ")}: {`${greatGrandChildVal || '-'}`}</p>
-                                                                                                                                {/* <p>{`${greatGrandChildVal || '-'}`}</p> */}
-                                                                                                                            </React.Fragment>
+                                                                                                                             </React.Fragment>
                                                                                                                         ))
                                                                                                                         :
                                                                                                                         <p>{`${grandChildVal || '-'}`}</p>
