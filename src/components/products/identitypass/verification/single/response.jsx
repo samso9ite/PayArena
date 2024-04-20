@@ -387,13 +387,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                  <Text style={{fontSize:'8px', marginTop:"1%", marginBottom: "0.5%"}} >{getKeyLabel(newVal[0])}</Text>
                                                     {Object.entries(newVal[1]).map(innerNewVal => (
                                                         <View key={innerNewVal[0]} style={styles.test_two}>
-                                                            {
-                                                            /* <Text style={styles.company_details_subtitle_right_two}>
-                                                            {getKeyLabel(innerNewVal[0])?.replace(
-                                                                    /_/g,
-                                                                    ' '
-                                                                )}
-                                                            </Text> */}
+                                                           
                                                             {
                                                                 (typeof innerNewVal[1] === "object") ?
                                                                     Object.entries(innerNewVal[1]).map(innerChildVal => (
@@ -572,7 +566,9 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                     {!Array.isArray(idData)
                         ? Object?.entries(idData).map((v) => {
                               return (
+                                
                                   v[0] !== 'file_base64' &&
+                                  
                                     v[1] !== null && typeof v[1] === 'string' ? (
                                         <View style={styles.test}>
                                             <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
@@ -587,8 +583,18 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                         </View>
                                     ) :
                                     
-                                  v[1] !== null && typeof v[1] === "object" && v[0] !== "directors" && (
-                                        (Object.entries(v[1]).map(([key, value]) => (
+                                    v[1] !== null && typeof v[1] === "object" && v[0] !== "directors" && ((
+                                       
+                                            // <View style={styles.test}>
+                                            //     <Text style={[styles.company_details_subtitle_right, {width:"30%", fontWeight:800}]}>
+                                            //         { getKeyLabel(v[0])?.replace(
+                                            //             /_/g,
+                                            //             ' '
+                                            //         )}
+                                            //     </Text>
+                                            // </View> 
+                                           
+                                            Object.entries(v[1]).map(([key, value]) => (
                                            value !== null && typeof value == "object" 
                                             ?
                                             <>
@@ -600,43 +606,59 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                     )}
                                                 </Text>
                                             </View> 
-                                            { Object.entries(value).map(([key, childVal]) => (
-                                              childVal !== null && typeof childVal == "object" ?
-                                               Object.entries(childVal).map(([key, subChildVal]) => (
-                                                <View style={styles.test}>
-                                                    <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
-                                                        { getKeyLabel(key)?.replace(
-                                                                /_/g,
-                                                                ' '
-                                                            )}
-                                                    </Text>
-                                                    <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
-                                                        {subChildVal ? subChildVal : 'N/A'}
-                                                    </Text>
-                                                </View> 
-                                                ))
-                                                    :
-                                                <View style={styles.test}>
-                                                    <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
-                                                        { getKeyLabel(key)?.replace(
-                                                                /_/g,
-                                                                ' '
-                                                            )}
-                                                    </Text>
-                                                    <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
-                                                        {childVal ? childVal : 'N/A'}
-                                                    </Text>
-                                                </View> 
-                                              )) 
-                                            }
-                                                </>
+                                            
+                                            {Object.entries(value).map(([key, childVal]) => {
+                                                return (
+                                                    <React.Fragment key={key}>
+                                                        {childVal !== null && typeof childVal === "object" ? (
+                                                            // If childVal is an object, render its key
+                                                            <Text style={[styles.company_details_subtitle_right, { width: "30%" }]}>
+                                                                {getKeyLabel(key)?.replace(/_/g, ' ')}
+                                                            </Text>
+                                                        ) : (
+                                                            // If childVal is not an object, render the key-value pair directly
+                                                            <View style={styles.test}>
+                                                                <Text style={[styles.company_details_subtitle_right, { width: "30%" }]}>
+                                                                    {getKeyLabel(key)?.replace(/_/g, ' ')}
+                                                                </Text>
+                                                                <Text style={[styles.company_details_subtitle_left, { width: "100%" }]}>
+                                                                    {childVal ? childVal : 'N/A'}
+                                                                </Text>
+                                                            </View>
+                                                        )}
+                                                        {/* Map over the entries of childVal and render JSX elements for each entry */}
+                                                        {typeof childVal === "object" && childVal !== null && Object.entries(childVal).map(([subKey, subChildVal]) => (
+                                                            <View style={styles.test} key={subKey}>
+                                                                <Text style={[styles.company_details_subtitle_right, { width: "30%" }]}>
+                                                                    {getKeyLabel(subKey)?.replace(/_/g, ' ')}
+                                                                </Text>
+                                                                {/* Render JSX elements based on the type of subChildVal */}
+                                                                {typeof subChildVal === "object" ? (
+                                                                    // If subChildVal is an object, map over its entries and render JSX elements for each entry
+                                                                    Object.entries(subChildVal).map(([greatGrandChildKey, greatGrandChildVal]) => (
+                                                                        <View style={styles.test} key={greatGrandChildKey}>
+                                                                            <Text style={[styles.company_details_subtitle_left, { width: "100%" }]}>
+                                                                                {getKeyLabel(greatGrandChildKey)?.replace(/_/g, ' ')}: {greatGrandChildVal || 'N/A'}
+                                                                            </Text>
+                                                                        </View>
+                                                                    ))
+                                                                ) : (
+                                                                    // If subChildVal is not an object, render a Text component with its value
+                                                                    <Text style={[styles.company_details_subtitle_left, { width: "100%" }]}>
+                                                                        {subChildVal || 'N/A'}
+                                                                    </Text>
+                                                                )}
+                                                            </View>
+                                                        ))}
+                                                    </React.Fragment>
+                                                );
+                                            })}
+
+                                            </>
                                             :
                                                 <View style={styles.test}>
                                                     <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
-                                                        { getKeyLabel(key)?.replace(
-                                                            /_/g,
-                                                            ' '
-                                                        )}
+                                                         
                                                     </Text>
                                                     <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
                                                         {(value || value !== null) ? value : 'N/A'}
@@ -927,7 +949,7 @@ export const ResponseVerificationComponent = (props) => {
                             props?.channel !== 'ADDRESS_NG_STATUS' &&
                             props?.channel !== 'PEZESHA_PETASCORE_SYNC' &&
                             props.channel !== 'VEHICLE-ID' && 
-                            props.channel !== 'KENYA_BRS_DETAIL' &&
+                            // props.channel !== 'KENYA_BRS_DETAIL' &&
                             Object.keys(idData).length !== 0 ? (
                                 <PDFDownloadLink
                                     className="d-flex align-items-center btn btn-deep-green mx-auto my-3 px-3"
@@ -1115,8 +1137,7 @@ export const ResponseVerificationComponent = (props) => {
                                                                                                                         Object.entries(grandChildVal).map(([greatGrandChildKey, greatGrandChildVal], greatGrandChildIndex) => (
                                                                                                                             <React.Fragment key={greatGrandChildIndex}>
                                                                                                                                 <p>{getKeyLabel(greatGrandChildKey)?.replace(/_/g, " ")}: {`${greatGrandChildVal || '-'}`}</p>
-                                                                                                                                {/* <p>{`${greatGrandChildVal || '-'}`}</p> */}
-                                                                                                                            </React.Fragment>
+                                                                                                                             </React.Fragment>
                                                                                                                         ))
                                                                                                                         :
                                                                                                                         <p>{`${grandChildVal || '-'}`}</p>
@@ -1209,31 +1230,6 @@ export const ResponseVerificationComponent = (props) => {
                                                                         </div>
                                                                                 ) : '-'}
 
-                                                                        {/* <div className={`d-flex ${(index + 1) % 2 === 1 ? "justify-content-md-start" : "justify-content-md-end pt-2"}`}>
-                                                                        <small>{getKeyLabel(key)?.replace(/_/g, " ")}</small>
-                                                                        {(openDataChild && dataChild === getKeyLabel(key)) ?
-                                                                            <i className="ri-arrow-up-s-line ri-lg ms-3"
-                                                                                style={{ cursor: "pointer" }}
-                                                                                onClick={() => {
-                                                                                    setOpenDataChild(false)
-                                                                                    setDataChild("")
-                                                                                }}
-                                                                            />
-                                                                            :
-                                                                            (!openDataChild && dataChild !== getKeyLabel(key)) ?
-                                                                            // ""
-                                                                            <i className="ri-arrow-down-s-line ri-lg ms-3"
-                                                                                style={{ cursor: "pointer" }}
-                                                                                onClick={() => {
-                                                                                    setOpenDataChild(true)
-                                                                                    setDataChild(getKeyLabel(key))
-                                                                                }}
-                                                                            />
-                                                                            :
-                                                                            ""
-                                                                        }
-                                                                    </div> */}
-
                                                                         {openDataChild &&
                                                                             dataChild ===
                                                                                 getKeyLabel(
@@ -1249,31 +1245,45 @@ export const ResponseVerificationComponent = (props) => {
                                                                                                         <small>
                                                                                                             {getKeyLabel(newVal)?.replace( /_/g, ' ' )}
                                                                                                         </small>
-                                                                                                               return (typeof idData[key][val][newVal] === "object") ? 
-                                                                                                                Object.entries(idData[key][val][newVal]).map(([key, childVal]) => (
-                                                                                                                    Array.isArray(childVal) ? 
-                                                                                                                        Object.entries(childVal).map(([key, value]) => (
-                                                                                                                          Object.entries(value).map(([key, newVal]) => (
-                                                                                                                                <p key={key}>
-                                                                                                                                    {`${key}: ${newVal}` || "Shale"}
-                                                                                                                                </p>
-                                                                                                                                ))
-                                                                                                                            ))
-                                                                                                                      :  Object.entries(childVal).map(([key, newVal]) => (
-                                                                                                                        <>
-                                                                                                                            <p key={key}>
-                                                                                                                                {/* {`${newVal}` || "Shale"} */}
-                                                                                                                            </p>
-                                                                                                                        </>
-                                                                                                                    ))
-                                                                                                                ))
+                                                                                                            return (typeof idData[key][val][newVal] === "object") ? 
+                                                                                                            <>
+                                                                                                                <small>
+                                                                                                                    {getKeyLabel(newVal)?.replace( /_/g, ' ' )} <br />
+                                                                                                                </small>
+                                                                                                                {Object.entries(idData[key][val][newVal]).map(([key, childVal]) => (
+                                                                                                                      Array.isArray(childVal) ? 
+                                                                                                                          Object.entries(childVal).map(([childKey, value]) => (
+                                                                                                                              <p key={childKey}>
+                                                                                                                                  {Array.isArray(value) ? value.map((v, i) => (
+                                                                                                                                      <p key={i}>{v}</p>
+                                                                                                                                  )) : Object.entries(value).map(([k, newVal]) => (
+                                                                                                                                    <>
+                                                                                                                                        <small key={k}>
+                                                                                                                                            {getKeyLabel(k)?.replace( /_/g, ' ' )}
+                                                                                                                                        </small>
+                                                                                                                                        <p key={k}>{`${newVal}` || "-"}</p>
+                                                                                                                                    </>
+                                                                                                                                  ))}
+                                                                                                                              </p>
+                                                                                                                          ))
+                                                                                                                          : Object.entries(childVal).map(([k, subChildVal]) => (
+                                                                                                                            <>
+                                                                                                                                <small key={k}>
+                                                                                                                                    {getKeyLabel(k)?.replace( /_/g, ' ' )}
+                                                                                                                                </small>
+                                                                                                                                <p key={k}>{`${subChildVal}` || "-"}</p>
+                                                                                                                            </>
+                                                                                                                        ))
+                                                                                                                    )
+                                                                                                                )}
+                                                                                                                </>
                                                                                                                 :<>
                                                                                                                     <small>
                                                                                                                         {getKeyLabel(newVal)?.replace( /_/g, ' ' )}
                                                                                                                     </small>
                                                                                                                     <p>
-                                                                                                                    {`${idData[key][val][newVal]}` || '-'}
-                                                                                                                </p>
+                                                                                                                        {`${idData[key][val][newVal]}` || '-'}
+                                                                                                                    </p>
                                                                                                                 </>
                                                                                                         }
                                                                                                     )
@@ -1521,7 +1531,7 @@ export const ResponseVerificationComponent = (props) => {
                                             </>
                                         )}
                                     />
-                                )}
+                            )}
                         </>
                     }
                 </>
