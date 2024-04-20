@@ -566,7 +566,9 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                     {!Array.isArray(idData)
                         ? Object?.entries(idData).map((v) => {
                               return (
+                                
                                   v[0] !== 'file_base64' &&
+                                  
                                     v[1] !== null && typeof v[1] === 'string' ? (
                                         <View style={styles.test}>
                                             <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
@@ -581,8 +583,18 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                         </View>
                                     ) :
                                     
-                                  v[1] !== null && typeof v[1] === "object" && v[0] !== "directors" && (
-                                        (Object.entries(v[1]).map(([key, value]) => (
+                                    v[1] !== null && typeof v[1] === "object" && v[0] !== "directors" && ((
+                                       
+                                            // <View style={styles.test}>
+                                            //     <Text style={[styles.company_details_subtitle_right, {width:"30%", fontWeight:800}]}>
+                                            //         { getKeyLabel(v[0])?.replace(
+                                            //             /_/g,
+                                            //             ' '
+                                            //         )}
+                                            //     </Text>
+                                            // </View> 
+                                           
+                                            Object.entries(v[1]).map(([key, value]) => (
                                            value !== null && typeof value == "object" 
                                             ?
                                             <>
@@ -595,7 +607,6 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                 </Text>
                                             </View> 
                                             
-
                                             {Object.entries(value).map(([key, childVal]) => {
                                                 return (
                                                     <React.Fragment key={key}>
