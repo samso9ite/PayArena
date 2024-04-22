@@ -384,11 +384,11 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                 
                                                 {(typeof newVal[1] === "object") ?
                                                 <>
-                                                 <Text style={{fontSize:'8px', marginTop:"1%", marginBottom: "0.5%"}} >{getKeyLabel(newVal[0])}</Text>
-                                                    {Object.entries(newVal[1]).map(innerNewVal => (
-                                                        <View key={innerNewVal[0]} style={styles.test_two}>
+                                                 <Text style={{fontSize:'8px', marginTop:"1%", marginBottom: "0.5%"}}> {newVal[0] !== null && getKeyLabel(newVal[0])}</Text>
+                                                    {newVal[1] !== null && Object.entries(newVal[1]).map(innerNewVal => (
+                                                        <View key={innerNewVal[0] !== null && innerNewVal[0]} style={styles.test_two}>
                                                            
-                                                            {
+                                                            {innerNewVal[1] !== null &&
                                                                 (typeof innerNewVal[1] === "object") ?
                                                                     Object.entries(innerNewVal[1]).map(innerChildVal => (
                                                                       (innerChildVal[0] !== "calendarItemList") &&  <View key={innerChildVal[0]}  style={[styles.test_two, {flexDirection:'row'}]}>
@@ -454,7 +454,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                                 )} 
                                                             </Text>
                                                             <Text style={[styles.company_details_subtitle_left_two,]}>
-                                                                {newVal[1] ? newVal[1] : 'N/A'}
+                                                                {newVal[1] && newVal !== null ? newVal[1] : 'N/A'}
                                                             </Text>
                                                         </View>
                                                 }
@@ -582,19 +582,19 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                             </Text>
                                         </View>
                                     ) :
-                                    
+                                    //    <View style={styles.test}>
+                                    //         <Text style={[styles.company_details_subtitle_right, {width:"30%", fontWeight:800}]}>
+                                    //             { getKeyLabel(v[0])?.replace(
+                                    //                 /_/g,
+                                    //                 ' '
+                                    //             )}
+                                    //         </Text>
+                                    //     </View> 
                                     v[1] !== null && typeof v[1] === "object" && v[0] !== "directors" && ((
                                        
-                                            // <View style={styles.test}>
-                                            //     <Text style={[styles.company_details_subtitle_right, {width:"30%", fontWeight:800}]}>
-                                            //         { getKeyLabel(v[0])?.replace(
-                                            //             /_/g,
-                                            //             ' '
-                                            //         )}
-                                            //     </Text>
-                                            // </View> 
+                                         
                                            
-                                            Object.entries(v[1]).map(([key, value]) => (
+                                        Object.entries(v[1]).map(([key, value]) => (
                                            value !== null && typeof value == "object" 
                                             ?
                                             <>
@@ -630,7 +630,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
                                                         {typeof childVal === "object" && childVal !== null && Object.entries(childVal).map(([subKey, subChildVal]) => (
                                                             <View style={styles.test} key={subKey}>
                                                                 <Text style={[styles.company_details_subtitle_right, { width: "30%" }]}>
-                                                                    {getKeyLabel(subKey)?.replace(/_/g, ' ')}
+                                                                    {/* {getKeyLabel(subKey)?.replace(/_/g, ' ')} */}
                                                                 </Text>
                                                                 {/* Render JSX elements based on the type of subChildVal */}
                                                                 {typeof subChildVal === "object" ? (
@@ -1248,34 +1248,9 @@ export const ResponseVerificationComponent = (props) => {
                                                                                                             return (typeof idData[key][val][newVal] === "object") ? 
                                                                                                             <>
                                                                                                                 <small>
-                                                                                                                    {getKeyLabel(newVal)?.replace( /_/g, ' ' )} <br />
+                                                                                                                    {newVal !== null && getKeyLabel(newVal)?.replace( /_/g, ' ' )} <br />
                                                                                                                 </small>
-                                                                                                                {Object.entries(idData[key][val][newVal]).map(([key, childVal]) => (
-                                                                                                                      Array.isArray(childVal) ? 
-                                                                                                                          Object.entries(childVal).map(([childKey, value]) => (
-                                                                                                                              <p key={childKey}>
-                                                                                                                                  {Array.isArray(value) ? value.map((v, i) => (
-                                                                                                                                      <p key={i}>{v}</p>
-                                                                                                                                  )) : Object.entries(value).map(([k, newVal]) => (
-                                                                                                                                    <>
-                                                                                                                                        <small key={k}>
-                                                                                                                                            {getKeyLabel(k)?.replace( /_/g, ' ' )}
-                                                                                                                                        </small>
-                                                                                                                                        <p key={k}>{`${newVal}` || "-"}</p>
-                                                                                                                                    </>
-                                                                                                                                  ))}
-                                                                                                                              </p>
-                                                                                                                          ))
-                                                                                                                          : Object.entries(childVal).map(([k, subChildVal]) => (
-                                                                                                                            <>
-                                                                                                                                <small key={k}>
-                                                                                                                                    {getKeyLabel(k)?.replace( /_/g, ' ' )}
-                                                                                                                                </small>
-                                                                                                                                <p key={k}>{`${subChildVal}` || "-"}</p>
-                                                                                                                            </>
-                                                                                                                        ))
-                                                                                                                    )
-                                                                                                                )}
+                                                                                                               
                                                                                                                 </>
                                                                                                                 :<>
                                                                                                                     <small>

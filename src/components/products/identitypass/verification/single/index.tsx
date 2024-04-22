@@ -235,6 +235,52 @@ const businessRegions = [
         country: 'Zambia',
         country_code: 'ZM',
     },
+    {
+        country: 'China',
+        country_code: 'CN',
+    },
+    {   country: "Singapore",
+        country_code: "SGP"
+    },
+    {   country: "Taiwan, Province of China",
+        country_code: "TWN"
+    },
+    {   country: "HongKong",
+        country_code: "HKG"
+    },
+    {   country: "Japan",
+        country_code: "JPN"
+    },
+    {   country: "Republic of Korea",
+        country_code: "KOR"
+    },
+    {   country: "India",
+        country_code: "IN"
+    },
+    {   country: "HongKong",
+        country_code: "HKG"
+    },
+    {   country: "Japan",
+        country_code: "JPN"
+    },
+    {   country: "Republic of Korea",
+        country_code: "KOR"
+    },
+    {   country: "India",
+        country_code: "IN"
+    },
+    {   country: "New Zealand",
+        country_code: "NZ"
+    },
+    {   country: "Vietnam",
+        country_code: "VNM"
+    },
+    {   country: "Thailand",
+        country_code: "THA"
+    },
+    {   country: "Australia",
+        country_code: "AU"
+    }
 ]
 
 export default function PassSingleVerificationComp(props: any) {
@@ -385,7 +431,7 @@ export default function PassSingleVerificationComp(props: any) {
     }
 
     let getFilteredEndp = (code: string, mainData: any) => {
-        setFilteredEndpoints(mainData?.filter((endp: any) => endp?.country_code === code))
+        setFilteredEndpoints(mainData?.filter((endp: any) => (endp?.country_code === code || endp?.country_code === 'GEN')))
     }
 
     let getCountryCodes = (data: any) => {
@@ -1128,7 +1174,7 @@ export default function PassSingleVerificationComp(props: any) {
                                                     ? getCountryCodes(
                                                           endpointsState?.resp?.data
                                                       )?.map((val: any, i: number) => {
-                                                          if (val?.is_individual && val.country_code !== 'GEN' ) {
+                                                          if (val?.is_individual && val.country_code !== 'GEN') {
                                                                  return {
                                                                   value: val?.country_code,
                                                                   label: `${getCountryFlag(
@@ -1140,14 +1186,14 @@ export default function PassSingleVerificationComp(props: any) {
                                                     : verifType === 'business'
                                                     ? getCountryCodes(businessRegions)?.map(
                                                           (val: any, i: number) => {
-                                                             if (val?.country_code !== 'GEN') {
+                                                            if (val?.country_code !== 'GEN') {
                                                               return {
                                                                   value: val?.country_code,
                                                                   label: `${getCountryFlag(
                                                                       val?.country_code
                                                                   )} ${val?.country}`,
                                                               }
-                                                                }
+                                                            }
                                                           }
                                                       )
                                                     : [{ label: '', value: '' }]
@@ -1197,8 +1243,11 @@ export default function PassSingleVerificationComp(props: any) {
                                                                 (endp: any, i: number) => {
                                                                     if (
                                                                         endp?.is_individual &&
-                                                                        countryCode ===
-                                                                            endp.country_code &&
+                                                                        
+                                                                        (countryCode ===
+                                                                            endp.country_code ||
+                                                                            endp.country_code ===
+                                                                                'GEN') &&
                                                                         endp?.is_portal
                                                                     ) {
                                                                         return (
