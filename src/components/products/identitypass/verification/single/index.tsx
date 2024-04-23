@@ -243,7 +243,7 @@ const businessRegions = [
         country_code: "SG"
     },
     {   country: "Taiwan, Province of China",
-        country_code: "TWN"
+        country_code: "TW"
     },
     {   country: "HongKong",
         country_code: "HK"
