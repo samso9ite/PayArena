@@ -407,13 +407,12 @@ const PDFComponent = ({ idData, verifyType, channel, endPname }) => {
                                                  <Text style={{fontSize:'8px', marginTop:"1%", marginBottom: "0.5%"}} >{getKeyLabel(newVal[0])}</Text>
                                                     {Object.entries(newVal[1]).map(innerNewVal => (
                                                         <View key={innerNewVal[0]} style={styles.test_two}>
-                                                            {
-                                                            /* <Text style={styles.company_details_subtitle_right_two}>
-                                                            {getKeyLabel(innerNewVal[0])?.replace(
-                                                                    /_/g,
-                                                                    ' '
-                                                                )}
-                                                            </Text> */}
+                                                            { <Text style={styles.company_details_subtitle_right_two}>
+                                                                {getKeyLabel(innerNewVal[0])?.replace(
+                                                                        /_/g,
+                                                                        ' '
+                                                                    )}
+                                                            </Text> }
                                                             {
                                                                 (typeof innerNewVal[1] === "object") ?
                                                                     Object.entries(innerNewVal[1]).map(innerChildVal => (
@@ -1040,7 +1039,6 @@ export const ReportResponseComponent = (props) => {
                         {responseData?.response_code === "00" ?
                             <img className="response-img" alt="dashboard-user"
                                 src={getResponseImg()?.includes("https://") ? getResponseImg() : imgUrl(getResponseImg())}
-                            // src={imgUrl(getResponseImg())}
                             />
                             :
                             ""
@@ -1048,7 +1046,7 @@ export const ReportResponseComponent = (props) => {
                     </div>
             }
 
-{responseData?.response_code === '00' ? (
+            {responseData?.response_code === '00' ? (
                 <>
                     {
                         <>
