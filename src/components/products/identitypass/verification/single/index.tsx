@@ -107,10 +107,7 @@ const businessRegions = [
         country: 'Hungary',
         country_code: 'HUN',
     },
-    {
-        country: 'India',
-        country_code: 'IND',
-    },
+  
     {
         country: 'Ireland',
         country_code: 'IRL',
@@ -254,9 +251,7 @@ const businessRegions = [
     {   country: "Republic of Korea",
         country_code: "KR"
     },
-    {   country: "India",
-        country_code: "IN"
-    },
+ 
   
     {   country: "India",
         country_code: "IN"
@@ -458,13 +453,13 @@ export default function PassSingleVerificationComp(props: any) {
     }
 
     let performSingleVerification = (requestData: any) => {
-        // if (identitypassVerifState?.resp?.response_code  !== "02"){
-        //   setRetryRequestData(requestData)
-        // }else if (identitypassVerifState?.resp?.response_code  == "02"){
-        //   if(requestData == retryRequestData){
-        //       requestData = retryRequestData
-        //   }     
-        // }
+        if (identitypassVerifState?.resp?.response_code  !== "02"){
+          setRetryRequestData(requestData)
+        }else if (identitypassVerifState?.resp?.response_code  == "02"){
+          if(requestData == retryRequestData){
+              requestData = retryRequestData
+          }     
+        }
      
         setUpdatedResponse(null)
         setOpenResponse(false)
@@ -1441,11 +1436,11 @@ export default function PassSingleVerificationComp(props: any) {
                                                             />
                                                         </div>
                                                     </div>
-                                                    {/* <span
+                                                    <span
                                                         className="d-flex align-items-center btn btn-deep-green mx-auto my-3 "
                                                         style={{ width: 'fit-content' }} onClick={performSingleVerification}>
                                                             Retry Verification
-                                                    </span> */}
+                                                    </span>
                                                 </div>
                                             )}
                                         </>

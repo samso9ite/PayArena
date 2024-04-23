@@ -16,10 +16,11 @@ import GetStartedComp from '../../components/wrapper/getStarted'
 // import { PaginatedList } from "react-paginated-list";
 import { Alert, Carousel, Spinner } from 'react-bootstrap'
 import walletImg from '../../assets/wallet-bg-2.png'
-import premblyLogo from '../../assets/logo.png'
+
 import announcement from '../../assets/announcement.svg'
 import useTourGuide from '../../hooks/useTourGuide'
 import riseArrow from '../../assets/rise.svg'
+import fallArrow from '../../assets/fallArrow.svg'
 import {
     EmptyStateComp,
     FailedTag,
@@ -521,9 +522,10 @@ export default function Dashboard(props: any) {
                                                 </h5>
                                                 <i className="ri-arrow-right-line ms-2" style={{fontSize:"25px", color:"#323232"}}/>
                                             </div>
-                                            {/* <div className="d-flex justify-content-between">
-                                                <span className="success-tag">10 <img src={riseArrow} /></span>
-                                            </div> */}
+                                                <div className="d-flex justify-content-between">
+                                                    <span className={val?.percentage.includes("+") ? "success-tag" : "failed-tag"}>
+                                                        {val?.percentage} <img src={val?.percentage.includes("+") ? riseArrow : fallArrow } /></span>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -549,13 +551,13 @@ export default function Dashboard(props: any) {
                         </div>
                     </div>
                     <p>View most used endpoints and API Calls</p>
-                    {/* <button className='btn btn-default' style={{border:'1px solid #62789D', color:'#62789D'}}>
+                    <button className='btn btn-default' style={{border:'1px solid #62789D', color:'#62789D'}}>
                         <i className="ri-bar-chart-2-line"></i> Bar Chart
                     </button>  <button className='btn btn-default' style={{border:'1px solid #62789D', color:'#62789D',  marginLeft:'10px'}}>
                     <i className="ri-pie-chart-line"></i> Pie Chart
                     </button>  <button className='btn btn-default' style={{border:'1px solid #62789D', color:'#62789D',  marginLeft:'10px'}}>
                     <i className="ri-line-chart-line"></i> Graph
-                    </button> */}
+                    </button>
                     <div className=" card my-4 px-md-3 py-4" style={{border:'none'}}>
                         <div className="card-body">
                         {dashboardState?.resp?.data?.most_used?.length > 0 ?  

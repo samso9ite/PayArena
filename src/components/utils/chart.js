@@ -214,14 +214,14 @@ export const ReportOverviewChart = (props) => {
 	let combinedArr = arr
 
 	useEffect(() => {
-		if(arr.length < 1 || props.tag === "Identitypass" || props.tag === "Identityradar"){
+		if(arr.length < 1 || props.tag === "Identitypass"){
 			triggerChartData()
 		}
 	}, [arr, props.data, props.tag])
 	
 
 	let triggerChartData= ()=>{
-
+		console.log(props?.data);
 		props?.data?.verified_data?.forEach((dat) => {
 			var rightIndex = combinedArr.findIndex((rep) => (rep?.date === dat?.date) && (rep?.type === "VERIFIED"))
 	
