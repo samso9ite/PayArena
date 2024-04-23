@@ -240,32 +240,24 @@ const businessRegions = [
         country_code: 'CN',
     },
     {   country: "Singapore",
-        country_code: "SGP"
+        country_code: "SG"
     },
     {   country: "Taiwan, Province of China",
         country_code: "TWN"
     },
     {   country: "HongKong",
-        country_code: "HKG"
+        country_code: "HK"
     },
     {   country: "Japan",
-        country_code: "JPN"
+        country_code: "JP"
     },
     {   country: "Republic of Korea",
-        country_code: "KOR"
+        country_code: "KR"
     },
     {   country: "India",
         country_code: "IN"
     },
-    {   country: "HongKong",
-        country_code: "HKG"
-    },
-    {   country: "Japan",
-        country_code: "JPN"
-    },
-    {   country: "Republic of Korea",
-        country_code: "KOR"
-    },
+  
     {   country: "India",
         country_code: "IN"
     },
@@ -273,10 +265,10 @@ const businessRegions = [
         country_code: "NZ"
     },
     {   country: "Vietnam",
-        country_code: "VNM"
+        country_code: "VN"
     },
     {   country: "Thailand",
-        country_code: "THA"
+        country_code: "TH"
     },
     {   country: "Australia",
         country_code: "AU"
@@ -432,6 +424,8 @@ export default function PassSingleVerificationComp(props: any) {
 
     let getFilteredEndp = (code: string, mainData: any) => {
         setFilteredEndpoints(mainData?.filter((endp: any) => (endp?.country_code === code || endp?.country_code === 'GEN')))
+        console.log(mainData?.filter((endp: any) => (endp?.country_code === code || endp?.country_code === 'GEN')));
+        
     }
 
     let getCountryCodes = (data: any) => {
@@ -1229,6 +1223,8 @@ export default function PassSingleVerificationComp(props: any) {
                                                     value={channel}
                                                     disabled={!countryCode}
                                                     onChange={(endpoint) => {
+                                                        console.log(endpoint);
+                                                        
                                                         setChannel(endpoint.target.value)
                                                         setPayload(
                                                             endpoint.target.value,
