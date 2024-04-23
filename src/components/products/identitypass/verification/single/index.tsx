@@ -107,10 +107,7 @@ const businessRegions = [
         country: 'Hungary',
         country_code: 'HUN',
     },
-    {
-        country: 'India',
-        country_code: 'IND',
-    },
+  
     {
         country: 'Ireland',
         country_code: 'IRL',
@@ -254,9 +251,7 @@ const businessRegions = [
     {   country: "Republic of Korea",
         country_code: "KR"
     },
-    {   country: "India",
-        country_code: "IN"
-    },
+ 
   
     {   country: "India",
         country_code: "IN"
