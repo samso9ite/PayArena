@@ -8,7 +8,7 @@ import {
     dashboardInfoRequest,
     // viewAnnouncementRequest,
 } from '../../redux/actions/dashboard'
-import { DashboardChart, DashboardMetricsChart } from '../../components/utils/chart'
+import {DashboardChart, ReportPieChart } from '../../components/utils/chart'
 // import Mainloader from '../../components/utils'
 import NotificationToast from '../../components/utils/notifToast'
 import global from '../../redux/constants/global'
@@ -48,7 +48,8 @@ export default function Dashboard(props: any) {
     const dashboardState = useSelector((state: RootState) => state.dashboardInfoReducer)
     const announcementState = useSelector((state: RootState) => state.announcementReducer)
     const viewAnnouncementState = useSelector((state: RootState) => state.viewAnnouncementReducer)
-   
+   const [chartType, setChartType] = useState("barChart")
+
     // const tourGuideStatusState = useSelector((state: RootState) => state.tourGuideReducer)
     const dispatch = useDispatch()
     const location = useLocation()
@@ -551,24 +552,31 @@ export default function Dashboard(props: any) {
                         </div>
                     </div>
                     <p>View most used endpoints and API Calls</p>
-                    {/* <button className='btn btn-default' style={{border:'1px solid #62789D', color:'#62789D'}}>
+                    <button className='btn btn-default' style={{
+                        ...(chartType === "barChart" ? { color: '#332ECF' } : { color: '#62789D' }),
+                        border: '1px solid #62789D'
+                        }}
+                        onClick={() => setChartType("barChart")}>
                         <i className="ri-bar-chart-2-line"></i> Bar Chart
-                    </button>  <button className='btn btn-default' style={{border:'1px solid #62789D', color:'#62789D',  marginLeft:'10px'}}>
-                    <i className="ri-pie-chart-line"></i> Pie Chart
-                    </button>  <button className='btn btn-default' style={{border:'1px solid #62789D', color:'#62789D',  marginLeft:'10px'}}>
+                    </button>  
+                    <button className='btn btn-default' onClick={() => setChartType("pieChart")}
+                        style={{...(chartType === "pieChart" ? { color: '#332ECF' } : { color: '#62789D' }),
+                            border: '1px solid #62789D',  marginLeft:'10px'
+                            }}  >
+                        <i className="ri-pie-chart-line"></i> Pie Chart
+                    </button>  
+                    <button className='btn btn-default' onClick={() => setChartType("graphChart")} 
+                            style={{...(chartType === "graphChart" ? { color: '#332ECF' } : { color: '#62789D' }),
+                            border: '1px solid #62789D',  marginLeft:'10px'
+                            }} >
                     <i className="ri-line-chart-line"></i> Graph
-                    </button> */}
+                    </button>
                     <div className=" card my-4 px-md-3 py-4" style={{border:'none'}}>
                         <div className="card-body">
                         {dashboardState?.resp?.data?.most_used?.length > 0 ?  
                             <>
-                                {/* <div className="d-flex justify-content-end" style={{color:'#62789D'}}>
-                                    <i className="ri-checkbox-blank-circle-fill"  style={{color:'#542D77'}}/> Email Intelligence  <i className="ri-checkbox-blank-circle-fill" style={{color:'#9154C7', paddingLeft:'10px'}}/> Phone Intelligence
-                                    <i className="ri-checkbox-blank-circle-fill" style={{color:'#BD98DD', paddingLeft:'10px'}}/> Phone Number Verification <i className="ri-checkbox-blank-circle-fill" style={{color:'#DECCEF', paddingLeft:'10px'}}/> BVN Check 
-                                    <i className="ri-checkbox-blank-circle-fill" style={{color:'#E9DDF4', paddingLeft:'10px'}}/> NIN Verification  
-                                </div> */}
                                 <div style={{ backgroundColor: '#FFFFFF' }} className="p-4">
-                                    <DashboardMetricsChart chartData={dashboardState?.resp?.data?.graph} />
+                                    <DashboardChart chartData={dashboardState?.resp?.data?.graph} chartType={chartType}/>
                                 </div>
                             </> :
                             <center>
