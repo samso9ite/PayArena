@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Line, Column, Bar, Pie } from '@ant-design/plots';
+// import { Pie } from '@ant-design/charts';
 import { EmptyStateComp } from '.';
+import PieChart from '@ant-design/plots/es/components/pie';
 
-export function DashboardChart(props) {
-	const [data, setData] = useState([]);
 
-	const config = {
-		data: (props?.chartData?.week_record || []),
-		xField: 'date',
-		yField: 'value',
-		seriesField: 'type',
-		yAxis: {
-			label: {
-				formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`),
-			},
-		},
-		color: ['#027A48', '#D92D20'],
-		smooth: true,
-	};
+// export function DashboardChart(props) {
+// 	const [data, setData] = useState([]);
 
-	return <Line {...config} />;
-};
+// 	const config = {
+// 		data: (props?.chartData?.week_record || []),
+// 		xField: 'date',
+// 		yField: 'value',
+// 		seriesField: 'type',
+// 		yAxis: {
+// 			label: {
+// 				formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`),
+// 			},
+// 		},
+// 		color: ['#027A48', '#D92D20'],
+// 		smooth: true,
+// 	};
+
+// 	return <Line {...config} />;
+// };
 
 export const ReportOverviewChart = (props) => {
 	const [arr, setArr] = useState([])
@@ -279,7 +282,7 @@ export function ReferralChart(props) {
 	return <Line {...config} />;
 };
 
-export const DashboardMetricsChart = (props) => {
+export const DashboardChart = (props) => {
 	const [arr, setArr] = useState([])
 	const [combinedArr, setCombinedArr] = useState([])
 	
@@ -298,21 +301,47 @@ export const DashboardMetricsChart = (props) => {
 			setCombinedArr((prevCombinedArr) => prevCombinedArr.concat(currArr));
 		})
 	}
-
+	if(props.chartType == "pieChart"){
 		const config = {
-		  data: combinedArr.length >0 ? combinedArr : [], // Use combinedArr here instead of combinedArray
-		  xField: 'date',
-		  yField: 'value',
-		  seriesField: 'type',
-		  isGroup: true,
-		  columnStyle: {
-			radius: [20, 20, 0, 0],
-		  },
-		  color: ['#542D77', '#9154C7', '#9154C799', '#9154C766', '#9154C733', '#9370db', '#9400d3', '#4b0082', '#483d8b', ],
-		  minColumnWidth: 3,
-		  maxColumnWidth: 7,
-		  dodgePadding: 5
+			appendPadding: 10,
+			data: combinedArr.length >0 ? combinedArr : [],
+			angleField: 'value',
+			colorField: 'type',
+			radius: 0.9,
+			color: ['#542D77', '#9154C7', '#9154C799', '#9154C766', '#9154C733', '#9370db', '#9400d3', '#4b0082', '#483d8b', ],
+			height: 500,
+			label: {
+				type: 'inner',
+				offset: '-30%',
+				content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
+				style: {
+					fontSize: 14,
+					textAlign: 'center',
+				},
+			},
+			interactions: [
+				{
+					type: 'element-active',
+				},
+			],
 		};
-		return <Column {...config} />;
-	
+		return <Pie {...config} />;
+	}else{
+		const config = {
+			data: combinedArr.length >0 ? combinedArr : [], // Use combinedArr here instead of combinedArray
+			xField: 'date',
+			yField: 'value',
+			seriesField: 'type',
+			isGroup: true,
+			columnStyle: {
+			  radius: [20, 20, 0, 0],
+			},
+			color: ['#542D77', '#9154C7', '#9154C799', '#9154C766', '#9154C733', '#9370db', '#9400d3', '#4b0082', '#483d8b', ],
+			minColumnWidth: 3,
+			maxColumnWidth: 7,
+			dodgePadding: 5,
+			height:400
+		  };
+		  return props.chartType == "graphChart" ? <Line {...config} /> :  <Column {...config} />;
+	}
 };
