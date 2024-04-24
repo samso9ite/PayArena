@@ -8,7 +8,7 @@ import {
     dashboardInfoRequest,
     // viewAnnouncementRequest,
 } from '../../redux/actions/dashboard'
-import { DashboardChart } from '../../components/utils/chart'
+import { DashboardChart, DashboardMetricsChart } from '../../components/utils/chart'
 // import Mainloader from '../../components/utils'
 import NotificationToast from '../../components/utils/notifToast'
 import global from '../../redux/constants/global'
@@ -568,7 +568,7 @@ export default function Dashboard(props: any) {
                                     <i className="ri-checkbox-blank-circle-fill" style={{color:'#E9DDF4', paddingLeft:'10px'}}/> NIN Verification  
                                 </div> */}
                                 <div style={{ backgroundColor: '#FFFFFF' }} className="p-4">
-                                    {/* <DashboardChart chartData={dashboardState?.resp?.data?.graph} /> */}
+                                    <DashboardMetricsChart chartData={dashboardState?.resp?.data?.graph} />
                                 </div>
                             </> :
                             <center>

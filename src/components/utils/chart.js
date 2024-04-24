@@ -5,192 +5,6 @@ import { EmptyStateComp } from '.';
 export function DashboardChart(props) {
 	const [data, setData] = useState([]);
 
-	useEffect(() => {
-		// setData(props?.chartData?.week_record || [])
-		// setData([
-		//   {
-		//     "date": "2018/8/1",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 4623
-		//   },
-		//   {
-		//     "date": "2018/8/1",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 2208
-		//   },
-		//   {
-		//     "date": "2018/8/2",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 6145
-		//   },
-		//   {
-		//     "date": "2018/8/2",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 2016
-		//   },
-		//   {
-		//     "date": "2018/8/3",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 508
-		//   },
-		//   {
-		//     "date": "2018/8/3",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 2916
-		//   },
-		//   {
-		//     "date": "2018/8/4",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 6268
-		//   },
-		//   {
-		//     "date": "2018/8/4",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 4512
-		//   },
-		//   {
-		//     "date": "2018/8/5",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 6411
-		//   },
-		//   {
-		//     "date": "2018/8/5",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 8281
-		//   },
-		//   {
-		//     "date": "2018/8/6",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 1890
-		//   },
-		//   {
-		//     "date": "2018/8/6",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 2008
-		//   },
-		//   {
-		//     "date": "2018/8/7",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 4251
-		//   },
-		//   {
-		//     "date": "2018/8/7",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 1963
-		//   },
-		//   {
-		//     "date": "2018/8/8",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 2978
-		//   },
-		//   {
-		//     "date": "2018/8/8",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 2367
-		//   },
-		//   {
-		//     "date": "2018/8/9",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 3880
-		//   },
-		//   {
-		//     "date": "2018/8/9",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 2956
-		//   },
-		//   {
-		//     "date": "2018/8/10",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 3606
-		//   },
-		//   {
-		//     "date": "2018/8/10",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 678
-		//   },
-		//   {
-		//     "date": "2018/8/11",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 4311
-		//   },
-		//   {
-		//     "date": "2018/8/11",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 3188
-		//   },
-		//   {
-		//     "date": "2018/8/12",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 4116
-		//   },
-		//   {
-		//     "date": "2018/8/12",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 3491
-		//   },
-		//   {
-		//     "date": "2018/8/13",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 6419
-		//   },
-		//   {
-		//     "date": "2018/8/13",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 2852
-		//   },
-		//   {
-		//     "date": "2018/8/14",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 1643
-		//   },
-		//   {
-		//     "date": "2018/8/14",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 4788
-		//   },
-		//   {
-		//     "date": "2018/8/15",
-		//     "type": "API Verification",
-		//     "value": 0
-		//     // "value": 445
-		//   },
-		//   {
-		//     "date": "2018/8/15",
-		//     "type": "Bulk Verification",
-		//     "value": 0
-		//     // "value": 4319
-		//   },
-		// ])
-	}, []);
-
 	const config = {
 		data: (props?.chartData?.week_record || []),
 		xField: 'date',
@@ -247,6 +61,7 @@ export const ReportOverviewChart = (props) => {
 	}
 
 	let data = combinedArr?.sort((a, b) => (b?.date?.replaceAll("/","-") - a?.date?.replaceAll("/","-")));
+	console.log(data);
 
 	// 	{ "city": "00:00", "type": "Verified ID", "value": 0 },
 	// 	{ "city": "00:00", "type": "Fake ID", "value": 0 },
@@ -462,4 +277,42 @@ export function ReferralChart(props) {
 	};
 
 	return <Line {...config} />;
+};
+
+export const DashboardMetricsChart = (props) => {
+	const [arr, setArr] = useState([])
+	const [combinedArr, setCombinedArr] = useState([])
+	
+	useEffect(() => {
+		triggerChartData()
+	}, [arr, props.chartData, props.tag])
+	
+	let triggerChartData= ()=>{
+		
+		Object.entries(props.chartData.week_record).map((data) => {
+			let currArr = Object.entries(data[1]).map(([key, value]) => ({
+				'value':value, 
+				'type': key.charAt(0).toUpperCase() + key.slice(1), 
+				'date':data[0],
+			}))
+			setCombinedArr((prevCombinedArr) => prevCombinedArr.concat(currArr));
+		})
+	}
+
+		const config = {
+		  data: combinedArr.length >0 ? combinedArr : [], // Use combinedArr here instead of combinedArray
+		  xField: 'date',
+		  yField: 'value',
+		  seriesField: 'type',
+		  isGroup: true,
+		  columnStyle: {
+			radius: [20, 20, 0, 0],
+		  },
+		  color: ['#542D77', '#9154C7', '#9154C799', '#9154C766', '#9154C733', '#9370db', '#9400d3', '#4b0082', '#483d8b', ],
+		  minColumnWidth: 3,
+		  maxColumnWidth: 7,
+		  dodgePadding: 5
+		};
+		return <Column {...config} />;
+	
 };
