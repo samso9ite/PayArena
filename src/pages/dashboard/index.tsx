@@ -534,8 +534,8 @@ export default function Dashboard(props: any) {
                             <center>
                                 <div>
                                     <img src={emptyImg} />
-                                    <h5>No most used endpoints results yet</h5>
-                                    <p style={{maxWidth:"25%"}}>Most used APIs will appear here.</p>
+                                    <h5>No most used endpoints result yet</h5>
+                                    <p style={{maxWidth:"25%"}}>Most used API's will appear here.</p>
                                 </div>
                             </center>
                         }
