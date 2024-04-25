@@ -419,8 +419,6 @@ export default function PassSingleVerificationComp(props: any) {
 
     let getFilteredEndp = (code: string, mainData: any) => {
         setFilteredEndpoints(mainData?.filter((endp: any) => (endp?.country_code === code || endp?.country_code === 'GEN')))
-        console.log(mainData?.filter((endp: any) => (endp?.country_code === code || endp?.country_code === 'GEN')));
-        
     }
 
     let getCountryCodes = (data: any) => {
@@ -1163,7 +1161,7 @@ export default function PassSingleVerificationComp(props: any) {
                                                     ? getCountryCodes(
                                                           endpointsState?.resp?.data
                                                       )?.map((val: any, i: number) => {
-                                                          if (val?.is_individual && val.country_code !== 'GEN') {
+                                                          if (val?.is_individual || val.country_code !== 'GEN') {
                                                                  return {
                                                                   value: val?.country_code,
                                                                   label: `${getCountryFlag(
@@ -1218,8 +1216,6 @@ export default function PassSingleVerificationComp(props: any) {
                                                     value={channel}
                                                     disabled={!countryCode}
                                                     onChange={(endpoint) => {
-                                                        console.log(endpoint);
-                                                        
                                                         setChannel(endpoint.target.value)
                                                         setPayload(
                                                             endpoint.target.value,
