@@ -14,7 +14,7 @@ import NotificationToast from '../../components/utils/notifToast'
 import global from '../../redux/constants/global'
 import GetStartedComp from '../../components/wrapper/getStarted'
 // import { PaginatedList } from "react-paginated-list";
-import { Alert, Carousel, Spinner } from 'react-bootstrap'
+import { Alert, Button, ButtonGroup, Carousel, Form, Spinner } from 'react-bootstrap'
 import walletImg from '../../assets/wallet-bg-2.png'
 
 import announcement from '../../assets/announcement.svg'
@@ -49,12 +49,14 @@ export default function Dashboard(props: any) {
     const announcementState = useSelector((state: RootState) => state.announcementReducer)
     const viewAnnouncementState = useSelector((state: RootState) => state.viewAnnouncementReducer)
    const [chartType, setChartType] = useState("barChart")
+   const [interval, setInterval] = useState("weekly")
 
     // const tourGuideStatusState = useSelector((state: RootState) => state.tourGuideReducer)
     const dispatch = useDispatch()
     const location = useLocation()
     let hostName = Cookies.get('hostName') || ''
     let passLogo = Cookies.get('logo') || ''
+    
 
     const queryParams = new URLSearchParams(location.search)
     let successPayment = queryParams.get('success')
@@ -571,6 +573,10 @@ export default function Dashboard(props: any) {
                             }} >
                     <i className="ri-line-chart-line"></i> Graph
                     </button>
+                    {/* <ButtonGroup style={{float:"right", backgroundColor:"#332ECF"}}>
+                        <Button style={{}} href="#">Left</Button>
+                        <Button href="#">Middle</Button>
+                    </ButtonGroup> */}
                     <div className=" card my-4 px-md-3 py-4" style={{border:'none'}}>
                         <div className="card-body">
                         {dashboardState?.resp?.data?.most_used?.length > 0 ?  

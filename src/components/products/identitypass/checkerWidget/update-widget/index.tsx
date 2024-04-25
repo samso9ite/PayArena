@@ -245,8 +245,8 @@ const UpdateWidget: React.FC<UpdateWidgetProps> = ({ currentState, channels }) =
         const res = countries
             .map((country: any) => {
                 return endpoints.filter((endpoint: any) => {
-                    // return endpoint.countryCode === country.value || endpoint.countryCode === 'GEN'
-                    return endpoint.countryCode === country.value
+                    return endpoint.countryCode === country.value || endpoint.countryCode === 'GEN'
+                    // return endpoint.countryCode === country.value
                 })
             })
             .flat()
