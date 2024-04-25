@@ -49,7 +49,9 @@ export default function Dashboard(props: any) {
     const announcementState = useSelector((state: RootState) => state.announcementReducer)
     const viewAnnouncementState = useSelector((state: RootState) => state.viewAnnouncementReducer)
    const [chartType, setChartType] = useState("barChart")
+
    const [graphInterval, setGraphInterval] = useState("weekly")
+
 
     // const tourGuideStatusState = useSelector((state: RootState) => state.tourGuideReducer)
     const dispatch = useDispatch()
@@ -57,6 +59,7 @@ export default function Dashboard(props: any) {
     let hostName = Cookies.get('hostName') || ''
     let passLogo = Cookies.get('logo') || ''
     
+
     const styles = {
         toggleBtn: {
           backgroundColor: "#fff",
@@ -585,6 +588,7 @@ export default function Dashboard(props: any) {
                             }} >
                     <i className="ri-line-chart-line"></i> Graph
                     </button>
+
                     <ButtonGroup style={{float:"right", borderRadius:"30px", 
                         boxShadow: "3px 3px 3px 3px #B853E614"}}>                     
                         <Button style={graphInterval == "weekly" ? styles.toggleBtnActive : styles.toggleBtn } 
@@ -592,6 +596,7 @@ export default function Dashboard(props: any) {
                         <Button  style={graphInterval == "monthly" ? styles.toggleBtnActive : styles.toggleBtn} 
                             onClick={() => {setGraphInterval("monthly")}}>This Month</Button>
                     </ButtonGroup>
+
                     <div className=" card my-4 px-md-3 py-4" style={{border:'none'}}>
                         <div className="card-body">
                         {dashboardState?.resp?.data?.most_used?.length > 0 ?  
