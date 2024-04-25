@@ -1,29 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Line, Column, Bar, Pie } from '@ant-design/plots';
-// import { Pie } from '@ant-design/charts';
 import { EmptyStateComp } from '.';
-import PieChart from '@ant-design/plots/es/components/pie';
-
-
-// export function DashboardChart(props) {
-// 	const [data, setData] = useState([]);
-
-// 	const config = {
-// 		data: (props?.chartData?.week_record || []),
-// 		xField: 'date',
-// 		yField: 'value',
-// 		seriesField: 'type',
-// 		yAxis: {
-// 			label: {
-// 				formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`),
-// 			},
-// 		},
-// 		color: ['#027A48', '#D92D20'],
-// 		smooth: true,
-// 	};
-
-// 	return <Line {...config} />;
-// };
 
 export const ReportOverviewChart = (props) => {
 	const [arr, setArr] = useState([])
@@ -64,11 +41,6 @@ export const ReportOverviewChart = (props) => {
 	}
 
 	let data = combinedArr?.sort((a, b) => (b?.date?.replaceAll("/","-") - a?.date?.replaceAll("/","-")));
-	console.log(data);
-
-	// 	{ "city": "00:00", "type": "Verified ID", "value": 0 },
-	// 	{ "city": "00:00", "type": "Fake ID", "value": 0 },
-	// ]
 
 	const config = {
 		data,
@@ -128,11 +100,7 @@ export const CustomerReportOverviewChart = (props) => {
 	}
 
 	let data = combinedArr?.sort((a, b) => (b?.date?.replaceAll("/","-") - a?.date?.replaceAll("/","-")));
-
-	// 	{ "city": "00:00", "type": "Verified ID", "value": 0 },
-	// 	{ "city": "00:00", "type": "Fake ID", "value": 0 },
-	// ]
-
+	
 	const config = {
 		data,
 		xField: 'date',
@@ -154,31 +122,6 @@ export const CustomerReportOverviewChart = (props) => {
 
 export const ReportEndpointsChart = (props) => {
 	const data = [
-        // {
-        //     endpointName:"Drivers License",
-        //     apiCalls:"145",
-        //     percent:"42.15"
-        // },
-        // {
-        //     endpointName:"International Passport",
-        //     apiCalls:"61",
-        //     percent:"17.73"
-        // },
-        // {
-        //     endpointName:"Voters Card",
-        //     apiCalls:"52",
-        //     percent:"15.11"
-        // },
-        // {
-        //     endpointName:"Phone number",
-        //     apiCalls:"48",
-        //     percent:"13.95"
-        // },
-        // {
-        //     endpointName:"National Identification Number",
-        //     apiCalls:"38",
-        //     percent:"11.04"
-        // },
 
 	];
 	return(
@@ -215,14 +158,6 @@ export const ReportEndpointsChart = (props) => {
 
 export const ReportPieChart = () => {
 	const data = [
-		// {
-		// 	type: 'Male',
-		// 	value: 27,
-		// },
-		// {
-		// 	type: 'Female',
-		// 	value: 25,
-		// },
 		{
 			type: 'Male',
 			value: 0,
@@ -260,10 +195,6 @@ export const ReportPieChart = () => {
 
 
 export function ReferralChart(props) {
-	// const [data, setData] = useState([]);
-
-	// useEffect(() => {
-	// }, []);
 
 	const config = {
 		data: (props?.chartData || []),
@@ -288,19 +219,30 @@ export const DashboardChart = (props) => {
 	
 	useEffect(() => {
 		triggerChartData()
-	}, [arr, props.chartData, props.tag])
-	
+	}, [arr, props.chartData, props.tag, props.graphInterval])
 	let triggerChartData= ()=>{
-		
-		Object.entries(props.chartData.week_record).map((data) => {
-			let currArr = Object.entries(data[1]).map(([key, value]) => ({
-				'value':value, 
-				'type': key.charAt(0).toUpperCase() + key.slice(1), 
-				'date':data[0],
-			}))
-			setCombinedArr((prevCombinedArr) => prevCombinedArr.concat(currArr));
-		})
-	}
+		if(props.graphInterval == "weekly"){
+			setCombinedArr([])
+			Object.entries(props.chartData.week_record).map((data) => {
+				let currArr = Object.entries(data[1]).map(([key, value]) => ({
+					'value':value, 
+					'type': key.charAt(0).toUpperCase() + key.slice(1), 
+					'date':data[0],
+				}))
+				setCombinedArr((prevCombinedArr) => prevCombinedArr.concat(currArr));
+			})
+		}else if(props?.graphInterval == "monthly"){
+			setCombinedArr([])
+			Object.entries(props.chartData.month_record).map((data) => {
+				let currArr = Object.entries(data[1]).map(([key, value]) => ({
+					'value':value, 
+					'type': key.charAt(0).toUpperCase() + key.slice(1), 
+					'date':data[0],
+				}))
+				setCombinedArr((prevCombinedArr) => prevCombinedArr.concat(currArr));
+			})
+		}
+	}	
 	if(props.chartType == "pieChart"){
 		const config = {
 			appendPadding: 10,

@@ -1,0 +1,10 @@
+.toggle-btn-active{
+    background-color:"#332ECF"; 
+    border-radius:"30px"
+}
+.toggle-btn{
+    background-color:"#fff";
+    border-color:"transparent";
+    border-radius:"30px";
+    color:"#62789D";
+}

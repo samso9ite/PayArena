@@ -14,7 +14,7 @@ import NotificationToast from '../../components/utils/notifToast'
 import global from '../../redux/constants/global'
 import GetStartedComp from '../../components/wrapper/getStarted'
 // import { PaginatedList } from "react-paginated-list";
-import { Alert, Carousel, Spinner } from 'react-bootstrap'
+import { Alert, Button, ButtonGroup, Carousel, Form, Spinner } from 'react-bootstrap'
 import walletImg from '../../assets/wallet-bg-2.png'
 
 import announcement from '../../assets/announcement.svg'
@@ -49,12 +49,26 @@ export default function Dashboard(props: any) {
     const announcementState = useSelector((state: RootState) => state.announcementReducer)
     const viewAnnouncementState = useSelector((state: RootState) => state.viewAnnouncementReducer)
    const [chartType, setChartType] = useState("barChart")
+   const [graphInterval, setGraphInterval] = useState("weekly")
 
     // const tourGuideStatusState = useSelector((state: RootState) => state.tourGuideReducer)
     const dispatch = useDispatch()
     const location = useLocation()
     let hostName = Cookies.get('hostName') || ''
     let passLogo = Cookies.get('logo') || ''
+    
+    const styles = {
+        toggleBtn: {
+          backgroundColor: "#fff",
+          borderColor: "transparent",
+          borderRadius:"30px",
+          color:"#62789D",
+        },
+        toggleBtnActive: {
+            backgroundColor:"#332ECF",
+            borderRadius:"30px"
+        }
+    };
 
     const queryParams = new URLSearchParams(location.search)
     let successPayment = queryParams.get('success')
@@ -571,12 +585,26 @@ export default function Dashboard(props: any) {
                             }} >
                     <i className="ri-line-chart-line"></i> Graph
                     </button>
+                    <ButtonGroup style={{float:"right", borderRadius:"30px", 
+                        boxShadow: "3px 3px 3px 3px #B853E614"}}>                     
+                        <Button style={graphInterval == "weekly" ? styles.toggleBtnActive : styles.toggleBtn } 
+                            onClick={() => {setGraphInterval("weekly")}}>This Week</Button>
+                        <Button  style={graphInterval == "monthly" ? styles.toggleBtnActive : styles.toggleBtn} 
+                            onClick={() => {setGraphInterval("monthly")}}>This Month</Button>
+                    </ButtonGroup>
                     <div className=" card my-4 px-md-3 py-4" style={{border:'none'}}>
                         <div className="card-body">
                         {dashboardState?.resp?.data?.most_used?.length > 0 ?  
                             <>
+                            {chartType == "pieChart" &&
+                                <>
+                                    <p style={{color:"#62789D"}}>Total API Calls</p>
+                                    <h6>{graphInterval == "weekly" ? dashboardState?.resp?.data?.graph.week_total : dashboardState?.resp?.data?.graph.month_total} API Calls</h6>
+                                </>
+                            }
                                 <div style={{ backgroundColor: '#FFFFFF' }} className="p-4">
-                                    <DashboardChart chartData={dashboardState?.resp?.data?.graph} chartType={chartType}/>
+                                   
+                                    <DashboardChart chartData={dashboardState?.resp?.data?.graph} chartType={chartType} graphInterval={graphInterval}/>
                                 </div>
                             </> :
                             <center>
