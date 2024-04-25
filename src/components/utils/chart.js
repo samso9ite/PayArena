@@ -195,7 +195,6 @@ export const ReportPieChart = () => {
 
 
 export function ReferralChart(props) {
-
 	const config = {
 		data: (props?.chartData || []),
 		xField: 'date',
