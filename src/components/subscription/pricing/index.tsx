@@ -60,16 +60,6 @@ export default function SubPricingComp(props: any) {
                         <h5> Pricing</h5>
                         <p> View the prices of all endpoints. </p>
                     </div>
-                    {/* <div className="col-md-5">
-                        <div className="col-md-7 ms-md-auto">
-                            <select className='form-select' value={filterValue} onChange={(e)=>setFilterValue(e?.target?.value)}>
-                                <option value="">All Countries</option>
-                                {priceCountries?.map((val:any, i:number) =>(
-                                    <option value={val?.country} key={i}>{val?.country_name}</option>
-                                ))}
-                            </select>
-                        </div>
-                    </div> */}
                 </div>
             </div>
 
@@ -86,7 +76,6 @@ export default function SubPricingComp(props: any) {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {subPricingState?.resp?.detail?.filter((data:any)=> data?.country === filterValue).map((val: any, index: number) => ( */}
                         {subPricingState?.resp?.pricings?.map((val: any, index: number) => (
                             <tr key={index}>
                                 <th scope="row">{index + 1}</th>
@@ -95,8 +84,6 @@ export default function SubPricingComp(props: any) {
                                 <td>{subPricingState?.resp?.currency?.currency_code} {val?.price}</td>
                                 <td>
                                     <AvailableTag />
-                                    {/* {val?.status === "UNAVAILABLE" && <PartialTag />} */}
-                                    {/* {val?.status === "AVAILABLE" && <AvailableTag />} */}
                                 </td>
                             </tr>
                         ))}

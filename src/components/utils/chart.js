@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Line, Column, Bar, Pie } from '@ant-design/plots';
-// import { Pie } from '@ant-design/charts';
 import { EmptyStateComp } from '.';
-import PieChart from '@ant-design/plots/es/components/pie';
 
 
 // export function DashboardChart(props) {
@@ -260,11 +258,6 @@ export const ReportPieChart = () => {
 
 
 export function ReferralChart(props) {
-	// const [data, setData] = useState([]);
-
-	// useEffect(() => {
-	// }, []);
-
 	const config = {
 		data: (props?.chartData || []),
 		xField: 'date',

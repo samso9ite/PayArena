@@ -57,19 +57,15 @@ export default function SubscriptionPage(props: any) {
 
         axios.request(config)
         .then((response) => {
-            // console.log(response.data);
             response?.data?.data?.forEach((val: any,) => {
                 if(val?.name === 'Identitypass'){
                     setIdpassId(val?.id)
                 }
-                if(val?.name === 'Identityradar'){
-                    setRadarId(val?.id)
-                }
+              
             })
-            // console.log(JSON.stringify(response.data));
         })
         .catch((error) => {
-        console.log(error);
+           console.log(error);
         });
     }
 
