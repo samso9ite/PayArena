@@ -57,7 +57,7 @@ export default function ChannelComp(props: any) {
         let keyData: any = {}
         let keyDataArr: any = payloadDataArr
         let cDataArr: any = checkDataArr
-
+      
         if (inputType === 'file') {
             var file = val?.target?.files[0]
             let reader = new FileReader()
@@ -152,7 +152,6 @@ export default function ChannelComp(props: any) {
         } else {
            
             let keyDataIndex = payloadDataArr.indexOf(keyVal)
-            
             if (keyDataIndex !== -1) {
                 keyDataArr.splice(keyDataIndex, 1)
                 keyDataArr.push([keyVal, val?.replaceAll('+', '')])
@@ -184,17 +183,21 @@ export default function ChannelComp(props: any) {
             
             setPayloadData(keyData)
         }
+       
+      
     }
 
     let verifyData = () => {
         let filteredData = []
+     
         const valuesArray = Object.values(payloadData);
         const firstValue = valuesArray.length > 0 ? valuesArray[0] : undefined;
+        filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || 
+            (!item.has_parent && !item.skip_required)   )   
         
-        // filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || 
-        //     (!item.has_parent && !item.skip_required))   
-            
-        filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || !item.has_parent)   
+        filteredData = filteredData.filter((item:any) => item.input_type !== "hidden" )
+        
+        // filteredData = props?.channelPayloads.filter((item:any) => item.parent_value == firstValue || !item.has_parent)   
         if (
                 Object?.keys(payloadData)?.length < 1 || (Object?.keys(payloadData)?.length !== filteredData?.length)
                 // props?.channelPayloads?.[0]?.is_required &&
@@ -273,10 +276,24 @@ export default function ChannelComp(props: any) {
                 // })
                 return
             } else {
-                props?.verify(payloadData)
+                let updatedPayload:{[key:string]: any} = {...payloadData}
+                props?.channelPayloads?.forEach((item:any) => {
+                    if(item.input_type === "hidden"){
+                    
+                        console.log(updatedPayload);
+                        
+                        updatedPayload[item.request_key] = item.default_value
+                        console.log(updatedPayload);
+                        
+                        setPayloadData(updatedPayload)
+                    }            
+                })
+                console.log(updatedPayload);
+                
+                props?.verify(updatedPayload)
                     setRunCheck(false)
             }
-        }
+        }    
     }
     return (
         <div>
@@ -307,14 +324,17 @@ export default function ChannelComp(props: any) {
                     {!payload.has_mutiple_legs &&
                         !payload.has_parent &&
                         !payload.parent_value &&
-                        payload.input_type !== 'select' && (
+                        payload.input_type !== 'select' && 
+                      
+                        (
                             <>
-                                <label htmlFor={payload?.input_label}>
-                                    {payload?.input_label}{' '}
-                                    {payload?.is_required && (
-                                        <span style={{ color: 'red' }}> *</span>
-                                    )}
-                                </label>
+                                {   payload.input_type !== "hidden" &&  <label htmlFor={payload?.input_label}>
+                                        {payload?.input_label}{' '}
+                                        {payload?.is_required && (
+                                            <span style={{ color: 'red' }}> *</span>
+                                        )}
+                                    </label>
+                                }
                                 <input
                                     type={payload?.input_type}
                                     className="form-control"

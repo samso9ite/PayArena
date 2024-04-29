@@ -152,21 +152,24 @@ export default function VerificationReports(props: any) {
     const handleReportFormSubmit = (e: any) => {
         e.preventDefault()
         const callback = (data: any) => {
-            
-            if (data.status == "true") {
+            if (data.status == true) {
                 setReportModal(false)
                 setStartDate('')
                 setEndDate('')
-                if(data.data.includes("https")){
-                    downloadFunc(data.data)
-                }else{
-                    setModalMessage(true)
-                    setNotifTitle('Success')
-                    setNotif(data.data)
-                    setNotifVal(true)
-                }
+                setModalMessage(true)
+                setNotifTitle('Success')
+                setNotif(data.detail)
+                setNotifVal(true)
+                // if(data.data.includes("https")){
+                //     downloadFunc(data.data)
+                // }else{
+                //     setModalMessage(true)
+                //     setNotifTitle('Success')
+                //     setNotif(data.data)
+                //     setNotifVal(true)
+                // }
                 
-            } else if(data.status == "false") {
+            } else if(data.status == false) {
                 setModalMessage(true)
                 
                 setModalErrMessage(data.detail)
@@ -190,8 +193,6 @@ export default function VerificationReports(props: any) {
             return
         }
         
-        // if(props.productKey == "3f20cd19-e739-419c-bec7-dd2c5c8a441b") {
-            
         if (reportForm.response_code.some(code => ['00', '01', '02', '03'].includes(code))) {
             let code = '00'
             let data: any = {
@@ -1079,7 +1080,7 @@ const ReportModal = ({
                                 />
                             </div>
 
-                            <div>
+                            {/* <div>
                                 <label style={{ fontSize: '12px' }}>Filter By Status</label>
                                 <select
                                     name="response_code"
@@ -1088,12 +1089,14 @@ const ReportModal = ({
                                     required
                                     value={response_code}>
                                     <option value={['00', '01', '02', '03']}>All</option>
-                                    {/* <option value={['00']}>Sucessfull</option>
+                                    <option value={['00']}>Sucessfull</option>
                                     <option value={['01']}>Id Not found</option>
                                     <option value={['02']}>Service Not Available</option>
-                                    <option value={['03']}>Insufficient Wallet Balance</option> */}
+                                    <option value={['03']}>Insufficient Wallet Balance</option>
                                 </select>
-                            </div>
+                            </div> */}
+
+                            
                             {/* 
                             <div>
                             <label style={{ fontSize: '12px' }}>
