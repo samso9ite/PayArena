@@ -8,6 +8,7 @@ import passIconBlack from '../../../assets/pass-icon-black.png'
 import radarIconBlack from '../../../assets/radar-icon-black.png'
 import formIconBlack from '../../../assets/form-icon-black.png'
 import PremblyLogo from '../../../assets/logo.png'
+import upLogo from '../../../assets/upLogo.png'
 import NotificationToast from '../../utils/notifToast'
 import { organizationRoleRequest } from '../../../redux/actions/settings/roles'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,8 +26,8 @@ export default function Sidebar(props: any) {
         userRights: []
         includes: any
     }
-    let passLogo = Cookies.get("logo") || ""
-    let hostLogo = Cookies.get("hostLogo") || " "
+    let passLogo = upLogo || ""
+    let hostLogo = upLogo || " "
 
     const navigate = useNavigate()
     const [tourGuide, setTourGuide] = useTourGuide()
@@ -1294,7 +1295,7 @@ export default function Sidebar(props: any) {
                 
                     {sidebarLoading === false && (
                         <>
-                            <h6 style={{color:"#B853E6"}}> PRODUCTS </h6>
+                            <h6 style={{color:"#f48430"}}> PRODUCTS </h6>
                             <ul onClick={filterRights}>
                                 {!userRights?.includes('VERIFICATION') &&
                                 !userRights?.includes('CHECKER_WIDGET') ? (
@@ -1508,7 +1509,7 @@ export default function Sidebar(props: any) {
                             </ul>
                             {/* <hr /> */}
 
-                            <h6  style={{color:"#B853E6"}}>INTEGRATIONS </h6>
+                            <h6  style={{color:"#f48430"}}>INTEGRATIONS </h6>
                             <ul onClick={filterRights}>
                                 {!userRights?.includes('STATUS') &&
                                 !userRights?.includes('APPLICATION') &&
@@ -1685,7 +1686,7 @@ export default function Sidebar(props: any) {
                                 </li>
                             </ul>
 
-                            <h6  style={{color:"#B853E6"}}>GENERAL </h6>
+                            <h6  style={{color:"#f48430"}}>GENERAL </h6>
                             <ul onClick={filterRights}>
                                 {!userRights?.includes('VIEW_REPORT') &&
                                 !userRights?.includes('VIEW_DATA') ? (
@@ -1743,7 +1744,7 @@ export default function Sidebar(props: any) {
                         </>
                     )}
 
-                    {/* <h6  style={{color:"#B853E6"}}>OFFERINGS</h6>
+                    {/* <h6  style={{color:"#f48430"}}>OFFERINGS</h6>
                     <ul onClick={filterRights}>
                         {!userRights?.includes('VERIFICATION') &&
                         !userRights?.includes('CHECKER_WIDGET') ? (
@@ -1774,7 +1775,7 @@ export default function Sidebar(props: any) {
                         )}
                     </ul> */}
 
-                    <h6 style={{color:"#B853E6"}}>OTHERS</h6>
+                    <h6 style={{color:"#f48430"}}>OTHERS</h6>
                     <ul onClick={filterRights}>
                         {/* <Link to="/Notifications" className="link">
                             <li className={splitLocation[1] === 'Notifications' ? 'active' : ''}>
@@ -1822,7 +1823,7 @@ export default function Sidebar(props: any) {
                                     font: '14px S-medium',
                                     padding: '15px 10px',
                                     backgroundColor: '#fff',
-                                    boxShadow: "3px 3px 3px 3px #B853E614",
+                                    boxShadow: "3px 3px 3px 3px #f4843014",
                                     border:'none',
                                 }}>
                                 Switch to <img src={hostLogo} style={{ height: '20px' }} alt="" />{' '}
@@ -1933,7 +1934,7 @@ export default function Sidebar(props: any) {
                                     )}
                                 </ul>
 
-                                <h6  style={{color:"#B853E6"}}>INTEGRATIONS </h6>
+                                <h6  style={{color:"#f48430"}}>INTEGRATIONS </h6>
                                 <ul onClick={filterRights}>
                                     {!userRights?.includes('STATUS') &&
                                     !userRights?.includes('APPLICATION') &&
@@ -2106,7 +2107,7 @@ export default function Sidebar(props: any) {
                                     </li>
                                 </ul>
 
-                                <h6  style={{color:"#B853E6"}}>GENERAL </h6>
+                                <h6  style={{color:"#f48430"}}>GENERAL </h6>
                                 <ul onClick={filterRights}>
                                     {!userRights?.includes('VIEW_REPORT') &&
                                     !userRights?.includes('VIEW_DATA') ? (
@@ -2161,7 +2162,7 @@ export default function Sidebar(props: any) {
                                     </Link>
                                 </ul>
 
-                                <h6  style={{color:"#B853E6"}}>OTHERS</h6>
+                                <h6  style={{color:"#f48430"}}>OTHERS</h6>
                                 <ul >
                                     <Link to="/faqs" className="link">
                                         <li
@@ -2190,7 +2191,7 @@ export default function Sidebar(props: any) {
                                         font: '14px S-medium',
                                         padding: '15px 10px',
                                         backgroundColor: '#fff',
-                                        boxShadow: "3px 3px 3px 3px #B853E614",
+                                        boxShadow: "3px 3px 3px 3px #f4843014",
                                         border:'none',
                                     }}>
                                     Switch to <img src={hostLogo} style={{ height: '20px' }} alt="" />{' '}

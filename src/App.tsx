@@ -41,6 +41,7 @@ import PerksAndDiscountDetails from './pages/offerings/perks-and-discount/detail
 import PerksAndDiscount from './pages/offerings/perks-and-discount'
 import FaqsPage from './pages/faqs'
 import Cookies from 'js-cookie'
+import upLogo from "./assets/upLogo.png"
 
 
 interface IUserRights {
@@ -53,7 +54,7 @@ function App() {
     const [permissionKey, setPermissionKey] = useState('')
     const [loadingState, setLoadingState] = useState(false)
     let hostName = Cookies.get('hostName') || ''
-    let logo = Cookies.get('logo') || ''
+    let logo = upLogo || ''
     let setFilteredRights = (val: any) => {
         setUserRights(val)
     }
@@ -67,7 +68,7 @@ function App() {
     }
     useEffect(() => {
         if(hostName === "Prembly"){
-            document.title = "IdentityPass Dashboard"
+            document.title = "Payarena Verification Service Dashboard"
         }else{
             document.title = "Peleza KYC/KYB"
         }

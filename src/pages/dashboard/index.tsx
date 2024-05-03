@@ -26,11 +26,15 @@ import {
     FailedTag,
     UnavailableTag,
     SuccessTag,
+    TableLoader,
 } from '../../components/utils'
 import SetMigrationPasswordComp from './migrationPassword'
 import { walletBalanceRequest } from '../../redux/actions/wallet'
 import emptyImg from '../../assets/empty.svg'
 import Cookies from 'js-cookie'
+import { LoadingIndicator } from 'react-select/dist/declarations/src/components/indicators'
+import ContentLoader from 'react-content-loader'
+import Loader from '../../components/perks-and-discount/loader/Loader'
 
 export default function Dashboard(props: any) {
     const navigate = useNavigate()
@@ -68,7 +72,7 @@ export default function Dashboard(props: any) {
           color:"#62789D",
         },
         toggleBtnActive: {
-            backgroundColor:"#332ECF",
+            backgroundColor:"#21aae4",
             borderRadius:"30px"
         }
     };
@@ -429,7 +433,7 @@ export default function Dashboard(props: any) {
                         </div>
                         <div className="col-md-8" >
                             {hostName == "Prembly" &&
-                                <a target='_blank' href={hostName == "Prembly" ? "https://youtu.be/Ou35K3E0rWc" : "https://youtu.be/Cy2buzNKxEEhttps://youtu.be/Cy2buzNKxEE"}> <button className='btn' style={{float:'right', backgroundColor:'#ECEBF8', color:'#332ECF'}}>
+                                <a target='_blank' href={hostName == "Prembly" ? "https://youtu.be/Ou35K3E0rWc" : "https://youtu.be/Cy2buzNKxEEhttps://youtu.be/Cy2buzNKxEE"}> <button className='btn' style={{float:'right', backgroundColor:'#ECEBF8', color:'#21aae4'}}>
                                     Watch a tour <i className="ri-arrow-right-line ms-2" /></button>
                                 </a>
                             }
@@ -511,7 +515,9 @@ export default function Dashboard(props: any) {
                     )}
                 </div>
                 
-                    <div className=" px-3 py-4 mt-5">
+                { dashboardState?.isLoading ?
+                
+                <div className=" px-3 py-4 mt-5">
                 <div className="row mb-4">
                         <div className='col-lg-2'>
                             <h6>Most Used Endpoints </h6>
@@ -528,143 +534,172 @@ export default function Dashboard(props: any) {
                                 onClick={() => {setGraphInterval("monthly")}}>This Month</Button>
                         </ButtonGroup>
                         </div>
-                    </div>
-                   
-                    <div className="row">
-                    {/* {dashboardState?.resp?.data?.most_used?.length > 0 ?  */}
-                        {dashboardState?.resp?.data?.most_used?.length > 0  && graphInterval === "monthly" ? 
-                            dashboardState?.resp?.data?.most_used?.map((val: any, index: number) => (
-                                <div key={index} style={{width:"20%"}}>
-                                    <div className="card  mt-3" style={{
-                                        backgroundColor: '#fff',
-                                        boxShadow: "3px 3px 3px 3px #B853E614",
-                                        border:'none',}}>
-                                        <div className="card-body">
-                                            <span style={{color:'#323232', fontWeight:'500', fontSize:'14px'}}> {truncateString(val?.endpoint_name, 17)} </span>
-                                            <div className="d-flex justify-content-between">
-                                                <h5 className="pt-2">
-                                                    {val?.total}
-                                                    <span style={{ fontSize: 12, color: "#62789D" }}> Checks</span>
-                                                </h5>   
-                                                <i className="ri-arrow-right-line ms-2" style={{fontSize:"25px", color:"#323232"}}/>
-                                            </div>
-                                            <div className="d-flex justify-content-between">
-                                                <span className={val?.percentage.includes("+") ? "success-tag" : "failed-tag"}>
-                                                    {val?.percentage} <img src={val?.percentage.includes("+") ? riseArrow : fallArrow } /></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                            : !dashboardState?.resp?.data?.most_used?.length   && graphInterval === "monthly" && (
-                                <center>
-                                    <div>
-                                        <img src={emptyImg} />
-                                        <h5>No most used endpoints result yet for this month</h5>
-                                        <p style={{maxWidth:"25%"}}>Most used API's will appear here.</p>
-                                    </div>
-                                </center>
-                            )}
-                            {dashboardState?.resp?.data?.most_used?.length > 0  && graphInterval === "monthly" ?
-                            dashboardState?.resp?.data?.most_used_for_the_week?.map((val: any, index: number) => (
-                                <div key={index} style={{width:"20%"}}>
-                                    <div className="card  mt-3" style={{
-                                        backgroundColor: '#fff',
-                                        boxShadow: "3px 3px 3px 3px #B853E614",
-                                        border:'none',}}>
-                                        <div className="card-body">
-                                            <span style={{color:'#323232', fontWeight:'500', fontSize:'14px'}}> {truncateString(val?.endpoint_name, 17)} </span>
-                                            <div className="d-flex justify-content-between">
-                                                <h5 className="pt-2">
-                                                    {val?.total}
-                                                    <span style={{ fontSize: 12, color: "#62789D" }}> Checks</span>
-                                                </h5>   
-                                                <i className="ri-arrow-right-line ms-2" style={{fontSize:"25px", color:"#323232"}}/>
-                                            </div>
-                                            <div className="d-flex justify-content-between">
-                                                <span className={val?.percentage.includes("+") ? "success-tag" : "failed-tag"}>
-                                                    {val?.percentage} <img src={val?.percentage.includes("+") ? riseArrow : fallArrow } /></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))  : 
-                            !dashboardState?.resp?.data?.most_used_for_the_week?.length   && graphInterval === "weekly" && (
-                                <center>
-                                    <div>
-                                        <img src={emptyImg} />
-                                        <h5>No most used endpoints result yet for this week</h5>
-                                        <p style={{maxWidth:"25%"}}>Most used API's will appear here.</p>
-                                    </div>
-                                </center>
-                            )
-                            
-                        }
-                   </div>
-                    </div>
-            
-                <div className="px-3 py-4 mt-5">
-                    <div className="row">
-                        <div className='col-lg-1'>
-                            <h6>API Calls </h6>
-                        </div>
-                        <div className='col-lg-7'>
-                            <hr />
-                        </div>
-                        <div className="col-lg-4">
-                        <p>View most used endpoints and API Calls</p>
-                            <button className='btn btn-default' style={{
-                                ...(chartType === "barChart" ? { color: '#332ECF' } : { color: '#62789D' }),
-                                border: '1px solid #62789D'
-                                }}
-                                onClick={() => setChartType("barChart")}>
-                                <i className="ri-bar-chart-2-line"></i> Bar Chart
-                            </button>  
-                            <button className='btn btn-default' onClick={() => setChartType("pieChart")}
-                                style={{...(chartType === "pieChart" ? { color: '#332ECF' } : { color: '#62789D' }),
-                                    border: '1px solid #62789D',  marginLeft:'10px'
-                                    }}  
-                                >
-                                <i className="ri-pie-chart-line"></i> Pie Chart
-                            </button>  
-                            <button className='btn btn-default' onClick={() => setChartType("graphChart")} 
-                                    style={{...(chartType === "graphChart" ? { color: '#332ECF' } : { color: '#62789D' }),
-                                    border: '1px solid #62789D',  marginLeft:'10px'
-                                    }} >
-                            <i className="ri-line-chart-line"></i> Graph
-                            </button>
-                        </div>
-                    </div>
                     
-
-                  
-
-                    <div className=" card my-4 px-md-3 py-4" style={{border:'none'}}>
-                        <div className="card-body">
-                        {dashboardState?.resp?.data?.most_used?.length > 0 ?  
-                            <>
-                            {chartType == "pieChart" &&
-                                <>
-                                    <p style={{color:"#62789D"}}>Total API Calls</p>
-                                    <h6>{graphInterval == "weekly" ? dashboardState?.resp?.data?.graph.week_total : dashboardState?.resp?.data?.graph.month_total} API Calls</h6>
-                                </>
-                            }
-                                <div style={{ backgroundColor: '#FFFFFF' }} className="p-4">
-                                   
-                                    <DashboardChart chartData={dashboardState?.resp?.data?.graph} chartType={chartType} graphInterval={graphInterval}/>
-                                </div>
-                            </> :
-                            <center>
-                                <div>
-                                    <img src={emptyImg} />
-                                    <h5>No charts results yet</h5>
-                                    <p style={{maxWidth:"25%"}}>Most used APIs chart will appear here</p>
-                                </div>
-                            </center>
-                            }
-                        </div>
-                    </div>
+                    <Loader /> 
                 </div>
+                </div>
+                
+                :
+                    <>   
+                        <div className=" px-3 py-4 mt-5">
+                        <div className="row mb-4">
+                                <div className='col-lg-2'>
+                                    <h6>Most Used Endpoints </h6>
+                                </div>
+                                <div className='col-lg-7'>
+                                    <hr />
+                                </div>
+                                <div className='col-lg-3'> 
+                                <ButtonGroup style={{float:"right", borderRadius:"30px", 
+                                    boxShadow: "3px 3px 3px 3px #B853E614"}}>                     
+                                    <Button style={graphInterval == "weekly" ? styles.toggleBtnActive : styles.toggleBtn } 
+                                        onClick={() => {setGraphInterval("weekly")}}>This Week</Button>
+                                    <Button  style={graphInterval == "monthly" ? styles.toggleBtnActive : styles.toggleBtn} 
+                                        onClick={() => {setGraphInterval("monthly")}}>This Month</Button>
+                                </ButtonGroup>
+                                </div>
+                            </div>
+                        
+                            <div className="row">
+                            
+                                {!dashboardState?.isLoading && dashboardState?.resp?.data?.most_used?.length > 0  && graphInterval === "monthly" ? 
+                                    dashboardState?.resp?.data?.most_used?.map((val: any, index: number) => (
+                                        <div key={index} style={{width:"20%"}}>
+                                            <div className="card  mt-3" style={{
+                                                backgroundColor: '#fff',
+                                                boxShadow: "3px 3px 3px 3px #B853E614",
+                                                border:'none',}}>
+                                                <div className="card-body">
+                                                    <span style={{color:'#323232', fontWeight:'500', fontSize:'14px'}}> {truncateString(val?.endpoint_name, 17)} </span>
+                                                    <div className="d-flex justify-content-between">
+                                                        <h5 className="pt-2">
+                                                            {val?.total}
+                                                            <span style={{ fontSize: 12, color: "#62789D" }}> Checks</span>
+                                                        </h5>   
+                                                        <i className="ri-arrow-right-line ms-2" style={{fontSize:"25px", color:"#323232"}}/>
+                                                    </div>
+                                                    <div className="d-flex justify-content-between">
+                                                        <span className={val?.percentage.includes("+") ? "success-tag" : "failed-tag"}>
+                                                            {val?.percentage} <img src={val?.percentage.includes("+") ? riseArrow : fallArrow } /></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+                                    : !dashboardState?.resp?.data?.most_used?.length && graphInterval === "monthly" && (
+                                        <center>
+                                            <div>
+                                                <img src={emptyImg} />
+                                                <h5>No most used endpoints result yet for this month</h5>
+                                                <p style={{maxWidth:"25%"}}>Most used API's will appear here.</p>
+                                            </div>
+                                        </center>
+                                    )}
+                                {dashboardState?.resp?.data?.most_used_for_the_week?.length > 0  && graphInterval === "weekly" ?
+                                    dashboardState?.resp?.data?.most_used_for_the_week?.map((val: any, index: number) => (
+                                        <div key={index} style={{width:"20%"}}>
+                                            <div className="card  mt-3" style={{
+                                                backgroundColor: '#fff',
+                                                boxShadow: "3px 3px 3px 3px #B853E614",
+                                                border:'none',}}>
+                                                <div className="card-body">
+                                                    <span style={{color:'#323232', fontWeight:'500', fontSize:'14px'}}> {truncateString(val?.endpoint_name, 17)} </span>
+                                                    <div className="d-flex justify-content-between">
+                                                        <h5 className="pt-2">
+                                                            {val?.total}
+                                                            <span style={{ fontSize: 12, color: "#62789D" }}> Checks</span>
+                                                        </h5>   
+                                                        <i className="ri-arrow-right-line ms-2" style={{fontSize:"25px", color:"#323232"}}/>
+                                                    </div>
+                                                    <div className="d-flex justify-content-between">
+                                                        <span className={val?.percentage.includes("+") ? "success-tag" : "failed-tag"}>
+                                                            {val?.percentage} <img src={val?.percentage.includes("+") ? riseArrow : fallArrow } />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))  : 
+                                    !dashboardState?.resp?.data?.most_used_for_the_week?.length   && graphInterval === "weekly" && (
+                                        <center>
+                                            <div>
+                                                <img src={emptyImg} />
+                                                <h5>No most used endpoints result yet for this week</h5>
+                                                <p style={{maxWidth:"25%"}}>Most used API's will appear here.</p>
+                                            </div>
+                                        </center>
+                                    )
+                                    
+                                }
+                            
+                            
+                        </div>
+                            </div>
+                    
+                        <div className="px-3 py-4 mt-5">
+                            <div className="row">
+                                <div className='col-lg-1'>
+                                    <h6>API Calls </h6>
+                                </div>
+                                <div className='col-lg-7'>
+                                    <hr />
+                                </div>
+                                <div className="col-lg-4">
+                                <p>View most used endpoints and API Calls</p>
+                                    <button className='btn btn-default' style={{
+                                        ...(chartType === "barChart" ? { color: '#21aae4' } : { color: '#62789D' }),
+                                        border: '1px solid #62789D'
+                                        }}
+                                        onClick={() => setChartType("barChart")}>
+                                        <i className="ri-bar-chart-2-line"></i> Bar Chart
+                                    </button>  
+                                    <button className='btn btn-default' onClick={() => setChartType("pieChart")}
+                                        style={{...(chartType === "pieChart" ? { color: '#21aae4' } : { color: '#62789D' }),
+                                            border: '1px solid #62789D',  marginLeft:'10px'
+                                            }}  
+                                        >
+                                        <i className="ri-pie-chart-line"></i> Pie Chart
+                                    </button>  
+                                    <button className='btn btn-default' onClick={() => setChartType("graphChart")} 
+                                            style={{...(chartType === "graphChart" ? { color: '#21aae4' } : { color: '#62789D' }),
+                                            border: '1px solid #62789D',  marginLeft:'10px'
+                                            }} >
+                                    <i className="ri-line-chart-line"></i> Graph
+                                    </button>
+                                </div>
+                            </div>
+                            
+
+                        
+
+                            <div className=" card my-4 px-md-3 py-4" style={{border:'none'}}>
+                                <div className="card-body">
+                                {dashboardState?.resp?.data?.most_used?.length > 0 ?  
+                                    <>
+                                    {chartType == "pieChart" &&
+                                        <>
+                                            <p style={{color:"#62789D"}}>Total API Calls</p>
+                                            <h6>{graphInterval == "weekly" ? dashboardState?.resp?.data?.graph.week_total : dashboardState?.resp?.data?.graph.month_total} API Calls</h6>
+                                        </>
+                                    }
+                                        <div style={{ backgroundColor: '#FFFFFF' }} className="p-4">
+                                        
+                                            <DashboardChart chartData={dashboardState?.resp?.data?.graph} chartType={chartType} graphInterval={graphInterval}/>
+                                        </div>
+                                    </> :
+                                    <center>
+                                        <div>
+                                            <img src={emptyImg} />
+                                            <h5>No charts results yet</h5>
+                                            <p style={{maxWidth:"25%"}}>Most used APIs chart will appear here</p>
+                                        </div>
+                                    </center>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </>
+            }
             </div>
         </div>
     )

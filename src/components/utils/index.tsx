@@ -3,6 +3,7 @@ import ContentLoader, { Code, List } from 'react-content-loader'
 import useTourGuide from '../../hooks/useTourGuide'
 import rocketGif from '../../assets/rocket-icon.gif'
 import LoadingPageLogo from '../../assets/loadingPageLogo.svg'
+import upLogo from '../../assets/upLogo.png'
 import loadingPageGif from '../../assets/loadingPageGif.gif'
 import Cookies from 'js-cookie'
 
@@ -111,7 +112,7 @@ export function InvalidAccessRightComp() {
 }
 
 export default function Mainloader() {
-    let passLogo = Cookies.get('logo') || ''
+    let passLogo = upLogo || ''
 
     return (
         <>

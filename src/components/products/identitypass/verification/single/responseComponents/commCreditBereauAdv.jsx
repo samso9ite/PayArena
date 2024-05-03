@@ -3,7 +3,7 @@ import moment from 'moment';
 import { PaginatedList } from 'react-paginated-list'
 import Nav from 'react-bootstrap/Nav';
 import { Document, Page, Text, View, StyleSheet, PDFDownloadLink, Image } from '@react-pdf/renderer'
-import PremblyLogo from '../../../../../../assets/logo.png'
+import PremblyLogo from '../../../../../../assets/upLogo.png'
 import { ActiveTag, FailedTag, imgUrl, InactiveTag, SuccessTag } from '../../../../../utils'
 import Cookies from 'js-cookie'
 
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
 
 const PDFComponent = ({ idData }) => {
     let hostName = Cookies.get('hostName') || ''
-    let passLogo = Cookies.get('logo') || ''
+    let passLogo = PremblyLogo || ''
     let verifyType = 'individual'
    
     if (verifyType === 'individual') {
@@ -295,14 +295,14 @@ const PDFComponent = ({ idData }) => {
                             where required by law, no information provided in our reports may be
                             revealed directly or indirectly to any person except to those whose
                             official duties require them to pass this report on in relation to which
-                            the report was requested by the client. {hostName} {passLogo} International Limited
+                            the report was requested by the client. Payarena Verification Service 
                             neither warrants, vouches for, or authenticates the reliability of the
                             information contained herein that the records are accurately reported as
                             they were found at the source as of the date and time of this report,
                             whether on a computer information system, retrieved by manual search, or
                             telephonic interviews. The information provided herein shall not be
                             construed to constitute a legal opinion; rather it is a compilation of
-                            public records and/or data for your review. {hostName} International Limited
+                            public records and/or data for your review. Payarena Verification Service
                             shall not be liable for any losses or injuries now or in the future
                             resulting from or relating to the information provided herein. The
                             recommended searches provided on our website should not serve as legal
@@ -459,14 +459,14 @@ const PDFComponent = ({ idData }) => {
                         information provided in our reports may be revealed directly or indirectly
                         to any person except to those whose official duties require them to pass
                         this report on in relation to which the report was requested by the client.
-                        {hostName} International Limited neither warrants, vouches for, or authenticates
+                        Payarena Verification Service neither warrants, vouches for, or authenticates
                         the reliability of the information contained herein that the records are
                         accurately reported as they were found at the source as of the date and time
                         of this report, whether on a computer information system, retrieved by
                         manual search, or telephonic interviews. The information provided herein
                         shall not be construed to constitute a legal opinion; rather it is a
-                        compilation of public records and/or data for your review. {hostName}
-                        International Limited shall not be liable for any losses or injuries now or
+                        compilation of public records and/or data for your review. Payarena Verification Service
+                        shall not be liable for any losses or injuries now or
                         in the future resulting from or relating to the information provided herein.
                         The recommended searches provided on our website should not serve as legal
                         advice for your background investigation. You should always seek legal

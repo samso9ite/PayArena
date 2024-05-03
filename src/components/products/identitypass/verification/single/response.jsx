@@ -7,7 +7,7 @@ import { RootState } from '../../../../../redux/reducers'
 import { ActiveTag, FailedTag, SuccessTag, imgUrl, InactiveTag } from '../../../../utils'
 import QRcodeImage from '../../../../../assets/QRCode.png'
 import ComplianceImage from '../../../../../assets/complianceImage.png'
-import PremblyLogo from '../../../../../assets/logo.png'
+import PremblyLogo from '../../../../../assets/upLogo.png'
 import PelezaLogo from '../../../../../assets/pelezaLogo.png'
 import Cookies from 'js-cookie'
 // import moment from 'moment';
@@ -74,14 +74,14 @@ const styles = StyleSheet.create({
         fontFamily: 'Helvetica-Bold',
     },
     response_header: {
-        backgroundColor: '#003e51',
+        backgroundColor: '#23abe2',
         color: '#fff',
         textAlign: 'center',
         paddingVertical: 25,
         marginTop: 10,
     },
     response_header_individual: {
-        backgroundColor: '#003e51',
+        backgroundColor: '#23abe2',
         color: '#fff',
         textAlign: 'center',
         paddingVertical: 5,
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         fontSize: '12px',
         padding: 10,
         fontWeight: 100,
-        backgroundColor: '#003e51',
+        backgroundColor: '#23abe2',
         color: '#fff',
         textAlign: 'center',
         borderTopRightRadius: 5,
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
         // margin: 'auto',
         textAlign: 'center',
         // backgroundColor: 'blue',
-        // backgroundColor: '#003e51',
+        // backgroundColor: '#23abe2',
         backgroundColor: '#e6ecf7',
         borderBottom: '.1px solid #C0C9D8',
     },
@@ -330,6 +330,7 @@ const individual_channel = {
 }
 
 const PDFComponent = ({ idData, verifyType, channel }) => {
+    console.log(verifyType, channel);
     let hostName = Cookies.get('hostName') || ''
     let passLogo = Cookies.get('logo') || ''
     let getKeyLabel = (data) => {
@@ -347,173 +348,251 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
         }
         return formattedText
     }
-    if (verifyType === 'individual') {
-        
+    console.log(verifyType);
+    if (verifyType == 'business' ) {
         return (
             <Document>
                 <Page size="A4" style={styles.page} wrap={false}>
-                    <View style={styles.topHeader_logo_individual}>
-                        {/* <Image style={styles.logo_header_individual} src={passLogo} /> */}
-                        <Image style={styles.logo_header_individual} src={hostName == "Prembly" ? PremblyLogo : PelezaLogo} />
-                    </View>
-                    <View style={styles.response_header_individual}>
-                        <Text style={styles.response_header_two}>
-                            {individual_channel[channel] || channel}
-                        </Text>
-                        <Text style={styles.response_header_text_two}>Successful</Text>
-                    </View>
-
-                    <View style={styles.individual_details}>
-                        {(idData?.base64Image || idData?.photo || idData?.Photo || idData?.Picture || idData?.picture) && (
-                            <View style={styles.individual_img}>
-                                <Image
-                                    src={imgUrl(
-                                        idData?.base64Image || idData?.photo || idData?.Photo || idData?.Picture || idData?.picture
-                                    )}
-                                    style={styles.individual_img_alt}
-                                />
+                    <View style={styles.top_wrapper}>
+                        <View style={styles.top_header_left}>
+                            <View style={styles.topHeader_container}>
+                                <View style={styles.topHeader}>
+                                    <Text style={styles.headerText}>Company Name:</Text>
+                                    <Text style={styles.headerText_alt}>
+                                        {idData?.name ||
+                                            idData?.company ||
+                                            idData?.company_name ||
+                                            idData[0]?.name ||
+                                            idData?.subscriber ||
+                                            '-'}
+                                    </Text>
+                                </View>
                             </View>
-                        )}
-                           {!Array.isArray(idData) &&
-                            Object.entries(idData).map((v) => {
-                                return (
-                                    v[0] !== 'photo' &&
-                                    v[0] !== 'Photo' &&
-                                    v[0] !== 'signature' &&
-                                    v[0] !== 'Signature' && 
-                                    v[0] !== 'base64Image' && 
-                                    (
-                                        (typeof v[1] === "object"  && v[1]) ?
-                                        Object.entries(v[1]).map(newVal => (
-                                            <View key={newVal[0]}>
-                                                
-                                                {(typeof newVal[1] === "object") ?
-                                                <>
-                                                 <Text style={{fontSize:'8px', marginTop:"1%", marginBottom: "0.5%"}}> {newVal[0] !== null && getKeyLabel(newVal[0])}</Text>
-                                                    {newVal[1] !== null && Object.entries(newVal[1]).map(innerNewVal => (
-                                                        <View key={innerNewVal[0] !== null && innerNewVal[0]} style={styles.test_two}>
-                                                           
-                                                            {innerNewVal[1] !== null &&
-                                                                (typeof innerNewVal[1] === "object") ?
-                                                                    Object.entries(innerNewVal[1]).map(innerChildVal => (
-                                                                      (innerChildVal[0] !== "calendarItemList") &&  <View key={innerChildVal[0]}  style={[styles.test_two, {flexDirection:'row'}]}>
-                                                                            <Text  style={styles.company_details_subtitle_right_two}>
-                                                                                { getKeyLabel(innerChildVal[0])?.replace(
-                                                                                    /_/g,
-                                                                                    ' '
-                                                                                )}
-                                                                            </Text>
-                                                                            {
-                                                                               (Array.isArray(innerChildVal[1])) 
-                                                                                ?  
-                                                                                    (Object.entries(innerChildVal[1]).map(([key, value]) => (
-                                                                                        <>
-                                                                                        { Object.entries(value).map(([key, newValUp]) => (
-                                                                                                <Text style={[styles.child_width]}>
-                                                                                                    {getKeyLabel(key)} :   {newValUp ? newValUp : '-'}
-                                                                                                </Text>
-                                                                                            ))
-                                                                                        }
-                                                                                        </>                                                                           )
-                                                                                    ))
-                                                                                : 
-                                                                                
-                                                                                    (typeof innerChildVal[1] == "object") 
-                                                                                    ? 
-                                                                                        Object.entries(innerChildVal[1]).map(deepNextedVal => (
-                                                                                            <View key={deepNextedVal[0]}>
-                                                                                                <Text  style={{fontSize:"8px"}}>
-                                                                                                    {getKeyLabel(deepNextedVal[0])} : {deepNextedVal[1] ? deepNextedVal[1] : 'N/A' }
-                                                                                                </Text>
-                                                                                            </View>
-                                                                                        )
-                                                                                    )
-                                                                                    :
-                                                                                        <View > 
-                                                                                            <Text style={styles.company_details_subtitle_right_two}> {innerChildVal[1] ? innerChildVal[1] : 'N/A'}</Text> 
-                                                                                        </View>
-                                                                            } 
-                                                                            </View>
-                                                                )) 
-                                                                :   <View > 
-                                                                        <Text style={styles.company_details_subtitle_right_two}>
-                                                                            {getKeyLabel(innerNewVal[0])?.replace(
-                                                                                    /_/g,
-                                                                                    ' '
-                                                                            )} 
-                                                                        </Text>
-                                                                        <Text style={[styles.company_details_subtitle_left_two,]}>
-                                                                            {innerNewVal[1] ? innerNewVal[1] : 'N/A'}
-                                                                        </Text>
-                                                                        
-                                                                    </View>
-                                                            }
-                                                        </View>
-                                                    ))}
-                                                    </>
-                                                    :  <View  style={[styles.test_two]}> 
-                                                            <Text style={styles.company_details_subtitle_right_two}>
-                                                                {getKeyLabel(newVal[0])?.replace(
-                                                                        /_/g,
-                                                                        ' '
-                                                                )} 
-                                                            </Text>
-                                                            <Text style={[styles.company_details_subtitle_left_two,]}>
-                                                                {newVal[1] && newVal !== null ? newVal[1] : 'N/A'}
-                                                            </Text>
-                                                        </View>
-                                                }
-                                            </View>
-                                        ))
-                                        :
-                                        <View key={v[0]}  style={[styles.test_two,]}>
-                                             <Text style={styles.company_details_subtitle_right_two}>
-                                               {getKeyLabel(v[0])?.replace(
+                            <View style={styles.topHeader_container}>
+                                <View style={styles.topHeader}>
+                                    <Text style={styles.headerText}>Report Date:</Text>
+                                    <Text style={styles.headerText_alt}>
+                                        {new Date().toDateString()}
+                                    </Text>
+                                </View>
+                            </View>
+                        </View>
+                        <View style={styles.topHeader_logo}>
+                            <Image style={styles.logo_header} src={passLogo} />
+                        </View>
+                    </View>
+                    <View style={styles.response_header}>
+                        <Text style={styles.response_header_one}>VERIFICATION RESPONSE</Text>
+                        <Text style={styles.response_header_text}>
+                            Verification Status: <Text style={styles.status}>Successful</Text>
+                        </Text>
+                    </View>
+    
+                    <View style={styles.company_details}>
+                        <Text style={styles.company_details_text}>Company Registration Details</Text>
+                        {!Array.isArray(idData)
+                            ? Object?.entries(idData).map((v) => {
+                                  return (
+                                    
+                                      v[0] !== 'file_base64' &&
+                                      
+                                        v[1] !== null && typeof v[1] === 'string' ? (
+                                            <View style={styles.test}>
+                                                <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
+                                                { getKeyLabel(v[0])?.replace(
                                                     /_/g,
                                                     ' '
-                                                )} 
-                                            </Text>
-                                            <Text style={[styles.company_details_subtitle_left_two, {width:"30%"}]}>
-                                                {v[1] ? v[1] : 'N/A'}
-                                            </Text>
-                                        </View>
+                                                )}
+                                                </Text>
+                                                <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
+                                                    {v[1] !== null ? v[1] : 'N/A'}
+                                                </Text>
+                                            </View>
+                                        ) :
+                                          <>
+                                             <View style={styles.test}>
+                                                <Text style={[styles.company_details_subtitle_right, {width:"30%", fontWeight:800}]}>
+                                                    { getKeyLabel(v[0])?.replace(
+                                                        /_/g,
+                                                        ' '
+                                                    )}
+                                                </Text>
+                                            </View> 
+    
+                                            {v[1] !== null && typeof v[1] === "object" && v[0] !== "directors" && ((
+                                                Object.entries(v[1]).map(([key, value]) => (
+                                                value !== null && typeof value == "object" 
+                                                    ?
+                                                    <>
+                                                    { isNaN(key) && <View style={styles.test}>
+                                                        <Text style={[styles.company_details_subtitle_right, {width:"30%", fontWeight:800}]}>
+                                                            { getKeyLabel(key)?.replace(
+                                                                /_/g,
+                                                                ' '
+                                                            ) }
+                                                        </Text>
+                                                    </View> 
+                                                    }
+                                                    
+                                                    {Object.entries(value).map(([key, childVal]) => {
+                                                        return (
+                                                            <React.Fragment key={key} >
+                                                                {childVal !== null && typeof childVal === "object" ? (
+                                                                    // If childVal is an object, render its key
+                                                                    
+                                                                    <Text style={[styles.company_details_subtitle_right_inner, { width: "30%", backgroundColor:"#e6ecf7"}]}>
+                                                                        {getKeyLabel(key)?.replace(/_/g, ' ')} 
+                                                                    </Text>
+                                                                ) : (
+                                                                    // If childVal is not an object, render the key-value pair directly
+                                                                    <View style={styles.test}>
+                                                                        <Text style={[styles.company_details_subtitle_right, { width: "30%" }]}>
+                                                                            {getKeyLabel(key)?.replace(/_/g, ' ')} 
+                                                                        </Text>
+                                                                        <Text style={[styles.company_details_subtitle_left, { width: "100%" }]}>
+                                                                            {childVal ? childVal : 'N/A'}
+                                                                        </Text>
+                                                                    </View>
+                                                                )}
+                                                                {/* Map over the entries of childVal and render JSX elements for each entry */}
+                                                                {typeof childVal === "object" && childVal !== null && Object.entries(childVal).map(([subKey, subChildVal]) => (
+                                                                    <View style={styles.test} key={subKey}>
+                                                                        <Text style={[styles.company_details_subtitle_right, { width: "30%" }]}>
+                                                                            { isNaN(subKey) && getKeyLabel(subKey)?.replace(/_/g, ' ')}
+                                                                        </Text>
+                                                                        {/* Render JSX elements based on the type of subChildVal */}
+                                                                        {typeof subChildVal === "object" ? (
+                                                                            // If subChildVal is an object, map over its entries and render JSX elements for each entry
+                                                                            Object.entries(subChildVal).map(([greatGrandChildKey, greatGrandChildVal]) => (
+                                                                                <View style={[styles.test, {borderBottom:"none"}]} key={greatGrandChildKey}>
+                                                                                    <Text style={[styles.company_details_subtitle_left, { width: "100%" }]}>
+                                                                                        {getKeyLabel(greatGrandChildKey)?.replace(/_/g, ' ')}: {greatGrandChildVal || 'N/A'}
+                                                                                    </Text>
+                                                                                </View>
+                                                                            ))
+                                                                        ) : (
+                                                                            // If subChildVal is not an object, render a Text component with its value
+                                                                            <Text style={[styles.company_details_subtitle_left, { width: "100%" }]}>
+                                                                                {subChildVal || 'N/A'}
+                                                                            </Text>
+                                                                        )}
+                                                                    </View>
+                                                                ))}
+                                                            </React.Fragment>
+                                                        );
+                                                    })}
+    
+                                                    </>
+                                                    :
+                                                        <View style={styles.test}>
+                                                            <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
+                                                                
+                                                            </Text>
+                                                            <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
+                                                                {(value || value !== null) ? value : 'N/A'}
+                                                            </Text>
+                                                        </View>
+                                                    
+                                                    )
+                                                ))
+                                            )}
+                                          </>
+                                          
+                                  )
+                              })
+                            : Array?.isArray(idData) &&
+                              idData.map((v, index) => {
+                                  return (
+                                     v !== null && Object.entries(v).map(([key, value]) =>
+                                          value !== null && typeof value === 'object' ? (
+                                              value?.map((vt) => <Text></Text>)
+                                          ) : (
+                                              <View style={styles.test}>
+                                                  <Text style={styles.company_details_subtitle_right}>
+                                                      {key}
+                                                  </Text>
+                                                  <Text style={styles.company_details_subtitle_left}>
+                                                      {value !== null ? value : 'N/A'}
+                                                  </Text>
+                                              </View>
+                                          )
+                                      )
                                     )
-                                );
                             })
                         }
-
-                                
-                           
-                        
-                            
                     </View>
-
+    
+                    {idData?.directors && Object?.values(idData?.directors)?.length && (
+                        <View style={styles.company_details}>
+                            <Text style={styles.company_details_text}>
+                                Share Holding and Directorship
+                            </Text>
+                            <View style={styles.company_details_record_header}>
+                                <Text style={styles.company_details_record_header_text}>NAME</Text>
+                                <Text style={styles.company_details_record_header_text}>
+                                    DESCRIPTION
+                                </Text>
+                                <Text style={styles.company_details_record_header_text}>ADDRESS</Text>
+                                <Text style={styles.company_details_record_header_text}>
+                                    NATIONALITY
+                                </Text>
+                                <Text style={styles.company_details_record_header_text}>SHARES</Text>
+                                <Text style={styles.company_details_record_header_text}>
+                                    TYPE OF SHARES PERCENTAGE
+                                </Text>
+                            </View>
+                            { Object?.values(idData?.directors).map((director) => {
+                                return (
+                                    <View style={styles.company_details_record_header}>
+                                        <Text style={styles.company_details_record_header_text}>
+                                            {director?.name || 'N/A'}
+                                        </Text>
+                                        <Text style={styles.company_details_record_header_text}>
+                                            {director?.description || 'N/A'}
+                                        </Text>
+                                        <Text style={styles.company_details_record_header_text}>
+                                            {director?.address || 'N/A'}
+                                        </Text>
+                                        <Text style={styles.company_details_record_header_text}>
+                                            {director?.nationality || 'N/A'}
+                                        </Text>
+                                        <Text style={styles.company_details_record_header_text}>
+                                            {director?.shares || 'N/A'}
+                                        </Text>
+                                        <Text style={styles.company_details_record_header_text}>
+                                            {director?.percentage || 'N/A'}
+                                        </Text>
+                                    </View>
+                                )
+                            })}
+                        </View>
+                    )}
+    
                     <View style={styles.footer_alt}>
                         <Text style={styles.disclaimer}>
-                            DISCLAMER The records contained in this reports are compiled from
-                            various databases that may only be updated infrequently, and therefore,
-                            may not have the most current information. This report is not intended
-                            to serve as recommendation of whether to hire the candidate
-                            investigated. This report is submitted in strict confidence and except
-                            where required by law, no information provided in our reports may be
-                            revealed directly or indirectly to any person except to those whose
-                            official duties require them to pass this report on in relation to which
-                            the report was requested by the client. {hostName} International Limited
-                            neither warrants, vouches for, or authenticates the reliability of the
-                            information contained herein that the records are accurately reported as
-                            they were found at the source as of the date and time of this report,
-                            whether on a computer information system, retrieved by manual search, or
-                            telephonic interviews. The information provided herein shall not be
-                            construed to constitute a legal opinion; rather it is a compilation of
-                            public records and/or data for your review. {hostName} International Limited
-                            shall not be liable for any losses or injuries now or in the future
-                            resulting from or relating to the information provided herein. The
-                            recommended searches provided on our website should not serve as legal
+                            DISCLAMER The records contained in this reports are compiled from various
+                            databases that may only be updated infrequently, and therefore, may not have
+                            the most current information. This report is not intended to serve as
+                            recommendation of whether to hire the candidate investigated. This report is
+                            submitted in strict confidence and except where required by law, no
+                            information provided in our reports may be revealed directly or indirectly
+                            to any person except to those whose official duties require them to pass
+                            this report on in relation to which the report was requested by the client.
+                            Payarena Verification Service neither warrants, vouches for, or authenticates
+                            the reliability of the information contained herein that the records are
+                            accurately reported as they were found at the source as of the date and time
+                            of this report, whether on a computer information system, retrieved by
+                            manual search, or telephonic interviews. The information provided herein
+                            shall not be construed to constitute a legal opinion; rather it is a
+                            compilation of public records and/or data for your review. Payarena Verification Service
+                            shall not be liable for any losses or injuries now or
+                            in the future resulting from or relating to the information provided herein.
+                            The recommended searches provided on our website should not serve as legal
                             advice for your background investigation. You should always seek legal
                             advice from your attorney. The recommended searches are provided to help
                             orient you to searches you may want to consider for a particular job
-                            classification. We will work with you to create a background
-                            investigation specific to your industry needs.
+                            classification. We will work with you to create a background investigation
+                            specific to your industry needs.
                         </Text>
                         <View style={styles.footer_wrapper}>
                             <View style={styles.footer_container}>
@@ -531,245 +610,165 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
     return (
         <Document>
             <Page size="A4" style={styles.page} wrap={false}>
-                <View style={styles.top_wrapper}>
-                    <View style={styles.top_header_left}>
-                        <View style={styles.topHeader_container}>
-                            <View style={styles.topHeader}>
-                                <Text style={styles.headerText}>Company Name:</Text>
-                                <Text style={styles.headerText_alt}>
-                                    {idData?.name ||
-                                        idData?.company ||
-                                        idData?.company_name ||
-                                        idData[0]?.name ||
-                                        idData?.subscriber ||
-                                        '-'}
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.topHeader_container}>
-                            <View style={styles.topHeader}>
-                                <Text style={styles.headerText}>Report Date:</Text>
-                                <Text style={styles.headerText_alt}>
-                                    {new Date().toDateString()}
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.topHeader_logo}>
-                        <Image style={styles.logo_header} src={passLogo} />
-                    </View>
+                <View style={styles.topHeader_logo_individual}>
+                    {/* <Image style={styles.logo_header_individual} src={passLogo} /> */}
+                    <Image style={styles.logo_header_individual} src={hostName == "Prembly" ? PremblyLogo : PelezaLogo} />
                 </View>
-                <View style={styles.response_header}>
-                    <Text style={styles.response_header_one}>VERIFICATION RESPONSE</Text>
-                    <Text style={styles.response_header_text}>
-                        Verification Status: <Text style={styles.status}>Successful</Text>
+                <View style={styles.response_header_individual}>
+                    <Text style={styles.response_header_two}>
+                        {individual_channel[channel] || channel}
                     </Text>
+                    <Text style={styles.response_header_text_two}>Successful</Text>
                 </View>
 
-                <View style={styles.company_details}>
-                    <Text style={styles.company_details_text}>Company Registration Details</Text>
-                    {!Array.isArray(idData)
-                        ? Object?.entries(idData).map((v) => {
-                              return (
-                                
-                                  v[0] !== 'file_base64' &&
-                                  
-                                    v[1] !== null && typeof v[1] === 'string' ? (
-                                        <View style={styles.test}>
-                                            <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
-                                            { getKeyLabel(v[0])?.replace(
-                                                /_/g,
-                                                ' '
-                                            )}
-                                            </Text>
-                                            <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
-                                                {v[1] !== null ? v[1] : 'N/A'}
-                                            </Text>
-                                        </View>
-                                    ) :
-                                      <>
-                                         <View style={styles.test}>
-                                            <Text style={[styles.company_details_subtitle_right, {width:"30%", fontWeight:800}]}>
-                                                { getKeyLabel(v[0])?.replace(
-                                                    /_/g,
-                                                    ' '
-                                                )}
-                                            </Text>
-                                        </View> 
-
-                                        {v[1] !== null && typeof v[1] === "object" && v[0] !== "directors" && ((
-                                            Object.entries(v[1]).map(([key, value]) => (
-                                            value !== null && typeof value == "object" 
-                                                ?
-                                                <>
-                                                
-                                                { isNaN(key) && <View style={styles.test}>
-                                                    <Text style={[styles.company_details_subtitle_right, {width:"30%", fontWeight:800}]}>
-                                                        { getKeyLabel(key)?.replace(
-                                                            /_/g,
-                                                            ' '
-                                                        ) }
-                                                    </Text>
-                                                </View> }
-                                                
-                                                {Object.entries(value).map(([key, childVal]) => {
-                                                    return (
-                                                        <React.Fragment key={key} >
-                                                            {childVal !== null && typeof childVal === "object" ? (
-                                                                // If childVal is an object, render its key
-                                                                
-                                                                <Text style={[styles.company_details_subtitle_right_inner, { width: "30%", backgroundColor:"#e6ecf7"}]}>
-                                                                    {getKeyLabel(key)?.replace(/_/g, ' ')} 
-                                                                </Text>
-                                                            ) : (
-                                                                // If childVal is not an object, render the key-value pair directly
-                                                                <View style={styles.test}>
-                                                                    <Text style={[styles.company_details_subtitle_right, { width: "30%" }]}>
-                                                                        {getKeyLabel(key)?.replace(/_/g, ' ')} 
-                                                                    </Text>
-                                                                    <Text style={[styles.company_details_subtitle_left, { width: "100%" }]}>
-                                                                        {childVal ? childVal : 'N/A'}
-                                                                    </Text>
-                                                                </View>
-                                                            )}
-                                                            {/* Map over the entries of childVal and render JSX elements for each entry */}
-                                                            {typeof childVal === "object" && childVal !== null && Object.entries(childVal).map(([subKey, subChildVal]) => (
-                                                                <View style={styles.test} key={subKey}>
-                                                                    <Text style={[styles.company_details_subtitle_right, { width: "30%" }]}>
-                                                                        { isNaN(subKey) && getKeyLabel(subKey)?.replace(/_/g, ' ')}
-                                                                    </Text>
-                                                                    {/* Render JSX elements based on the type of subChildVal */}
-                                                                    {typeof subChildVal === "object" ? (
-                                                                        // If subChildVal is an object, map over its entries and render JSX elements for each entry
-                                                                        Object.entries(subChildVal).map(([greatGrandChildKey, greatGrandChildVal]) => (
-                                                                            <View style={[styles.test, {borderBottom:"none"}]} key={greatGrandChildKey}>
-                                                                                <Text style={[styles.company_details_subtitle_left, { width: "100%" }]}>
-                                                                                    {getKeyLabel(greatGrandChildKey)?.replace(/_/g, ' ')}: {greatGrandChildVal || 'N/A'}
-                                                                                </Text>
-                                                                            </View>
-                                                                        ))
-                                                                    ) : (
-                                                                        // If subChildVal is not an object, render a Text component with its value
-                                                                        <Text style={[styles.company_details_subtitle_left, { width: "100%" }]}>
-                                                                            {subChildVal || 'N/A'}
+                <View style={styles.individual_details}>
+                    {(idData?.base64Image || idData?.photo || idData?.Photo || idData?.Picture || idData?.picture || idData?.image) && (
+                        <View style={styles.individual_img}>
+                            <Image
+                                src={imgUrl(
+                                    idData?.base64Image || idData?.photo || idData?.Photo || idData?.Picture || idData?.picture || idData?.image
+                                )}
+                                style={styles.individual_img_alt}
+                            />
+                        </View>
+                    )}
+                       {!Array.isArray(idData) &&
+                        Object.entries(idData).map((v) => {
+                            return (
+                                v[0] !== 'photo' &&
+                                v[0] !== 'Photo' &&
+                                v[0] !== 'signature' &&
+                                v[0] !== 'Signature' && 
+                                v[0] !== 'base64Image' && 
+                                v[0] !== 'image' &&
+                                (
+                                    (typeof v[1] === "object"  && v[1]) ?
+                                    Object.entries(v[1]).map(newVal => (
+                                        <View key={newVal[0]}>
+                                            
+                                            {(typeof newVal[1] === "object") ?
+                                            <>
+                                             <Text style={{fontSize:'8px', marginTop:"1%", marginBottom: "0.5%"}}> {newVal[0] !== null && getKeyLabel(newVal[0])}</Text>
+                                                {newVal[1] !== null && Object.entries(newVal[1]).map(innerNewVal => (
+                                                    <View key={innerNewVal[0] !== null && innerNewVal[0]} style={styles.test_two}>
+                                                       
+                                                        {innerNewVal[1] !== null &&
+                                                            (typeof innerNewVal[1] === "object") ?
+                                                                Object.entries(innerNewVal[1]).map(innerChildVal => (
+                                                                  (innerChildVal[0] !== "calendarItemList") &&  <View key={innerChildVal[0]}  style={[styles.test_two, {flexDirection:'row'}]}>
+                                                                        <Text  style={styles.company_details_subtitle_right_two}>
+                                                                            { getKeyLabel(innerChildVal[0])?.replace(
+                                                                                /_/g,
+                                                                                ' '
+                                                                            )}
                                                                         </Text>
-                                                                    )}
+                                                                        {
+                                                                           (Array.isArray(innerChildVal[1])) 
+                                                                            ?  
+                                                                                (Object.entries(innerChildVal[1]).map(([key, value]) => (
+                                                                                    <>
+                                                                                    { Object.entries(value).map(([key, newValUp]) => (
+                                                                                            <Text style={[styles.child_width]}>
+                                                                                                {getKeyLabel(key)} :   {newValUp ? newValUp : '-'}
+                                                                                            </Text>
+                                                                                        ))
+                                                                                    }
+                                                                                    </>                                                                           )
+                                                                                ))
+                                                                            : 
+                                                                            
+                                                                                (typeof innerChildVal[1] == "object") 
+                                                                                ? 
+                                                                                    Object.entries(innerChildVal[1]).map(deepNextedVal => (
+                                                                                        <View key={deepNextedVal[0]}>
+                                                                                            <Text  style={{fontSize:"8px"}}>
+                                                                                                {getKeyLabel(deepNextedVal[0])} : {deepNextedVal[1] ? deepNextedVal[1] : 'N/A' }
+                                                                                            </Text>
+                                                                                        </View>
+                                                                                    )
+                                                                                )
+                                                                                :
+                                                                                    <View > 
+                                                                                        <Text style={styles.company_details_subtitle_right_two}> {innerChildVal[1] ? innerChildVal[1] : 'N/A'}</Text> 
+                                                                                    </View>
+                                                                        } 
+                                                                        </View>
+                                                            )) 
+                                                            :   <View > 
+                                                                    <Text style={styles.company_details_subtitle_right_two}>
+                                                                        {getKeyLabel(innerNewVal[0])?.replace(
+                                                                                /_/g,
+                                                                                ' '
+                                                                        )} 
+                                                                    </Text>
+                                                                    <Text style={[styles.company_details_subtitle_left_two,]}>
+                                                                        {innerNewVal[1] ? innerNewVal[1] : 'N/A'}
+                                                                    </Text>
+                                                                    
                                                                 </View>
-                                                            ))}
-                                                        </React.Fragment>
-                                                    );
-                                                })}
-
+                                                        }
+                                                    </View>
+                                                ))}
                                                 </>
-                                                :
-                                                    <View style={styles.test}>
-                                                        <Text style={[styles.company_details_subtitle_right, {width:"30%"}]}>
-                                                            
+                                                :  <View  style={[styles.test_two]}> 
+                                                        <Text style={styles.company_details_subtitle_right_two}>
+                                                            {getKeyLabel(newVal[0])?.replace(
+                                                                    /_/g,
+                                                                    ' '
+                                                            )} 
                                                         </Text>
-                                                        <Text style={[styles.company_details_subtitle_left, {width:"100%"}]}>
-                                                            {(value || value !== null) ? value : 'N/A'}
+                                                        <Text style={[styles.company_details_subtitle_left_two,]}>
+                                                            {newVal[1] && newVal !== null ? newVal[1] : 'N/A'}
                                                         </Text>
                                                     </View>
-                                                
-                                                )
-                                            ))
-                                        )}
-                                      </>
-                                      
-                              )
-                          })
-                        : Array?.isArray(idData) &&
-                          idData.map((v, index) => {
-                              return (
-                                 v !== null && Object.entries(v).map(([key, value]) =>
-                                      value !== null && typeof value === 'object' ? (
-                                          value?.map((vt) => <Text></Text>)
-                                      ) : (
-                                          <View style={styles.test}>
-                                              <Text style={styles.company_details_subtitle_right}>
-                                                  {key}
-                                              </Text>
-                                              <Text style={styles.company_details_subtitle_left}>
-                                                  {value !== null ? value : 'N/A'}
-                                              </Text>
-                                          </View>
-                                      )
-                                  )
+                                            }
+                                        </View>
+                                    ))
+                                    :
+                                    <View key={v[0]}  style={[styles.test_two,]}>
+                                         <Text style={styles.company_details_subtitle_right_two}>
+                                           {getKeyLabel(v[0])?.replace(
+                                                /_/g,
+                                                ' '
+                                            )} 
+                                        </Text>
+                                        <Text style={[styles.company_details_subtitle_left_two, {width:"30%"}]}>
+                                            {v[1] ? v[1] : 'N/A'}
+                                        </Text>
+                                    </View>
                                 )
-                          })}
+                            );
+                        })
+                    }  
+                        
                 </View>
-
-                {idData?.directors && Object?.values(idData?.directors)?.length && (
-                    <View style={styles.company_details}>
-                        <Text style={styles.company_details_text}>
-                            Share Holding and Directorship
-                        </Text>
-                        <View style={styles.company_details_record_header}>
-                            <Text style={styles.company_details_record_header_text}>NAME</Text>
-                            <Text style={styles.company_details_record_header_text}>
-                                DESCRIPTION
-                            </Text>
-                            <Text style={styles.company_details_record_header_text}>ADDRESS</Text>
-                            <Text style={styles.company_details_record_header_text}>
-                                NATIONALITY
-                            </Text>
-                            <Text style={styles.company_details_record_header_text}>SHARES</Text>
-                            <Text style={styles.company_details_record_header_text}>
-                                TYPE OF SHARES PERCENTAGE
-                            </Text>
-                        </View>
-                        { Object?.values(idData?.directors).map((director) => {
-                            return (
-                                <View style={styles.company_details_record_header}>
-                                    <Text style={styles.company_details_record_header_text}>
-                                        {director?.name || 'N/A'}
-                                    </Text>
-                                    <Text style={styles.company_details_record_header_text}>
-                                        {director?.description || 'N/A'}
-                                    </Text>
-                                    <Text style={styles.company_details_record_header_text}>
-                                        {director?.address || 'N/A'}
-                                    </Text>
-                                    <Text style={styles.company_details_record_header_text}>
-                                        {director?.nationality || 'N/A'}
-                                    </Text>
-                                    <Text style={styles.company_details_record_header_text}>
-                                        {director?.shares || 'N/A'}
-                                    </Text>
-                                    <Text style={styles.company_details_record_header_text}>
-                                        {director?.percentage || 'N/A'}
-                                    </Text>
-                                </View>
-                            )
-                        })}
-                    </View>
-                )}
 
                 <View style={styles.footer_alt}>
                     <Text style={styles.disclaimer}>
-                        DISCLAMER The records contained in this reports are compiled from various
-                        databases that may only be updated infrequently, and therefore, may not have
-                        the most current information. This report is not intended to serve as
-                        recommendation of whether to hire the candidate investigated. This report is
-                        submitted in strict confidence and except where required by law, no
-                        information provided in our reports may be revealed directly or indirectly
-                        to any person except to those whose official duties require them to pass
-                        this report on in relation to which the report was requested by the client.
-                        {hostName} International Limited neither warrants, vouches for, or authenticates
-                        the reliability of the information contained herein that the records are
-                        accurately reported as they were found at the source as of the date and time
-                        of this report, whether on a computer information system, retrieved by
-                        manual search, or telephonic interviews. The information provided herein
-                        shall not be construed to constitute a legal opinion; rather it is a
-                        compilation of public records and/or data for your review. {hostName}
-                        International Limited shall not be liable for any losses or injuries now or
-                        in the future resulting from or relating to the information provided herein.
-                        The recommended searches provided on our website should not serve as legal
+                        DISCLAMER The records contained in this reports are compiled from
+                        various databases that may only be updated infrequently, and therefore,
+                        may not have the most current information. This report is not intended
+                        to serve as recommendation of whether to hire the candidate
+                        investigated. This report is submitted in strict confidence and except
+                        where required by law, no information provided in our reports may be
+                        revealed directly or indirectly to any person except to those whose
+                        official duties require them to pass this report on in relation to which
+                        the report was requested by the client. Payarena Verification Service
+                        neither warrants, vouches for, or authenticates the reliability of the
+                        information contained herein that the records are accurately reported as
+                        they were found at the source as of the date and time of this report,
+                        whether on a computer information system, retrieved by manual search, or
+                        telephonic interviews. The information provided herein shall not be
+                        construed to constitute a legal opinion; rather it is a compilation of
+                        public records and/or data for your review. Payarena Verification Service International Limited
+                        shall not be liable for any losses or injuries now or in the future
+                        resulting from or relating to the information provided herein. The
+                        recommended searches provided on our website should not serve as legal
                         advice for your background investigation. You should always seek legal
                         advice from your attorney. The recommended searches are provided to help
                         orient you to searches you may want to consider for a particular job
-                        classification. We will work with you to create a background investigation
-                        specific to your industry needs.
+                        classification. We will work with you to create a background
+                        investigation specific to your industry needs.
                     </Text>
                     <View style={styles.footer_wrapper}>
                         <View style={styles.footer_container}>
@@ -783,6 +782,7 @@ const PDFComponent = ({ idData, verifyType, channel }) => {
             </Page>
         </Document>
     )
+   
 }
 
 export const ResponseVerificationComponent = (props) => {

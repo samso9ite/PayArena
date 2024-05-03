@@ -1,10 +1,11 @@
 import React from 'react'
 import LoadingPageLogo from '../../../assets/loadingPageLogo.svg'
+import upLogo from '../../../assets/upLogo.png'
 import loadingPageGif from '../../../assets/loadingPageGif.gif'
 import Cookies from 'js-cookie'
 
 const Loader = () => {
-    let passLogo = Cookies.get('logo') || ''
+    let passLogo = upLogo || ''
 
     return (
         <div

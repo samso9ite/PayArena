@@ -6,7 +6,7 @@ import { mpesaTopUpWalletRequest,
     topUpWalletRequest, virtualAccountInfoRequest, walletBalanceRequest, walletHistoryRequest, walletToWalletTransferRequest } from "../../../redux/actions/wallet";
 import global from "../../../redux/constants/global";
 import { RootState } from "../../../redux/reducers";
-import Mainloader, { EmptyStateComp, FailedTag, PendingTag, removeLetters, SuccessTag } from "../../utils";
+import Mainloader, { EmptyStateComp, FailedTag, PendingTag, removeLetters, SuccessTag, TableLoader } from "../../utils";
 import NotificationToast from "../../utils/notifToast";
 import { NumericFormat } from 'react-number-format';
 import { organisationInfoRequest } from "../../../redux/actions/settings/organisationInfo";
@@ -15,7 +15,7 @@ import moment from "moment";
 import success from '../../../assets/success.svg'
 import axios from "axios";
 import { authorizationRedirect } from "../../../redux/constants/api";
-import ExportToExcel from "../../../utils/exportToExcel";
+// import ExportToExcel from "../../../utils/exportToExcel";
 
 export default function SubWalletComp(props:any) {
 
@@ -39,8 +39,6 @@ export default function SubWalletComp(props:any) {
     const organisationInfoState = useSelector((state: RootState) => state.organisationInfoReducer);
     // const virtualAccountInfoState = useSelector((state: RootState) => state.virtualAccountInfoReducer);
     const topUpWalletState = useSelector((state: RootState) => state.topUpWalletReducer);
-    // const paystackTopUpWalletState = useSelector((state: RootState) => state.paystackTopUpWalletReducer);
-    // const flutterwaveTopUpWalletState = useSelector((state: RootState) => state.flutterwaveTopUpWalletReducer);
     const mpesaTopUpWalletState = useSelector((state: RootState) => state.mpesaTopUpWalletReducer);
     const myOrganisationInfoState = useSelector((state: RootState) => state.myOrganisationInfoReducer);
     const walletTransferState = useSelector((state: RootState) => state.walletToWalletTransferReducer);
@@ -48,6 +46,12 @@ export default function SubWalletComp(props:any) {
     const [searchData, setSearchData] = useState('')
     const [resultData, setResultData] = useState<any>()
     const [excelData, setExcelData] = useState<any>()
+    const [filterModalWallet, setFilterModalWallet] = useState<boolean>(false)
+    const [startDate, setStartDate] = useState('')
+    const [endDate, setEndDate] = useState('')
+    const [filterStatus, setFilterStatus] = useState('successful')
+    const [expandRef, setExpandRef] = useState(false)
+    const [loading, setLoading] = useState<boolean>(false)
 
 
     const dispatch = useDispatch()
@@ -154,14 +158,18 @@ export default function SubWalletComp(props:any) {
         dispatch(walletHistoryRequest(data))
     }
 
-    const fetchDataBySearch = (e:any) => {
+    const fetchWalletData = (e:any, state:string) => {
         e.preventDefault()
+        
         let accessT = Cookies.get('babtbu') || ''
         let orgId = Cookies.get('org') || ''
+        let url = state == "filter" ? 
+                    `wallet/fund-wallet?query?date_from=${startDate}&date_to=${endDate}&status=${filterStatus}` : 
+                    `wallet/fund-wallet?query=${searchData}`
 
         let requestOptions = {
             method: 'get',
-            url: global.apiBaseUrl + global.idpassApiUrl + `wallet/fund-wallet?query=${searchData}`,
+            url: global.apiBaseUrl + global.idpassApiUrl + url,
 
             headers: {
                 'Content-Type': 'application/json',
@@ -170,6 +178,7 @@ export default function SubWalletComp(props:any) {
                 Organisation: orgId,
             },
         }
+        setLoading(true)
         axios
             .request(requestOptions)
             .then((res) => {
@@ -182,6 +191,9 @@ export default function SubWalletComp(props:any) {
                     } else {
                         console.log(e);
                 }
+            }).finally(() => {
+                setLoading(false)
+                setFilterModalWallet(false)
             })
     }
 
@@ -385,7 +397,11 @@ export default function SubWalletComp(props:any) {
 		setNotifVal(true)
 	}
 
+    const handleFilterModalWallet = () => {
+        setFilterModalWallet(true)
+    }
 
+   
     return (
         <div className="sub-wallet-area">
             {(notif && notifVal) && <NotificationToast title={notifTitle} message={notif} closeNotif={() => setNotifVal(!notifVal)} />}
@@ -719,42 +735,139 @@ export default function SubWalletComp(props:any) {
                                 </div>
                                 <div className="col-md-7">
                                 <div className="row justify-content-md-end align-items-center">
-                                                    <div className="col-12 col-md-6 ">
-                                                        <form
-                                                            action=""
-                                                            onSubmit={fetchDataBySearch}
-                                                            >
-                                                            <input
-                                                                type="text"
-                                                                className="form-control"
-                                                                placeholder="Search by  reference, name, email, amount, press enter to search"
-                                                                onChange={(e) =>
-                                                                    setSearchData(e.target.value)
-                                                                }
-                                                            />
-                                                        </form>
-                                                    </div>
-                                                   
-                                                    <div className="col-6 col-md-3 col-lg-2 pt-3 pt-md-0">
-                                                       <ExportToExcel fileName="Transactions" excelData={excelData} />
-                                                    </div>
-                                                </div>
+                                    <div className="col-12 col-md-6 ">
+                                        <form
+                                            action=""
+                                            onSubmit={(e) => fetchWalletData(e, "search")}
+                                            >
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Search by  reference, name, email, amount, press enter to search"
+                                                onChange={(e) =>
+                                                    setSearchData(e.target.value)
+                                                }
+                                            />
+                                        </form>
+                                    </div>
+                                    <div className="col-6 col-md-3 col-lg-2 pt-3 pt-md-0">
+                                        <button
+                                            className="px-3 rounded-1 d-flex align-items-center justify-content-between w-100"
+                                            style={{
+                                                outline: 'none',
+                                                background: 'none',
+                                                color: '#62789D',
+                                                border: '1px solid #62789D',
+                                                height: '50px',
+                                                // gap: '0.5rem',
+                                                cursor: 'pointer',
+                                            }}
+                                            onClick={handleFilterModalWallet}>
+                                            Filter
+                                            <i className="ri-filter-3-fill ri-lg "></i>
+                                        </button>
+                                    </div>
+                                    <div className="col-6 col-md-3 col-lg-2 pt-3 pt-md-0">
+                                        {/* <ExportToExcel fileName="Transactions" excelData={excelData} /> */}
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
+                        {filterModalWallet && (
+                            <div className="main-modal report-filter-modal">
+                                <div className="main-modal-content report-filter-card card col-md-5 col-lg-3 mx-auto px-md-4">
+                                    <span onClick={() => setFilterModalWallet(false)}>
+                                        <i className="ri-close-line close-modal"></i>
+                                    </span>
 
+                                    <div>
+                                        <h2
+                                            style={{
+                                                borderBottom: '1px solid #E95470',
+                                                padding: '5px 0px',
+                                                width: '70px',
+                                                font: '14px S-regular',
+                                            }}>
+                                            Filter
+                                        </h2>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <label htmlFor="brand-name"> Start date </label>
+                                            <input
+                                                value={startDate}
+                                                type="date"
+                                                className="form-control"
+                                                onChange={(e) => setStartDate(e?.target.value)}
+                                            />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label htmlFor="brand-name"> End date </label>
+                                            <input
+                                                value={endDate}
+                                                type="date"
+                                                className="form-control"
+                                                onChange={(e) => setEndDate(e?.target.value)}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="brand-name"> Status </label>
+                                        <select
+                                            value={filterStatus}
+                                            className="form-select"
+                                            onChange={(e) => setFilterStatus(e?.target?.value)}>
+                                            <option value="successful">Successful</option>
+                                            <option value="failed">Failed</option>
+                                        </select>
+                                    </div>
+
+                                    <button
+                                        onClick={(e) => fetchWalletData(e, "filter")}
+                                        className="btn w-100 py-3 mt-5"
+                                        style={{
+                                            outline: 'none',
+                                            background: '#007DA3',
+                                            color: '#ffffff',
+                                            border: 'none',
+                                            borderRadius: '5px',
+                                            fontSize: '14px',
+                                            // padding:'10px'
+                                        }}>
+                                        {loading ? (
+                                            <div>
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />
+                                                <span className="sr-only">Loading...</span>
+                                            </div>
+                                        ) : ( 
+                                            'Apply Filter'
+                                        ) 
+                                     } 
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                       
         
                         <div className="mt-4">
-                            {resultData?.results?.length > 0 ? 
+                            {walletHistoryState?.isLoading || loading && <TableLoader />}
+                            {!walletHistoryState?.isLoading || !loading && resultData?.results?.length > 0 ? 
                                 <div className="table-responsive">
                                     <table className="table">
                                         <thead className="">
                                             <tr>
                                                 <th scope="col">Ref</th>
-                                                <th scope="col"> Description</th>
                                                 <th scope="col">Name</th>
+                                                <th scope="col">Email</th>
                                                 <th scope="col">Amount</th>
+                                                <th scope="col"> Method</th>
                                                 <th scope="col">Balance Before</th>
                                                 <th scope="col">Balance After</th>
                                                 <th scope="col">Date</th>
@@ -764,15 +877,16 @@ export default function SubWalletComp(props:any) {
                                         <tbody>
                                             {resultData?.results?.map((value: any, index: React.Key | null | undefined) => (
                                                 <tr key={index}>
-                                                    <th scope="row" className="restrict-width">{value?.reference}</th>
-                                                    <td className="restrict-width">{value?.description}</td>
+                                                    <th scope="row" style={{cursor:"pointer"}} onClick={() => {setExpandRef(!expandRef)}} className={expandRef ? "": 'restrict-width'}>{value?.reference}</th>
                                                     <td>{value?.user.full_name}</td>
+                                                    <td>{value?.user.email}</td>
                                                     <td>{value?.currency.code} {value?.amount}</td>
+                                                    <td style={{textTransform:"capitalize"}}>{value?.payment_gateway}</td>
                                                     <td>{value?.balance_before}</td>
                                                     <td>{value?.balance_after} </td>
                                                     <td>{moment.utc(value?.created_at).format('lll')}</td>
                                                     <td>
-                                                        {value?.status === "success" && <SuccessTag />}
+                                                        {value?.status === "successful" && <SuccessTag />}
                                                         {value?.status === "failed" && <FailedTag />}
                                                         {value?.status === "pending" && <PendingTag />}
                                                     </td>
@@ -781,6 +895,9 @@ export default function SubWalletComp(props:any) {
                                         </tbody>
                                     </table>
                                 </div>
+
+
+                 
                                 :
                                 <div className="my-5 py-5">
                                     <EmptyStateComp title={"You are yet to make any transaction"}

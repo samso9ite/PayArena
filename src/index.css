@@ -71,7 +71,7 @@ a {
 }
 
 .btn-deep-green {
-    background-color: #332ECF !important;
+    background-color: #21aae4 !important;
     font-family: S-bold !important;
     color: #fff !important;
     font-size: 15px !important;
@@ -748,7 +748,7 @@ select,
 }
 .sidebar-area .navigation ul li:hover,
 .navigation ul li.active {
-    background-color: #B853E6;
+    background-color: #f48430;
     color: #fff !important;
     width: 100%;
     border: none;
@@ -2912,4 +2912,14 @@ select,
 .progress-bar{
     background-color: #332ECF !important;
     /* width: 100% !important; */
+}
+.toggle-btn-active{
+    background-color:"#332ECF"; 
+    border-radius:"30px"
+}
+.toggle-btn{
+    background-color:"#fff";
+    border-color:"transparent";
+    border-radius:"30px";
+    color:"#62789D";
 }
